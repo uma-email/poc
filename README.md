@@ -4,7 +4,7 @@ A prototype implementation of the [authorization-enhanced-mail-system][1] draft 
 The project comes with:
 
 * apis: A PoC OpenAPI specification.
-* databases: PoC databases scripts.
+* databases: PoC database SQL scripts.
 * server: A RESTful service that communicates with your email provider.
 * client: A client to call REST API against PoC service.
 
