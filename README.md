@@ -8,6 +8,6 @@ The project comes with:
 * server: A RESTful service that communicates with your email provider.
 * client: A client to call REST API against PoC service.
 
-The support for code in this repository is limited, but you are welcome to use it.
+Support for code in this repository is limited, but you are welcome to use it.
 
 [1]: https://github.com/uma-email/proposal
