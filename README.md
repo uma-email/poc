@@ -1,31 +1,30 @@
-# Webmail
+# aems
 A prototype implementation of the [authorization-enhanced-mail-system][1] draft proposal, working as a proof of concept.
 
 The project comes with:
 
-* apis: A Webmail OpenAPI specification.
-* databases: Webmail database SQL scripts.
-* server: A RESTful Webmail service that communicates with your email provider.
-* client: A Webmail client to call REST API against Webmail service.
+* apis: An  OpenAPI specification.
+* databases: Database SQL scripts.
+* server: A RESTful Resource Server service that communicates with your email provider.
+* apiapp: An OpenAPI spec viewer
+* mailapp: A PWA webmail client to call REST API against service.
 
-## Running Webmail
+## Running Server
 
-The project is a standard Maven project, so you can import it to your IDE of choice. You'll need to have Java 11+ and Node.js 10+ installed.
+To run server from the command line, use `node`.
 
-To run Webmail from the command line, use `mvn` and open [http://localhost:8080](http://localhost:8080) in your browser.
+## Deploying server using Docker
 
-## Deploying using Docker
-
-To build the Dockerized version of the Webmail project, run
+To build the Dockerized version of the server, run
 
 ```
-docker build . -t webmail:latest
+docker build . -t aems:latest
 ```
 
 Once the Docker image is correctly built, you can test it locally using
 
 ```
-docker run -p 8080:8080 webmail:latest
+docker run -p 8080:8080 aems:latest
 ```
 
 Support for code in this repository is limited.

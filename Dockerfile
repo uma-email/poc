@@ -1,31 +1,19 @@
-# Stage that builds the application, a prerequisite for the running stage
-FROM maven:3-jdk-11 as build
-RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
-RUN apt-get update -qq && apt-get install -qq --no-install-recommends nodejs
+FROM node:12
 
-# Stop running as root at this point
-RUN useradd -m webmail
-WORKDIR /usr/src/app/
-RUN chown webmail:webmail /usr/src/app/
-USER webmail
+# Create app directory
+WORKDIR /usr/src/app
 
-# Copy pom.xml and prefetch dependencies so a repeated build can continue from the next step with existing dependencies
-COPY --chown=webmail pom.xml ./
-RUN mvn dependency:go-offline -Pproduction
+# Install app dependencies
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+# where available (npm@5+)
+COPY package*.json ./
 
-# Copy all needed project files to a folder
-COPY --chown=webmail:webmail src src
-COPY --chown=webmail:webmail frontend frontend
-COPY --chown=webmail:webmail package.json pnpm-lock.yaml webpack.config.js ./
+RUN npm install
+# If you are building your code for production
+# RUN npm ci --only=production
 
+# Bundle app source
+COPY . .
 
-# Build the production package, assuming that we validated the version before so no need for running tests again
-RUN mvn clean package -DskipTests -Pproduction
-
-# Running stage: the part that is used for running the application
-FROM openjdk:11
-COPY --from=build /usr/src/app/target/*.jar /usr/app/app.jar
-RUN useradd -m webmail
-USER webmail
 EXPOSE 8080
-CMD java -jar /usr/app/app.jar
+CMD [ "node", "server.js" ]
