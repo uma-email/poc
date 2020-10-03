@@ -1,0 +1,229 @@
+openapi: 3.0.1
+info:
+  title: Tags REST API
+  description: Digital Postal System
+  contact:
+    url: 'https://github.com/igi64'
+  license:
+    name: Apache License 2.0
+    url: 'https://www.apache.org/licenses/LICENSE-2.0'
+  version: '0.3'
+servers:
+  - url: '${BASE_SERVER_API_URL}'
+    variables: {}
+paths:
+  '/tags':
+    get:
+      tags:
+        - tags
+      summary: List all tags
+      operationId: getAllTags
+      responses:
+        '405':
+          description: Invalid input
+    post:
+      tags:
+        - tags
+      summary: Create a new tag
+      operationId: createTag
+      requestBody:
+        description: Tag to add
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewTag'
+      responses:
+        '405':
+          description: Invalid input
+  '/tags/{id}':
+    get:
+      tags:
+        - tags
+      summary: Get the specified tag
+      operationId: getTag
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '405':
+          description: Invalid input
+    put:
+      tags:
+        - tags
+      summary: Update the specified tag
+      operationId: updateTag
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Tag to update
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTag'
+      responses:
+        '405':
+          description: Invalid input
+    delete:
+      tags:
+        - tags
+      summary: Delete the specified tag
+      operationId: deleteTag
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '405':
+          description: Invalid input
+  '/tags/{id}/values':
+    get:
+      tags:
+        - tags / values
+      summary: List all tag values (not implemented)
+      operationId: getAllTagValues
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '405':
+          description: Invalid input
+    post:
+      tags:
+        - tags / values
+      summary: Create a new tag value (not implemented)
+      operationId: createTagValue
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Tag to add
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewValue'
+      responses:
+        '405':
+          description: Invalid input
+  '/tags/{id}/values/{valueId}':
+    get:
+      tags:
+        - tags / values
+      summary: Get the specified tag value (not implemented)
+      operationId: getTagValue
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: valueId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '405':
+          description: Invalid input
+    put:
+      tags:
+        - tags / values
+      summary: Update the specified tag value (not implemented)
+      operationId: updateTagValue
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: valueId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Tag value to update
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateValue'
+      responses:
+        '405':
+          description: Invalid input
+    delete:
+      tags:
+        - tags / values
+      summary: Delete the specified tag value (not implemented)
+      operationId: deleteTagValue
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: valueId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '405':
+          description: Invalid input
+components:
+  schemas:
+    Tag:
+      allOf:
+        - required:
+            - id
+          properties:
+            id:
+              type: integer
+              format: int64
+        - $ref: '#/components/schemas/NewTag'
+    UpdateTag:
+      allOf:
+        - $ref: '#/components/schemas/NewTag'
+        - required:
+            - id
+    NewTag:
+      properties:
+        type:
+          type: number
+        name:
+          type: string
+    Value:
+      allOf:
+        - required:
+            - id
+          properties:
+            id:
+              type: integer
+              format: int64
+        - $ref: '#/components/schemas/NewValue'
+    UpdateValue:
+      allOf:
+        - $ref: '#/components/schemas/NewValue'
+        - required:
+            - id
+    NewValue:
+      properties:
+        value:
+          type: string

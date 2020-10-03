@@ -10,6 +10,7 @@ nodemon.json
 
 # service config
 .config.env
+.env
 
 # resource server repository
 repository/

@@ -1,0 +1,108 @@
+openapi: 3.0.1
+info:
+  title: Labels REST API
+  description: Digital Postal System
+  contact:
+    url: 'https://github.com/igi64'
+  license:
+    name: Apache License 2.0
+    url: 'https://www.apache.org/licenses/LICENSE-2.0'
+  version: '0.3'
+servers:
+  - url: '${BASE_SERVER_API_URL}'
+    variables: {}
+paths:
+  '/labels':
+    get:
+      tags:
+        - labels
+      summary: List all labels
+      operationId: getAllLabels
+      responses:
+        '405':
+          description: Invalid input
+    post:
+      tags:
+        - labels
+      summary: Create a new label
+      operationId: createLabel
+      requestBody:
+        description: Label to add
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewLabel'
+      responses:
+        '405':
+          description: Invalid input
+  '/labels/{id}':
+    get:
+      tags:
+        - labels
+      summary: Get the specified label
+      operationId: getLabel
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '405':
+          description: Invalid input
+    put:
+      tags:
+        - labels
+      summary: Update the specified label
+      operationId: updateLabel
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Label to update
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateLabel'
+      responses:
+        '405':
+          description: Invalid input
+    delete:
+      tags:
+        - labels
+      summary: Delete the specified label
+      operationId: deleteLabel
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '405':
+          description: Invalid input
+components:
+  schemas:
+    Label:
+      allOf:
+        - $ref: '#/components/schemas/NewLabel'
+        - required:
+            - id
+          properties:
+            id:
+              type: string
+              format: uuidv4
+    UpdateLabel:
+      allOf:
+        - $ref: '#/components/schemas/NewLabel'
+        - required:
+            - id
+    NewLabel:
+      properties:
+        name:
+          type: string
