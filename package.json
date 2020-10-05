@@ -4,8 +4,8 @@
   "description": "A Proof of Concept project",
   "main": "server.js",
   "scripts": {
-    "lint": "standard | snazzy",
-    "lint:fix": "standard --fix",
+    "lint": "standardx | snazzy",
+    "lint:fix": "standardx --fix",
     "dev": "NODE_PATH=. nodemon ./bin/server.js",
     "start": "NODE_PATH=. node ./bin/server.js"
   },
@@ -35,7 +35,18 @@
   "devDependencies": {
     "nodemon": "^2.0.4",
     "snazzy": "^8.0.0",
-    "standard": "^14.3.4"
+    "standardx": "5.0.0"
+  },
+  "eslintConfig": {
+    "rules": {
+      "comma-dangle": ["error", {
+          "objects": "never",
+          "arrays": "never",
+          "imports": "never",
+          "exports": "never",
+          "functions": "never"
+      }]
+    }
   },
   "standard": {
     "ignore": [
