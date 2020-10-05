@@ -14,24 +14,11 @@ Message.init({
   },
   subject: {
     type: DataTypes.STRING
-  },
-  createdAt: {
-    type: DataTypes.DATE,
-    defaultValue: sequelize.fn('NOW'),
-    allowNull: false
-  },
-  updatedAt: {
-    type: DataTypes.DATE,
-    defaultValue: sequelize.fn('NOW'),
-    onUpdate: sequelize.fn('NOW'),
-    allowNull: false
   }
 }, {
   sequelize,
   freezeTableName: true,
-  tableName: 'message',
-  createdAt: true,
-  updatedAt: true
+  tableName: 'message'
 })
 
 module.exports = Message

@@ -33,6 +33,15 @@ module.exports = {
   },
 
   async find (req, res, next) {
-    res.send('find')
+    try {
+      const messages = await Message.findAll({})
+      res.send(messages)
+    } catch (error) {
+      if (error instanceof ValidationError) {
+        return next(BadRequest(error.message))
+      }
+
+      return next(error)
+    }
   }
 }

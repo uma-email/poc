@@ -12,5 +12,8 @@ nodemon.json
 .config.env
 .env
 
+# sqlite3 database
+sqlite3/
+
 # resource server repository
 repository/
