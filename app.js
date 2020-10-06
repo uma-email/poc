@@ -90,41 +90,8 @@ function stringInject (str, data) {
 // OpenAPI UI routes
 app.use('/openapi', express.static('./openapi-ui'))
 
-app.get('/openapi/server.yaml', function (req, res) {
-  fs.readFile('./openapi/server.yaml', 'utf-8', function (err, data) {
-    if (err) {
-      res.send(404)
-    } else {
-      const openapiUiConfig = stringInject(data, process.env)
-      res.send(openapiUiConfig)
-    }
-  })
-})
-
-app.get('/openapi/email.yaml', function (req, res) {
-  fs.readFile('./openapi/email.yaml', 'utf-8', function (err, data) {
-    if (err) {
-      res.send(404)
-    } else {
-      const openapiUiConfig = stringInject(data, process.env)
-      res.send(openapiUiConfig)
-    }
-  })
-})
-
-app.get('/openapi/contacts.yaml', function (req, res) {
-  fs.readFile('./openapi/contacts.yaml', 'utf-8', function (err, data) {
-    if (err) {
-      res.send(404)
-    } else {
-      const openapiUiConfig = stringInject(data, process.env)
-      res.send(openapiUiConfig)
-    }
-  })
-})
-
-app.get('/openapi/tags.yaml', function (req, res) {
-  fs.readFile('./openapi/tags.yaml', 'utf-8', function (err, data) {
+app.get('/openapi/messages.yaml', function (req, res) {
+  fs.readFile('./openapi/messages.yaml', 'utf-8', function (err, data) {
     if (err) {
       res.send(404)
     } else {
@@ -164,6 +131,17 @@ app.use(function (error, req, res, next) {
   }
 
   return next(error)
+})
+
+app.get('/openapi/contacts.yaml', function (req, res) {
+  fs.readFile('./openapi/contacts.yaml', 'utf-8', function (err, data) {
+    if (err) {
+      res.send(404)
+    } else {
+      const openapiUiConfig = stringInject(data, process.env)
+      res.send(openapiUiConfig)
+    }
+  })
 })
 
 app.use(function (error, req, res, next) {

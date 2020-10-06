@@ -1,9 +1,9 @@
 openapi: 3.0.1
 info:
-  title: Labels REST API
-  description: Digital Postal System
+  title: AEMS REST API
+  description: Authorization-Enhanced Mail System (AEMS)
   contact:
-    url: 'https://github.com/igi64'
+    url: 'https://github.com/1token'
   license:
     name: Apache License 2.0
     url: 'https://www.apache.org/licenses/LICENSE-2.0'
