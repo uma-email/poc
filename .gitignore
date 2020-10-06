@@ -12,6 +12,9 @@ nodemon.json
 .config.env
 .env
 
+# certificates
+certs/
+
 # sqlite3 database
 sqlite3/
 

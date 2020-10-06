@@ -101,6 +101,10 @@ paths:
       responses:
         '405':
           description: Invalid input
+      security:
+      - KeycloakOAuthFlows:
+        - repository
+        - repository:admin          
     put:
       tags:
         - messages
@@ -614,3 +618,31 @@ components:
             properties:
               attachment:
                 $ref: '#/components/schemas/AttachmentBody'
+  securitySchemes:
+    KeycloakOAuthFlows:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: ${AUTH_SERVER_AUTH_URL}${AUTH_REALM_PATH}${AUTH_LOGIN_PATH}
+          tokenUrl: ${AUTH_SERVER_AUTH_URL}${AUTH_REALM_PATH}${AUTH_TOKEN_PATH}
+          scopes:
+            repository:admin: Administer your repositories
+            repository: Read your repositories
+            repository:delete: Delete your repositories
+            repository:write: Read and modify your repositories
+        clientCredentials:
+          tokenUrl: https://bitbucket.org/site/oauth2/access_token
+        implicit:
+          authorizationUrl: https://bitbucket.org/site/oauth2/authorize?audience=abcd
+          scopes:        
+            repository:admin: Administer your repositories
+            repository: Read your repositories
+            repository:delete: Delete your repositories
+            repository:write: Read and modify your repositories
+        password:
+          tokenUrl: https://bitbucket.org/site/oauth2/access_token
+          scopes:        
+            repository:admin: Administer your repositories
+            repository: Read your repositories
+            repository:delete: Delete your repositories
+            repository:write: Read and modify your repositories     
