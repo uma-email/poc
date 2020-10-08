@@ -1,11 +1,11 @@
 # aems
 A prototype implementation of the [authorization-enhanced-mail-system][1] draft proposal, working as a proof of concept.
 
-![GUI](gui.png)
+![GUI](./images/gui.png)
 
-![Flow 1](flow-1.svg)
+![Flow 1](./images/flow-1.svg)
 
-![Flow 2](flow-2.svg)
+![Flow 2](./images/flow-2.svg)
 
 The project comes with:
 
