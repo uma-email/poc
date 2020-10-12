@@ -9,8 +9,8 @@ CREATE TABLE repository.acl (
     permissions jsonb,
     file_id bigint NOT NULL,
     file_content_id bigint NOT NULL,
-    updated_at timestamp(6) WITH time zone,
-    created_at timestamp(6) WITH time zone DEFAULT now()
+    updated_at timestamp(6) with time zone,
+    created_at timestamp(6) with time zone DEFAULT now()
 );
 
 ALTER TABLE ONLY repository.acl
@@ -46,7 +46,7 @@ CREATE TABLE repository.file (
     mimetype character varying(255) NOT NULL,
     "encoding" character varying(255) NOT NULL,
     search_filename tsvector,
-    created_at timestamp(6) WITH time zone DEFAULT now()
+    created_at timestamp(6) with time zone DEFAULT now()
 );
 
 CREATE TABLE repository.file_content (
@@ -61,7 +61,7 @@ CREATE TABLE repository.file_content (
     size bigint NOT NULL,
     content text,
     search_content tsvector,
-    created_at timestamp(6) WITH time zone DEFAULT now()
+    created_at timestamp(6) with time zone DEFAULT now()
 );
 
 CREATE FUNCTION repository.file_table_inserted ()
@@ -140,3 +140,4 @@ ALTER TABLE ONLY repository.acl
     ADD CONSTRAINT acl_file_id_fkey FOREIGN KEY (file_id) REFERENCES repository.file (id), --ON DELETE CASCADE
     ADD CONSTRAINT acl_file_content_id_fkey FOREIGN KEY (file_content_id, file_id) REFERENCES repository.file_content (id, file_id) --ON DELETE CASCADE
 ;
+

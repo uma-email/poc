@@ -25,7 +25,7 @@ BEGIN
         f.filename,
         fc.destination,
         f.mimetype,
-        f."encoding",
+        f. "encoding",
         fc.size
     FROM
         repository.file f
@@ -42,7 +42,7 @@ BEGIN
             LEFT JOIN email.attachment a ON a.file_content_id = c.id
                 AND a.file_id = c.file_id
         WHERE
-            c."owner" = _owner
+            c. "owner" = _owner
             AND c.file_id = f.id
             AND a.id IS NULL
         ORDER BY
@@ -50,7 +50,7 @@ BEGIN
             c.version_minor DESC NULLS LAST
         LIMIT 1) fc ON TRUE
 WHERE
-    f."owner" = _owner
+    f. "owner" = _owner
         AND (_file_id IS NULL
             OR f.id = _file_id)
         AND fc.uufcid IS NOT NULL;
@@ -91,12 +91,12 @@ BEGIN
     FROM
         jsonb_array_elements(_files) elm LOOP
         INSERT INTO repository.file ("owner", filename, mimetype, "encoding")
-            VALUES (_owner, _rec.filename, _rec.mimetype, _rec."encoding")
+            VALUES (_owner, _rec.filename, _rec.mimetype, _rec. "encoding")
         RETURNING
             id INTO _ret_file_id;
         INSERT INTO repository.file_content ("owner", uufcid, uufchash, file_id, destination, size)
             VALUES (_owner, _rec.uufcid, _rec.uufchash, _ret_file_id, _rec.destination, _rec.size);
-        _jsonb_array := _jsonb_array || jsonb_build_object('id', _ret_file_id, 'filename', _rec.filename, 'destination', _rec.destination, 'mimetype', _rec.mimetype, 'encoding', _rec."encoding", 'size', _rec.size);
+        _jsonb_array := _jsonb_array || jsonb_build_object('id', _ret_file_id, 'filename', _rec.filename, 'destination', _rec.destination, 'mimetype', _rec.mimetype, 'encoding', _rec. "encoding", 'size', _rec.size);
     END LOOP;
     IF jsonb_array_length(_jsonb_array) > 0 THEN
         RETURN _jsonb_array;
@@ -145,3 +145,4 @@ END;
 $BODY$
 LANGUAGE plpgsql
 VOLATILE;
+
