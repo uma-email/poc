@@ -5,6 +5,7 @@ CREATE SCHEMA repository;
 CREATE TABLE repository.acl (
     id bigint GENERATED always AS IDENTITY PRIMARY KEY NOT NULL,
     email varchar(255) NOT NULL,
+    uumid uuid NOT NULL, -- universally unique message identifier
     permissions jsonb,
     file_id bigint NOT NULL,
     file_content_id bigint NOT NULL,
@@ -19,7 +20,7 @@ ALTER TABLE ONLY repository.acl
     ADD CONSTRAINT acl_email_address_unique UNIQUE (email);
 
 ALTER TABLE ONLY repository.acl
-    ADD CONSTRAINT email_file_id_unique UNIQUE (email, file_id);
+    ADD CONSTRAINT email_uumid_file_id_unique UNIQUE (email, uumid, file_id);
 
 CREATE FUNCTION repository.acl_updated ()
     RETURNS TRIGGER
@@ -39,19 +40,20 @@ CREATE TRIGGER repository_acl_updated
 
 CREATE TABLE repository.file (
     id bigint GENERATED ALWAYS AS IDENTITY PRIMARY KEY NOT NULL,
-    OWNER character varying(255) NOT NULL,
+    "owner" character varying(255) NOT NULL,
     uufid uuid NOT NULL DEFAULT gen_random_uuid (), -- universally unique file identifier
     filename character varying(255) NOT NULL,
     mimetype character varying(255) NOT NULL,
-    ENCODING character varying(255) NOT NULL,
+    "encoding" character varying(255) NOT NULL,
     search_filename tsvector,
     created_at timestamp(6) WITH time zone DEFAULT now()
 );
 
 CREATE TABLE repository.file_content (
     id bigint GENERATED ALWAYS AS IDENTITY PRIMARY KEY NOT NULL,
-    OWNER character varying(255) NOT NULL,
+    "owner" character varying(255) NOT NULL,
     uufcid uuid NOT NULL, -- universally unique file content identifier
+    uufchash uuid, -- universally unique file content hash
     file_id bigint NOT NULL,
     version_major int4 NOT NULL DEFAULT 1,
     version_minor int4 NOT NULL DEFAULT 1,
@@ -99,7 +101,7 @@ VOLATILE
 COST 100;
 
 ALTER TABLE ONLY repository.file
-    ADD CONSTRAINT file_id_owner_unique UNIQUE (id, OWNER);
+    ADD CONSTRAINT file_id_owner_unique UNIQUE (id, "owner");
 
 ALTER TABLE ONLY repository.file_content
     ADD CONSTRAINT file_content_id_file_id_unique UNIQUE (id, file_id),
@@ -133,6 +135,7 @@ CREATE TRIGGER email_prevent_update
     EXECUTE PROCEDURE repository.prevent_update ();
 
 ALTER TABLE ONLY repository.acl
+/*ADD CONSTRAINT acl_uumid_email_fkey FOREIGN KEY (uumid, email) REFERENCES email.message(id, sender_email_address) ON DELETE CASCADE,*/
 /*ADD CONSTRAINT acl_file_id_email_fkey FOREIGN KEY (file_id, email) REFERENCES repository.file(id, email), --ON DELETE CASCADE*/
     ADD CONSTRAINT acl_file_id_fkey FOREIGN KEY (file_id) REFERENCES repository.file (id), --ON DELETE CASCADE
     ADD CONSTRAINT acl_file_content_id_fkey FOREIGN KEY (file_content_id, file_id) REFERENCES repository.file_content (id, file_id) --ON DELETE CASCADE
