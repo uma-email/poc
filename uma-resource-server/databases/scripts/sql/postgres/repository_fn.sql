@@ -146,3 +146,35 @@ $BODY$
 LANGUAGE plpgsql
 VOLATILE;
 
+CREATE FUNCTION repository.search (query_text text, return_limit integer DEFAULT 100)
+    RETURNS SETOF repository.file
+    LANGUAGE plpgsql
+    STABLE
+    AS $_$
+DECLARE
+    like_query_text text := replace(replace(query_text, '*', ''), '%', '');
+BEGIN
+    -- check if contains *; if yes, replace with % and do like instead
+    IF like_query_text <> query_text THEN
+        RETURN QUERY
+        SELECT
+            *
+        FROM
+            public.search_data
+        WHERE
+            jsonb_path_exists(metadata, format('$.* ? (@ like_regex "%s" flag "i")', like_query_text)::jsonpath);
+    ELSE
+        RETURN QUERY
+        SELECT
+            *
+        FROM
+            public.search_data
+        WHERE
+            websearch_to_tsquery(query_text) @@ search_vector
+        ORDER BY
+            ts_rank_cd(search_vector, websearch_to_tsquery(query_text)) DESC
+        LIMIT return_limit;
+    END IF;
+END;
+$_$;
+
