@@ -1,0 +1,3 @@
+[submodule "jmap-demo-webmail"]
+	path = jmap-demo-webmail
+	url = https://github.com/uma-email/jmap-demo-webmail.git
