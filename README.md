@@ -3,17 +3,15 @@ A prototype implementation of the [authorization-enhanced-mail-system][1] draft 
 
 ![GUI](./docs/images/gui.png)
 
-![Flow 1](./docs/images/flow-1.svg)
-
-![Flow 2](./docs/images/flow-2.svg)
+![Abstract Flow](./docs/images/abstract-flow.png)
 
 The project comes with:
 
-* apis: An  OpenAPI specification.
-* databases: Database SQL scripts.
-* server: A RESTful Resource Server service that communicates with your email provider.
-* apiapp: An OpenAPI spec viewer
-* mailapp: A PWA webmail client to call REST API against service.
+* email-service: A server with a JMAP interface that communicates with your email service provider.
+* email-app: A webmail client that runs against the JMAP email-service interface.
+* mail-retrieval-agent: An agent that fetches data from a local or remote resource server and stores it into a local resource server.
+* resource-server: A RESTful information storage and retrieval system.
+* keycloak-config: A Keycloak IAM configuration example.
 
 ## Running Server
 

@@ -8,7 +8,7 @@ const fs = require('fs')
 // const path = require('path')
 
 // routes
-const indexRouter = require('routes/index')
+const indexRouter = require('routes')
 
 // utils
 const { logger } = require('utils')
