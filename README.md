@@ -9,6 +9,7 @@ The project comes with:
 
 * email-service: A server with a JMAP interface that communicates with your email service provider.
 * email-app: A webmail client that runs against the JMAP email-service interface.
+* jmap-demo-webmail: A simple, but in many ways surprisingly sophisticated JMAP demo webmail client forked from the [jmapio/jmap-demo-webmail][2] repo.
 * mail-retrieval-agent: An agent that fetches data from a local or remote resource server and stores it into a local resource server.
 * resource-server: A RESTful information storage and retrieval system.
 * keycloak-config: A Keycloak IAM configuration example.
@@ -34,3 +35,4 @@ docker run -p 8080:8080 aems:latest
 Support for code in this repository is limited.
 
 [1]: https://github.com/uma-email/proposal
+[2]: https://github.com/jmapio/jmap-demo-webmail
