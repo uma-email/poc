@@ -11,7 +11,7 @@ The project comes with:
 * email-app: A webmail client that runs against the JMAP email-service interface.
 * jmap-demo-webmail: A simple, but in many ways surprisingly sophisticated JMAP demo webmail client forked from the [jmapio/jmap-demo-webmail][2] repo.
 * mail-retrieval-agent: An agent that fetches data from a local or remote resource server and stores it into a local resource server.
-* resource-server: A RESTful information storage and retrieval system.
+* resource-server: A RESTful records storage and retrieval server.
 * keycloak-config: A Keycloak IAM configuration example.
 
 ## Running Server
