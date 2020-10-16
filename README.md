@@ -1,9 +1,16 @@
-# aems
+# uma-email-poc
+
 A prototype implementation of the [authorization-enhanced-mail-system][1] draft proposal, working as a proof of concept.
+
+## Screenshot
 
 ![GUI](./docs/images/gui.png)
 
+## Abstract Flow
+
 ![Abstract Flow](./docs/images/abstract-flow.png)
+
+## Description
 
 The project comes with:
 
@@ -31,6 +38,7 @@ Once the Docker image is correctly built, you can test it locally using
 ```
 docker run -p 8080:8080 aems:latest
 ```
+## Support
 
 Support for code in this repository is limited.
 
