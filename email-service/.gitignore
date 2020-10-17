@@ -20,3 +20,7 @@ sqlite3/
 
 # resource server repository
 repository/
+
+# googleapis
+credentials.json
+token.json
