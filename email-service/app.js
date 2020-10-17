@@ -4,8 +4,6 @@ const app = express()
 const helmet = require('helmet')
 const bodyParser = require('body-parser')
 const session = require('express-session')
-const fs = require('fs')
-// const path = require('path')
 
 // routes
 const indexRouter = require('routes/index')
@@ -67,61 +65,8 @@ app.use((req, res, next) => {
   next()
 })
 
-function stringInject (str, data) {
-  if (typeof str === 'string' && (data instanceof Array)) {
-    return str.replace(/(\${\d})/g, function (i) {
-      return data[i.replace(/\${/, '').replace(/}/, '')]
-    })
-  } else if (typeof str === 'string' && (data instanceof Object)) {
-    for (const key in data) {
-      return str.replace(/(\${([^}]+)})/g, function (i) {
-        const key = i.replace(/\${/, '').replace(/}/, '')
-        if (!data[key]) {
-          return i
-        }
-        return data[key]
-      })
-    }
-  } else {
-    return false
-  }
-}
-
-// OpenAPI UI routes
-app.use('/openapi', express.static('./openapi-ui'))
-
-app.get('/openapi/messages.yaml', function (req, res) {
-  fs.readFile('./openapi/messages.yaml', 'utf-8', function (err, data) {
-    if (err) {
-      res.send(404)
-    } else {
-      const openapiUiConfig = stringInject(data, process.env)
-      res.send(openapiUiConfig)
-    }
-  })
-})
-
-app.get('/openapi/labels.yaml', function (req, res) {
-  fs.readFile('./openapi/labels.yaml', 'utf-8', function (err, data) {
-    if (err) {
-      res.send(404)
-    } else {
-      const openapiUiConfig = stringInject(data, process.env)
-      res.send(openapiUiConfig)
-    }
-  })
-})
-
-app.get('/openapi/filters.yaml', function (req, res) {
-  fs.readFile('./openapi/filters.yaml', 'utf-8', function (err, data) {
-    if (err) {
-      res.send(404)
-    } else {
-      const openapiUiConfig = stringInject(data, process.env)
-      res.send(openapiUiConfig)
-    }
-  })
-})
+// static routes
+app.use('/', express.static('../jmap-demo-webmail'))
 
 app.use(function (error, req, res, next) {
   if (error instanceof HttpError) {
@@ -131,17 +76,6 @@ app.use(function (error, req, res, next) {
   }
 
   return next(error)
-})
-
-app.get('/openapi/contacts.yaml', function (req, res) {
-  fs.readFile('./openapi/contacts.yaml', 'utf-8', function (err, data) {
-    if (err) {
-      res.send(404)
-    } else {
-      const openapiUiConfig = stringInject(data, process.env)
-      res.send(openapiUiConfig)
-    }
-  })
 })
 
 app.use(function (error, req, res, next) {

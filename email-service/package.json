@@ -1,11 +1,11 @@
 {
-  "name": "aems-email-service",
+  "name": "email-service",
   "version": "1.0.0",
-  "description": "A Proof of Concept project",
+  "description": "A Proof of Concept",
   "main": "server.js",
   "scripts": {
-    "lint": "standardx | snazzy",
-    "lint:fix": "standardx --fix",
+    "lint": "standard | snazzy",
+    "lint:fix": "standard --fix",
     "dev": "NODE_PATH=. nodemon ./bin/server.js",
     "start": "NODE_PATH=. node ./bin/server.js"
   },

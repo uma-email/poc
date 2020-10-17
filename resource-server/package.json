@@ -1,5 +1,5 @@
 {
-  "name": "aems-uma-resource-server",
+  "name": "resource-server",
   "version": "1.0.0",
   "description": "A Proof of Concept project",
   "main": "server.js",

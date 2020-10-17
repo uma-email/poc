@@ -4,10 +4,7 @@ const router = require('express').Router()
 const AllowMethods = require('middlewares/AllowMethods')
 
 router.use('/messages', AllowMethods(['POST']), keycloak.protect(), require('./messages')) */
-router.use('/messages', require('./messages'))
-
-router.get('/test', (req, res) => {
-  res.send('test')
-})
+// router.use('/messages', require('./messages'))
+router.use('/', require('./jmap'))
 
 module.exports = router

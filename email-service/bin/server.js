@@ -12,7 +12,7 @@ dotenvExpand(env)
 
 // after dotenv.config
 
-const app = require('app')
+const app = require('app.js')
 const { normalizePort, logger } = require('utils')
 
 const port = normalizePort(process.env.BASE_PORT || '3000')
