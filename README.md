@@ -21,6 +21,17 @@ The project comes with:
 * resource-server: A RESTful records storage and retrieval server.
 * keycloak-config: A Keycloak IAM configuration example.
 
+## TODO
+- [x] email-service, jmap-demo-webmail — JMAP/Gmail proxy
+- [ ] email-service, jmap-demo-webmail — JMAP/Outlook proxy
+- [ ] email-service, jmap-demo-webmail — Keycloak integration
+- [ ] resource-server — database
+- [ ] resource-server — API
+- [ ] resource-server — UMA protection
+- [ ] email-app, email-service — JMAP, Keycloak integration
+- [ ] email-app, resource-server — access, upload/download
+- [ ] mail-retrieval-agent — cronjob
+
 ## Running Server
 
 To run server from the command line, use `node`.
@@ -30,13 +41,13 @@ To run server from the command line, use `node`.
 To build the Dockerized version of the server, run
 
 ```
-docker build . -t aems:latest
+docker build . -t uma-email:latest
 ```
 
 Once the Docker image is correctly built, you can test it locally using
 
 ```
-docker run -p 8080:8080 aems:latest
+docker run -p 8080:8080 uma-email:latest
 ```
 ## Support
 
