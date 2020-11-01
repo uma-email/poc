@@ -23,7 +23,7 @@ The project comes with:
 
 ## TODO
 - [x] email-service, jmap-demo-webmail — JMAP/Gmail proxy
-- [ ] email-service, jmap-demo-webmail — JMAP/Outlook proxy
+- [x] email-service, jmap-demo-webmail — JMAP/Outlook proxy
 - [ ] email-service, jmap-demo-webmail — Keycloak integration
 - [ ] resource-server — database
 - [ ] resource-server — API
