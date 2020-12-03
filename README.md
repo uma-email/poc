@@ -1,4 +1,4 @@
-# uma-email-poc
+# Electronic Records Storage, Exchange and Retrieval System
 
 A prototype implementation of the [authorization-enhanced-mail-system][1] draft proposal, working as a proof of concept.
 
