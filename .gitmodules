@@ -1,9 +1,6 @@
 [submodule "email-service"]
 	path = email-service
 	url = https://github.com/uma-email/email-service.git
-[submodule "mail-retrieval-agent"]
-	path = mail-retrieval-agent
-	url = https://github.com/uma-email/mail-retrieval-agent.git
 [submodule "email-webapp"]
 	path = email-webapp
 	url = https://github.com/uma-email/email-webapp.git
