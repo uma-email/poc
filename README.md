@@ -1,18 +1,18 @@
-# Electronic (Health) Records Storage, Exchange and Retrieval System
+# Authorization-Enhanced Mail System
 
 A prototype implementation of the [authorization-enhanced-mail-system][1] draft proposal, working as a proof of concept.
 
 ## Screenshot
 
-![GUI](./docs/images/gui.png)
+![GUI](./images/gui.png)
 
 ## Abstract Flow
 
-![Abstract Flow](./docs/images/abstract-flow.png)
+![Abstract Flow](./images/abstract-flow.png)
 
-## Development
+## Demo and Documentation
 
-Main development has been temporarily moved to [github.com/1token/email-service][2] repo.
+WIP, early stage [federizer.org][2].
 
 [1]: https://github.com/uma-email/proposal
-[2]: https://github.com/1token/email-service
+[2]: https://www.federizer.org
