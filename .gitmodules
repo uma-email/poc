@@ -1,6 +1,3 @@
-[submodule "email-service"]
-	path = email-service
-	url = https://github.com/uma-email/email-service.git
 [submodule "email-webapp"]
 	path = email-webapp
 	url = https://github.com/uma-email/email-webapp.git
