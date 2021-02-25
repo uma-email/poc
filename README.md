@@ -6,9 +6,9 @@ A prototype implementation of the [authorization-enhanced-mail-system][1] draft 
 
 ![GUI](./images/gui.png)
 
-## Abstract Flow
+## Schematic Flow
 
-![Abstract Flow](./images/abstract-flow.png)
+![Schematic Flow](./images/schematic-flow.png)
 
 ## Demo and Documentation
 
