@@ -70,6 +70,7 @@
       }
     ],
     "client": {
+      "email-rp": [],
       "realm-management": [
         {
           "id": "171ea44d-308e-4b0c-b4c0-e259f2258ca8",
@@ -285,7 +286,16 @@
       "security-admin-console": [],
       "email-service": [],
       "admin-cli": [],
-      "email-storage": [],
+      "email-storage": [
+        {
+          "id": "4964564e-33c9-4714-a3d8-222b772fa9e4",
+          "name": "uma_protection",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "15535350-2bcc-40e3-a0b6-77795cb17cd8",
+          "attributes": {}
+        }
+      ],
       "account-console": [],
       "broker": [
         {
@@ -423,6 +433,59 @@
   "webAuthnPolicyPasswordlessCreateTimeout": 0,
   "webAuthnPolicyPasswordlessAvoidSameAuthenticatorRegister": false,
   "webAuthnPolicyPasswordlessAcceptableAaguids": [],
+  "users": [
+    {
+      "id": "ef4ac816-dd8c-4897-bdc1-6d5dcb5a635e",
+      "createdTimestamp": 1615902805171,
+      "username": "service-account-email-rp",
+      "enabled": true,
+      "totp": false,
+      "emailVerified": false,
+      "serviceAccountClientId": "email-rp",
+      "disableableCredentialTypes": [],
+      "requiredActions": [],
+      "realmRoles": [
+        "uma_authorization",
+        "user",
+        "offline_access"
+      ],
+      "clientRoles": {
+        "account": [
+          "view-profile",
+          "manage-account"
+        ]
+      },
+      "notBefore": 0,
+      "groups": []
+    },
+    {
+      "id": "0ff082f7-2488-4fa7-ba4e-6e81cba7c211",
+      "createdTimestamp": 1615453646078,
+      "username": "service-account-email-storage",
+      "enabled": true,
+      "totp": false,
+      "emailVerified": false,
+      "serviceAccountClientId": "email-storage",
+      "disableableCredentialTypes": [],
+      "requiredActions": [],
+      "realmRoles": [
+        "uma_authorization",
+        "user",
+        "offline_access"
+      ],
+      "clientRoles": {
+        "email-storage": [
+          "uma_protection"
+        ],
+        "account": [
+          "view-profile",
+          "manage-account"
+        ]
+      },
+      "notBefore": 0,
+      "groups": []
+    }
+  ],
   "scopeMappings": [
     {
       "clientScope": "offline_access",
@@ -623,6 +686,111 @@
       ]
     },
     {
+      "id": "21e1b75f-9895-4f90-a135-ab849e83dfb0",
+      "clientId": "email-rp",
+      "rootUrl": "http://localhost:3000/",
+      "adminUrl": "http://localhost:3000/",
+      "surrogateAuthRequired": false,
+      "enabled": true,
+      "alwaysDisplayInConsole": false,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "**********",
+      "redirectUris": [
+        "http://localhost:3000/*"
+      ],
+      "webOrigins": [
+        "http://localhost:3000"
+      ],
+      "notBefore": 0,
+      "bearerOnly": false,
+      "consentRequired": false,
+      "standardFlowEnabled": false,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": true,
+      "publicClient": false,
+      "frontchannelLogout": false,
+      "protocol": "openid-connect",
+      "attributes": {
+        "saml.assertion.signature": "false",
+        "saml.multivalued.roles": "false",
+        "saml.force.post.binding": "false",
+        "saml.encrypt": "false",
+        "backchannel.logout.revoke.offline.tokens": "false",
+        "saml.server.signature": "false",
+        "saml.server.signature.keyinfo.ext": "false",
+        "exclude.session.state.from.auth.response": "false",
+        "backchannel.logout.session.required": "true",
+        "client_credentials.use_refresh_token": "false",
+        "saml_force_name_id_format": "false",
+        "saml.client.signature": "false",
+        "tls.client.certificate.bound.access.tokens": "false",
+        "saml.authnstatement": "false",
+        "display.on.consent.screen": "false",
+        "saml.onetimeuse.condition": "false"
+      },
+      "authenticationFlowBindingOverrides": {},
+      "fullScopeAllowed": true,
+      "nodeReRegistrationTimeout": -1,
+      "protocolMappers": [
+        {
+          "id": "3d575766-7c29-4f4f-ac21-6bcf3fec7f06",
+          "name": "Client IP Address",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usersessionmodel-note-mapper",
+          "consentRequired": false,
+          "config": {
+            "user.session.note": "clientAddress",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "claim.name": "clientAddress",
+            "jsonType.label": "String"
+          }
+        },
+        {
+          "id": "4e2c74fe-a433-4e51-ad66-7648c7616699",
+          "name": "Client ID",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usersessionmodel-note-mapper",
+          "consentRequired": false,
+          "config": {
+            "user.session.note": "clientId",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "claim.name": "clientId",
+            "jsonType.label": "String"
+          }
+        },
+        {
+          "id": "4ad73663-eb37-480b-a4c8-25af79120aa9",
+          "name": "Client Host",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usersessionmodel-note-mapper",
+          "consentRequired": false,
+          "config": {
+            "user.session.note": "clientHost",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "claim.name": "clientHost",
+            "jsonType.label": "String"
+          }
+        }
+      ],
+      "defaultClientScopes": [
+        "web-origins",
+        "role_list",
+        "profile",
+        "roles",
+        "email"
+      ],
+      "optionalClientScopes": [
+        "address",
+        "phone",
+        "offline_access",
+        "microprofile-jwt"
+      ]
+    },
+    {
       "id": "a1566742-8dba-4a01-b98a-6e44e37ee51a",
       "clientId": "email-service",
       "rootUrl": "http://localhost:3000/",
@@ -650,8 +818,8 @@
       "protocol": "openid-connect",
       "attributes": {
         "saml.assertion.signature": "false",
-        "saml.force.post.binding": "false",
         "saml.multivalued.roles": "false",
+        "saml.force.post.binding": "false",
         "saml.encrypt": "false",
         "backchannel.logout.revoke.offline.tokens": "false",
         "saml.server.signature": "false",
@@ -700,12 +868,13 @@
         "http://localhost:4000"
       ],
       "notBefore": 0,
-      "bearerOnly": true,
+      "bearerOnly": false,
       "consentRequired": false,
-      "standardFlowEnabled": true,
+      "standardFlowEnabled": false,
       "implicitFlowEnabled": false,
-      "directAccessGrantsEnabled": true,
-      "serviceAccountsEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": true,
+      "authorizationServicesEnabled": true,
       "publicClient": false,
       "frontchannelLogout": false,
       "protocol": "openid-connect",
@@ -730,6 +899,50 @@
       "authenticationFlowBindingOverrides": {},
       "fullScopeAllowed": true,
       "nodeReRegistrationTimeout": -1,
+      "protocolMappers": [
+        {
+          "id": "3cec9aae-cced-4f46-871f-815582a74585",
+          "name": "Client ID",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usersessionmodel-note-mapper",
+          "consentRequired": false,
+          "config": {
+            "user.session.note": "clientId",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "claim.name": "clientId",
+            "jsonType.label": "String"
+          }
+        },
+        {
+          "id": "2c9fc50e-1400-4281-94c0-98d3a6b82303",
+          "name": "Client Host",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usersessionmodel-note-mapper",
+          "consentRequired": false,
+          "config": {
+            "user.session.note": "clientHost",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "claim.name": "clientHost",
+            "jsonType.label": "String"
+          }
+        },
+        {
+          "id": "d84d4cfa-b0bb-4b91-b06c-3b99f05b5db7",
+          "name": "Client IP Address",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usersessionmodel-note-mapper",
+          "consentRequired": false,
+          "config": {
+            "user.session.note": "clientAddress",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "claim.name": "clientAddress",
+            "jsonType.label": "String"
+          }
+        }
+      ],
       "defaultClientScopes": [
         "web-origins",
         "role_list",
@@ -742,7 +955,206 @@
         "phone",
         "offline_access",
         "microprofile-jwt"
-      ]
+      ],
+      "authorizationSettings": {
+        "allowRemoteResourceManagement": true,
+        "policyEnforcementMode": "ENFORCING",
+        "resources": [
+          {
+            "name": "Default Resource",
+            "type": "urn:email-storage:resources:default",
+            "ownerManagedAccess": true,
+            "attributes": {},
+            "_id": "46309bbd-c24d-41b0-ac94-2d0f08dc0371",
+            "uris": [
+              "/*"
+            ]
+          },
+          {
+            "name": "Email Resource",
+            "type": "http://email.com/message",
+            "ownerManagedAccess": true,
+            "displayName": "Email Resource",
+            "attributes": {},
+            "_id": "251bf0fd-4019-42a5-9699-6e85048e9024",
+            "uris": [
+              "/mailbox/*"
+            ]
+          },
+          {
+            "name": "Message: 1",
+            "type": "http://email.com/message",
+            "owner": {
+              "name": "igor.zboran@gmail.com"
+            },
+            "ownerManagedAccess": true,
+            "attributes": {
+              "client_id": [
+                "email-rp"
+              ],
+              "tac": [
+                "13b2fce9-a516-4c8a-9e1a-89d777e7a922"
+              ]
+            },
+            "_id": "7d8ad6d8-5c51-4ed8-82cb-976172503584",
+            "uris": [
+              "/message/1"
+            ],
+            "scopes": [
+              {
+                "name": "message:delete"
+              },
+              {
+                "name": "message:view"
+              }
+            ]
+          },
+          {
+            "name": "Message: 2",
+            "type": "http://email.com/message",
+            "owner": {
+              "name": "igor.zboran@gmail.com"
+            },
+            "ownerManagedAccess": true,
+            "attributes": {
+              "client_id": [
+                "email-rp"
+              ],
+              "tac": [
+                "fb222199-6f61-4086-b152-88a24d5a23cf"
+              ]
+            },
+            "_id": "5bed2781-486f-46e8-951e-3e7f912b528a",
+            "uris": [
+              "/message/2"
+            ],
+            "scopes": [
+              {
+                "name": "message:delete"
+              },
+              {
+                "name": "message:view"
+              }
+            ]
+          },
+          {
+            "name": "Message: 3",
+            "type": "http://email.com/message",
+            "owner": {
+              "name": "igor.zboran@gmail.com"
+            },
+            "ownerManagedAccess": true,
+            "attributes": {
+              "client_id": [
+                "email-rp"
+              ],
+              "tac": [
+                "fdd63875-af45-4406-8a27-a4656f114766"
+              ]
+            },
+            "_id": "24e85dd4-86dd-4380-a899-5c231e553efe",
+            "uris": [
+              "/message/3"
+            ],
+            "scopes": [
+              {
+                "name": "message:delete"
+              },
+              {
+                "name": "message:view"
+              }
+            ]
+          }
+        ],
+        "policies": [
+          {
+            "id": "81b4bae2-1586-4434-aca5-796e2f531d3d",
+            "name": "Default Policy",
+            "description": "A policy that grants access only for users within this realm",
+            "type": "js",
+            "logic": "POSITIVE",
+            "decisionStrategy": "AFFIRMATIVE",
+            "config": {
+              "code": "// by default, grants any permission associated with this policy\n$evaluation.grant();\n"
+            }
+          },
+          {
+            "id": "a4d29953-5ee7-48f6-9691-d628772d32ce",
+            "name": "Email Policy",
+            "type": "role",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "roles": "[{\"id\":\"user\",\"required\":false}]"
+            }
+          },
+          {
+            "id": "a9ff42e1-7726-499e-8221-eb10742481ca",
+            "name": "rp_client_policy",
+            "type": "client",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "clients": "[\"email-rp\"]"
+            }
+          },
+          {
+            "id": "90182156-3f5a-4f18-9eb7-d248c084cd6f",
+            "name": "rp_client_policy2",
+            "type": "client",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "clients": "[\"email-rp\"]"
+            }
+          },
+          {
+            "id": "29e256ce-e7d2-43a0-ba25-de8484edf489",
+            "name": "always-grant",
+            "description": "by default, grants any permission associated with this policy",
+            "type": "js",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "code": "var context = $evaluation.context;\nvar contextAttributes = context.attributes;\nvar resource = $evaluation.getPermission().getResource();\nvar resourceAttributes = resource.getAttributes();\nvar contextTac = contextAttributes.getValue('tac').asString(0);\nvar resourceTac = resourceAttributes.tac[0];\nvar contextClient = contextAttributes.getValue('kc.client.id').asString(0);\nvar resourceClient = resourceAttributes.client_id[0];\n\nprint('contextAttributes=' + contextAttributes);\nprint('resourceAttributes=' + resourceAttributes);\nprint('contextClient=' + contextClient);\nprint('resourceClient=' + resourceClient);\nprint('contextTac=' + contextTac);\nprint('resourceTac=' + resourceTac);\n\nif ((contextClient == resourceClient) && (contextTac === resourceTac)) {\n    $evaluation.grant();\n} else {\n    $evaluation.deny();\n}"
+            }
+          },
+          {
+            "id": "24398ae8-cb29-451f-9478-5c073514ff7c",
+            "name": "Default Permission",
+            "description": "A permission that applies to the default resource type",
+            "type": "resource",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "defaultResourceType": "urn:email-storage:resources:default",
+              "applyPolicies": "[\"Default Policy\"]"
+            }
+          },
+          {
+            "id": "744a8577-7e86-43dd-b086-fffaf5195f98",
+            "name": "email-resource-permission",
+            "type": "resource",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "defaultResourceType": "http://email.com/message",
+              "applyPolicies": "[\"always-grant\"]"
+            }
+          }
+        ],
+        "scopes": [
+          {
+            "id": "5cf44134-a149-41a0-8707-84f16bf30f46",
+            "name": "message:delete"
+          },
+          {
+            "id": "be680bde-aa0f-45ba-90c5-ffefa684d1b8",
+            "name": "message:view"
+          }
+        ],
+        "decisionStrategy": "UNANIMOUS"
+      }
     },
     {
       "id": "9bb96735-ce77-49e1-99bc-dade7b56f954",
@@ -755,10 +1167,12 @@
       "clientAuthenticatorType": "client-secret",
       "secret": "**********",
       "redirectUris": [
+        "http://localhost:3000/*",
         "http://localhost:5000/*"
       ],
       "webOrigins": [
-        "http://localhost:5000"
+        "http://localhost:5000",
+        "http://localhost:3000"
       ],
       "notBefore": 0,
       "bearerOnly": false,
