@@ -10,6 +10,10 @@ A prototype implementation of the [authorization-enhanced-mail-system][1] draft 
 
 ![Schematic Flow](./images/schematic-flow.png)
 
+## Sequence Diagram
+
+![Sequence Diagram](./images/sequence-diagram.png)
+
 ## Demo and Documentation
 
 WIP, early stage [federizer.org][2].
