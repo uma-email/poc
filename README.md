@@ -16,7 +16,7 @@ A prototype implementation of the [authorization-enhanced-mail-system][1] draft 
 
 ## Demo and Documentation
 
-WIP, early stage [federizer.org][2].
+WIP, early stage [umabox.org][2].
 
 [1]: https://github.com/uma-email/proposal
-[2]: https://www.federizer.org
+[2]: https://www.umabox.org
