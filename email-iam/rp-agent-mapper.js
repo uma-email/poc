@@ -13,15 +13,20 @@
  
  var httpRequest = keycloakSession.getContext().getContextObject(HttpRequest.class);
  var jwtTicket = httpRequest.getDecodedFormParameters().getFirst("ticket");
+ var jwtTickets = httpRequest.getDecodedFormParameters().get("ticket");
  
- var base64Url = jwtTicket.split('.')[1];
- var base64Str = base64Url.replace(/-/g, '+').replace(/_/g, '/');
- var Base64 = Java.type('java.util.Base64');
- var decoded = Base64.getDecoder().decode(base64Str);
- var String2 = Java.type('java.lang.String');
- var ticketString = new String2(decoded);
- var ticket = JSON.parse(ticketString);
- var codeVerifier = String(ticket.claims['code-verifier']);
- // print(codeVerifier);
- token.setOtherClaims("code-verifier", codeVerifier);
+ var parseJwtToken = function parseJwtToken(token) {
+     var base64Url = token.split('.')[1];
+     var base64Str = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+     var Base64 = Java.type('java.util.Base64');
+     var decoded = Base64.getDecoder().decode(base64Str);
+     var JavaString = Java.type('java.lang.String');
+     return JSON.parse(new JavaString(decoded));
+ }
  
+ if (jwtTickets.size() === 1) {
+     var ticket = parseJwtToken(jwtTicket);
+     var codeVerifier = String(ticket.claims['code-verifier']);
+     // print(codeVerifier);
+     token.setOtherClaims("code-verifier", codeVerifier);
+ }
