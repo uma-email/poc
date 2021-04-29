@@ -24,7 +24,7 @@
      return JSON.parse(new JavaString(decoded));
  }
  
- if (jwtTickets.size() === 1) {
+ if (jwtTickets && jwtTickets.size() === 1) {
      var ticket = parseJwtToken(jwtTicket);
      var codeVerifier = String(ticket.claims['code-verifier']);
      // print(codeVerifier);
