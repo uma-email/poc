@@ -56,7 +56,11 @@
      var algorithm = verifier.getHeader().getAlgorithm().name();
      var iss = verifier.getToken().getIssuer();
      // print('iss: '  + iss);
-     var response = httpGet(iss).data;
+     try {
+        var response = httpGet(iss).data;
+     } catch(e) {
+         return false;
+     }
      // print('response: ' + response);
      var jsonWebKeySet = JsonSerialization.readValue(response, JSONWebKeySet.class);
      var jws = new JWSInput(token);
