@@ -26,13 +26,11 @@
  function httpGet(theUrl) {
      var con = new java.net.URL(theUrl).openConnection();
      con.requestMethod = "GET";
- 
      return asResponse(con);
  }
  
  function asResponse(con) {
      var d = read(con.inputStream);
- 
      return { data: d, statusCode: con.responseCode };
  }
  
@@ -48,8 +46,8 @@
      return response.toString();
  }
  
- var verifyToken = function verifyToken(claimsToken) {
-     var verifier = TokenVerifier.create(claimsToken, IDToken.class);
+ var verifyToken = function verifyToken(token) {
+     var verifier = TokenVerifier.create(token, IDToken.class);
      var jsonWebToken = verifier.getToken();
      if (!jsonWebToken.isActive()) {
          return false;
@@ -61,7 +59,7 @@
      var response = httpGet(iss).data;
      // print('response: ' + response);
      var jsonWebKeySet = JsonSerialization.readValue(response, JSONWebKeySet.class);
-     var jws = new JWSInput(claimsToken);
+     var jws = new JWSInput(token);
      var k = jsonWebKeySet.getKeys();
      var publicKey = JWKParser.create(k[0]).toPublicKey()
      var okay = RSAProvider.verify(jws, publicKey);
@@ -74,39 +72,28 @@
  
  var httpRequest = keycloakSession.getContext().getContextObject(HttpRequest.class);
  // print('httpRequest: ' + httpRequest.getDecodedFormParameters());
- 
  var jwtTicket = httpRequest.getDecodedFormParameters().getFirst("ticket");
- var jwtTickets = httpRequest.getDecodedFormParameters().get("ticket");
- var claimToken = httpRequest.getDecodedFormParameters().getFirst("claim_token");
- var claimTokens = httpRequest.getDecodedFormParameters().get("claim_token");
+ var pushedClaims = httpRequest.getDecodedFormParameters().getFirst("claim_token"); // claim_token in Keycloak should be named as a pushed_claims
  
- // print('ClaimToken: ' + claimToken);
- 
- var parseJwtToken = function parseJwtToken(token) {
-     var base64Url = token.split('.')[1];
-     var base64Str = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-     var decoded = Base64.getDecoder().decode(base64Str);
-     return JSON.parse(new JavaString(decoded));
+ var parseClaims = function parseClaims(claims) {
+    var base64Str = claims.replace(/-/g, '+').replace(/_/g, '/');
+    var decoded = Base64.getDecoder().decode(claims);
+    return JSON.parse(new JavaString(decoded));
+}
+
+var parseJwtToken = function parseJwtToken(token) {
+     var claims = token.split('.')[1];
+     return parseClaims(claims);
  }
  
- var parseClaimToken = function parseClaimToken(token) {
-     var base64Str = token.replace(/-/g, '+').replace(/_/g, '/');
-     var decoded = Base64.getDecoder().decode(token);
-     return JSON.parse(new JavaString(decoded));
- }
- 
- if ((jwtTickets && jwtTickets.size() === 1) && (claimTokens && claimTokens.size() === 1)) {
-     // var removedString = httpRequest.getDecodedFormParameters().remove("claim_token");
-     // print('removedString: ' + removedString);
- 
+ if (jwtTicket && pushedClaims) {
      var ticket = parseJwtToken(jwtTicket);
      var ticketVerifier = String(ticket.claims['ticket_verifier']);
-     // print('ticketVerifier: '  + ticketVerifier);
+     // print('TicketVerifier: '  + ticketVerifier);
      token.setOtherClaims("ticket_verifier", ticketVerifier);
  
-     var claimTokenParsed = parseClaimToken(claimToken);
-     // print('ClaimTokenParsed: ' + claimTokenParsed);
-     var claimsToken = String(claimTokenParsed['claims_token']);
+     var pushedClaimsObj = parseClaims(pushedClaims);
+     var claimsToken = String(pushedClaimsObj['claims_token']);
      // print('ClaimsToken: ' + claimsToken);
      var claims = verifyToken(claimsToken);
      if (claims) {
