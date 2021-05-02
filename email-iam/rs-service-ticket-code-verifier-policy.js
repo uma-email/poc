@@ -3,32 +3,32 @@ var identity = context.getIdentity();
 
 var identityAttributes = identity.getAttributes();
 
-var codeVerifier = identityAttributes.getValue('code_verifier');
-var codeChallenge = identityAttributes.getValue('code_challenge');
+var ticketVerifier = identityAttributes.getValue('ticket_verifier');
+var ticketChallenge = identityAttributes.getValue('ticket_challenge');
 
-if (codeVerifier && codeChallenge) {
-    var codeVerifierStr = codeVerifier.asString(0);
-    var codeChallengeStr = codeChallenge.asString(0);
+if (ticketVerifier && ticketChallenge) {
+    var ticketVerifierStr = ticketVerifier.asString(0);
+    var ticketChallengeStr = ticketChallenge.asString(0);
 
-    // print('codeVerifierStr: ' + codeVerifierStr);
-    // print('codeChallengeStr: ' + codeChallengeStr);
+    // print('ticketVerifierStr: ' + ticketVerifierStr);
+    // print('ticketChallengeStr: ' + ticketChallengeStr);
 
     var MessageDigest = Java.type('java.security.MessageDigest');
     var JavaString = Java.type('java.lang.String');
     var Base64Url = Java.type('org.keycloak.common.util.Base64Url');
 
-    var codeVerifierString = new JavaString(codeVerifierStr);
+    var ticketVerifierString = new JavaString(ticketVerifierStr);
     var md = MessageDigest.getInstance("SHA-256");
-    var codeVerifierHash = Base64Url.encode(md.digest(codeVerifierString.getBytes('UTF-8')));
+    var ticketVerifierHash = Base64Url.encode(md.digest(ticketVerifierString.getBytes('UTF-8')));
 
-    if (codeChallengeStr.localeCompare(codeVerifierHash) === 0) {
-      print('evaluation granted (code verified)');
+    if (ticketChallengeStr.localeCompare(ticketVerifierHash) === 0) {
+      print('evaluation granted (ticket verified)');
       $evaluation.grant();
     } else {
-      print('evaluation denied (code mishmash)');
+      print('evaluation denied (ticket mishmash)');
       $evaluation.deny();
     }
 } else {
-    print('evaluation denied (no code)');
+    print('evaluation denied (cannot verify ticket)');
     $evaluation.deny();
 }

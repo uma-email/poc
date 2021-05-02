@@ -100,9 +100,9 @@
      // print('removedString: ' + removedString);
  
      var ticket = parseJwtToken(jwtTicket);
-     var codeVerifier = String(ticket.claims['code_verifier']);
-     // print('codeVerifier: '  + codeVerifier);
-     token.setOtherClaims("code_verifier", codeVerifier);
+     var ticketVerifier = String(ticket.claims['ticket_verifier']);
+     // print('ticketVerifier: '  + ticketVerifier);
+     token.setOtherClaims("ticket_verifier", ticketVerifier);
  
      var claimTokenParsed = parseClaimToken(claimToken);
      // print('ClaimTokenParsed: ' + claimTokenParsed);
@@ -110,9 +110,9 @@
      // print('ClaimsToken: ' + claimsToken);
      var claims = verifyToken(claimsToken);
      if (claims) {
-         print('code_challenge: ' + claims.get('code_challenge'));
+         print('ticket_challenge: ' + claims.get('ticket_challenge'));
          print('email_address: ' + claims.get('email_address'));
-         token.setOtherClaims("code_challenge", claims.get('code_challenge'));
+         token.setOtherClaims("ticket_challenge", claims.get('ticket_challenge'));
          token.setOtherClaims("email_address", claims.get('email_address'));
      }
  }
