@@ -291,16 +291,6 @@
         }
       ],
       "security-admin-console": [],
-      "3e453e5a-85b2-46d1-b17d-d7a5d0286aec": [
-        {
-          "id": "cb564e24-1f20-48f9-a914-54f83981e9b7",
-          "name": "uma_protection",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "3e453e5a-85b2-46d1-b17d-d7a5d0286aec",
-          "attributes": {}
-        }
-      ],
       "umabox-client": [],
       "umabox-rs-service": [
         {
@@ -309,6 +299,16 @@
           "composite": false,
           "clientRole": true,
           "containerId": "51e54aa1-31b3-47c4-88d8-4fd22bb86bdd",
+          "attributes": {}
+        }
+      ],
+      "aaa9508a-6cfd-4f57-987c-cc63bfe86040": [
+        {
+          "id": "391aa395-ed1a-48b9-8f30-a1e73da7ca00",
+          "name": "uma_protection",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "aaa9508a-6cfd-4f57-987c-cc63bfe86040",
           "attributes": {}
         }
       ],
@@ -463,13 +463,13 @@
   "webAuthnPolicyPasswordlessAcceptableAaguids": [],
   "users": [
     {
-      "id": "486b0584-66b6-482f-9da1-5ea8dc6cb8f8",
-      "createdTimestamp": 1619894379799,
-      "username": "service-account-3e453e5a-85b2-46d1-b17d-d7a5d0286aec",
+      "id": "3ef534f6-3d43-4c85-8c94-1bff72a0aaf6",
+      "createdTimestamp": 1620025745530,
+      "username": "service-account-aaa9508a-6cfd-4f57-987c-cc63bfe86040",
       "enabled": true,
       "totp": false,
       "emailVerified": false,
-      "serviceAccountClientId": "3e453e5a-85b2-46d1-b17d-d7a5d0286aec",
+      "serviceAccountClientId": "aaa9508a-6cfd-4f57-987c-cc63bfe86040",
       "disableableCredentialTypes": [],
       "requiredActions": [],
       "realmRoles": [
@@ -479,7 +479,7 @@
         "uma_authorization"
       ],
       "clientRoles": {
-        "3e453e5a-85b2-46d1-b17d-d7a5d0286aec": [
+        "aaa9508a-6cfd-4f57-987c-cc63bfe86040": [
           "uma_protection"
         ],
         "account": [
@@ -546,7 +546,7 @@
   ],
   "scopeMappings": [
     {
-      "client": "3e453e5a-85b2-46d1-b17d-d7a5d0286aec",
+      "client": "aaa9508a-6cfd-4f57-987c-cc63bfe86040",
       "roles": [
         "rp_agent"
       ]
@@ -576,8 +576,8 @@
   },
   "clients": [
     {
-      "id": "3e453e5a-85b2-46d1-b17d-d7a5d0286aec",
-      "clientId": "3e453e5a-85b2-46d1-b17d-d7a5d0286aec",
+      "id": "aaa9508a-6cfd-4f57-987c-cc63bfe86040",
+      "clientId": "aaa9508a-6cfd-4f57-987c-cc63bfe86040",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
@@ -602,21 +602,7 @@
       "nodeReRegistrationTimeout": -1,
       "protocolMappers": [
         {
-          "id": "fbe4dfe7-b478-4b07-8a80-87713b041fad",
-          "name": "Client Host",
-          "protocol": "openid-connect",
-          "protocolMapper": "oidc-usersessionmodel-note-mapper",
-          "consentRequired": false,
-          "config": {
-            "user.session.note": "clientHost",
-            "id.token.claim": "true",
-            "access.token.claim": "true",
-            "claim.name": "clientHost",
-            "jsonType.label": "String"
-          }
-        },
-        {
-          "id": "ad7eab62-15ec-41ef-9e75-1c7ef13e2aae",
+          "id": "90195b71-acb9-4e43-b01f-2ffa9d85eaaa",
           "name": "Client ID",
           "protocol": "openid-connect",
           "protocolMapper": "oidc-usersessionmodel-note-mapper",
@@ -630,7 +616,21 @@
           }
         },
         {
-          "id": "bca32031-e221-4360-ae2e-4757b10eec8c",
+          "id": "593377f3-7b58-4c8e-9636-6f5bcca566b8",
+          "name": "Client Host",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usersessionmodel-note-mapper",
+          "consentRequired": false,
+          "config": {
+            "user.session.note": "clientHost",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "claim.name": "clientHost",
+            "jsonType.label": "String"
+          }
+        },
+        {
+          "id": "2d04bf8a-1185-408e-8166-88b8a8c9895e",
           "name": "Client IP Address",
           "protocol": "openid-connect",
           "protocolMapper": "oidc-usersessionmodel-note-mapper",
@@ -649,7 +649,7 @@
         "role_list",
         "profile",
         "roles",
-        "test_client_scope",
+        "aems-client-scope",
         "email"
       ],
       "optionalClientScopes": [
@@ -1141,17 +1141,16 @@
           }
         },
         {
-          "id": "2965bce4-bfc6-43a8-8ea3-d1302c8f7f1f",
-          "name": "Ticket",
+          "id": "0b6116a1-6606-4d72-8b8f-b5743411a097",
+          "name": "AEMS",
           "protocol": "openid-connect",
           "protocolMapper": "oidc-script-based-protocol-mapper",
           "consentRequired": false,
           "config": {
-            "id.token.claim": "true",
+            "id.token.claim": "false",
             "access.token.claim": "true",
-            "claim.name": "code-verifier",
-            "script": "/**\n * Available variables: \n * user - the current user\n * realm - the current realm\n * token - the current token\n * userSession - the current userSession\n * keycloakSession - the current keycloakSession\n */\n\nvar HttpRequest = Java.type('org.jboss.resteasy.spi.HttpRequest');\nvar JsonWebToken = Java.type('org.keycloak.representations.JsonWebToken');\nvar JsonSerialization = Java.type('org.keycloak.util.JsonSerialization');\nvar TokenVerifier = Java.type('org.keycloak.TokenVerifier');\nvar VerifierContext = Java.type('org.keycloak.crypto.AsymmetricSignatureVerifierContext');\nvar Base64 = Java.type('java.util.Base64');\nvar JSONWebKeySet = Java.type('org.keycloak.jose.jwk.JSONWebKeySet');\nvar JsonSerialization = Java.type('org.keycloak.util.JsonSerialization');\nvar JWSInput = Java.type('org.keycloak.jose.jws.JWSInput');\nvar PublicKey = Java.type('java.security.PublicKey');\nvar JWKParser = Java.type('org.keycloak.jose.jwk.JWKParser');\nvar RSAProvider = Java.type('org.keycloak.jose.jws.crypto.RSAProvider');\n\nvar IDToken = Java.type('org.keycloak.representations.IDToken');\nvar JavaString = Java.type('java.lang.String');\n\nfunction httpGet(theUrl) {\n    var con = new java.net.URL(theUrl).openConnection();\n    con.requestMethod = \"GET\";\n\n    return asResponse(con);\n}\n\nfunction asResponse(con) {\n    var d = read(con.inputStream);\n\n    return { data: d, statusCode: con.responseCode };\n}\n\nfunction read(inputStream) {\n    var inReader = new java.io.BufferedReader(new java.io.InputStreamReader(inputStream));\n    var inputLine;\n    var response = new java.lang.StringBuffer();\n\n    while ((inputLine = inReader.readLine()) !== null) {\n        response.append(inputLine);\n    }\n    inReader.close();\n    return response.toString();\n}\n\nvar verifyToken = function verifyToken(claimsToken) {\n    var verifier = TokenVerifier.create(claimsToken, IDToken.class);\n    var jsonWebToken = verifier.getToken();\n    if (!jsonWebToken.isActive()) {\n        return false;\n    }\n    var kid = verifier.getHeader().getKeyId();\n    var algorithm = verifier.getHeader().getAlgorithm().name();\n    var iss = verifier.getToken().getIssuer();\n    // print('iss: '  + iss);\n    var response = httpGet(iss).data;\n    // print('response: ' + response);\n    var jsonWebKeySet = JsonSerialization.readValue(response, JSONWebKeySet.class);\n    var jws = new JWSInput(claimsToken);\n    var k = jsonWebKeySet.getKeys();\n    var publicKey = JWKParser.create(k[0]).toPublicKey()\n    var okay = RSAProvider.verify(jws, publicKey);\n    if (okay) {\n        return verifier.getToken().getOtherClaims();\n    } else {\n        return false;\n    }\n}\n\nvar httpRequest = keycloakSession.getContext().getContextObject(HttpRequest.class);\n// print('httpRequest: ' + httpRequest.getDecodedFormParameters());\n\nvar jwtTicket = httpRequest.getDecodedFormParameters().getFirst(\"ticket\");\nvar jwtTickets = httpRequest.getDecodedFormParameters().get(\"ticket\");\nvar claimToken = httpRequest.getDecodedFormParameters().getFirst(\"claim_token\");\nvar claimTokens = httpRequest.getDecodedFormParameters().get(\"claim_token\");\n\n// print('ClaimToken: ' + claimToken);\n\nvar parseJwtToken = function parseJwtToken(token) {\n    var base64Url = token.split('.')[1];\n    var base64Str = base64Url.replace(/-/g, '+').replace(/_/g, '/');\n    var decoded = Base64.getDecoder().decode(base64Str);\n    return JSON.parse(new JavaString(decoded));\n}\n\nvar parseClaimToken = function parseClaimToken(token) {\n    var base64Str = token.replace(/-/g, '+').replace(/_/g, '/');\n    var decoded = Base64.getDecoder().decode(token);\n    return JSON.parse(new JavaString(decoded));\n}\n\nif ((jwtTickets && jwtTickets.size() === 1) && (claimTokens && claimTokens.size() === 1)) {\n    // var removedString = httpRequest.getDecodedFormParameters().remove(\"claim_token\");\n    // print('removedString: ' + removedString);\n\n    var ticket = parseJwtToken(jwtTicket);\n    var codeVerifier = String(ticket.claims['code_verifier']);\n    // print('codeVerifier: '  + codeVerifier);\n    token.setOtherClaims(\"code_verifier\", codeVerifier);\n\n    var claimTokenParsed = parseClaimToken(claimToken);\n    // print('ClaimTokenParsed: ' + claimTokenParsed);\n    var claimsToken = String(claimTokenParsed['claims_token']);\n    // print('ClaimsToken: ' + claimsToken);\n    var claims = verifyToken(claimsToken);\n    if (claims) {\n        print('code_challenge: ' + claims.get('code_challenge'));\n        print('email_address: ' + claims.get('email_address'));\n        token.setOtherClaims(\"code_challenge\", claims.get('code_challenge'));\n        token.setOtherClaims(\"email_address\", claims.get('email_address'));\n    }\n}",
-            "userinfo.token.claim": "true"
+            "script": "/**\n * Available variables: \n * user - the current user\n * realm - the current realm\n * token - the current token\n * userSession - the current userSession\n * keycloakSession - the current keycloakSession\n */\n\nvar HttpRequest = Java.type('org.jboss.resteasy.spi.HttpRequest');\nvar JsonWebToken = Java.type('org.keycloak.representations.JsonWebToken');\nvar JsonSerialization = Java.type('org.keycloak.util.JsonSerialization');\nvar TokenVerifier = Java.type('org.keycloak.TokenVerifier');\nvar VerifierContext = Java.type('org.keycloak.crypto.AsymmetricSignatureVerifierContext');\nvar Base64 = Java.type('java.util.Base64');\nvar JSONWebKeySet = Java.type('org.keycloak.jose.jwk.JSONWebKeySet');\nvar JsonSerialization = Java.type('org.keycloak.util.JsonSerialization');\nvar JWSInput = Java.type('org.keycloak.jose.jws.JWSInput');\nvar PublicKey = Java.type('java.security.PublicKey');\nvar JWKParser = Java.type('org.keycloak.jose.jwk.JWKParser');\nvar RSAProvider = Java.type('org.keycloak.jose.jws.crypto.RSAProvider');\n\nvar IDToken = Java.type('org.keycloak.representations.IDToken');\nvar JavaString = Java.type('java.lang.String');\n\nfunction httpGet(theUrl) {\n    var con = new java.net.URL(theUrl).openConnection();\n    con.requestMethod = \"GET\";\n    return asResponse(con);\n}\n\nfunction asResponse(con) {\n    var d = read(con.inputStream);\n    return { data: d, statusCode: con.responseCode };\n}\n\nfunction read(inputStream) {\n    var inReader = new java.io.BufferedReader(new java.io.InputStreamReader(inputStream));\n    var inputLine;\n    var response = new java.lang.StringBuffer();\n\n    while ((inputLine = inReader.readLine()) !== null) {\n        response.append(inputLine);\n    }\n    inReader.close();\n    return response.toString();\n}\n\nvar verifyToken = function verifyToken(token) {\n    var verifier = TokenVerifier.create(token, IDToken.class);\n    var jsonWebToken = verifier.getToken();\n    if (!jsonWebToken.isActive()) {\n        return false;\n    }\n    var kid = verifier.getHeader().getKeyId();\n    var algorithm = verifier.getHeader().getAlgorithm().name();\n    var iss = verifier.getToken().getIssuer();\n    // print('iss: '  + iss);\n    try {\n        var response = httpGet(iss).data;\n    } catch (e) {\n        return false;\n    }\n    // print('response: ' + response);\n    var jsonWebKeySet = JsonSerialization.readValue(response, JSONWebKeySet.class);\n    var jws = new JWSInput(token);\n    var k = jsonWebKeySet.getKeys();\n    var publicKey = JWKParser.create(k[0]).toPublicKey()\n    var okay = RSAProvider.verify(jws, publicKey);\n    if (okay) {\n        return verifier.getToken();\n    } else {\n        return false;\n    }\n}\n\nvar httpRequest = keycloakSession.getContext().getContextObject(HttpRequest.class);\n// print('httpRequest: ' + httpRequest.getDecodedFormParameters());\nvar jwtTicket = httpRequest.getDecodedFormParameters().getFirst(\"ticket\");\nvar pushedClaims = httpRequest.getDecodedFormParameters().getFirst(\"claim_token\"); // claim_token in Keycloak should be named as a pushed_claims\n\nvar parseClaims = function parseClaims(claims) {\n    var base64Str = claims.replace(/-/g, '+').replace(/_/g, '/');\n    var decoded = Base64.getDecoder().decode(claims);\n    return JSON.parse(new JavaString(decoded));\n}\n\nvar parseJwtToken = function parseJwtToken(token) {\n    var claims = token.split('.')[1];\n    return parseClaims(claims);\n}\n\nif (jwtTicket && pushedClaims) {\n    var ticket = parseJwtToken(jwtTicket);\n    var ticketVerifier = String(ticket.claims['ticket_verifier']);\n    // print('TicketVerifier: '  + ticketVerifier);\n    token.setOtherClaims(\"ticket_verifier\", ticketVerifier);\n\n    var pushedClaimsObj = parseClaims(pushedClaims);\n    var claimsToken = String(pushedClaimsObj['claims_token']);\n    // print('ClaimsToken: ' + claimsToken);\n    var verifiedToken = verifyToken(claimsToken);\n    var claims = verifiedToken.getOtherClaims();\n    if (claims) {\n        var ticketChallenge = claims.get('ticket_challenge');\n        var emailAddress = claims.get('email_address');\n        var domain = emailAddress.split('@')[1];\n        var issuer = verifiedToken.getIssuer();\n        var wellKnownUri = 'https://' + domain + '/.well-known/claims-configuration';\n\n        // print('well-known: ' + wellKnownUri);\n        // print('domain: ' + domain);\n        // print('Issuer: ' + issuer);\n        // print('ticket_challenge: ' + ticketChallenge);\n        // print('email_address: ' + emailAddress);\n\n        var wellKnown;\n        var wellKnownJwksUri;\n        try {\n            wellKnown = httpGet(wellKnownUri).data;\n        } catch (e) {\n            wellKnown = false;\n        }\n\n        if (wellKnown) {\n            print('wellKnown: ' + wellKnown);\n            var wellKnownObj = JSON.parse(new JavaString(wellKnown));\n            var jwksUri = wellKnownObj['jwks_uri'];\n            token.setOtherClaims(\"jwks_uri\", jwksUri);\n        }\n\n        token.setOtherClaims(\"ticket_challenge\", ticketChallenge);\n        token.setOtherClaims(\"email_address\", emailAddress);\n        token.setOtherClaims(\"issuer\", issuer);\n        token.setOtherClaims(\"domain\", domain);\n    }\n}",
+            "userinfo.token.claim": "false"
           }
         },
         {
@@ -1490,17 +1489,6 @@
             }
           },
           {
-            "id": "9c382517-3cb6-4d81-923f-cc61290ee889",
-            "name": "Ticket Code Verifier",
-            "description": "Verifies a ticket code",
-            "type": "js",
-            "logic": "POSITIVE",
-            "decisionStrategy": "UNANIMOUS",
-            "config": {
-              "code": "var context = $evaluation.context;\nvar identity = context.getIdentity();\n\nvar identityAttributes = identity.getAttributes();\n\nvar codeVerifier = identityAttributes.getValue('code_verifier');\nvar codeChallenge = identityAttributes.getValue('code_challenge');\n\nif (codeVerifier && codeChallenge) {\n    var codeVerifierStr = codeVerifier.asString(0);\n    var codeChallengeStr = codeChallenge.asString(0);\n\n    // print('codeVerifierStr: ' + codeVerifierStr);\n    // print('codeChallengeStr: ' + codeChallengeStr);\n\n    var MessageDigest = Java.type('java.security.MessageDigest');\n    var JavaString = Java.type('java.lang.String');\n    var Base64Url = Java.type('org.keycloak.common.util.Base64Url');\n\n    var codeVerifierString = new JavaString(codeVerifierStr);\n    var md = MessageDigest.getInstance(\"SHA-256\");\n    var codeVerifierHash = Base64Url.encode(md.digest(codeVerifierString.getBytes('UTF-8')));\n\n    if (codeChallengeStr.localeCompare(codeVerifierHash) === 0) {\n      print('evaluation granted (code verified)');\n      $evaluation.grant();\n    } else {\n      print('evaluation denied (code mishmash)');\n      $evaluation.deny();\n    }\n} else {\n    print('evaluation denied (no code)');\n    $evaluation.deny();\n}\n"
-            }
-          },
-          {
             "id": "3384fab3-b3ca-42e3-bfa7-458d32cda0e0",
             "name": "Default Policy",
             "description": "A policy that grants access only for users within this realm",
@@ -1512,6 +1500,28 @@
             }
           },
           {
+            "id": "9c382517-3cb6-4d81-923f-cc61290ee889",
+            "name": "Ticket Verifier",
+            "description": "Verifies a ticket",
+            "type": "js",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "code": "var context = $evaluation.context;\nvar identity = context.getIdentity();\n\nvar identityAttributes = identity.getAttributes();\n\nvar ticketVerifier = identityAttributes.getValue('ticket_verifier');\nvar ticketChallenge = identityAttributes.getValue('ticket_challenge');\n\nif (ticketVerifier && ticketChallenge) {\n    var ticketVerifierStr = ticketVerifier.asString(0);\n    var ticketChallengeStr = ticketChallenge.asString(0);\n\n    // print('ticketVerifierStr: ' + ticketVerifierStr);\n    // print('ticketChallengeStr: ' + ticketChallengeStr);\n\n    var MessageDigest = Java.type('java.security.MessageDigest');\n    var JavaString = Java.type('java.lang.String');\n    var Base64Url = Java.type('org.keycloak.common.util.Base64Url');\n\n    var ticketVerifierString = new JavaString(ticketVerifierStr);\n    var md = MessageDigest.getInstance(\"SHA-256\");\n    var ticketVerifierHash = Base64Url.encode(md.digest(ticketVerifierString.getBytes('UTF-8')));\n\n    if (ticketChallengeStr.localeCompare(ticketVerifierHash) === 0) {\n      print('evaluation granted (ticket verified)');\n      $evaluation.grant();\n    } else {\n      print('evaluation denied (ticket mishmash)');\n      $evaluation.deny();\n    }\n} else {\n    print('evaluation denied (cannot verify ticket)');\n    $evaluation.deny();\n}\n"
+            }
+          },
+          {
+            "id": "6687ca3c-787a-408b-a8c4-3edc8a5e8c2b",
+            "name": "Issuer Verifier",
+            "description": "Verifies an issuer",
+            "type": "js",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "code": "var context = $evaluation.context;\nvar identity = context.getIdentity();\n\nvar identityAttributes = identity.getAttributes();\n\nvar issuer = identityAttributes.getValue('issuer');\nvar jwksUri = identityAttributes.getValue('jwks_uri');\n\nif (issuer && jwksUri) {\n    var issuerStr = issuer.asString(0);\n    var jwksUriStr = jwksUri.asString(0);\n\n    // print('issuerStr: ' + issuerStr);\n    // print('jwksUriStr: ' + jwksUriStr);\n\n    if (issuerStr.localeCompare(jwksUriStr) === 0) {\n      print('evaluation granted (issuer verified)');\n      $evaluation.grant();\n    } else {\n      print('evaluation denied (issuer mishmash)');\n      $evaluation.deny();\n    }\n} else {\n    print('evaluation denied (cannot verify issuer)');\n    $evaluation.deny();\n}\n"
+            }
+          },
+          {
             "id": "c0868a7f-f0b0-4ddc-9ab4-1590c34e2545",
             "name": "Email Resource Permission",
             "description": "Email Resource Permission",
@@ -1520,7 +1530,7 @@
             "decisionStrategy": "UNANIMOUS",
             "config": {
               "defaultResourceType": "http://email.com/message",
-              "applyPolicies": "[\"Ticket Code Verifier\"]"
+              "applyPolicies": "[\"Issuer Verifier\",\"Ticket Verifier\"]"
             }
           },
           {
@@ -2042,27 +2052,26 @@
       ]
     },
     {
-      "id": "f15c6978-00a6-412c-b4ec-7e40c42ee49e",
-      "name": "test_client_scope",
+      "id": "30c5abcc-e48f-4e1c-b512-d2078b73ea1a",
+      "name": "aems-client-scope",
+      "description": "Adds the AEMS protocol mapper to newly registered clients",
       "protocol": "openid-connect",
       "attributes": {
-        "include.in.token.scope": "true",
+        "include.in.token.scope": "false",
         "display.on.consent.screen": "false"
       },
       "protocolMappers": [
         {
-          "id": "6cf3b23f-4ce8-446f-a388-107a9610ecef",
-          "name": "test_client_scope_mapper",
+          "id": "833143ce-b0b2-4c41-8756-c28b626d719f",
+          "name": "AEMS",
           "protocol": "openid-connect",
           "protocolMapper": "oidc-script-based-protocol-mapper",
           "consentRequired": false,
           "config": {
-            "userinfo.token.claim": "true",
-            "id.token.claim": "true",
+            "id.token.claim": "false",
             "access.token.claim": "true",
-            "claim.name": "test_claim_name",
-            "jsonType.label": "String",
-            "script": "/**\n * Available variables: \n * user - the current user\n * realm - the current realm\n * token - the current token\n * userSession - the current userSession\n * keycloakSession - the current keycloakSession\n */\n\nvar HttpRequest = Java.type('org.jboss.resteasy.spi.HttpRequest');\nvar JsonWebToken = Java.type('org.keycloak.representations.JsonWebToken');\nvar JsonSerialization = Java.type('org.keycloak.util.JsonSerialization');\nvar TokenVerifier = Java.type('org.keycloak.TokenVerifier');\nvar VerifierContext = Java.type('org.keycloak.crypto.AsymmetricSignatureVerifierContext');\nvar Base64 = Java.type('java.util.Base64');\nvar JSONWebKeySet = Java.type('org.keycloak.jose.jwk.JSONWebKeySet');\nvar JsonSerialization = Java.type('org.keycloak.util.JsonSerialization');\nvar JWSInput = Java.type('org.keycloak.jose.jws.JWSInput');\nvar PublicKey = Java.type('java.security.PublicKey');\nvar JWKParser = Java.type('org.keycloak.jose.jwk.JWKParser');\nvar RSAProvider = Java.type('org.keycloak.jose.jws.crypto.RSAProvider');\n\nvar IDToken = Java.type('org.keycloak.representations.IDToken');\nvar JavaString = Java.type('java.lang.String');\n\nfunction httpGet(theUrl) {\n    var con = new java.net.URL(theUrl).openConnection();\n    con.requestMethod = \"GET\";\n\n    return asResponse(con);\n}\n\nfunction asResponse(con) {\n    var d = read(con.inputStream);\n\n    return { data: d, statusCode: con.responseCode };\n}\n\nfunction read(inputStream) {\n    var inReader = new java.io.BufferedReader(new java.io.InputStreamReader(inputStream));\n    var inputLine;\n    var response = new java.lang.StringBuffer();\n\n    while ((inputLine = inReader.readLine()) !== null) {\n        response.append(inputLine);\n    }\n    inReader.close();\n    return response.toString();\n}\n\nvar verifyToken = function verifyToken(claimsToken) {\n    var verifier = TokenVerifier.create(claimsToken, IDToken.class);\n    var jsonWebToken = verifier.getToken();\n    if (!jsonWebToken.isActive()) {\n        return false;\n    }\n    var kid = verifier.getHeader().getKeyId();\n    var algorithm = verifier.getHeader().getAlgorithm().name();\n    var iss = verifier.getToken().getIssuer();\n    // print('iss: '  + iss);\n    var response = httpGet(iss).data;\n    // print('response: ' + response);\n    var jsonWebKeySet = JsonSerialization.readValue(response, JSONWebKeySet.class);\n    var jws = new JWSInput(claimsToken);\n    var k = jsonWebKeySet.getKeys();\n    var publicKey = JWKParser.create(k[0]).toPublicKey()\n    var okay = RSAProvider.verify(jws, publicKey);\n    if (okay) {\n        return verifier.getToken().getOtherClaims();\n    } else {\n        return false;\n    }\n}\n\nvar httpRequest = keycloakSession.getContext().getContextObject(HttpRequest.class);\n// print('httpRequest: ' + httpRequest.getDecodedFormParameters());\n\nvar jwtTicket = httpRequest.getDecodedFormParameters().getFirst(\"ticket\");\nvar jwtTickets = httpRequest.getDecodedFormParameters().get(\"ticket\");\nvar claimToken = httpRequest.getDecodedFormParameters().getFirst(\"claim_token\");\nvar claimTokens = httpRequest.getDecodedFormParameters().get(\"claim_token\");\n\n// print('ClaimToken: ' + claimToken);\n\nvar parseJwtToken = function parseJwtToken(token) {\n    var base64Url = token.split('.')[1];\n    var base64Str = base64Url.replace(/-/g, '+').replace(/_/g, '/');\n    var decoded = Base64.getDecoder().decode(base64Str);\n    return JSON.parse(new JavaString(decoded));\n}\n\nvar parseClaimToken = function parseClaimToken(token) {\n    var base64Str = token.replace(/-/g, '+').replace(/_/g, '/');\n    var decoded = Base64.getDecoder().decode(token);\n    return JSON.parse(new JavaString(decoded));\n}\n\nif ((jwtTickets && jwtTickets.size() === 1) && (claimTokens && claimTokens.size() === 1)) {\n    // var removedString = httpRequest.getDecodedFormParameters().remove(\"claim_token\");\n    // print('removedString: ' + removedString);\n\n    var ticket = parseJwtToken(jwtTicket);\n    var codeVerifier = String(ticket.claims['code_verifier']);\n    // print('codeVerifier: '  + codeVerifier);\n    token.setOtherClaims(\"code_verifier\", codeVerifier);\n\n    var claimTokenParsed = parseClaimToken(claimToken);\n    // print('ClaimTokenParsed: ' + claimTokenParsed);\n    var claimsToken = String(claimTokenParsed['claims_token']);\n    // print('ClaimsToken: ' + claimsToken);\n    var claims = verifyToken(claimsToken);\n    if (claims) {\n        print('code_challenge: ' + claims.get('code_challenge'));\n        print('email_address: ' + claims.get('email_address'));\n        token.setOtherClaims(\"code_challenge\", claims.get('code_challenge'));\n        token.setOtherClaims(\"email_address\", claims.get('email_address'));\n    }\n}"
+            "script": "/**\n * Available variables: \n * user - the current user\n * realm - the current realm\n * token - the current token\n * userSession - the current userSession\n * keycloakSession - the current keycloakSession\n */\n\nvar HttpRequest = Java.type('org.jboss.resteasy.spi.HttpRequest');\nvar JsonWebToken = Java.type('org.keycloak.representations.JsonWebToken');\nvar JsonSerialization = Java.type('org.keycloak.util.JsonSerialization');\nvar TokenVerifier = Java.type('org.keycloak.TokenVerifier');\nvar VerifierContext = Java.type('org.keycloak.crypto.AsymmetricSignatureVerifierContext');\nvar Base64 = Java.type('java.util.Base64');\nvar JSONWebKeySet = Java.type('org.keycloak.jose.jwk.JSONWebKeySet');\nvar JsonSerialization = Java.type('org.keycloak.util.JsonSerialization');\nvar JWSInput = Java.type('org.keycloak.jose.jws.JWSInput');\nvar PublicKey = Java.type('java.security.PublicKey');\nvar JWKParser = Java.type('org.keycloak.jose.jwk.JWKParser');\nvar RSAProvider = Java.type('org.keycloak.jose.jws.crypto.RSAProvider');\n\nvar IDToken = Java.type('org.keycloak.representations.IDToken');\nvar JavaString = Java.type('java.lang.String');\n\nfunction httpGet(theUrl) {\n    var con = new java.net.URL(theUrl).openConnection();\n    con.requestMethod = \"GET\";\n    return asResponse(con);\n}\n\nfunction asResponse(con) {\n    var d = read(con.inputStream);\n    return { data: d, statusCode: con.responseCode };\n}\n\nfunction read(inputStream) {\n    var inReader = new java.io.BufferedReader(new java.io.InputStreamReader(inputStream));\n    var inputLine;\n    var response = new java.lang.StringBuffer();\n\n    while ((inputLine = inReader.readLine()) !== null) {\n        response.append(inputLine);\n    }\n    inReader.close();\n    return response.toString();\n}\n\nvar verifyToken = function verifyToken(token) {\n    var verifier = TokenVerifier.create(token, IDToken.class);\n    var jsonWebToken = verifier.getToken();\n    if (!jsonWebToken.isActive()) {\n        return false;\n    }\n    var kid = verifier.getHeader().getKeyId();\n    var algorithm = verifier.getHeader().getAlgorithm().name();\n    var iss = verifier.getToken().getIssuer();\n    // print('iss: '  + iss);\n    try {\n        var response = httpGet(iss).data;\n    } catch (e) {\n        return false;\n    }\n    // print('response: ' + response);\n    var jsonWebKeySet = JsonSerialization.readValue(response, JSONWebKeySet.class);\n    var jws = new JWSInput(token);\n    var k = jsonWebKeySet.getKeys();\n    var publicKey = JWKParser.create(k[0]).toPublicKey()\n    var okay = RSAProvider.verify(jws, publicKey);\n    if (okay) {\n        return verifier.getToken();\n    } else {\n        return false;\n    }\n}\n\nvar httpRequest = keycloakSession.getContext().getContextObject(HttpRequest.class);\n// print('httpRequest: ' + httpRequest.getDecodedFormParameters());\nvar jwtTicket = httpRequest.getDecodedFormParameters().getFirst(\"ticket\");\nvar pushedClaims = httpRequest.getDecodedFormParameters().getFirst(\"claim_token\"); // claim_token in Keycloak should be named as a pushed_claims\n\nvar parseClaims = function parseClaims(claims) {\n    var base64Str = claims.replace(/-/g, '+').replace(/_/g, '/');\n    var decoded = Base64.getDecoder().decode(claims);\n    return JSON.parse(new JavaString(decoded));\n}\n\nvar parseJwtToken = function parseJwtToken(token) {\n    var claims = token.split('.')[1];\n    return parseClaims(claims);\n}\n\nif (jwtTicket && pushedClaims) {\n    var ticket = parseJwtToken(jwtTicket);\n    var ticketVerifier = String(ticket.claims['ticket_verifier']);\n    // print('TicketVerifier: '  + ticketVerifier);\n    token.setOtherClaims(\"ticket_verifier\", ticketVerifier);\n\n    var pushedClaimsObj = parseClaims(pushedClaims);\n    var claimsToken = String(pushedClaimsObj['claims_token']);\n    // print('ClaimsToken: ' + claimsToken);\n    var verifiedToken = verifyToken(claimsToken);\n    var claims = verifiedToken.getOtherClaims();\n    if (claims) {\n        var ticketChallenge = claims.get('ticket_challenge');\n        var emailAddress = claims.get('email_address');\n        var domain = emailAddress.split('@')[1];\n        var issuer = verifiedToken.getIssuer();\n        var wellKnownUri = 'https://' + domain + '/.well-known/claims-configuration';\n\n        // print('well-known: ' + wellKnownUri);\n        // print('domain: ' + domain);\n        // print('Issuer: ' + issuer);\n        // print('ticket_challenge: ' + ticketChallenge);\n        // print('email_address: ' + emailAddress);\n\n        var wellKnown;\n        var wellKnownJwksUri;\n        try {\n            wellKnown = httpGet(wellKnownUri).data;\n        } catch (e) {\n            wellKnown = false;\n        }\n\n        if (wellKnown) {\n            print('wellKnown: ' + wellKnown);\n            var wellKnownObj = JSON.parse(new JavaString(wellKnown));\n            var jwksUri = wellKnownObj['jwks_uri'];\n            token.setOtherClaims(\"jwks_uri\", jwksUri);\n        }\n\n        token.setOtherClaims(\"ticket_challenge\", ticketChallenge);\n        token.setOtherClaims(\"email_address\", emailAddress);\n        token.setOtherClaims(\"issuer\", issuer);\n        token.setOtherClaims(\"domain\", domain);\n    }\n}",
+            "userinfo.token.claim": "false"
           }
         }
       ]
@@ -2074,7 +2083,7 @@
     "email",
     "roles",
     "web-origins",
-    "test_client_scope"
+    "aems-client-scope"
   ],
   "defaultOptionalClientScopes": [
     "offline_access",

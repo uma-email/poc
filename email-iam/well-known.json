@@ -1,0 +1,4 @@
+{
+    "claims_endpoint": "http://acme:3000/claims/token",
+    "jwks_uri": "http://acme:3000/claims/jwks"
+}
