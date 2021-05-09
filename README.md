@@ -8,11 +8,11 @@ A prototype implementation of the [authorization-enhanced-mail-system][1] draft 
 
 ## Schematic Flow
 
-### Push mail envelope
+### Push email envelope
 
 ![Schematic Flow](./images/schematic-flow-push.png)
 
-### Pull mail resources
+### Pull email resources
 
 ![Sequence Diagram](./images/schematic-flow-pull.png)
 
