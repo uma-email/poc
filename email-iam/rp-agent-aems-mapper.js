@@ -67,7 +67,7 @@ var verifyToken = function verifyToken(token) {
 
 var httpRequest = keycloakSession.getContext().getContextObject(HttpRequest.class);
 // print('httpRequest: ' + httpRequest.getDecodedFormParameters());
-var keycloakTicketToken = httpRequest.getDecodedFormParameters().getFirst("ticket");
+var ticket = httpRequest.getDecodedFormParameters().getFirst("ticket");
 var pushedClaims = httpRequest.getDecodedFormParameters().getFirst("claim_token"); // claim_token in Keycloak should be named as a pushed_claims
 
 var parseClaims = function parseClaims(claims) {
@@ -76,17 +76,8 @@ var parseClaims = function parseClaims(claims) {
     return JSON.parse(new JavaString(decoded));
 }
 
-var parseJwtToken = function parseJwtToken(token) {
-    var claims = token.split('.')[1];
-    return parseClaims(claims);
-}
-
-if (keycloakTicketToken && pushedClaims) {
-    var ticket = parseJwtToken(keycloakTicketToken);
-    // we use jti from Keycloak ticket token as the UMA ticket
-    var ticketJti = String(ticket['jti']);
-    // print('Ticket Jti: ' + ticketJti);
-    token.setOtherClaims("ticket", ticketJti);
+if (ticket && pushedClaims) {
+    token.setOtherClaims("ticket", ticket);
 
     var pushedClaimsObj = parseClaims(pushedClaims);
     var claimsToken = String(pushedClaimsObj['claims_token']);
