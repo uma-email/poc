@@ -1,12 +1,3 @@
-/**
- * Available variables: 
- * user - the current user
- * realm - the current realm
- * token - the current token
- * userSession - the current userSession
- * keycloakSession - the current keycloakSession
- */
-
 var HttpRequest = Java.type('org.jboss.resteasy.spi.HttpRequest');
 var JsonWebToken = Java.type('org.keycloak.representations.JsonWebToken');
 var JsonSerialization = Java.type('org.keycloak.util.JsonSerialization');
@@ -76,7 +67,7 @@ var verifyToken = function verifyToken(token) {
 
 var httpRequest = keycloakSession.getContext().getContextObject(HttpRequest.class);
 // print('httpRequest: ' + httpRequest.getDecodedFormParameters());
-var jwtTicket = httpRequest.getDecodedFormParameters().getFirst("ticket");
+var keycloakTicketToken = httpRequest.getDecodedFormParameters().getFirst("ticket");
 var pushedClaims = httpRequest.getDecodedFormParameters().getFirst("claim_token"); // claim_token in Keycloak should be named as a pushed_claims
 
 var parseClaims = function parseClaims(claims) {
@@ -90,11 +81,12 @@ var parseJwtToken = function parseJwtToken(token) {
     return parseClaims(claims);
 }
 
-if (jwtTicket && pushedClaims) {
-    var ticket = parseJwtToken(jwtTicket);
-    var ticketVerifier = String(ticket.claims['ticket_verifier']);
-    // print('TicketVerifier: '  + ticketVerifier);
-    token.setOtherClaims("ticket_verifier", ticketVerifier);
+if (keycloakTicketToken && pushedClaims) {
+    var ticket = parseJwtToken(keycloakTicketToken);
+    // we use jti from Keycloak ticket token as the UMA ticket
+    var ticketJti = String(ticket['jti']);
+    // print('Ticket Jti: ' + ticketJti);
+    token.setOtherClaims("ticket", ticketJti);
 
     var pushedClaimsObj = parseClaims(pushedClaims);
     var claimsToken = String(pushedClaimsObj['claims_token']);
