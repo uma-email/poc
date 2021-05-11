@@ -1,0 +1,4 @@
+{
+    "incoming_resources_endpoint": "http://acme:3000/rs/incoming",
+    "outgoing_resources_endpoint": "http://acme:3000/rs/outgoing"
+}
