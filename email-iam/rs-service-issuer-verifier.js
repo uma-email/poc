@@ -6,21 +6,30 @@ var identityAttributes = identity.getAttributes();
 var issuer = identityAttributes.getValue('issuer');
 var jwksUri = identityAttributes.getValue('jwks_uri');
 
+var localUriStr = 'http://acme:3000/claims/jwks';
+
+var issuerStr = issuer.asString(0);
+
 if (issuer && jwksUri) {
-    var issuerStr = issuer.asString(0);
-    var jwksUriStr = jwksUri.asString(0);
+  var issuerStr = issuer.asString(0);
+  var jwksUriStr = jwksUri.asString(0);
 
-    // print('issuerStr: ' + issuerStr);
-    // print('jwksUriStr: ' + jwksUriStr);
-
-    if (issuerStr.localeCompare(jwksUriStr) === 0) {
-      print('evaluation granted (issuer verified)');
-      $evaluation.grant();
-    } else {
-      print('evaluation denied (issuer mishmash)');
-      $evaluation.deny();
-    }
-} else {
-    print('evaluation denied (cannot verify issuer)');
+  if (issuerStr.localeCompare(jwksUriStr) === 0) {
+    print('evaluation granted (remote issuer verified)');
+    $evaluation.grant();
+  } else {
+    print('evaluation denied (remote issuer mishmash)');
     $evaluation.deny();
+  }
+} else if (issuer) {
+  if (issuerStr.localeCompare(localUriStr) === 0) {
+    print('evaluation granted (local issuer verified)');
+    $evaluation.grant();
+  } else {
+    print('evaluation denied (local issuer mishmash)');
+    $evaluation.deny();
+  }
+} else {
+  print('evaluation denied (cannot verify issuer)');
+  $evaluation.deny();
 }
