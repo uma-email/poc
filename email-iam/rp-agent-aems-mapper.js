@@ -85,35 +85,38 @@ if (ticket && pushedClaims) {
     var verifiedToken = verifyToken(claimsToken);
     var claims = verifiedToken.getOtherClaims();
     if (claims) {
-        var ticketChallenge = claims.get('ticket_challenge');
+        var ticketDigest = claims.get('ticket_digest');
         var emailAddress = claims.get('email_address');
+        var oauthEcosystem = claims.get('oauth_ecosystem');
         var domain = emailAddress.split('@')[1];
         var issuer = verifiedToken.getIssuer();
-        var wellKnownUri = 'https://' + domain + '/.well-known/claims-configuration';
+        // not real iana registry
+        var wellKnownClaimsProvider = 'https://' + domain + '/.well-known/uma-wide-ecosystem-claims-provider';
 
-        // print('well-known: ' + wellKnownUri);
+        // print('uma well-known claims provider: ' + wellKnownClaimsProvider);
         // print('domain: ' + domain);
         // print('Issuer: ' + issuer);
-        // print('ticket_challenge: ' + ticketChallenge);
+        // print('ticket_digest: ' + ticketDigest);
         // print('email_address: ' + emailAddress);
+        // print('oauth_ecosystem: ' + oauthEcosystem);
 
-        var wellKnown;
-        var wellKnownJwksUri;
+        var claimsProviderResponse;
         try {
-            wellKnown = httpGet(wellKnownUri).data;
+            claimsProviderResponse = httpGet(wellKnownClaimsProvider).data;
         } catch (e) {
-            wellKnown = false;
+            claimsProviderResponse = false;
         }
 
-        if (wellKnown) {
-            print('wellKnown: ' + wellKnown);
-            var wellKnownObj = JSON.parse(new JavaString(wellKnown));
-            var jwksUri = wellKnownObj['jwks_uri'];
+        if (claimsProviderResponse) {
+            print('claimsProviderResponse: ' + claimsProviderResponse);
+            var claimsProviderResponseObj = JSON.parse(new JavaString(claimsProviderResponse));
+            var jwksUri = claimsProviderResponseObj['jwks_uri'];
             token.setOtherClaims("jwks_uri", jwksUri);
         }
 
-        token.setOtherClaims("ticket_challenge", ticketChallenge);
+        token.setOtherClaims("ticket_digest", ticketDigest);
         token.setOtherClaims("email_address", emailAddress);
+        token.setOtherClaims("oauth_ecosystem", oauthEcosystem);
         token.setOtherClaims("issuer", issuer);
         token.setOtherClaims("domain", domain);
     }
