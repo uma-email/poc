@@ -5,19 +5,19 @@ var identityAttributes = identity.getAttributes();
 
 var ticket = identityAttributes.getValue('ticket');
 var ticketDigest = identityAttributes.getValue('ticket_digest');
-var oauthEcosystem = identityAttributes.getValue('oauth_ecosystem');
+var ecosystemType = identityAttributes.getValue('ecosystem_type');
 
 // not real iana registry
-var ecosystemType = "urn:ietf:params:oauth:ecosystem:uma-wide:aems";
+var ecosystemTypeUrn = "urn:ietf:params:oauth:ecosystem:uma-wide:aems";
 
-if (ticket && ticketDigest && oauthEcosystem) {
+if (ticket && ticketDigest && ecosystemType) {
   var ticketStr = ticket.asString(0);
   var ticketDigestStr = ticketDigest.asString(0);
-  var oauthEcosystemStr = oauthEcosystem.asString(0);
+  var ecosystemTypeStr = ecosystemType.asString(0);
 
   // print('ticketStr: ' + ticketStr);
   // print('ticketDigestStr: ' + ticketDigestStr);
-  // print('oauthEcosystemStr: ' + oauthEcosystemStr);
+  // print('ecosystemTypeStr: ' + ecosystemTypeStr);
 
   var MessageDigest = Java.type('java.security.MessageDigest');
   var JavaString = Java.type('java.lang.String');
@@ -27,7 +27,7 @@ if (ticket && ticketDigest && oauthEcosystem) {
   var md = MessageDigest.getInstance("SHA-256");
   var ticketHash = Base64Url.encode(md.digest(ticketString.getBytes('UTF-8')));
 
-  if (oauthEcosystem.localeCompare(ecosystemType) === 0) {
+  if (ecosystemTypeStr.localeCompare(ecosystemTypeUrn) === 0) {
     if (ticketDigestStr.localeCompare(ticketHash) === 0) {
       print('evaluation granted (ticket verified)');
       $evaluation.grant();

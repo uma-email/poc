@@ -82,42 +82,44 @@ if (ticket && pushedClaims) {
     var pushedClaimsObj = parseClaims(pushedClaims);
     var claimsToken = String(pushedClaimsObj['claims_token']);
     // print('ClaimsToken: ' + claimsToken);
-    var verifiedToken = verifyToken(claimsToken);
-    var claims = verifiedToken.getOtherClaims();
-    if (claims) {
-        var ticketDigest = claims.get('ticket_digest');
-        var emailAddress = claims.get('email_address');
-        var oauthEcosystem = claims.get('oauth_ecosystem');
-        var domain = emailAddress.split('@')[1];
-        var issuer = verifiedToken.getIssuer();
-        // not real iana registry
-        var wellKnownClaimsProvider = 'https://' + domain + '/.well-known/uma-wide-ecosystem-claims-provider';
+    if (claimsToken) {
+        var verifiedToken = verifyToken(claimsToken);
+        var claims = verifiedToken.getOtherClaims();
+        if (claims) {
+            var ticketDigest = claims.get('ticket_digest');
+            var emailAddress = claims.get('email_address');
+            var ecosystemType = claims.get('ecosystem_type');
+            var domain = emailAddress.split('@')[1];
+            var issuer = verifiedToken.getIssuer();
+            // not real iana registry
+            var wellKnownClaimsProvider = 'https://' + domain + '/.well-known/uma-wide-ecosystem-claims-provider';
 
-        // print('uma well-known claims provider: ' + wellKnownClaimsProvider);
-        // print('domain: ' + domain);
-        // print('Issuer: ' + issuer);
-        // print('ticket_digest: ' + ticketDigest);
-        // print('email_address: ' + emailAddress);
-        // print('oauth_ecosystem: ' + oauthEcosystem);
+            // print('uma well-known claims provider: ' + wellKnownClaimsProvider);
+            // print('domain: ' + domain);
+            // print('Issuer: ' + issuer);
+            // print('ticket_digest: ' + ticketDigest);
+            // print('email_address: ' + emailAddress);
+            // print('ecosystem_type: ' + ecosystemType);
 
-        var claimsProviderResponse;
-        try {
-            claimsProviderResponse = httpGet(wellKnownClaimsProvider).data;
-        } catch (e) {
-            claimsProviderResponse = false;
+            var claimsProviderResponse;
+            try {
+                claimsProviderResponse = httpGet(wellKnownClaimsProvider).data;
+            } catch (e) {
+                claimsProviderResponse = false;
+            }
+
+            if (claimsProviderResponse) {
+                print('claimsProviderResponse: ' + claimsProviderResponse);
+                var claimsProviderResponseObj = JSON.parse(new JavaString(claimsProviderResponse));
+                var jwksUri = claimsProviderResponseObj['jwks_uri'];
+                token.setOtherClaims("jwks_uri", jwksUri);
+            }
+
+            token.setOtherClaims("ticket_digest", ticketDigest);
+            token.setOtherClaims("email_address", emailAddress);
+            token.setOtherClaims("ecosystem_type", ecosystemType);
+            token.setOtherClaims("issuer", issuer);
+            token.setOtherClaims("domain", domain);
         }
-
-        if (claimsProviderResponse) {
-            print('claimsProviderResponse: ' + claimsProviderResponse);
-            var claimsProviderResponseObj = JSON.parse(new JavaString(claimsProviderResponse));
-            var jwksUri = claimsProviderResponseObj['jwks_uri'];
-            token.setOtherClaims("jwks_uri", jwksUri);
-        }
-
-        token.setOtherClaims("ticket_digest", ticketDigest);
-        token.setOtherClaims("email_address", emailAddress);
-        token.setOtherClaims("oauth_ecosystem", oauthEcosystem);
-        token.setOtherClaims("issuer", issuer);
-        token.setOtherClaims("domain", domain);
     }
 }

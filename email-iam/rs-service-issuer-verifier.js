@@ -8,8 +8,6 @@ var jwksUri = identityAttributes.getValue('jwks_uri');
 
 var localUriStr = 'http://acme:3000/claims/jwks';
 
-var issuerStr = issuer.asString(0);
-
 if (issuer && jwksUri) {
   var issuerStr = issuer.asString(0);
   var jwksUriStr = jwksUri.asString(0);
@@ -22,6 +20,8 @@ if (issuer && jwksUri) {
     $evaluation.deny();
   }
 } else if (issuer) {
+  var issuerStr = issuer.asString(0);
+
   if (issuerStr.localeCompare(localUriStr) === 0) {
     print('evaluation granted (local issuer verified)');
     $evaluation.grant();
