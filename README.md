@@ -6,7 +6,7 @@ A prototype implementation of the [authorization-enhanced-mail-system][1] draft 
 
 ![GUI](./images/gui.png)
 
-## Schematic Flow
+## Schematic Flows
 
 ### Push email envelope
 
@@ -16,7 +16,7 @@ A prototype implementation of the [authorization-enhanced-mail-system][1] draft 
 
 ![Schematic Flow - pull data](./images/schematic-flow-pull.png)
 
-## Sequence diagram
+## Sequence diagrams
 
 ### Push email envelope
 
