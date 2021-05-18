@@ -15,6 +15,7 @@ rqpClient->rsServer:1. Request 'Incoming' resource
 rqpClient<-rsServer:2. 401 with permission ticket
 authServer<-rqpClient:3. Get access token\n(RqP client_credentials)
 authServer->rqpClient:4. Return access_token
+note right of rqpClient:Create ticket_digest
 claimsProvider<-rqpClient:5. Get claims\n(access_token, Alice's email_address, ticket_digest)
 loop Authorization process
 claimsProvider->rqpClient:6. Return claims token\n(Alice's email_address, ticket_digest)

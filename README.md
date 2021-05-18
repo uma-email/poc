@@ -22,6 +22,10 @@ A prototype implementation of the [authorization-enhanced-mail-system][1] draft 
 
 ![Sequence Diagram](./images/uma-wide-ecosystem-alice-to-bob-push-data.svg)
 
+### Pull email resources
+
+...
+
 ## Demo and Documentation
 
 WIP, early stage [umabox.org][2].
