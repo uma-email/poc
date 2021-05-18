@@ -1,19 +1,17 @@
 Title UMA Wide Ecosystem - Alice to Bob (push data)
 
-actor "RqP" as Alice #lightpink
+actor "RqP\nAlice" as Alice #lightpink
 participant "AuthN\nServer" as authServer #lightpink
 participant "Claims\nProvider" as claimsProvider #lightpink
 participant "RqP\nClient" as rqpClient #lightpink
-
-
 participant "RS\nServer" as rsServer #lightsteelblue
 participant "AS\nServer" as asServer #lightsteelblue
-actor "RO" as Bob #lightsteelblue
+actor "RO\nBob" as Bob #lightsteelblue
 
 bottomparticipants
 
 Alice->rqpClient:Initiate request
-rqpClient->rsServer:1. Request resource (Inbox)
+rqpClient->rsServer:1. Request 'Incoming' resource
 rqpClient<-rsServer:2. 401 with permission ticket
 authServer<-rqpClient:3. Get access token\n(RqP client_credentials)
 authServer->rqpClient:4. Return access_token
@@ -24,6 +22,5 @@ rqpClient->asServer:7. Call token endpoint\n(ticket, claims_token)
 note over asServer:Evaluate\n1. ticket\n2. ticket_digest\n3. domain part of email_address\n4. claims_token signature
 rqpClient<-asServer:8. Return RPT
 end
-
-rqpClient->rsServer:9. Post resource (Inbox)\n(RPT)
+rqpClient->rsServer:9. Post data into 'Incoming' resource\n(RPT)
 rqpClient<-rsServer:10. 201 created
