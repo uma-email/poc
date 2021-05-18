@@ -10,11 +10,17 @@ A prototype implementation of the [authorization-enhanced-mail-system][1] draft 
 
 ### Push email envelope
 
-![Schematic Flow](./images/schematic-flow-push.png)
+![Schematic Flow - push data](./images/schematic-flow-push.png)
 
 ### Pull email resources
 
-![Sequence Diagram](./images/schematic-flow-pull.png)
+![Schematic Flow - pull data](./images/schematic-flow-pull.png)
+
+## Sequence diagram
+
+### Push email envelope
+
+![Sequence Diagram](./images/uma-wide-ecosystem-alice-to-bob-push-data.svg)
 
 ## Demo and Documentation
 
