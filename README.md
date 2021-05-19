@@ -20,11 +20,11 @@ A prototype implementation of the [authorization-enhanced-mail-system][1] draft 
 
 ### Push email envelope
 
-![Sequence Diagram](./images/uma-wide-ecosystem-alice-to-bob-push-data.svg)
+![Sequence Diagram - push data](./images/uma-wide-ecosystem-alice-to-bob-push-data.svg)
 
 ### Pull email resources
 
-![Sequence Diagram](./images/uma-wide-ecosystem-bob-from-alice-pull-data.svg)
+![Sequence Diagram - pull data](./images/uma-wide-ecosystem-bob-from-alice-pull-data.svg)
 
 ## Demo and Documentation
 
