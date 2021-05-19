@@ -1,11 +1,11 @@
 Title UMA Wide Ecosystem - Alice to Bob (push data)
 
 actor "RqP\nAlice" as Alice #lightpink
-participant "AuthN\nServer" as authServer #lightpink
-participant "Claims\nProvider" as claimsProvider #lightpink
-participant "RqP\nClient" as rqpClient #lightpink
-participant "RS\nServer" as rsServer #lightsteelblue
-participant "AS\nServer" as asServer #lightsteelblue
+participant "AuthN Server" as authServer #lightpink
+participant "Claims Provider (CP)" as claimsProvider #lightpink
+participant "RqP Client" as rqpClient #lightpink
+participant "Resource Server (RS)" as rsServer #lightsteelblue
+participant "AuthZ Server" as asServer #lightsteelblue
 actor "RO\nBob" as Bob #lightsteelblue
 
 bottomparticipants
@@ -13,14 +13,20 @@ bottomparticipants
 Alice->rqpClient:Initiate request
 rqpClient->rsServer:1. Request 'Incoming' resource
 rqpClient<-rsServer:2. 401 with permission ticket
-authServer<-rqpClient:3. Get access_token\n(RqP client_credentials)
+authServer<-rqpClient:3. Get access_token\n(RqP Client client_credentials)
 authServer->rqpClient:4. Return access_token
 note right of rqpClient:Create ticket_digest
 claimsProvider<-rqpClient:5. Get claims_token\n(access_token, Alice's email_address, ticket_digest)
+alt RqP Client uses Authorization Code Grant - Alice is involved
+note left of claimsProvider:Extract Alice's user_claims from access_token
+else RqP Client uses Client Credential Grant - Alice is not involved
+authServer<-claimsProvider:Get Alice's user_claims\n(CP client_credentials, Alice's email_address)
+authServer->claimsProvider:Return Alice's user_claims
+end
 loop Authorization process
-claimsProvider->rqpClient:6. Return claims_token\n(Alice's email_address, ticket_digest)
+claimsProvider->rqpClient:6. Return claims_token\n(Alice's user_claims, ticket_digest)
 rqpClient->asServer:7. Call token endpoint\n(ticket, claims_token)
-note over asServer:Evaluate\n1. ticket\n2. ticket_digest\n3. domain part of email_address\n4. claims_token signature
+note over asServer:Evaluate\n1. ticket\n2. ticket_digest\n3. claims_token signature\n4. user_claims\n5. domain part of email_address
 rqpClient<-asServer:8. Return RPT
 end
 rqpClient->rsServer:9. Post data into 'Incoming' resource\n(RPT)
