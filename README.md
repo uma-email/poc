@@ -24,7 +24,7 @@ A prototype implementation of the [authorization-enhanced-mail-system][1] draft 
 
 ### Pull email resources
 
-...
+![Sequence Diagram](./images/uma-wide-ecosystem-bob-from-alice-pull-data.svg)
 
 ## Demo and Documentation
 

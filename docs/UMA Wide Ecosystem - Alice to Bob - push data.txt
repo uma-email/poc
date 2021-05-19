@@ -13,15 +13,15 @@ bottomparticipants
 Alice->rqpClient:Initiate request
 rqpClient->rsServer:1. Request 'Incoming' resource
 rqpClient<-rsServer:2. 401 with permission ticket
-authServer<-rqpClient:3. Get access token\n(RqP client_credentials)
+authServer<-rqpClient:3. Get access_token\n(RqP client_credentials)
 authServer->rqpClient:4. Return access_token
 note right of rqpClient:Create ticket_digest
-claimsProvider<-rqpClient:5. Get claims\n(access_token, Alice's email_address, ticket_digest)
+claimsProvider<-rqpClient:5. Get claims_token\n(access_token, Alice's email_address, ticket_digest)
 loop Authorization process
-claimsProvider->rqpClient:6. Return claims token\n(Alice's email_address, ticket_digest)
+claimsProvider->rqpClient:6. Return claims_token\n(Alice's email_address, ticket_digest)
 rqpClient->asServer:7. Call token endpoint\n(ticket, claims_token)
 note over asServer:Evaluate\n1. ticket\n2. ticket_digest\n3. domain part of email_address\n4. claims_token signature
 rqpClient<-asServer:8. Return RPT
 end
 rqpClient->rsServer:9. Post data into 'Incoming' resource\n(RPT)
-rqpClient<-rsServer:10. 201 created
+rqpClient<-rsServer:10. 201 Created
