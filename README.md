@@ -18,7 +18,7 @@ A prototype implementation of the [authorization-enhanced-mail-system][1] draft 
 
 ## Sequence diagrams
 
-AEMS uses an UMA wide ecosystem topology where UMA wide ecosystem ⊃ UMA narrow ecosystem
+To transfer data from sender to recipient, AEMS uses a push/pull mechanism and an UMA wide ecosystem topology (UMA wide ecosystem ⊃ UMA narrow ecosystem).
 
 ### Push metadata 
 
