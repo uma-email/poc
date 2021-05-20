@@ -11,23 +11,36 @@ actor "RO\nBob" as Bob #lightsteelblue
 bottomparticipants
 
 Alice->rqpClient:Initiate request
-rqpClient->rsServer:1. Request 'Incoming' resource
+rqpClient->rsServer:1. Request 'Bob's Incoming' resource
 rqpClient<-rsServer:2. 401 with permission ticket
-authServer<-rqpClient:3. Get access_token\n(RqP Client client_credentials)
+alt RqP Client uses Authorization Code Grant - Alice is involved
+authServer<-rqpClient:3. Get access_token\n(grant_type=authorizatin_code, scope=claims-provider)
+else RqP Client uses Client Credential Grant - Alice is not involved
+authServer<-rqpClient:3. Get access_token\n(grant_type=client_credentials, scope=claims-provider)
+end
 authServer->rqpClient:4. Return access_token
 note right of rqpClient:Create ticket_digest
-claimsProvider<-rqpClient:5. Get claims_token\n(access_token, Alice's email_address, ticket_digest)
 alt RqP Client uses Authorization Code Grant - Alice is involved
-note left of claimsProvider:Extract Alice's user_claims from access_token
+claimsProvider<-rqpClient:5. Get claims_token\n(access_token, ticket_digest)
 else RqP Client uses Client Credential Grant - Alice is not involved
-authServer<-claimsProvider:Get Alice's user_claims\n(CP client_credentials, Alice's email_address)
-authServer->claimsProvider:Return Alice's user_claims
+claimsProvider<-rqpClient:5. Get claims_token\n(access_token, Alice's email_address, ticket_digest)
 end
+note left of claimsProvider:Claims Provider is assigned 'query-users' admin role
+authServer<-claimsProvider:Get access_token\n(grant_type=client_credentials)
+authServer->claimsProvider:Return access_token
+alt RqP Client uses Authorization Code Grant - Alice is involved
+note left of claimsProvider:Use Alice's email_address from request/access_token in step 5.
+authServer<-claimsProvider:Get Alice's user_claims\n(access_token, Alice's email_address)
+else RqP Client uses Client Credential Grant - Alice is not involved
+note left of claimsProvider:Use Alice's email_address from request/parameter in step 5.
+authServer<-claimsProvider:Get Alice's user_claims\n(access_token, Alice's email_address)
+end
+authServer->claimsProvider:Return Alice's user_claims
 loop Authorization process
 claimsProvider->rqpClient:6. Return claims_token\n(Alice's user_claims, ticket_digest)
-rqpClient->asServer:7. Call token endpoint\n(ticket, claims_token)
+rqpClient->asServer:7. Call token endpoint\n(client_credentials, ticket, claims_token)
 note over asServer:Evaluate\n1. ticket\n2. ticket_digest\n3. claims_token signature\n4. user_claims\n5. domain part of email_address
 rqpClient<-asServer:8. Return RPT
 end
-rqpClient->rsServer:9. Post data into 'Incoming' resource\n(RPT)
+rqpClient->rsServer:9. Post data into 'Bob's Incoming' resource\n(RPT)
 rqpClient<-rsServer:10. 201 Created

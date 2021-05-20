@@ -1,4 +1,4 @@
-# Authorization-Enhanced Mail System
+# Authorization-Enhanced Mail System (AEMS)
 
 A prototype implementation of the [authorization-enhanced-mail-system][1] draft proposal, working as a proof of concept.
 
@@ -18,11 +18,13 @@ A prototype implementation of the [authorization-enhanced-mail-system][1] draft 
 
 ## Sequence diagrams
 
-### Push email envelope
+AEMS uses an UMA wide ecosystem topology where UMA wide ecosystem ⊃ UMA narrow ecosystem
+
+### Push data links
 
 ![Sequence Diagram - push data](./images/uma-wide-ecosystem-alice-to-bob-push-data.svg)
 
-### Pull email resources
+### Pull data resources
 
 ![Sequence Diagram - pull data](./images/uma-wide-ecosystem-bob-from-alice-pull-data.svg)
 
