@@ -20,7 +20,10 @@ A prototype implementation of the [authorization-enhanced-mail-system][1] draft 
 
 To transfer data from sender to recipient, AEMS uses a push/pull mechanism and an UMA wide ecosystem topology (UMA wide ecosystem ⊃ UMA narrow ecosystem).
 
-In addition to claims_token, pushed claims may also contain metadata such as: file name, file size, file digest, mime type, ...
+This concept works without shared OIDC provider or without federated OIDC providers.
+There is no contract between security domains. This concept uses a challenge–response authentication with correlation handle.
+
+In addition to claims_token, pushed claims may also contain metadata such as: recipient_info (email address, fullname), file_info (filename, file size, file digest, mime type).
 
 ### Push data
 
