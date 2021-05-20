@@ -8,7 +8,7 @@ A prototype implementation of the [authorization-enhanced-mail-system][1] draft 
 
 ## Schematic Flows
 
-### Push email metadata
+### Push email links
 
 ![Schematic Flow - push data](./images/schematic-flow-push.png)
 
@@ -20,7 +20,9 @@ A prototype implementation of the [authorization-enhanced-mail-system][1] draft 
 
 To transfer data from sender to recipient, AEMS uses a push/pull mechanism and an UMA wide ecosystem topology (UMA wide ecosystem ⊃ UMA narrow ecosystem).
 
-### Push metadata 
+In addition to claims_token, pushed claims may also contain metadata such as: file name, file size, file digest, mime type, ...
+
+### Push data
 
 ![Sequence Diagram - push data](./images/uma-wide-ecosystem-alice-to-bob-push-data.svg)
 

@@ -40,7 +40,7 @@ authServer->claimsProvider:Return Bob's user_claims
 
 loop Authorization process
 rqpClient<-claimsProvider:6. Return claims_token\n(Bob's user_claims, ticket_digest)
-rqpClient->asServer:7. Call token endpoint\n(client_credentials, ticket, claims_token)
+rqpClient->asServer:7. Call token endpoint\n(client_credentials, ticket, pushed_claims=claims_token + metadata)
 note over asServer:Evaluate\n1. ticket\n2. ticket_digest\n3. claims_token signature\n4. user_claims\n5. domain part of email_address
 rqpClient<-asServer:8. Return RPT
 end
