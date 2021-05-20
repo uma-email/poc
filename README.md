@@ -8,11 +8,11 @@ A prototype implementation of the [authorization-enhanced-mail-system][1] draft 
 
 ## Schematic Flows
 
-### Push email envelope
+### Push email metadata
 
 ![Schematic Flow - push data](./images/schematic-flow-push.png)
 
-### Pull email resources
+### Pull email data
 
 ![Schematic Flow - pull data](./images/schematic-flow-pull.png)
 
@@ -20,11 +20,11 @@ A prototype implementation of the [authorization-enhanced-mail-system][1] draft 
 
 AEMS uses an UMA wide ecosystem topology where UMA wide ecosystem ⊃ UMA narrow ecosystem
 
-### Push data links
+### Push metadata 
 
 ![Sequence Diagram - push data](./images/uma-wide-ecosystem-alice-to-bob-push-data.svg)
 
-### Pull data resources
+### Pull data
 
 ![Sequence Diagram - pull data](./images/uma-wide-ecosystem-bob-from-alice-pull-data.svg)
 
