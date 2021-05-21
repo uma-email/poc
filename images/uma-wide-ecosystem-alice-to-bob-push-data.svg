@@ -1,1 +1,2089 @@
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1064" height="1132"><desc>Title%20UMA%20Wide%20Ecosystem%20-%20Alice%20to%20Bob%20(push%20data)%0A%0Aactor%20%22RqP%5CnAlice%22%20as%20Alice%20%23lightpink%0Aparticipant%20%22AuthN%20Server%22%20as%20authServer%20%23lightpink%0Aparticipant%20%22Claims%20Provider%20(CP)%22%20as%20claimsProvider%20%23lightpink%0Aparticipant%20%22RqP%20Client%22%20as%20rqpClient%20%23lightpink%0Aparticipant%20%22Resource%20Server%20(RS)%22%20as%20rsServer%20%23lightsteelblue%0Aparticipant%20%22AuthZ%20Server%22%20as%20asServer%20%23lightsteelblue%0Aactor%20%22RO%5CnBob%22%20as%20Bob%20%23lightsteelblue%0A%0Abottomparticipants%0A%0AAlice-%3ErqpClient%3AInitiate%20request%0ArqpClient-%3ErsServer%3A1.%20Request%20'Bob's%20Incoming'%20resource%0ArqpClient%3C-rsServer%3A2.%20401%20with%20permission%20ticket%0Aalt%20RqP%20Client%20uses%20Authorization%20Code%20Grant%20-%20Alice%20is%20involved%0AauthServer%3C-rqpClient%3A3.%20Get%20access_token%5Cn(grant_type%3Dauthorizatin_code%2C%20scope%3Dclaims-provider)%0Aelse%20RqP%20Client%20uses%20Client%20Credential%20Grant%20-%20Alice%20is%20not%20involved%0AauthServer%3C-rqpClient%3A3.%20Get%20access_token%5Cn(grant_type%3Dclient_credentials%2C%20scope%3Dclaims-provider)%0Aend%0AauthServer-%3ErqpClient%3A4.%20Return%20access_token%0Anote%20right%20of%20rqpClient%3ACreate%20ticket_digest%0Aalt%20RqP%20Client%20uses%20Authorization%20Code%20Grant%20-%20Alice%20is%20involved%0AclaimsProvider%3C-rqpClient%3A5.%20Get%20claims_token%5Cn(access_token%2C%20ticket_digest)%0Aelse%20RqP%20Client%20uses%20Client%20Credential%20Grant%20-%20Alice%20is%20not%20involved%0AclaimsProvider%3C-rqpClient%3A5.%20Get%20claims_token%5Cn(access_token%2C%20Alice's%20email_address%2C%20ticket_digest)%0Aend%0Anote%20left%20of%20claimsProvider%3AClaims%20Provider%20is%20assigned%20'query-users'%20admin%20role%0AauthServer%3C-claimsProvider%3AGet%20access_token%5Cn(grant_type%3Dclient_credentials)%0AauthServer-%3EclaimsProvider%3AReturn%20access_token%0Aalt%20RqP%20Client%20uses%20Authorization%20Code%20Grant%20-%20Alice%20is%20involved%0Anote%20left%20of%20claimsProvider%3AUse%20Alice's%20email_address%20from%20request%2Faccess_token%20in%20step%205.%0AauthServer%3C-claimsProvider%3AGet%20Alice's%20user_claims%5Cn(access_token%2C%20Alice's%20email_address)%0Aelse%20RqP%20Client%20uses%20Client%20Credential%20Grant%20-%20Alice%20is%20not%20involved%0Anote%20left%20of%20claimsProvider%3AUse%20Alice's%20email_address%20from%20request%2Fparameter%20in%20step%205.%0AauthServer%3C-claimsProvider%3AGet%20Alice's%20user_claims%5Cn(access_token%2C%20Alice's%20email_address)%0Aend%0AauthServer-%3EclaimsProvider%3AReturn%20Alice's%20user_claims%0Aloop%20Authorization%20process%0AclaimsProvider-%3ErqpClient%3A6.%20Return%20claims_token%5Cn(Alice's%20user_claims%2C%20ticket_digest)%0ArqpClient-%3EasServer%3A7.%20Call%20token%20endpoint%5Cn(client_credentials%2C%20ticket%2C%20pushed_claims%3Dclaims_token%20%2B%20metadata)%0Anote%20over%20asServer%3AEvaluate%5Cn1.%20ticket%5Cn2.%20ticket_digest%5Cn3.%20claims_token%20signature%5Cn4.%20user_claims%5Cn5.%20domain%20part%20of%20email_address%0ArqpClient%3C-asServer%3A8.%20Return%20RPT%0Aend%0ArqpClient-%3ErsServer%3A9.%20Post%20data%20into%20'Bob's%20Incoming'%20resource%5Cn(RPT)%0ArqpClient%3C-rsServer%3A10.%20201%20Created</desc><defs/><g><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g><rect fill="white" stroke="none" x="0" y="0" width="1064" height="1132"/></g><g><text fill="black" stroke="none" font-family="sans-serif" font-size="10.5pt" font-style="normal" font-weight="normal" text-decoration="normal" x="381.61258747985414" y="13.19381805" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">UMA Wide Ecosystem - Alice to Bob (push data)</text></g><g/><g><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 14.507215167871093 78.15138224949999 L 14.507215167871093 1074.7244389594996" stroke-miterlimit="10" stroke-width="0.7329898916666666" stroke-dasharray="6.766060538461538,2.9319595666666665"/><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 70.95168664946094 78.15138224949999 L 70.95168664946094 1074.7244389594996" stroke-miterlimit="10" stroke-width="0.7329898916666666" stroke-dasharray="6.766060538461538,2.9319595666666665"/><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 368.5062136977422 78.15138224949999 L 368.5062136977422 1074.7244389594996" stroke-miterlimit="10" stroke-width="0.7329898916666666" stroke-dasharray="6.766060538461538,2.9319595666666665"/><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 607.3516607388881 78.15138224949999 L 607.3516607388881 1074.7244389594996" stroke-miterlimit="10" stroke-width="0.7329898916666666" stroke-dasharray="6.766060538461538,2.9319595666666665"/><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 806.7438607097214 78.15138224949999 L 806.7438607097214 1074.7244389594996" stroke-miterlimit="10" stroke-width="0.7329898916666666" stroke-dasharray="6.766060538461538,2.9319595666666665"/><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 959.5005686052943 78.15138224949999 L 959.5005686052943 1074.7244389594996" stroke-miterlimit="10" stroke-width="0.7329898916666666" stroke-dasharray="6.766060538461538,2.9319595666666665"/><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 1051.6378511492592 78.15138224949999 L 1051.6378511492592 1074.7244389594996" stroke-miterlimit="10" stroke-width="0.7329898916666666" stroke-dasharray="6.766060538461538,2.9319595666666665"/></g><g><g><path fill="lightpink" stroke="black" paint-order="fill stroke markers" d=" M 19.520866026871094 32.1489366485 A 5.013650858999999 5.013650858999999 0 1 1 19.52086352004587 32.143922998476604 M 14.507215167871093 37.16258750749999 L 14.507215167871093 47.893559521499995 M 8.174182503871094 41.03277413549999 L 20.840247831871093 41.03277413549999 M 14.507215167871093 47.893559521499995 L 8.174182503871094 57.92086123949999 M 14.507215167871093 47.893559521499995 L 20.840247831871093 57.92086123949999" stroke-miterlimit="10" stroke-width="1.495299379" stroke-dasharray=""/></g><g><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="5.434148456445312" y="66.71673993949999" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">RqP</text><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="4.39793935" y="75.51261863949999" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">Alice</text></g><path fill="none" stroke="none"/><g><path fill="lightpink" stroke="black" paint-order="fill stroke markers" d=" M 33.412369685742185 54.4904685465 L 108.49100361317969 54.4904685465 L 108.49100361317969 78.15138224949999 L 33.412369685742185 78.15138224949999 L 33.412369685742185 54.4904685465 Z" stroke-miterlimit="10" stroke-width="1.407340592" stroke-dasharray=""/></g><g><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="42.95589807524219" y="69.3555035495" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">AuthN Server</text></g><path fill="none" stroke="none"/><g><path fill="lightpink" stroke="black" paint-order="fill stroke markers" d=" M 315.16645880677737 54.4904685465 L 421.8459685887071 54.4904685465 L 421.8459685887071 78.15138224949999 L 315.16645880677737 78.15138224949999 L 315.16645880677737 54.4904685465 Z" stroke-miterlimit="10" stroke-width="1.407340592" stroke-dasharray=""/></g><g><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="324.7099871962774" y="69.3555035495" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">Claims Provider (CP)</text></g><path fill="none" stroke="none"/><g><path fill="lightpink" stroke="black" paint-order="fill stroke markers" d=" M 575.5148813117904 54.4904685465 L 639.1884401659858 54.4904685465 L 639.1884401659858 78.15138224949999 L 575.5148813117904 78.15138224949999 L 575.5148813117904 54.4904685465 Z" stroke-miterlimit="10" stroke-width="1.407340592" stroke-dasharray=""/></g><g><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="585.0584097012904" y="69.3555035495" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">RqP Client</text></g><path fill="none" stroke="none"/><g><path fill="lightsteelblue" stroke="black" paint-order="fill stroke markers" d=" M 751.324866927155 54.4904685465 L 862.1628544922878 54.4904685465 L 862.1628544922878 78.15138224949999 L 751.324866927155 78.15138224949999 L 751.324866927155 54.4904685465 Z" stroke-miterlimit="10" stroke-width="1.407340592" stroke-dasharray=""/></g><g><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="760.868395316655" y="69.3555035495" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">Resource Server (RS)</text></g><path fill="none" stroke="none"/><g><path fill="lightsteelblue" stroke="black" paint-order="fill stroke markers" d=" M 922.4804929745834 54.4904685465 L 996.5206442360053 54.4904685465 L 996.5206442360053 78.15138224949999 L 922.4804929745834 78.15138224949999 L 922.4804929745834 54.4904685465 Z" stroke-miterlimit="10" stroke-width="1.407340592" stroke-dasharray=""/></g><g><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="932.0240213640834" y="69.3555035495" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">AuthZ Server</text></g><g><path fill="lightsteelblue" stroke="black" paint-order="fill stroke markers" d=" M 1056.6515020082593 32.1489366485 A 5.013650858999999 5.013650858999999 0 1 1 1056.651499501434 32.143922998476604 M 1051.6378511492592 37.16258750749999 L 1051.6378511492592 47.893559521499995 M 1045.3048184852591 41.03277413549999 L 1057.9708838132592 41.03277413549999 M 1051.6378511492592 47.893559521499995 L 1045.3048184852591 57.92086123949999 M 1051.6378511492592 47.893559521499995 L 1057.9708838132592 57.92086123949999" stroke-miterlimit="10" stroke-width="1.495299379" stroke-dasharray=""/></g><g><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="1044.6417497698646" y="66.71673993949999" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">RO</text><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="1043.33909168881" y="75.51261863949999" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">Bob</text></g><g><path fill="lightpink" stroke="black" paint-order="fill stroke markers" d=" M 19.520866026871094 1100.7162605179997 A 5.013650858999999 5.013650858999999 0 1 1 19.52086352004587 1100.7112468679763 M 14.507215167871093 1105.7299113769996 L 14.507215167871093 1116.4608833909995 M 8.174182503871094 1109.6000980049996 L 20.840247831871093 1109.6000980049996 M 14.507215167871093 1116.4608833909995 L 8.174182503871094 1126.4881851089995 M 14.507215167871093 1116.4608833909995 L 20.840247831871093 1126.4881851089995" stroke-miterlimit="10" stroke-width="1.495299379" stroke-dasharray=""/></g><g><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="5.434148456445312" y="1083.5203176594996" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">RqP</text><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="4.39793935" y="1092.3161963594996" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">Alice</text></g><path fill="none" stroke="none"/><g><path fill="lightpink" stroke="black" paint-order="fill stroke markers" d=" M 33.412369685742185 1074.7244389594996 L 108.49100361317969 1074.7244389594996 L 108.49100361317969 1098.3853526624996 L 33.412369685742185 1098.3853526624996 L 33.412369685742185 1074.7244389594996 Z" stroke-miterlimit="10" stroke-width="1.407340592" stroke-dasharray=""/></g><g><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="42.95589807524219" y="1089.5894739624996" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">AuthN Server</text></g><path fill="none" stroke="none"/><g><path fill="lightpink" stroke="black" paint-order="fill stroke markers" d=" M 315.16645880677737 1074.7244389594996 L 421.8459685887071 1074.7244389594996 L 421.8459685887071 1098.3853526624996 L 315.16645880677737 1098.3853526624996 L 315.16645880677737 1074.7244389594996 Z" stroke-miterlimit="10" stroke-width="1.407340592" stroke-dasharray=""/></g><g><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="324.7099871962774" y="1089.5894739624996" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">Claims Provider (CP)</text></g><path fill="none" stroke="none"/><g><path fill="lightpink" stroke="black" paint-order="fill stroke markers" d=" M 575.5148813117904 1074.7244389594996 L 639.1884401659858 1074.7244389594996 L 639.1884401659858 1098.3853526624996 L 575.5148813117904 1098.3853526624996 L 575.5148813117904 1074.7244389594996 Z" stroke-miterlimit="10" stroke-width="1.407340592" stroke-dasharray=""/></g><g><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="585.0584097012904" y="1089.5894739624996" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">RqP Client</text></g><path fill="none" stroke="none"/><g><path fill="lightsteelblue" stroke="black" paint-order="fill stroke markers" d=" M 751.324866927155 1074.7244389594996 L 862.1628544922878 1074.7244389594996 L 862.1628544922878 1098.3853526624996 L 751.324866927155 1098.3853526624996 L 751.324866927155 1074.7244389594996 Z" stroke-miterlimit="10" stroke-width="1.407340592" stroke-dasharray=""/></g><g><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="760.868395316655" y="1089.5894739624996" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">Resource Server (RS)</text></g><path fill="none" stroke="none"/><g><path fill="lightsteelblue" stroke="black" paint-order="fill stroke markers" d=" M 922.4804929745834 1074.7244389594996 L 996.5206442360053 1074.7244389594996 L 996.5206442360053 1098.3853526624996 L 922.4804929745834 1098.3853526624996 L 922.4804929745834 1074.7244389594996 Z" stroke-miterlimit="10" stroke-width="1.407340592" stroke-dasharray=""/></g><g><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="932.0240213640834" y="1089.5894739624996" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">AuthZ Server</text></g><g><path fill="lightsteelblue" stroke="black" paint-order="fill stroke markers" d=" M 1056.6515020082593 1100.7162605179997 A 5.013650858999999 5.013650858999999 0 1 1 1056.651499501434 1100.7112468679763 M 1051.6378511492592 1105.7299113769996 L 1051.6378511492592 1116.4608833909995 M 1045.3048184852591 1109.6000980049996 L 1057.9708838132592 1109.6000980049996 M 1051.6378511492592 1116.4608833909995 L 1045.3048184852591 1126.4881851089995 M 1051.6378511492592 1116.4608833909995 L 1057.9708838132592 1126.4881851089995" stroke-miterlimit="10" stroke-width="1.495299379" stroke-dasharray=""/></g><g><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="1044.6417497698646" y="1083.5203176594996" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">RO</text><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="1043.33909168881" y="1092.3161963594996" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">Bob</text></g></g><g><g><g><rect fill="white" stroke="none" x="279.01575683197336" y="95.74313964949998" width="63.8273622428125" height="11.43464231"/></g><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="280.33513863697334" y="103.65943047949999" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">Initiate request</text></g><g><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 14.507215167871093 107.17778195949998 L 600.1097206092214 107.17778195949998" stroke-miterlimit="10" stroke-width="0.7329898916666666" stroke-dasharray=""/><g transform="translate(607.3516607388881,107.17778195949998) translate(-607.3516607388881,-107.17778195949998)"><path fill="black" stroke="none" paint-order="stroke fill markers" d=" M 600.0217618222214 103.51283250116664 L 607.3516607388881 107.17778195949998 L 600.0217618222214 110.84273141783332 Z"/></g></g><g><g><rect fill="white" stroke="none" x="628.9101645028007" y="120.37160000949997" width="156.27519244300782" height="11.43464231"/></g><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="630.2295463078008" y="128.28789083949997" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">1. Request 'Bob's Incoming' resource</text></g><g><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 607.3516607388881 131.80624231949997 L 799.5019205800547 131.80624231949997" stroke-miterlimit="10" stroke-width="0.7329898916666666" stroke-dasharray=""/><g transform="translate(806.7438607097214,131.80624231949997) translate(-806.7438607097214,-131.80624231949997)"><path fill="black" stroke="none" paint-order="stroke fill markers" d=" M 799.4139617930547 128.14129286116665 L 806.7438607097214 131.80624231949997 L 799.4139617930547 135.4711917778333 Z"/></g></g><g><g><rect fill="white" stroke="none" x="647.1428381478203" y="145.00006036949998" width="119.80984515296875" height="11.43464231"/></g><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="648.4622199528203" y="152.91635119949999" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">2. 401 with permission ticket</text></g><g><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 806.7438607097214 156.43470267949996 L 614.5936008685547 156.43470267949996" stroke-miterlimit="10" stroke-width="0.7329898916666666" stroke-dasharray=""/><g transform="translate(607.3516607388881,156.43470267949996) translate(-607.3516607388881,-156.43470267949996)"><path fill="black" stroke="none" paint-order="stroke fill markers" d=" M 614.6815596555548 152.76975322116664 L 607.3516607388881 156.43470267949996 L 614.6815596555548 160.0996521378333 Z"/></g></g><g><g><rect fill="white" stroke="none" x="223.7607586860495" y="193.37739321949996" width="87.67602557289062" height="11.43464231"/></g><g><rect fill="white" stroke="none" x="223.7607586860495" y="202.17327191949997" width="230.78183001625" height="11.43464231"/></g><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="225.08014049104952" y="201.29368404949997" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">3. Get access_token</text><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="225.08014049104952" y="210.08956274949998" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">(grant_type=authorizatin_code, scope=claims-provider)</text></g><g><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 607.3516607388881 213.60791422949995 L 78.19362677912761 213.60791422949995" stroke-miterlimit="10" stroke-width="0.7329898916666666" stroke-dasharray=""/><g transform="translate(70.95168664946094,213.60791422949995) translate(-70.95168664946094,-213.60791422949995)"><path fill="black" stroke="none" paint-order="stroke fill markers" d=" M 78.2815855661276 209.94296477116663 L 70.95168664946094 213.60791422949995 L 78.2815855661276 217.27286368783328 Z"/></g></g><g><g><rect fill="white" stroke="none" x="224.5441754340964" y="250.55060476949993" width="87.67602557289062" height="11.43464231"/></g><g><rect fill="white" stroke="none" x="224.5441754340964" y="259.3464834694999" width="229.21499652015626" height="11.43464231"/></g><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="225.8635572390964" y="258.46689559949994" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">3. Get access_token</text><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="225.8635572390964" y="267.26277429949994" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">(grant_type=client_credentials, scope=claims-provider)</text></g><g><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 607.3516607388881 270.7811257794999 L 78.19362677912761 270.7811257794999" stroke-miterlimit="10" stroke-width="0.7329898916666666" stroke-dasharray=""/><g transform="translate(70.95168664946094,270.7811257794999) translate(-70.95168664946094,-270.7811257794999)"><path fill="black" stroke="none" paint-order="stroke fill markers" d=" M 78.2815855661276 267.11617632116656 L 70.95168664946094 270.7811257794999 L 78.2815855661276 274.44607523783327 Z"/></g></g><g><g><rect fill="white" stroke="none" x="288.83224611280735" y="297.1687618794999" width="100.63885516273437" height="11.43464231"/></g><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="290.15162791780733" y="305.0850527094999" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">4. Return access_token</text></g><g><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 70.95168664946094 308.60340418949994 L 600.1097206092214 308.60340418949994" stroke-miterlimit="10" stroke-width="0.7329898916666666" stroke-dasharray=""/><g transform="translate(607.3516607388881,308.60340418949994) translate(-607.3516607388881,-308.60340418949994)"><path fill="black" stroke="none" paint-order="stroke fill markers" d=" M 600.0217618222214 304.9384547311666 L 607.3516607388881 308.60340418949994 L 600.0217618222214 312.2683536478333 Z"/></g></g><path fill="white" stroke="black" paint-order="fill stroke markers" d=" M 607.3516607388881 331.9124827445 L 611.7496000888881 331.9124827445 M 611.7496000888881 321.79722223949994 L 710.9028401755287 321.79722223949994 L 718.8191310055287 329.7135130694999 L 718.8191310055287 342.02774324949996 L 611.7496000888881 342.02774324949996 L 611.7496000888881 321.79722223949994 M 710.9028401755287 321.79722223949994 L 710.9028401755287 329.7135130694999 L 718.8191310055287 329.7135130694999" stroke-miterlimit="10" stroke-width="0.7329898916666666" stroke-dasharray=""/><g><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="624.0638302688881" y="334.1114524195" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">Create ticket_digest</text></g><g><g><rect fill="white" stroke="none" x="426.4663059015964" y="378.97043378949996" width="85.07527178871094" height="11.43464231"/></g><g><rect fill="white" stroke="none" x="426.4663059015964" y="387.76631248949997" width="122.9252626334375" height="11.43464231"/></g><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="427.7856877065964" y="386.88672461949994" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">5. Get claims_token</text><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="427.7856877065964" y="395.68260331949995" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">(access_token, ticket_digest)</text></g><g><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 607.3516607388881 399.2009547995 L 375.7481538274089 399.2009547995" stroke-miterlimit="10" stroke-width="0.7329898916666666" stroke-dasharray=""/><g transform="translate(368.5062136977422,399.2009547995) translate(-368.5062136977422,-399.2009547995)"><path fill="black" stroke="none" paint-order="stroke fill markers" d=" M 375.8361126144089 395.53600534116663 L 368.5062136977422 399.2009547995 L 375.8361126144089 402.86590425783334 Z"/></g></g><g><g><rect fill="white" stroke="none" x="378.9146701594089" y="436.1436453395" width="85.07527178871094" height="11.43464231"/></g><g><rect fill="white" stroke="none" x="378.9146701594089" y="444.9395240395" width="218.0285341178125" height="11.43464231"/></g><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="380.2340519644089" y="444.05993616949996" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">5. Get claims_token</text><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="380.2340519644089" y="452.85581486949997" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">(access_token, Alice's email_address, ticket_digest)</text></g><g><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 607.3516607388881 456.3741663495 L 375.7481538274089 456.3741663495" stroke-miterlimit="10" stroke-width="0.7329898916666666" stroke-dasharray=""/><g transform="translate(368.5062136977422,456.3741663495) translate(-368.5062136977422,-456.3741663495)"><path fill="black" stroke="none" paint-order="stroke fill markers" d=" M 375.8361126144089 452.70921689116665 L 368.5062136977422 456.3741663495 L 375.8361126144089 460.03911580783335 Z"/></g></g><path fill="white" stroke="black" paint-order="fill stroke markers" d=" M 368.5062136977422 492.8770629545 L 364.1082743477422 492.8770629545 M 122.84204238129692 482.76180244949995 L 356.19198351774224 482.76180244949995 L 364.1082743477422 490.67809327949993 L 364.1082743477422 502.99232345949997 L 122.84204238129692 502.99232345949997 L 122.84204238129692 482.76180244949995 M 356.19198351774224 482.76180244949995 L 356.19198351774224 490.67809327949993 L 364.1082743477422 490.67809327949993" stroke-miterlimit="10" stroke-width="0.7329898916666666" stroke-dasharray=""/><g><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="135.15627256129693" y="495.0760326295" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">Claims Provider is assigned 'query-users' admin role</text></g><g><g><rect fill="white" stroke="none" x="154.50180774848437" y="516.1861415095" width="77.30484027015625" height="11.43464231"/></g><g><rect fill="white" stroke="none" x="154.50180774848437" y="524.9820202095" width="130.4542848502344" height="11.43464231"/></g><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="155.82118955348437" y="524.1024323395" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">Get access_token</text><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="155.82118955348437" y="532.8983110395" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">(grant_type=client_credentials)</text></g><g><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 368.5062136977422 536.4166625194999 L 78.19362677912761 536.4166625194999" stroke-miterlimit="10" stroke-width="0.7329898916666666" stroke-dasharray=""/><g transform="translate(70.95168664946094,536.4166625194999) translate(-70.95168664946094,-536.4166625194999)"><path fill="black" stroke="none" paint-order="stroke fill markers" d=" M 78.2815855661276 532.7517130611666 L 70.95168664946094 536.4166625194999 L 78.2815855661276 540.0816119778333 Z"/></g></g><g><g><rect fill="white" stroke="none" x="174.59511524360155" y="549.6104805694999" width="90.26766986" height="11.43464231"/></g><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="175.91449704860156" y="557.5267713994999" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">Return access_token</text></g><g><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 70.95168664946094 561.0451228794999 L 361.26427356807557 561.0451228794999" stroke-miterlimit="10" stroke-width="0.7329898916666666" stroke-dasharray=""/><g transform="translate(368.5062136977422,561.0451228794999) translate(-368.5062136977422,-561.0451228794999)"><path fill="black" stroke="none" paint-order="stroke fill markers" d=" M 361.1763147810756 557.3801734211665 L 368.5062136977422 561.0451228794999 L 361.1763147810756 564.7100723378333 Z"/></g></g><path fill="white" stroke="black" paint-order="fill stroke markers" d=" M 368.5062136977422 608.1030739244999 L 364.1082743477422 608.1030739244999 M 75.34962599946095 597.9878134195 L 356.19198351774224 597.9878134195 L 364.1082743477422 605.9041042494999 L 364.1082743477422 618.2183344294999 L 75.34962599946095 618.2183344294999 L 75.34962599946095 597.9878134195 M 356.19198351774224 597.9878134195 L 356.19198351774224 605.9041042494999 L 364.1082743477422 605.9041042494999" stroke-miterlimit="10" stroke-width="0.7329898916666666" stroke-dasharray=""/><g><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="87.66385617946096" y="610.3020435994998" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">Use Alice's email_address from request/access_token in step 5.</text></g><g><g><rect fill="white" stroke="none" x="139.23200946967577" y="631.4121524794999" width="99.28608721839844" height="11.43464231"/></g><g><rect fill="white" stroke="none" x="139.23200946967577" y="640.2080311794999" width="160.99388140785157" height="11.43464231"/></g><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="140.55139127467578" y="639.3284433094999" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">Get Alice's user_claims</text><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="140.55139127467578" y="648.1243220094999" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">(access_token, Alice's email_address)</text></g><g><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 368.5062136977422 651.6426734894999 L 78.19362677912761 651.6426734894999" stroke-miterlimit="10" stroke-width="0.7329898916666666" stroke-dasharray=""/><g transform="translate(70.95168664946094,651.6426734894999) translate(-70.95168664946094,-651.6426734894999)"><path fill="black" stroke="none" paint-order="stroke fill markers" d=" M 78.2815855661276 647.9777240311665 L 70.95168664946094 651.6426734894999 L 78.2815855661276 655.3076229478332 Z"/></g></g><path fill="white" stroke="black" paint-order="fill stroke markers" d=" M 368.5062136977422 698.7006245344998 L 364.1082743477422 698.7006245344998 M 89.8747114486797 688.5853640294998 L 356.19198351774224 688.5853640294998 L 364.1082743477422 696.5016548594998 L 364.1082743477422 708.8158850394998 L 89.8747114486797 708.8158850394998 L 89.8747114486797 688.5853640294998 M 356.19198351774224 688.5853640294998 L 356.19198351774224 696.5016548594998 L 364.1082743477422 696.5016548594998" stroke-miterlimit="10" stroke-width="0.7329898916666666" stroke-dasharray=""/><g><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="102.18894162867971" y="700.8995942094997" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">Use Alice's email_address from request/parameter in step 5.</text></g><g><g><rect fill="white" stroke="none" x="139.23200946967577" y="722.0097030894998" width="99.28608721839844" height="11.43464231"/></g><g><rect fill="white" stroke="none" x="139.23200946967577" y="730.8055817894998" width="160.99388140785157" height="11.43464231"/></g><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="140.55139127467578" y="729.9259939194998" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">Get Alice's user_claims</text><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="140.55139127467578" y="738.7218726194998" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">(access_token, Alice's email_address)</text></g><g><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 368.5062136977422 742.2402240994998 L 78.19362677912761 742.2402240994998" stroke-miterlimit="10" stroke-width="0.7329898916666666" stroke-dasharray=""/><g transform="translate(70.95168664946094,742.2402240994998) translate(-70.95168664946094,-742.2402240994998)"><path fill="black" stroke="none" paint-order="stroke fill markers" d=" M 78.2815855661276 738.5752746411664 L 70.95168664946094 742.2402240994998 L 78.2815855661276 745.9051735578331 Z"/></g></g><g><g><rect fill="white" stroke="none" x="163.60449176948046" y="768.6278601994998" width="112.24891680824219" height="11.43464231"/></g><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="164.92387357448047" y="776.5441510294997" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">Return Alice's user_claims</text></g><g><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 70.95168664946094 780.0625025094997 L 361.26427356807557 780.0625025094997" stroke-miterlimit="10" stroke-width="0.7329898916666666" stroke-dasharray=""/><g transform="translate(368.5062136977422,780.0625025094997) translate(-368.5062136977422,-780.0625025094997)"><path fill="black" stroke="none" paint-order="stroke fill markers" d=" M 361.1763147810756 776.3975530511664 L 368.5062136977422 780.0625025094997 L 361.1763147810756 783.7274519678331 Z"/></g></g><g><g><rect fill="white" stroke="none" x="415.4756824274753" y="817.0051930494998" width="98.03810137855469" height="11.43464231"/></g><g><rect fill="white" stroke="none" x="415.4756824274753" y="825.8010717494998" width="144.9065095816797" height="11.43464231"/></g><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="416.7950642324753" y="824.9214838794998" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">6. Return claims_token</text><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="416.7950642324753" y="833.7173625794998" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">(Alice's user_claims, ticket_digest)</text></g><g><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 368.5062136977422 837.2357140594997 L 600.1097206092214 837.2357140594997" stroke-miterlimit="10" stroke-width="0.7329898916666666" stroke-dasharray=""/><g transform="translate(607.3516607388881,837.2357140594997) translate(-607.3516607388881,-837.2357140594997)"><path fill="black" stroke="none" paint-order="stroke fill markers" d=" M 600.0217618222214 833.5707646011664 L 607.3516607388881 837.2357140594997 L 600.0217618222214 840.9006635178331 Z"/></g></g><g><g><rect fill="white" stroke="none" x="641.0778632381849" y="850.4295321094997" width="92.87304705726562" height="11.43464231"/></g><g><rect fill="white" stroke="none" x="641.0778632381849" y="859.2254108094997" width="284.6965028678125" height="11.43464231"/></g><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="642.397245043185" y="858.3458229394997" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">7. Call token endpoint</text><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="642.397245043185" y="867.1417016394997" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">(client_credentials, ticket, pushed_claims=claims_token + metadata)</text></g><g><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 607.3516607388881 870.6600531194997 L 952.2586284756277 870.6600531194997" stroke-miterlimit="10" stroke-width="0.7329898916666666" stroke-dasharray=""/><g transform="translate(959.5005686052943,870.6600531194997) translate(-959.5005686052943,-870.6600531194997)"><path fill="black" stroke="none" paint-order="stroke fill markers" d=" M 952.1706696886276 866.9951036611664 L 959.5005686052943 870.6600531194997 L 952.1706696886276 874.3250025778331 Z"/></g></g><path fill="white" stroke="black" paint-order="fill stroke markers" d=" M 880.5571041113295 883.8538711694997 L 1030.5277422692593 883.8538711694997 L 1038.4440330992593 891.7701619994997 L 1038.4440330992593 948.0637856794997 L 880.5571041113295 948.0637856794997 L 880.5571041113295 883.8538711694997 M 1030.5277422692593 883.8538711694997 L 1030.5277422692593 891.7701619994997 L 1038.4440330992593 891.7701619994997" stroke-miterlimit="10" stroke-width="0.7329898916666666" stroke-dasharray=""/><g><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="892.8713342913295" y="896.1681013494996" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">Evaluate</text><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="892.8713342913295" y="904.9639800494996" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">1. ticket</text><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="892.8713342913295" y="913.7598587494996" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">2. ticket_digest</text><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="892.8713342913295" y="922.5557374494996" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">3. claims_token signature</text><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="892.8713342913295" y="931.3516161494996" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">4. user_claims</text><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="892.8713342913295" y="940.1474948494996" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">5. domain part of email_address</text></g><g><g><rect fill="white" stroke="none" x="752.2981391170912" y="961.2576037294997" width="62.25595111" height="11.43464231"/></g><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="753.6175209220912" y="969.1738945594997" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">8. Return RPT</text></g><g><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 959.5005686052943 972.6922460394997 L 614.5936008685547 972.6922460394997" stroke-miterlimit="10" stroke-width="0.7329898916666666" stroke-dasharray=""/><g transform="translate(607.3516607388881,972.6922460394997) translate(-607.3516607388881,-972.6922460394997)"><path fill="black" stroke="none" paint-order="stroke fill markers" d=" M 614.6815596555548 969.0272965811663 L 607.3516607388881 972.6922460394997 L 614.6815596555548 976.357195497833 Z"/></g></g><g><g><rect fill="white" stroke="none" x="617.7601172005546" y="999.0798821394997" width="178.5752870475" height="11.43464231"/></g><g><rect fill="white" stroke="none" x="617.7601172005546" y="1007.8757608394997" width="27.507705870742186" height="11.43464231"/></g><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="619.0794990055547" y="1006.9961729694996" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">9. Post data into 'Bob's Incoming' resource</text><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="619.0794990055547" y="1015.7920516694996" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">(RPT)</text></g><g><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 607.3516607388881 1019.3104031494996 L 799.5019205800547 1019.3104031494996" stroke-miterlimit="10" stroke-width="0.7329898916666666" stroke-dasharray=""/><g transform="translate(806.7438607097214,1019.3104031494996) translate(-806.7438607097214,-1019.3104031494996)"><path fill="black" stroke="none" paint-order="stroke fill markers" d=" M 799.4139617930547 1015.6454536911663 L 806.7438607097214 1019.3104031494996 L 799.4139617930547 1022.975352607833 Z"/></g></g><g><g><rect fill="white" stroke="none" x="672.2782522713554" y="1032.5042211994996" width="69.53901690589844" height="11.43464231"/></g><text fill="black" stroke="none" font-family="sans-serif" font-size="7pt" font-style="normal" font-weight="normal" text-decoration="normal" x="673.5976340763555" y="1040.4205120294996" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">10. 201 Created</text></g><g><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 806.7438607097214 1043.9388635094997 L 614.5936008685547 1043.9388635094997" stroke-miterlimit="10" stroke-width="0.7329898916666666" stroke-dasharray=""/><g transform="translate(607.3516607388881,1043.9388635094997) translate(-607.3516607388881,-1043.9388635094997)"><path fill="black" stroke="none" paint-order="stroke fill markers" d=" M 614.6815596555548 1040.2739140511665 L 607.3516607388881 1043.9388635094997 L 614.6815596555548 1047.603812967833 Z"/></g></g><g><g/><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 40.16611119946094 169.62852072949997 L 638.1372361888881 169.62852072949997 L 638.1372361888881 283.9749438294999 L 40.16611119946094 283.9749438294999 L 40.16611119946094 169.62852072949997 Z" stroke-miterlimit="10" stroke-width="1.2565541" stroke-dasharray=""/><path fill="white" stroke="black" paint-order="fill stroke markers" d=" M 40.16611119946094 169.62852072949997 L 40.16611119946094 180.18357516949996 L 66.45562250571095 180.18357516949996 L 71.73314972571094 174.90604794949996 L 71.73314972571094 169.62852072949997 L 40.16611119946094 169.62852072949997" stroke-miterlimit="10" stroke-width="1.2565541" stroke-dasharray=""/><text fill="black" stroke="none" font-family="sans-serif" font-size="5.6000000000000005pt" font-style="normal" font-weight="bold" text-decoration="normal" x="48.961989899460946" y="176.66522368949995" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">alt</text><text fill="black" stroke="none" font-family="sans-serif" font-size="5.6000000000000005pt" font-style="normal" font-weight="bold" text-decoration="normal" x="80.52902842571095" y="176.66522368949995" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">[RqP Client uses Authorization Code Grant - Alice is involved]</text><g><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 40.16611119946094 226.80173227949996 L 638.1372361888881 226.80173227949996" stroke-miterlimit="10" stroke-width="1.2565541" stroke-dasharray="2.198969675"/></g><g/><text fill="black" stroke="none" font-family="sans-serif" font-size="5.6000000000000005pt" font-style="normal" font-weight="bold" text-decoration="normal" x="80.52902842571095" y="233.83843523949994" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">[RqP Client uses Client Credential Grant - Alice is not involved]</text></g><g/><g><g/><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 337.7206382477422 355.22156129949997 L 638.1372361888881 355.22156129949997 L 638.1372361888881 469.5679843995 L 337.7206382477422 469.5679843995 L 337.7206382477422 355.22156129949997 Z" stroke-miterlimit="10" stroke-width="1.2565541" stroke-dasharray=""/><path fill="white" stroke="black" paint-order="fill stroke markers" d=" M 337.7206382477422 355.22156129949997 L 337.7206382477422 365.77661573949996 L 364.0101495539922 365.77661573949996 L 369.28767677399225 360.4990885195 L 369.28767677399225 355.22156129949997 L 337.7206382477422 355.22156129949997" stroke-miterlimit="10" stroke-width="1.2565541" stroke-dasharray=""/><text fill="black" stroke="none" font-family="sans-serif" font-size="5.6000000000000005pt" font-style="normal" font-weight="bold" text-decoration="normal" x="346.5165169477422" y="362.2582642595" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">alt</text><text fill="black" stroke="none" font-family="sans-serif" font-size="5.6000000000000005pt" font-style="normal" font-weight="bold" text-decoration="normal" x="378.08355547399225" y="362.2582642595" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">[RqP Client uses Authorization Code Grant - Alice is involved]</text><g><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 337.7206382477422 412.3947728495 L 638.1372361888881 412.3947728495" stroke-miterlimit="10" stroke-width="1.2565541" stroke-dasharray="2.198969675"/></g><g/><text fill="black" stroke="none" font-family="sans-serif" font-size="5.6000000000000005pt" font-style="normal" font-weight="bold" text-decoration="normal" x="378.08355547399225" y="419.4314758095" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">[RqP Client uses Client Credential Grant - Alice is not involved]</text></g><g/><g><g/><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 40.16611119946094 574.2389409294999 L 399.29178914774224 574.2389409294999 L 399.29178914774224 755.4340421494998 L 40.16611119946094 755.4340421494998 L 40.16611119946094 574.2389409294999 Z" stroke-miterlimit="10" stroke-width="1.2565541" stroke-dasharray=""/><path fill="white" stroke="black" paint-order="fill stroke markers" d=" M 40.16611119946094 574.2389409294999 L 40.16611119946094 584.7939953695 L 66.45562250571095 584.7939953695 L 71.73314972571094 579.5164681494999 L 71.73314972571094 574.2389409294999 L 40.16611119946094 574.2389409294999" stroke-miterlimit="10" stroke-width="1.2565541" stroke-dasharray=""/><text fill="black" stroke="none" font-family="sans-serif" font-size="5.6000000000000005pt" font-style="normal" font-weight="bold" text-decoration="normal" x="48.961989899460946" y="581.2756438895" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">alt</text><text fill="black" stroke="none" font-family="sans-serif" font-size="5.6000000000000005pt" font-style="normal" font-weight="bold" text-decoration="normal" x="80.52902842571095" y="581.2756438895" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">[RqP Client uses Authorization Code Grant - Alice is involved]</text><g><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 40.16611119946094 664.8364915394998 L 399.29178914774224 664.8364915394998" stroke-miterlimit="10" stroke-width="1.2565541" stroke-dasharray="2.198969675"/></g><g/><text fill="black" stroke="none" font-family="sans-serif" font-size="5.6000000000000005pt" font-style="normal" font-weight="bold" text-decoration="normal" x="80.52902842571095" y="671.8731944994998" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">[RqP Client uses Client Credential Grant - Alice is not involved]</text></g><g/><g><g/><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 337.7206382477422 793.2563205594997 L 1042.8419724492592 793.2563205594997 L 1042.8419724492592 985.8860640894997 L 337.7206382477422 985.8860640894997 L 337.7206382477422 793.2563205594997 Z" stroke-miterlimit="10" stroke-width="1.2565541" stroke-dasharray=""/><path fill="white" stroke="black" paint-order="fill stroke markers" d=" M 337.7206382477422 793.2563205594997 L 337.7206382477422 803.8113749994998 L 371.04114015457816 803.8113749994998 L 376.3186673745782 798.5338477794998 L 376.3186673745782 793.2563205594997 L 337.7206382477422 793.2563205594997" stroke-miterlimit="10" stroke-width="1.2565541" stroke-dasharray=""/><text fill="black" stroke="none" font-family="sans-serif" font-size="5.6000000000000005pt" font-style="normal" font-weight="bold" text-decoration="normal" x="346.5165169477422" y="800.2930235194998" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">loop</text><text fill="black" stroke="none" font-family="sans-serif" font-size="5.6000000000000005pt" font-style="normal" font-weight="bold" text-decoration="normal" x="385.1145460745782" y="800.2930235194998" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">[Authorization process]</text></g></g></g></svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   width="1064"
+   height="1265"
+   id="svg3069"
+   sodipodi:docname="uma-wide-ecosystem-alice-to-bob-push-data.svg"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)">
+  <metadata
+     id="metadata3073">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1027"
+     id="namedview3071"
+     showgrid="true"
+     inkscape:zoom="1"
+     inkscape:cx="532"
+     inkscape:cy="954.37504"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g3067"
+     showguides="true">
+    <inkscape:grid
+       type="xygrid"
+       id="grid4377" />
+  </sodipodi:namedview>
+  <desc
+     id="desc2327">Title%20UMA%20wide%20ecosystem%20-%20Alice%20to%20Bob%20(push%20data)%0A%0Aactor%20%22RqP%5CnAlice%22%20as%20Alice%20%23lightpink%0Aparticipant%20%22AuthN%20Server%22%20as%20authServer%20%23lightpink%0Aparticipant%20%22Claims%20Provider%20(CP)%22%20as%20claimsProvider%20%23lightpink%0Aparticipant%20%22RqP%20Client%22%20as%20rqpClient%20%23lightpink%0Aparticipant%20%22Resource%20Server%20(RS)%22%20as%20rsServer%20%23lightsteelblue%0Aparticipant%20%22AuthZ%20Server%22%20as%20asServer%20%23lightsteelblue%0Aactor%20%22RO%5CnBob%22%20as%20Bob%20%23lightsteelblue%0A%0Abottomparticipants%0A%0Anote%20over%20rqpClient%3ARqP%20Client%20is%20registered%20on%20Alice's%20AuthN%20server%20as%20well%20as%20Bob's%20AuthZ%20server%0AAlice-%3ErqpClient%3AInitiate%20request%0ArqpClient-%3ErsServer%3A1.%20Request%20Bob's%20'Incoming'%20resource%0ArqpClient%3C-rsServer%3A2.%20401%20with%20permission%20ticket%0Aalt%20RqP%20Client%20uses%20Authorization%20Code%20Grant%20-%20Alice%20is%20involved%0AauthServer%3C-rqpClient%3A3.%20Get%20access_token%5Cn(grant_type%3Dauthorizatin_code%2C%20scope%3Dclaims-provider)%0Aelse%20RqP%20Client%20uses%20Client%20Credential%20Grant%20-%20Alice%20is%20not%20involved%0AauthServer%3C-rqpClient%3A3.%20Get%20access_token%5Cn(grant_type%3Dclient_credentials%2C%20scope%3Dclaims-provider)%0Aend%0AauthServer-%3ErqpClient%3A4.%20Return%20access_token%0Anote%20right%20of%20rqpClient%3ACreate%20ticket_digest%0Aalt%20RqP%20Client%20uses%20Authorization%20Code%20Grant%20-%20Alice%20is%20involved%0AclaimsProvider%3C-rqpClient%3A5.%20Get%20claims_token%5Cn(access_token%2C%20ticket_digest)%0Aelse%20RqP%20Client%20uses%20Client%20Credential%20Grant%20-%20Alice%20is%20not%20involved%0AclaimsProvider%3C-rqpClient%3A5.%20Get%20claims_token%5Cn(access_token%2C%20Alice's%20email_address%2C%20ticket_digest)%0Aend%0Anote%20left%20of%20claimsProvider%3AClaims%20Provider%20is%20assigned%20'query-users'%20admin%20role%0AauthServer%3C-claimsProvider%3AGet%20access_token%5Cn(grant_type%3Dclient_credentials)%0AauthServer-%3EclaimsProvider%3AReturn%20access_token%0Aalt%20RqP%20Client%20uses%20Authorization%20Code%20Grant%20-%20Alice%20is%20involved%0Anote%20left%20of%20claimsProvider%3AUse%20Alice's%20email_address%20from%20request%2Faccess_token%20in%20step%205.%0AauthServer%3C-claimsProvider%3AGet%20Alice's%20user_claims%5Cn(access_token%2C%20Alice's%20email_address)%0Aelse%20RqP%20Client%20uses%20Client%20Credential%20Grant%20-%20Alice%20is%20not%20involved%0Anote%20left%20of%20claimsProvider%3AUse%20Alice's%20email_address%20from%20request%2Fparameter%20in%20step%205.%0AauthServer%3C-claimsProvider%3AGet%20Alice's%20user_claims%5Cn(access_token%2C%20Alice's%20email_address)%0Aend%0AauthServer-%3EclaimsProvider%3AReturn%20Alice's%20user_claims%0AclaimsProvider-%3ErqpClient%3A6.%20Return%20claims_token%5Cn(Alice's%20user_claims%2C%20ticket_digest)%0ArqpClient-%3EasServer%3A7.%20Call%20token%20endpoint%5Cn(client_credentials%2C%20ticket%2C%20pushed_claims%3Dclaims_token%20%2B%20metadata)%0Agroup%20Authorization%20process%0Anote%20over%20asServer%3AEvaluate%5Cn1.%20ticket%5Cn2.%20ticket_digest%5Cn3.%20claims_token%20signature%5Cn4.%20user_claims%5Cn5.%20domain%20part%20of%20email_address%0Aend%0ArqpClient%3C-asServer%3A8.%20Return%20RPT%0ArqpClient-%3ErsServer%3A9.%20Post%20data%20into%20Bob's%20'Incoming'%20resource%5Cn(RPT)%0ArqpClient%3C-rsServer%3A10.%20201%20Created</desc>
+  <defs
+     id="defs2329" />
+  <g
+     id="g3067"
+     transform="translate(0,100)">
+    <g
+       id="g2331" />
+    <g
+       id="g2333" />
+    <g
+       id="g2335" />
+    <g
+       id="g2337" />
+    <g
+       id="g2339" />
+    <g
+       id="g2341" />
+    <g
+       id="g2343" />
+    <g
+       id="g2345" />
+    <g
+       id="g2347" />
+    <g
+       id="g2349" />
+    <g
+       id="g2351" />
+    <g
+       id="g2353" />
+    <g
+       id="g2355" />
+    <g
+       id="g2357" />
+    <g
+       id="g2359" />
+    <g
+       id="g2361" />
+    <g
+       id="g2363" />
+    <g
+       id="g2365" />
+    <g
+       id="g2367" />
+    <g
+       id="g2369" />
+    <g
+       id="g2371" />
+    <g
+       id="g2373" />
+    <g
+       id="g2375" />
+    <g
+       id="g2377" />
+    <g
+       id="g2379" />
+    <g
+       id="g2381" />
+    <g
+       id="g2383" />
+    <g
+       id="g2385" />
+    <g
+       id="g2387" />
+    <g
+       id="g2389" />
+    <g
+       id="g2391" />
+    <g
+       id="g2393" />
+    <g
+       id="g2395" />
+    <g
+       id="g2397" />
+    <g
+       id="g2399" />
+    <g
+       id="g2401" />
+    <g
+       id="g2403" />
+    <g
+       id="g2405" />
+    <g
+       id="g2407" />
+    <g
+       id="g2409" />
+    <g
+       id="g2411" />
+    <g
+       id="g2413" />
+    <g
+       id="g2415" />
+    <g
+       id="g2417" />
+    <g
+       id="g2419" />
+    <g
+       id="g2421" />
+    <g
+       id="g2423" />
+    <g
+       id="g2425" />
+    <g
+       id="g2429"
+       transform="matrix(1,0,0,1.085837,0,-100)">
+      <rect
+         x="0"
+         y="0"
+         width="1064"
+         height="1165"
+         id="rect2427"
+         style="fill:#ffffff;stroke:none" />
+    </g>
+    <g
+       id="g2433"
+       transform="translate(0,-98)">
+      <text
+         font-size="10.5pt"
+         font-style="normal"
+         font-weight="normal"
+         text-decoration="normal"
+         x="383.94022"
+         y="13.193818"
+         dominant-baseline="alphabetic"
+         xml:space="preserve"
+         id="text2431"
+         style="font-style:normal;font-weight:normal;font-size:14px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">UMA wide ecosystem - Alice to Bob (push data)</text>
+    </g>
+    <g
+       id="g2435" />
+    <g
+       id="g2451">
+      <path
+         d="M 14.507215,78.151382 V 1108.1488"
+         stroke-miterlimit="10"
+         id="path2437"
+         inkscape:connector-curvature="0"
+         style="fill:none;stroke:#000000;stroke-width:0.73298991;stroke-miterlimit:10;stroke-dasharray:6.76606054, 2.93195957;paint-order:fill stroke markers" />
+      <path
+         d="M 70.951687,78.151382 V 1108.1488"
+         stroke-miterlimit="10"
+         id="path2439"
+         inkscape:connector-curvature="0"
+         style="fill:none;stroke:#000000;stroke-width:0.73298991;stroke-miterlimit:10;stroke-dasharray:6.76606054, 2.93195957;paint-order:fill stroke markers" />
+      <path
+         d="M 368.50621,78.151382 V 1108.1488"
+         stroke-miterlimit="10"
+         id="path2441"
+         inkscape:connector-curvature="0"
+         style="fill:none;stroke:#000000;stroke-width:0.73298991;stroke-miterlimit:10;stroke-dasharray:6.76606054, 2.93195957;paint-order:fill stroke markers" />
+      <path
+         d="M 607.35166,78.151382 V 1108.1488"
+         stroke-miterlimit="10"
+         id="path2443"
+         inkscape:connector-curvature="0"
+         style="fill:none;stroke:#000000;stroke-width:0.73298991;stroke-miterlimit:10;stroke-dasharray:6.76606054, 2.93195957;paint-order:fill stroke markers" />
+      <path
+         d="M 806.74386,78.151382 V 1108.1488"
+         stroke-miterlimit="10"
+         id="path2445"
+         inkscape:connector-curvature="0"
+         style="fill:none;stroke:#000000;stroke-width:0.73298991;stroke-miterlimit:10;stroke-dasharray:6.76606054, 2.93195957;paint-order:fill stroke markers" />
+      <path
+         d="M 959.50057,78.151382 V 1108.1488"
+         stroke-miterlimit="10"
+         id="path2447"
+         inkscape:connector-curvature="0"
+         style="fill:none;stroke:#000000;stroke-width:0.73298991;stroke-miterlimit:10;stroke-dasharray:6.76606054, 2.93195957;paint-order:fill stroke markers" />
+      <path
+         d="M 1051.6379,78.151382 V 1108.1488"
+         stroke-miterlimit="10"
+         id="path2449"
+         inkscape:connector-curvature="0"
+         style="fill:none;stroke:#000000;stroke-width:0.73298991;stroke-miterlimit:10;stroke-dasharray:6.76606054, 2.93195957;paint-order:fill stroke markers" />
+    </g>
+    <g
+       id="g2593">
+      <g
+         id="g2455">
+        <path
+           d="m 19.520866,32.148937 a 5.0136509,5.0136509 0 1 1 -2e-6,-0.005 m -5.013649,5.018665 V 47.89356 M 8.1741825,41.032774 H 20.840248 M 14.507215,47.89356 8.1741825,57.920861 M 14.507215,47.89356 20.840248,57.920861"
+           stroke-miterlimit="10"
+           id="path2453"
+           inkscape:connector-curvature="0"
+           style="fill:#ffb6c1;stroke:#000000;stroke-width:1.49529934;stroke-miterlimit:10;stroke-dasharray:none;paint-order:fill stroke markers" />
+      </g>
+      <g
+         id="g2461">
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="5.4341483"
+           y="66.716743"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2457"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">RqP</text>
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="4.3979392"
+           y="75.512619"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2459"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">Alice</text>
+      </g>
+      <path
+         id="path2463"
+         d=""
+         inkscape:connector-curvature="0"
+         style="fill:none;stroke:none" />
+      <g
+         id="g2467">
+        <path
+           d="M 33.41237,54.490469 H 108.491 V 78.151382 H 33.41237 Z"
+           stroke-miterlimit="10"
+           id="path2465"
+           inkscape:connector-curvature="0"
+           style="fill:#ffb6c1;stroke:#000000;stroke-width:1.40734065;stroke-miterlimit:10;stroke-dasharray:none;paint-order:fill stroke markers" />
+      </g>
+      <g
+         id="g2471">
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="42.955898"
+           y="69.355507"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2469"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">AuthN Server</text>
+      </g>
+      <path
+         id="path2473"
+         d=""
+         inkscape:connector-curvature="0"
+         style="fill:none;stroke:none" />
+      <g
+         id="g2477">
+        <path
+           d="M 315.16646,54.490469 H 421.84597 V 78.151382 H 315.16646 Z"
+           stroke-miterlimit="10"
+           id="path2475"
+           inkscape:connector-curvature="0"
+           style="fill:#ffb6c1;stroke:#000000;stroke-width:1.40734065;stroke-miterlimit:10;stroke-dasharray:none;paint-order:fill stroke markers" />
+      </g>
+      <g
+         id="g2481">
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="324.70999"
+           y="69.355507"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2479"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">Claims Provider (CP)</text>
+      </g>
+      <path
+         id="path2483"
+         d=""
+         inkscape:connector-curvature="0"
+         style="fill:none;stroke:none" />
+      <g
+         id="g2487">
+        <path
+           d="m 575.51488,54.490469 h 63.67356 v 23.660913 h -63.67356 z"
+           stroke-miterlimit="10"
+           id="path2485"
+           inkscape:connector-curvature="0"
+           style="fill:#ffb6c1;stroke:#000000;stroke-width:1.40734065;stroke-miterlimit:10;stroke-dasharray:none;paint-order:fill stroke markers" />
+      </g>
+      <g
+         id="g2491">
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="585.05841"
+           y="69.355507"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2489"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">RqP Client</text>
+      </g>
+      <path
+         id="path2493"
+         d=""
+         inkscape:connector-curvature="0"
+         style="fill:none;stroke:none" />
+      <g
+         id="g2497">
+        <path
+           d="M 751.32487,54.490469 H 862.16285 V 78.151382 H 751.32487 Z"
+           stroke-miterlimit="10"
+           id="path2495"
+           inkscape:connector-curvature="0"
+           style="fill:#b0c4de;stroke:#000000;stroke-width:1.40734065;stroke-miterlimit:10;stroke-dasharray:none;paint-order:fill stroke markers" />
+      </g>
+      <g
+         id="g2501">
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="760.86841"
+           y="69.355507"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2499"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">Resource Server (RS)</text>
+      </g>
+      <path
+         id="path2503"
+         d=""
+         inkscape:connector-curvature="0"
+         style="fill:none;stroke:none" />
+      <g
+         id="g2507">
+        <path
+           d="m 922.48049,54.490469 h 74.04015 v 23.660913 h -74.04015 z"
+           stroke-miterlimit="10"
+           id="path2505"
+           inkscape:connector-curvature="0"
+           style="fill:#b0c4de;stroke:#000000;stroke-width:1.40734065;stroke-miterlimit:10;stroke-dasharray:none;paint-order:fill stroke markers" />
+      </g>
+      <g
+         id="g2511">
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="932.02405"
+           y="69.355507"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2509"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">AuthZ Server</text>
+      </g>
+      <g
+         id="g2515">
+        <path
+           d="m 1056.6515,32.148937 a 5.0136509,5.0136509 0 1 1 0,-0.005 m -5.0136,5.018665 V 47.89356 m -6.3331,-6.860786 h 12.6661 m -6.333,6.860786 -6.3331,10.027301 m 6.3331,-10.027301 6.333,10.027301"
+           stroke-miterlimit="10"
+           id="path2513"
+           inkscape:connector-curvature="0"
+           style="fill:#b0c4de;stroke:#000000;stroke-width:1.49529934;stroke-miterlimit:10;stroke-dasharray:none;paint-order:fill stroke markers" />
+      </g>
+      <g
+         id="g2521">
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="1044.6417"
+           y="66.716743"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2517"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">RO</text>
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="1043.3391"
+           y="75.512619"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2519"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">Bob</text>
+      </g>
+      <g
+         id="g2525">
+        <path
+           d="m 19.520866,1134.1406 a 5.0136509,5.0136509 0 1 1 -2e-6,0 m -5.013649,5.0187 v 10.7309 m -6.3330325,-6.8608 H 20.840248 m -6.333033,6.8608 -6.3330325,10.0273 m 6.3330325,-10.0273 6.333033,10.0273"
+           stroke-miterlimit="10"
+           id="path2523"
+           inkscape:connector-curvature="0"
+           style="fill:#ffb6c1;stroke:#000000;stroke-width:1.49529934;stroke-miterlimit:10;stroke-dasharray:none;paint-order:fill stroke markers" />
+      </g>
+      <g
+         id="g2531">
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="5.4341483"
+           y="1116.9447"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2527"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">RqP</text>
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="4.3979392"
+           y="1125.7405"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2529"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">Alice</text>
+      </g>
+      <path
+         id="path2533"
+         d=""
+         inkscape:connector-curvature="0"
+         style="fill:none;stroke:none" />
+      <g
+         id="g2537">
+        <path
+           d="M 33.41237,1108.1488 H 108.491 v 23.6609 H 33.41237 Z"
+           stroke-miterlimit="10"
+           id="path2535"
+           inkscape:connector-curvature="0"
+           style="fill:#ffb6c1;stroke:#000000;stroke-width:1.40734065;stroke-miterlimit:10;stroke-dasharray:none;paint-order:fill stroke markers" />
+      </g>
+      <g
+         id="g2541">
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="42.955898"
+           y="1123.0138"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2539"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">AuthN Server</text>
+      </g>
+      <path
+         id="path2543"
+         d=""
+         inkscape:connector-curvature="0"
+         style="fill:none;stroke:none" />
+      <g
+         id="g2547">
+        <path
+           d="m 315.16646,1108.1488 h 106.67951 v 23.6609 H 315.16646 Z"
+           stroke-miterlimit="10"
+           id="path2545"
+           inkscape:connector-curvature="0"
+           style="fill:#ffb6c1;stroke:#000000;stroke-width:1.40734065;stroke-miterlimit:10;stroke-dasharray:none;paint-order:fill stroke markers" />
+      </g>
+      <g
+         id="g2551">
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="324.70999"
+           y="1123.0138"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2549"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">Claims Provider (CP)</text>
+      </g>
+      <path
+         id="path2553"
+         d=""
+         inkscape:connector-curvature="0"
+         style="fill:none;stroke:none" />
+      <g
+         id="g2557">
+        <path
+           d="m 575.51488,1108.1488 h 63.67356 v 23.6609 h -63.67356 z"
+           stroke-miterlimit="10"
+           id="path2555"
+           inkscape:connector-curvature="0"
+           style="fill:#ffb6c1;stroke:#000000;stroke-width:1.40734065;stroke-miterlimit:10;stroke-dasharray:none;paint-order:fill stroke markers" />
+      </g>
+      <g
+         id="g2561">
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="585.05841"
+           y="1123.0138"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2559"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">RqP Client</text>
+      </g>
+      <path
+         id="path2563"
+         d=""
+         inkscape:connector-curvature="0"
+         style="fill:none;stroke:none" />
+      <g
+         id="g2567">
+        <path
+           d="m 751.32487,1108.1488 h 110.83798 v 23.6609 H 751.32487 Z"
+           stroke-miterlimit="10"
+           id="path2565"
+           inkscape:connector-curvature="0"
+           style="fill:#b0c4de;stroke:#000000;stroke-width:1.40734065;stroke-miterlimit:10;stroke-dasharray:none;paint-order:fill stroke markers" />
+      </g>
+      <g
+         id="g2571">
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="760.86841"
+           y="1123.0138"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2569"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">Resource Server (RS)</text>
+      </g>
+      <path
+         id="path2573"
+         d=""
+         inkscape:connector-curvature="0"
+         style="fill:none;stroke:none" />
+      <g
+         id="g2577">
+        <path
+           d="m 922.48049,1108.1488 h 74.04015 v 23.6609 h -74.04015 z"
+           stroke-miterlimit="10"
+           id="path2575"
+           inkscape:connector-curvature="0"
+           style="fill:#b0c4de;stroke:#000000;stroke-width:1.40734065;stroke-miterlimit:10;stroke-dasharray:none;paint-order:fill stroke markers" />
+      </g>
+      <g
+         id="g2581">
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="932.02405"
+           y="1123.0138"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2579"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">AuthZ Server</text>
+      </g>
+      <g
+         id="g2585">
+        <path
+           d="m 1056.6515,1134.1406 m -5.0136,5.0187 v 10.7309 m -6.3331,-6.8608 h 12.6661 m -6.333,6.8608 -6.3331,10.0273 m 6.3331,-10.0273 6.333,10.0273"
+           stroke-miterlimit="10"
+           id="path2583"
+           inkscape:connector-curvature="0"
+           style="fill:#b0c4de;stroke:#000000;stroke-width:1.49529934;stroke-miterlimit:10;stroke-dasharray:none;paint-order:fill stroke markers" />
+      </g>
+      <g
+         id="g2591">
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="1044.6417"
+           y="1116.9447"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2587"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">RO</text>
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="1043.3391"
+           y="1125.7405"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2589"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">Bob</text>
+      </g>
+    </g>
+    <g
+       id="g3065">
+      <path
+         d="m 433.83557,95.74314 h 339.11589 l 7.91629,7.91629 v 12.31423 H 433.83557 V 95.74314 m 339.11589,0 v 7.91629 h 7.91629"
+         stroke-miterlimit="10"
+         id="path2595"
+         inkscape:connector-curvature="0"
+         style="fill:#ffffff;stroke:#000000;stroke-width:0.73298991;stroke-miterlimit:10;stroke-dasharray:none;paint-order:fill stroke markers" />
+      <g
+         id="g2599">
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="446.14981"
+           y="108.05737"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2597"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">RqP Client is registered on Alice's AuthN server as well as Bob's AuthZ server</text>
+      </g>
+      <g
+         id="g2607">
+        <g
+           id="g2603">
+          <rect
+             x="279.01575"
+             y="129.16748"
+             width="63.827362"
+             height="11.434642"
+             id="rect2601"
+             style="fill:#ffffff;stroke:none" />
+        </g>
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="280.33514"
+           y="137.08377"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2605"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">Initiate request</text>
+      </g>
+      <g
+         id="g2615">
+        <path
+           d="M 14.507215,140.60212 H 600.10972"
+           stroke-miterlimit="10"
+           id="path2609"
+           inkscape:connector-curvature="0"
+           style="fill:none;stroke:#000000;stroke-width:0.73298991;stroke-miterlimit:10;stroke-dasharray:none;paint-order:fill stroke markers" />
+        <g
+           id="g2613">
+          <path
+             d="m 600.02176,136.93717 7.3299,3.66495 -7.3299,3.66495 z"
+             id="path2611"
+             inkscape:connector-curvature="0"
+             style="fill:#000000;stroke:none;paint-order:stroke fill markers" />
+        </g>
+      </g>
+      <g
+         id="g2623">
+        <g
+           id="g2619">
+          <rect
+             x="628.91016"
+             y="153.79594"
+             width="156.27519"
+             height="11.434642"
+             id="rect2617"
+             style="fill:#ffffff;stroke:none" />
+        </g>
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="630.22955"
+           y="161.71223"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2621"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">1. Request Bob's 'Incoming' resource</text>
+      </g>
+      <g
+         id="g2631">
+        <path
+           d="M 607.35166,165.23058 H 799.50192"
+           stroke-miterlimit="10"
+           id="path2625"
+           inkscape:connector-curvature="0"
+           style="fill:none;stroke:#000000;stroke-width:0.73298991;stroke-miterlimit:10;stroke-dasharray:none;paint-order:fill stroke markers" />
+        <g
+           id="g2629">
+          <path
+             d="m 799.41396,161.56563 7.3299,3.66495 -7.3299,3.66495 z"
+             id="path2627"
+             inkscape:connector-curvature="0"
+             style="fill:#000000;stroke:none;paint-order:stroke fill markers" />
+        </g>
+      </g>
+      <g
+         id="g2639">
+        <g
+           id="g2635">
+          <rect
+             x="647.14282"
+             y="178.42439"
+             width="119.80984"
+             height="11.434642"
+             id="rect2633"
+             style="fill:#ffffff;stroke:none" />
+        </g>
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="648.46222"
+           y="186.34068"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2637"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">2. 401 with permission ticket</text>
+      </g>
+      <g
+         id="g2647">
+        <path
+           d="M 806.74386,189.85904 H 614.5936"
+           stroke-miterlimit="10"
+           id="path2641"
+           inkscape:connector-curvature="0"
+           style="fill:none;stroke:#000000;stroke-width:0.73298991;stroke-miterlimit:10;stroke-dasharray:none;paint-order:fill stroke markers" />
+        <g
+           id="g2645">
+          <path
+             d="m 614.68156,186.19409 -7.3299,3.66495 7.3299,3.66495 z"
+             id="path2643"
+             inkscape:connector-curvature="0"
+             style="fill:#000000;stroke:none;paint-order:stroke fill markers" />
+        </g>
+      </g>
+      <g
+         id="g2661">
+        <g
+           id="g2651">
+          <rect
+             x="223.76076"
+             y="226.80173"
+             width="87.676025"
+             height="11.434642"
+             id="rect2649"
+             style="fill:#ffffff;stroke:none" />
+        </g>
+        <g
+           id="g2655">
+          <rect
+             x="223.76076"
+             y="235.59761"
+             width="230.78183"
+             height="11.434642"
+             id="rect2653"
+             style="fill:#ffffff;stroke:none" />
+        </g>
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="225.08014"
+           y="234.71802"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2657"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">3. Get access_token</text>
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="225.08014"
+           y="243.5139"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2659"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">(grant_type=authorizatin_code, scope=claims-provider)</text>
+      </g>
+      <g
+         id="g2669">
+        <path
+           d="M 607.35166,247.03225 H 78.193627"
+           stroke-miterlimit="10"
+           id="path2663"
+           inkscape:connector-curvature="0"
+           style="fill:none;stroke:#000000;stroke-width:0.73298991;stroke-miterlimit:10;stroke-dasharray:none;paint-order:fill stroke markers" />
+        <g
+           id="g2667">
+          <path
+             d="m 78.281586,243.3673 -7.329899,3.66495 7.329899,3.66495 z"
+             id="path2665"
+             inkscape:connector-curvature="0"
+             style="fill:#000000;stroke:none;paint-order:stroke fill markers" />
+        </g>
+      </g>
+      <g
+         id="g2683">
+        <g
+           id="g2673">
+          <rect
+             x="224.54417"
+             y="283.97495"
+             width="87.676025"
+             height="11.434642"
+             id="rect2671"
+             style="fill:#ffffff;stroke:none" />
+        </g>
+        <g
+           id="g2677">
+          <rect
+             x="224.54417"
+             y="292.77081"
+             width="229.215"
+             height="11.434642"
+             id="rect2675"
+             style="fill:#ffffff;stroke:none" />
+        </g>
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="225.86356"
+           y="291.89124"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2679"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">3. Get access_token</text>
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="225.86356"
+           y="300.6871"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2681"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">(grant_type=client_credentials, scope=claims-provider)</text>
+      </g>
+      <g
+         id="g2691">
+        <path
+           d="M 607.35166,304.20546 H 78.193627"
+           stroke-miterlimit="10"
+           id="path2685"
+           inkscape:connector-curvature="0"
+           style="fill:none;stroke:#000000;stroke-width:0.73298991;stroke-miterlimit:10;stroke-dasharray:none;paint-order:fill stroke markers" />
+        <g
+           id="g2689">
+          <path
+             d="m 78.281586,300.54052 -7.329899,3.66494 7.329899,3.66495 z"
+             id="path2687"
+             inkscape:connector-curvature="0"
+             style="fill:#000000;stroke:none;paint-order:stroke fill markers" />
+        </g>
+      </g>
+      <g
+         id="g2699">
+        <g
+           id="g2695">
+          <rect
+             x="288.83224"
+             y="330.59311"
+             width="100.63885"
+             height="11.434642"
+             id="rect2693"
+             style="fill:#ffffff;stroke:none" />
+        </g>
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="290.15164"
+           y="338.5094"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2697"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">4. Return access_token</text>
+      </g>
+      <g
+         id="g2707">
+        <path
+           d="M 70.951687,342.02774 H 600.10972"
+           stroke-miterlimit="10"
+           id="path2701"
+           inkscape:connector-curvature="0"
+           style="fill:none;stroke:#000000;stroke-width:0.73298991;stroke-miterlimit:10;stroke-dasharray:none;paint-order:fill stroke markers" />
+        <g
+           id="g2705">
+          <path
+             d="m 600.02176,338.36279 7.3299,3.66495 -7.3299,3.66495 z"
+             id="path2703"
+             inkscape:connector-curvature="0"
+             style="fill:#000000;stroke:none;paint-order:stroke fill markers" />
+        </g>
+      </g>
+      <path
+         d="m 607.35166,365.33682 h 4.39794 m 0,-10.11526 h 99.15324 l 7.91629,7.91629 v 12.31423 H 611.7496 v -20.23052 m 99.15324,0 v 7.91629 h 7.91629"
+         stroke-miterlimit="10"
+         id="path2709"
+         inkscape:connector-curvature="0"
+         style="fill:#ffffff;stroke:#000000;stroke-width:0.73298991;stroke-miterlimit:10;stroke-dasharray:none;paint-order:fill stroke markers" />
+      <g
+         id="g2713">
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="624.06384"
+           y="367.5358"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2711"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">Create ticket_digest</text>
+      </g>
+      <g
+         id="g2727">
+        <g
+           id="g2717">
+          <rect
+             x="426.46631"
+             y="412.39478"
+             width="85.075272"
+             height="11.434642"
+             id="rect2715"
+             style="fill:#ffffff;stroke:none" />
+        </g>
+        <g
+           id="g2721">
+          <rect
+             x="426.46631"
+             y="421.19064"
+             width="122.92526"
+             height="11.434642"
+             id="rect2719"
+             style="fill:#ffffff;stroke:none" />
+        </g>
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="427.78568"
+           y="420.31107"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2723"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">5. Get claims_token</text>
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="427.78568"
+           y="429.10693"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2725"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">(access_token, ticket_digest)</text>
+      </g>
+      <g
+         id="g2735">
+        <path
+           d="M 607.35166,432.62529 H 375.74815"
+           stroke-miterlimit="10"
+           id="path2729"
+           inkscape:connector-curvature="0"
+           style="fill:none;stroke:#000000;stroke-width:0.73298991;stroke-miterlimit:10;stroke-dasharray:none;paint-order:fill stroke markers" />
+        <g
+           id="g2733">
+          <path
+             d="m 375.83611,428.96034 -7.3299,3.66495 7.3299,3.66495 z"
+             id="path2731"
+             inkscape:connector-curvature="0"
+             style="fill:#000000;stroke:none;paint-order:stroke fill markers" />
+        </g>
+      </g>
+      <g
+         id="g2749">
+        <g
+           id="g2739">
+          <rect
+             x="378.91467"
+             y="469.56799"
+             width="85.075272"
+             height="11.434642"
+             id="rect2737"
+             style="fill:#ffffff;stroke:none" />
+        </g>
+        <g
+           id="g2743">
+          <rect
+             x="378.91467"
+             y="478.36386"
+             width="218.02853"
+             height="11.434642"
+             id="rect2741"
+             style="fill:#ffffff;stroke:none" />
+        </g>
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="380.23404"
+           y="477.48428"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2745"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">5. Get claims_token</text>
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="380.23404"
+           y="486.28015"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2747"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">(access_token, Alice's email_address, ticket_digest)</text>
+      </g>
+      <g
+         id="g2757">
+        <path
+           d="M 607.35166,489.79851 H 375.74815"
+           stroke-miterlimit="10"
+           id="path2751"
+           inkscape:connector-curvature="0"
+           style="fill:none;stroke:#000000;stroke-width:0.73298991;stroke-miterlimit:10;stroke-dasharray:none;paint-order:fill stroke markers" />
+        <g
+           id="g2755">
+          <path
+             d="m 375.83611,486.13356 -7.3299,3.66495 7.3299,3.66494 z"
+             id="path2753"
+             inkscape:connector-curvature="0"
+             style="fill:#000000;stroke:none;paint-order:stroke fill markers" />
+        </g>
+      </g>
+      <path
+         d="m 368.50621,526.3014 h -4.39794 M 122.84204,516.18614 h 233.34994 l 7.91629,7.91629 v 12.31423 H 122.84204 v -20.23052 m 233.34994,0 v 7.91629 h 7.91629"
+         stroke-miterlimit="10"
+         id="path2759"
+         inkscape:connector-curvature="0"
+         style="fill:#ffffff;stroke:#000000;stroke-width:0.73298991;stroke-miterlimit:10;stroke-dasharray:none;paint-order:fill stroke markers" />
+      <g
+         id="g2763">
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="135.15627"
+           y="528.50037"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2761"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">Claims Provider is assigned 'query-users' admin role</text>
+      </g>
+      <g
+         id="g2777">
+        <g
+           id="g2767">
+          <rect
+             x="154.5018"
+             y="549.61047"
+             width="77.30484"
+             height="11.434642"
+             id="rect2765"
+             style="fill:#ffffff;stroke:none" />
+        </g>
+        <g
+           id="g2771">
+          <rect
+             x="154.5018"
+             y="558.40637"
+             width="130.45428"
+             height="11.434642"
+             id="rect2769"
+             style="fill:#ffffff;stroke:none" />
+        </g>
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="155.82118"
+           y="557.52679"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2773"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">Get access_token</text>
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="155.82118"
+           y="566.32263"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2775"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">(grant_type=client_credentials)</text>
+      </g>
+      <g
+         id="g2785">
+        <path
+           d="M 368.50621,569.841 H 78.193627"
+           stroke-miterlimit="10"
+           id="path2779"
+           inkscape:connector-curvature="0"
+           style="fill:none;stroke:#000000;stroke-width:0.73298991;stroke-miterlimit:10;stroke-dasharray:none;paint-order:fill stroke markers" />
+        <g
+           id="g2783">
+          <path
+             d="m 78.281586,566.17605 -7.329899,3.66495 7.329899,3.66495 z"
+             id="path2781"
+             inkscape:connector-curvature="0"
+             style="fill:#000000;stroke:none;paint-order:stroke fill markers" />
+        </g>
+      </g>
+      <g
+         id="g2793">
+        <g
+           id="g2789">
+          <rect
+             x="174.59511"
+             y="583.03479"
+             width="90.26767"
+             height="11.434642"
+             id="rect2787"
+             style="fill:#ffffff;stroke:none" />
+        </g>
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="175.91449"
+           y="590.95111"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2791"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">Return access_token</text>
+      </g>
+      <g
+         id="g2801">
+        <path
+           d="M 70.951687,594.46946 H 361.26427"
+           stroke-miterlimit="10"
+           id="path2795"
+           inkscape:connector-curvature="0"
+           style="fill:none;stroke:#000000;stroke-width:0.73298991;stroke-miterlimit:10;stroke-dasharray:none;paint-order:fill stroke markers" />
+        <g
+           id="g2799">
+          <path
+             d="m 361.17631,590.80451 7.3299,3.66495 -7.3299,3.66495 z"
+             id="path2797"
+             inkscape:connector-curvature="0"
+             style="fill:#000000;stroke:none;paint-order:stroke fill markers" />
+        </g>
+      </g>
+      <path
+         d="m 368.50621,641.52741 h -4.39794 M 75.349626,631.41215 H 356.19198 l 7.91629,7.91629 v 12.31423 H 75.349626 v -20.23052 m 280.842354,0 v 7.91629 h 7.91629"
+         stroke-miterlimit="10"
+         id="path2803"
+         inkscape:connector-curvature="0"
+         style="fill:#ffffff;stroke:#000000;stroke-width:0.73298991;stroke-miterlimit:10;stroke-dasharray:none;paint-order:fill stroke markers" />
+      <g
+         id="g2807">
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="87.663857"
+           y="643.72638"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2805"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">Use Alice's email_address from request/access_token in step 5.</text>
+      </g>
+      <g
+         id="g2821">
+        <g
+           id="g2811">
+          <rect
+             x="139.23201"
+             y="664.83649"
+             width="99.286087"
+             height="11.434642"
+             id="rect2809"
+             style="fill:#ffffff;stroke:none" />
+        </g>
+        <g
+           id="g2815">
+          <rect
+             x="139.23201"
+             y="673.63239"
+             width="160.99388"
+             height="11.434642"
+             id="rect2813"
+             style="fill:#ffffff;stroke:none" />
+        </g>
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="140.55139"
+           y="672.75281"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2817"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">Get Alice's user_claims</text>
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="140.55139"
+           y="681.54865"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2819"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">(access_token, Alice's email_address)</text>
+      </g>
+      <g
+         id="g2829">
+        <path
+           d="M 368.50621,685.06701 H 78.193627"
+           stroke-miterlimit="10"
+           id="path2823"
+           inkscape:connector-curvature="0"
+           style="fill:none;stroke:#000000;stroke-width:0.73298991;stroke-miterlimit:10;stroke-dasharray:none;paint-order:fill stroke markers" />
+        <g
+           id="g2827">
+          <path
+             d="m 78.281586,681.40206 -7.329899,3.66495 7.329899,3.66495 z"
+             id="path2825"
+             inkscape:connector-curvature="0"
+             style="fill:#000000;stroke:none;paint-order:stroke fill markers" />
+        </g>
+      </g>
+      <path
+         d="m 368.50621,732.12496 h -4.39794 M 89.874711,722.0097 H 356.19198 l 7.91629,7.91629 v 12.31423 H 89.874711 V 722.0097 m 266.317269,0 v 7.91629 h 7.91629"
+         stroke-miterlimit="10"
+         id="path2831"
+         inkscape:connector-curvature="0"
+         style="fill:#ffffff;stroke:#000000;stroke-width:0.73298991;stroke-miterlimit:10;stroke-dasharray:none;paint-order:fill stroke markers" />
+      <g
+         id="g2835">
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="102.18894"
+           y="734.32391"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2833"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">Use Alice's email_address from request/parameter in step 5.</text>
+      </g>
+      <g
+         id="g2849">
+        <g
+           id="g2839">
+          <rect
+             x="139.23201"
+             y="755.43402"
+             width="99.286087"
+             height="11.434642"
+             id="rect2837"
+             style="fill:#ffffff;stroke:none" />
+        </g>
+        <g
+           id="g2843">
+          <rect
+             x="139.23201"
+             y="764.22992"
+             width="160.99388"
+             height="11.434642"
+             id="rect2841"
+             style="fill:#ffffff;stroke:none" />
+        </g>
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="140.55139"
+           y="763.35034"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2845"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">Get Alice's user_claims</text>
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="140.55139"
+           y="772.14624"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2847"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">(access_token, Alice's email_address)</text>
+      </g>
+      <g
+         id="g2857">
+        <path
+           d="M 368.50621,775.66456 H 78.193627"
+           stroke-miterlimit="10"
+           id="path2851"
+           inkscape:connector-curvature="0"
+           style="fill:none;stroke:#000000;stroke-width:0.73298991;stroke-miterlimit:10;stroke-dasharray:none;paint-order:fill stroke markers" />
+        <g
+           id="g2855">
+          <path
+             d="m 78.281586,771.99961 -7.329899,3.66495 7.329899,3.66495 z"
+             id="path2853"
+             inkscape:connector-curvature="0"
+             style="fill:#000000;stroke:none;paint-order:stroke fill markers" />
+        </g>
+      </g>
+      <g
+         id="g2865">
+        <g
+           id="g2861">
+          <rect
+             x="163.60449"
+             y="802.05219"
+             width="112.24892"
+             height="11.434642"
+             id="rect2859"
+             style="fill:#ffffff;stroke:none" />
+        </g>
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="164.92387"
+           y="809.96851"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2863"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">Return Alice's user_claims</text>
+      </g>
+      <g
+         id="g2873">
+        <path
+           d="M 70.951687,813.48684 H 361.26427"
+           stroke-miterlimit="10"
+           id="path2867"
+           inkscape:connector-curvature="0"
+           style="fill:none;stroke:#000000;stroke-width:0.73298991;stroke-miterlimit:10;stroke-dasharray:none;paint-order:fill stroke markers" />
+        <g
+           id="g2871">
+          <path
+             d="m 361.17631,809.82189 7.3299,3.66495 -7.3299,3.66495 z"
+             id="path2869"
+             inkscape:connector-curvature="0"
+             style="fill:#000000;stroke:none;paint-order:stroke fill markers" />
+        </g>
+      </g>
+      <g
+         id="g2887">
+        <g
+           id="g2877">
+          <rect
+             x="415.47568"
+             y="826.68066"
+             width="98.038101"
+             height="11.434642"
+             id="rect2875"
+             style="fill:#ffffff;stroke:none" />
+        </g>
+        <g
+           id="g2881">
+          <rect
+             x="415.47568"
+             y="835.47656"
+             width="144.90651"
+             height="11.434642"
+             id="rect2879"
+             style="fill:#ffffff;stroke:none" />
+        </g>
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="416.79507"
+           y="834.59692"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2883"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">6. Return claims_token</text>
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="416.79507"
+           y="843.39282"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2885"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">(Alice's user_claims, ticket_digest)</text>
+      </g>
+      <g
+         id="g2895">
+        <path
+           d="M 368.50621,846.91118 H 600.10972"
+           stroke-miterlimit="10"
+           id="path2889"
+           inkscape:connector-curvature="0"
+           style="fill:none;stroke:#000000;stroke-width:0.73298991;stroke-miterlimit:10;stroke-dasharray:none;paint-order:fill stroke markers" />
+        <g
+           id="g2893">
+          <path
+             d="m 600.02176,843.24623 7.3299,3.66495 -7.3299,3.66495 z"
+             id="path2891"
+             inkscape:connector-curvature="0"
+             style="fill:#000000;stroke:none;paint-order:stroke fill markers" />
+        </g>
+      </g>
+      <g
+         id="g2909">
+        <g
+           id="g2899">
+          <rect
+             x="641.07788"
+             y="860.10498"
+             width="92.873047"
+             height="11.434642"
+             id="rect2897"
+             style="fill:#ffffff;stroke:none" />
+        </g>
+        <g
+           id="g2903">
+          <rect
+             x="641.07788"
+             y="868.90088"
+             width="284.6965"
+             height="11.434642"
+             id="rect2901"
+             style="fill:#ffffff;stroke:none" />
+        </g>
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="642.39722"
+           y="868.0213"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2905"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">7. Call token endpoint</text>
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="642.39722"
+           y="876.81714"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2907"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">(client_credentials, ticket, pushed_claims=claims_token + metadata)</text>
+      </g>
+      <g
+         id="g2917">
+        <path
+           d="M 607.35166,880.33552 H 952.25863"
+           stroke-miterlimit="10"
+           id="path2911"
+           inkscape:connector-curvature="0"
+           style="fill:none;stroke:#000000;stroke-width:0.73298991;stroke-miterlimit:10;stroke-dasharray:none;paint-order:fill stroke markers" />
+        <g
+           id="g2915">
+          <path
+             d="m 952.17067,876.67057 7.3299,3.66495 -7.3299,3.66495 z"
+             id="path2913"
+             inkscape:connector-curvature="0"
+             style="fill:#000000;stroke:none;paint-order:stroke fill markers" />
+        </g>
+      </g>
+      <path
+         d="m 880.5571,917.27821 h 149.9706 l 7.9163,7.91629 v 56.29362 H 880.5571 v -64.20991 m 149.9706,0 v 7.91629 h 7.9163"
+         stroke-miterlimit="10"
+         id="path2919"
+         inkscape:connector-curvature="0"
+         style="fill:#ffffff;stroke:#000000;stroke-width:0.73298991;stroke-miterlimit:10;stroke-dasharray:none;paint-order:fill stroke markers" />
+      <g
+         id="g2933">
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="892.87134"
+           y="929.59247"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2921"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">Evaluate</text>
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="892.87134"
+           y="938.38831"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2923"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">1. ticket</text>
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="892.87134"
+           y="947.1842"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2925"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">2. ticket_digest</text>
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="892.87134"
+           y="955.9801"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2927"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">3. claims_token signature</text>
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="892.87134"
+           y="964.77594"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2929"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">4. user_claims</text>
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="892.87134"
+           y="973.57184"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2931"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">5. domain part of email_address</text>
+      </g>
+      <g
+         id="g2941">
+        <g
+           id="g2937">
+          <rect
+             x="752.29816"
+             y="1007.8757"
+             width="62.255951"
+             height="11.434642"
+             id="rect2935"
+             style="fill:#ffffff;stroke:none" />
+        </g>
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="753.61749"
+           y="1015.7921"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2939"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">8. Return RPT</text>
+      </g>
+      <g
+         id="g2949">
+        <path
+           d="M 959.50057,1019.3104 H 614.5936"
+           stroke-miterlimit="10"
+           id="path2943"
+           inkscape:connector-curvature="0"
+           style="fill:none;stroke:#000000;stroke-width:0.73298991;stroke-miterlimit:10;stroke-dasharray:none;paint-order:fill stroke markers" />
+        <g
+           id="g2947">
+          <path
+             d="m 614.68156,1015.6455 -7.3299,3.6649 7.3299,3.665 z"
+             id="path2945"
+             inkscape:connector-curvature="0"
+             style="fill:#000000;stroke:none;paint-order:stroke fill markers" />
+        </g>
+      </g>
+      <g
+         id="g2963">
+        <g
+           id="g2953">
+          <rect
+             x="617.76013"
+             y="1032.5043"
+             width="178.57529"
+             height="11.434642"
+             id="rect2951"
+             style="fill:#ffffff;stroke:none" />
+        </g>
+        <g
+           id="g2957">
+          <rect
+             x="617.76013"
+             y="1041.3"
+             width="27.507706"
+             height="11.434642"
+             id="rect2955"
+             style="fill:#ffffff;stroke:none" />
+        </g>
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="619.07953"
+           y="1040.4205"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2959"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">9. Post data into Bob's 'Incoming' resource</text>
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="619.07953"
+           y="1049.2164"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2961"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">(RPT)</text>
+      </g>
+      <g
+         id="g2971">
+        <path
+           d="M 607.35166,1052.7347 H 799.50192"
+           stroke-miterlimit="10"
+           id="path2965"
+           inkscape:connector-curvature="0"
+           style="fill:none;stroke:#000000;stroke-width:0.73298991;stroke-miterlimit:10;stroke-dasharray:none;paint-order:fill stroke markers" />
+        <g
+           id="g2969">
+          <path
+             d="m 799.41396,1049.0698 7.3299,3.6649 -7.3299,3.665 z"
+             id="path2967"
+             inkscape:connector-curvature="0"
+             style="fill:#000000;stroke:none;paint-order:stroke fill markers" />
+        </g>
+      </g>
+      <g
+         id="g2979">
+        <g
+           id="g2975">
+          <rect
+             x="672.27826"
+             y="1065.9286"
+             width="69.539017"
+             height="11.434642"
+             id="rect2973"
+             style="fill:#ffffff;stroke:none" />
+        </g>
+        <text
+           font-size="7pt"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="normal"
+           x="673.59766"
+           y="1073.8448"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2977"
+           style="font-style:normal;font-weight:normal;font-size:9.33333302px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">10. 201 Created</text>
+      </g>
+      <g
+         id="g2987">
+        <path
+           d="M 806.74386,1077.3632 H 614.5936"
+           stroke-miterlimit="10"
+           id="path2981"
+           inkscape:connector-curvature="0"
+           style="fill:none;stroke:#000000;stroke-width:0.73298991;stroke-miterlimit:10;stroke-dasharray:none;paint-order:fill stroke markers" />
+        <g
+           id="g2985">
+          <path
+             d="m 614.68156,1073.6983 -7.3299,3.6649 7.3299,3.665 z"
+             id="path2983"
+             inkscape:connector-curvature="0"
+             style="fill:#000000;stroke:none;paint-order:stroke fill markers" />
+        </g>
+      </g>
+      <g
+         id="g3007">
+        <g
+           id="g2989" />
+        <path
+           d="M 40.166111,203.05286 H 638.13724 V 317.39928 H 40.166111 Z"
+           stroke-miterlimit="10"
+           id="path2991"
+           inkscape:connector-curvature="0"
+           style="fill:none;stroke:#000000;stroke-width:1.25655413;stroke-miterlimit:10;stroke-dasharray:none;paint-order:fill stroke markers" />
+        <path
+           d="m 40.166111,203.05286 v 10.55505 h 26.289512 l 5.277527,-5.27752 v -5.27753 H 40.166111"
+           stroke-miterlimit="10"
+           id="path2993"
+           inkscape:connector-curvature="0"
+           style="fill:#ffffff;stroke:#000000;stroke-width:1.25655413;stroke-miterlimit:10;stroke-dasharray:none;paint-order:fill stroke markers" />
+        <text
+           font-size="5.6000000000000005pt"
+           font-style="normal"
+           font-weight="bold"
+           text-decoration="normal"
+           x="48.96199"
+           y="210.08957"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2995"
+           style="font-style:normal;font-weight:bold;font-size:7.4666667px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">alt</text>
+        <text
+           font-size="5.6000000000000005pt"
+           font-style="normal"
+           font-weight="bold"
+           text-decoration="normal"
+           x="80.52903"
+           y="210.08957"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text2997"
+           style="font-style:normal;font-weight:bold;font-size:7.4666667px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">[RqP Client uses Authorization Code Grant - Alice is involved]</text>
+        <g
+           id="g3001">
+          <path
+             d="M 40.166111,260.22607 H 638.13724"
+             stroke-miterlimit="10"
+             id="path2999"
+             inkscape:connector-curvature="0"
+             style="fill:none;stroke:#000000;stroke-width:1.25655413;stroke-miterlimit:10;stroke-dasharray:2.19896967;paint-order:fill stroke markers" />
+        </g>
+        <g
+           id="g3003" />
+        <text
+           font-size="5.6000000000000005pt"
+           font-style="normal"
+           font-weight="bold"
+           text-decoration="normal"
+           x="80.52903"
+           y="267.26279"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text3005"
+           style="font-style:normal;font-weight:bold;font-size:7.4666667px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">[RqP Client uses Client Credential Grant - Alice is not involved]</text>
+      </g>
+      <g
+         id="g3009" />
+      <g
+         id="g3029">
+        <g
+           id="g3011" />
+        <path
+           d="m 337.72064,388.6459 h 300.4166 v 114.34642 h -300.4166 z"
+           stroke-miterlimit="10"
+           id="path3013"
+           inkscape:connector-curvature="0"
+           style="fill:none;stroke:#000000;stroke-width:1.25655413;stroke-miterlimit:10;stroke-dasharray:none;paint-order:fill stroke markers" />
+        <path
+           d="m 337.72064,388.6459 v 10.55505 h 26.28951 l 5.27753,-5.27752 v -5.27753 h -31.56704"
+           stroke-miterlimit="10"
+           id="path3015"
+           inkscape:connector-curvature="0"
+           style="fill:#ffffff;stroke:#000000;stroke-width:1.25655413;stroke-miterlimit:10;stroke-dasharray:none;paint-order:fill stroke markers" />
+        <text
+           font-size="5.6000000000000005pt"
+           font-style="normal"
+           font-weight="bold"
+           text-decoration="normal"
+           x="346.51651"
+           y="395.68262"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text3017"
+           style="font-style:normal;font-weight:bold;font-size:7.4666667px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">alt</text>
+        <text
+           font-size="5.6000000000000005pt"
+           font-style="normal"
+           font-weight="bold"
+           text-decoration="normal"
+           x="378.08356"
+           y="395.68262"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text3019"
+           style="font-style:normal;font-weight:bold;font-size:7.4666667px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">[RqP Client uses Authorization Code Grant - Alice is involved]</text>
+        <g
+           id="g3023">
+          <path
+             d="m 337.72064,445.81911 h 300.4166"
+             stroke-miterlimit="10"
+             id="path3021"
+             inkscape:connector-curvature="0"
+             style="fill:none;stroke:#000000;stroke-width:1.25655413;stroke-miterlimit:10;stroke-dasharray:2.19896967;paint-order:fill stroke markers" />
+        </g>
+        <g
+           id="g3025" />
+        <text
+           font-size="5.6000000000000005pt"
+           font-style="normal"
+           font-weight="bold"
+           text-decoration="normal"
+           x="378.08356"
+           y="452.8558"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text3027"
+           style="font-style:normal;font-weight:bold;font-size:7.4666667px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">[RqP Client uses Client Credential Grant - Alice is not involved]</text>
+      </g>
+      <g
+         id="g3031" />
+      <g
+         id="g3051">
+        <g
+           id="g3033" />
+        <path
+           d="M 40.166111,607.66328 H 399.29179 v 181.1951 H 40.166111 Z"
+           stroke-miterlimit="10"
+           id="path3035"
+           inkscape:connector-curvature="0"
+           style="fill:none;stroke:#000000;stroke-width:1.25655413;stroke-miterlimit:10;stroke-dasharray:none;paint-order:fill stroke markers" />
+        <path
+           d="m 40.166111,607.66328 v 10.55505 h 26.289512 l 5.277527,-5.27752 v -5.27753 H 40.166111"
+           stroke-miterlimit="10"
+           id="path3037"
+           inkscape:connector-curvature="0"
+           style="fill:#ffffff;stroke:#000000;stroke-width:1.25655413;stroke-miterlimit:10;stroke-dasharray:none;paint-order:fill stroke markers" />
+        <text
+           font-size="5.6000000000000005pt"
+           font-style="normal"
+           font-weight="bold"
+           text-decoration="normal"
+           x="48.96199"
+           y="614.70001"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text3039"
+           style="font-style:normal;font-weight:bold;font-size:7.4666667px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">alt</text>
+        <text
+           font-size="5.6000000000000005pt"
+           font-style="normal"
+           font-weight="bold"
+           text-decoration="normal"
+           x="80.52903"
+           y="614.70001"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text3041"
+           style="font-style:normal;font-weight:bold;font-size:7.4666667px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">[RqP Client uses Authorization Code Grant - Alice is involved]</text>
+        <g
+           id="g3045">
+          <path
+             d="M 40.166111,698.26083 H 399.29179"
+             stroke-miterlimit="10"
+             id="path3043"
+             inkscape:connector-curvature="0"
+             style="fill:none;stroke:#000000;stroke-width:1.25655413;stroke-miterlimit:10;stroke-dasharray:2.19896967;paint-order:fill stroke markers" />
+        </g>
+        <g
+           id="g3047" />
+        <text
+           font-size="5.6000000000000005pt"
+           font-style="normal"
+           font-weight="bold"
+           text-decoration="normal"
+           x="80.52903"
+           y="705.29755"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text3049"
+           style="font-style:normal;font-weight:bold;font-size:7.4666667px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">[RqP Client uses Client Credential Grant - Alice is not involved]</text>
+      </g>
+      <g
+         id="g3053" />
+      <g
+         id="g3063">
+        <g
+           id="g3055" />
+        <path
+           d="M 876.15916,893.52934 H 1042.842 v 101.1526 H 876.15916 Z"
+           stroke-miterlimit="10"
+           id="path3057"
+           inkscape:connector-curvature="0"
+           style="fill:none;stroke:#000000;stroke-width:1.25655413;stroke-miterlimit:10;stroke-dasharray:none;paint-order:fill stroke markers" />
+        <path
+           d="m 876.15916,893.52934 v 10.55505 h 96.27186 l 5.27753,-5.27753 v -5.27752 H 876.15916"
+           stroke-miterlimit="10"
+           id="path3059"
+           inkscape:connector-curvature="0"
+           style="fill:#ffffff;stroke:#000000;stroke-width:1.25655413;stroke-miterlimit:10;stroke-dasharray:none;paint-order:fill stroke markers" />
+        <text
+           font-size="5.6000000000000005pt"
+           font-style="normal"
+           font-weight="bold"
+           text-decoration="normal"
+           x="884.95502"
+           y="900.56604"
+           dominant-baseline="alphabetic"
+           xml:space="preserve"
+           id="text3061"
+           style="font-style:normal;font-weight:bold;font-size:7.4666667px;font-family:sans-serif;dominant-baseline:alphabetic;text-anchor:start;fill:#000000;stroke:none">Authorization process</text>
+      </g>
+    </g>
+    <image
+       y="-36.15493"
+       x="844.5"
+       id="image4374"
+       xlink:href="data:image/png;base64,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
+w/wfTihL0D81WTIAAAAASUVORK5CYII=
+"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="47.65493"
+       width="151.5" />
+  </g>
+</svg>

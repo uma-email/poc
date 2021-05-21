@@ -1,4 +1,4 @@
-Title UMA Wide Ecosystem - Bob from Alice (pull data)
+Title UMA wide ecosystem - Bob from Alice (pull data)
 
 actor "RO\nAlice" as Alice #lightpink
 participant "AuthZ Server" as asServer #lightpink
@@ -9,8 +9,9 @@ participant "AuthN Server" as authServer #lightsteelblue
 actor "RqP\nBob" as Bob #lightsteelblue
 
 bottomparticipants
+note over rqpClient:RqP Client is registered on Bob's AuthN server as well as Alices's AuthZ server
 rqpClient<-Bob:Initiate request
-rsServer<-rqpClient:1. Request 'Alice's Outgoing' resource
+rsServer<-rqpClient:1. Request Alice's 'Outgoing' resource
 rsServer->rqpClient:2. 401 with permission ticket
 alt RqP Client uses Authorization Code Grant - Bob is involved
 rqpClient->authServer:3. Get access_token\n(grant_type=authorizatin_code, scope=claims-provider)
@@ -38,11 +39,11 @@ end
 authServer->claimsProvider:Return Bob's user_claims
 
 
-loop Authorization process
 rqpClient<-claimsProvider:6. Return claims_token\n(Bob's user_claims, ticket_digest)
 rqpClient->asServer:7. Call token endpoint\n(client_credentials, ticket, pushed_claims=claims_token + metadata)
+group Authorization process
 note over asServer:Evaluate\n1. ticket\n2. ticket_digest\n3. claims_token signature\n4. user_claims\n5. domain part of email_address
-rqpClient<-asServer:8. Return RPT
 end
-rsServer<-rqpClient:9. Get data from 'Alice's Outgoing' resource\n(RPT)
+rqpClient<-asServer:8. Return RPT
+rsServer<-rqpClient:9. Get data from Alice's 'Outgoing' resource\n(RPT)
 rsServer->rqpClient:10. 200 OK
