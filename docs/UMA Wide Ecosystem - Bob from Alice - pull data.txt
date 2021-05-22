@@ -1,51 +1,54 @@
 Title UMA wide ecosystem - Bob from Alice (pull data)
 
-actor "RO\nAlice" as Alice #lightpink
-participant "AuthZ Server" as asServer #lightpink
-participant "Resource Server (RS)" as rsServer #lightpink
-participant "RqP Client" as rqpClient #lightsteelblue
-participant "Claims Provider (CP)" as claimsProvider #lightsteelblue
-participant "AuthN Server" as authServer #lightsteelblue
-actor "RqP\nBob" as Bob #lightsteelblue
+actor "Alice (RO)\nalice@foo.com" as Alice #lightpink
+participant "AuthZ Server\nfoo.com" as asServer #lightpink
+participant "Resource Server (RS)\nfoo.com" as rsServer #lightpink
+participant "RqP Client\nbar.com" as rqpClient #lightsteelblue
+participant "Claims Provider (CP)\nbar.com" as claimsProvider #lightsteelblue
+participant "AuthN Server\nbar.com" as authServer #lightsteelblue
+actor "Bob (RqP)\nbob@bar.com" as Bob #lightsteelblue
 
 bottomparticipants
 
-note over rqpClient:RqP Client is registered on Bob's AuthN server as a confidential client and on Alice's AuthZ server as a public client
-note over claimsProvider:Claims Provider publishes its metadata on a URL .well-known/claims-provider-configuration
+note over rqpClient:RqP Client is registered at Bob's AuthN server as a confidential client and is pre-registered at Alice's AuthZ server as a universal public client
+note over claimsProvider:Claims Provider publishes its metadata on a URL https://bar.com/.well-known/claims-provider-configuration
+note right of claimsProvider:Claims Provider is registered at Bob's AuthN server and is assigned 'query-users' admin role
 rqpClient<-Bob:Initiate request
-rsServer<-rqpClient:1. Request Alice's 'Outgoing' resource
+rsServer<-rqpClient:1. Request foo.com 'Outgoing' resource
 rsServer->rqpClient:2. 401 with permission ticket
 alt RqP Client uses Authorization Code Grant - Bob is involved
-rqpClient->authServer:3. a) Get access_token\n(grant_type=authorizatin_code, scope=claims-provider)
+rqpClient->authServer:3. a) Get access_token\n(grant_type=authorization_code, scope=claims-provider)
 else RqP Client uses Client Credential Grant - Bob is not involved
 rqpClient->authServer:3. b) Get access_token\n(grant_type=client_credentials, scope=claims-provider)
 end
 rqpClient<-authServer:4. Return access_token
-note left of rqpClient:Create ticket_digest
-alt RqP Client uses Authorization Code Grant - Bob is involved
+note right of rqpClient:Create ticket_digest
+alt Get Claims  - Bob was involved at step  3. a)
+note right of rqpClient:Bob's email_address is in access_token returned at step 3. a)
 claimsProvider<-rqpClient:5. a) Get claims_token\n(access_token, ticket_digest)
-else RqP Client uses Client Credential Grant - Bob is not involved
+else Get Claims - Bob was not involved at step  3. b)
+note right of rqpClient: The email_address is determined by RqP Client
 claimsProvider<-rqpClient:5. b) Get claims_token\n(access_token, Bob's email_address, ticket_digest)
 end
-note right of claimsProvider:Claims Provider is assigned 'query-users' admin role
-claimsProvider->authServer:6. Get access_token\n(grant_type=client_credentials)
+note right of claimsProvider:Claims Provider is assigned the 'query-users' admin role, thus can query any user to get their claims
+claimsProvider->authServer:6. Get access_token\n(grant_type=client_credentials, role=query-users)
 claimsProvider<-authServer:7. Return access_token
 
-alt RqP Client uses Authorization Code Grant - Bob is involved
-note right of claimsProvider:Use Bobs's email_address extracted from access_token posted in a request at step 5. a)
-authServer<-claimsProvider:8. a) Get Bob's user_claims\n(access_token, Bob's email_address)
-else RqP Client uses Client Credential Grant - Bob is not involved
+alt Prepare email_address - Bob was involved at step  3. a)
+note right of claimsProvider:Use Bob's email_address extracted from access_token from a request at step 5. a)
+else Prepare email_address - Bob was not involved at step  3. b)
 note right of claimsProvider:Use Bob's email_address extracted from a request body at step 5. b)
-authServer<-claimsProvider:8. b) Get Bob's user_claims\n(access_token, Bob's email_address)
 end
+authServer<-claimsProvider:8. Query Bob's user_claims\n(access_token, Bob's email_address)
 authServer->claimsProvider:9. Return Bob's user_claims
 
 rqpClient<-claimsProvider:10. Return claims_token\n(Bob's user_claims, ticket_digest)
 rqpClient->asServer:11. Call token endpoint\n(client_id, ticket, pushed_claims=claims_token + metadata)
 group Authorization process
+note over asServer:In addition to claims_token, pushed claims may also contain metadata such as:\n1. recipient_info (email address, fullname)\n2. file_info (filename, file size, file digest, mime type)
 note over asServer:AuthZ Server uses domain part of Bob's email_address extracted from claims_token\nto load Claims Provider configuration from URL:\n'https://' + domain_part_of_email_address + '/.well-known/claims-provider-configuration'
-note over asServer:AuthZ Server evaluates:\n1. domain part of email_address\n2. ticket\n3. ticket_digest\n4. claims_token signature\n5. user_claims\n6. other_claims (recipient_info, file_info)
+note over asServer:AuthZ Server evaluates:\n1. domain part of email_address vs. claims issuer\n2. ticket\n3. ticket_digest vs. ticket\n4. claims_token signature\n5. user_claims\n6. other_claims (recipient_info, file_info)
 end
 rqpClient<-asServer:12. Return RPT
-rsServer<-rqpClient:13. Get data from Alice's 'Outgoing' resource\n(RPT)
+rsServer<-rqpClient:13. Get data from foo.com 'Outgoing' resource\n(RPT)
 rsServer->rqpClient:14. 200 OK
