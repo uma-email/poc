@@ -29,11 +29,11 @@ In addition to claims_token, pushed claims may also contain metadata such as: re
 
 ### Push data
 
-![Sequence Diagram - push data](./images/uma-wide-ecosystem-alice-to-bob-push-data.svg)
+![Sequence Diagram - push data](./images/uma-wide-ecosystem-alice-to-bob-push-data.png)
 
 ### Pull data
 
-![Sequence Diagram - pull data](./images/uma-wide-ecosystem-bob-from-alice-pull-data.svg)
+![Sequence Diagram - pull data](./images/uma-wide-ecosystem-bob-from-alice-pull-data.png)
 
 ## Demo and Documentation
 
