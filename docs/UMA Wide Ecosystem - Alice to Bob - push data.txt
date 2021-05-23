@@ -10,11 +10,11 @@ actor "Bob (RO)\nbob@bar.com" as Bob #lightsteelblue
 
 bottomparticipants
 
-note over rqpClient:RqP Client is registered at Alice's AuthN server as a confidential client and is pre-registered at Bob's AuthZ server as a universal public client
+note over rqpClient:RqP Client is registered at Alice's AuthN server
 note over claimsProvider:Claims Provider publishes its metadata on a URL https://foo.com/.well-known/claims-provider-configuration
 note left of claimsProvider:Claims Provider is registered at Alice's AuthN server and is assigned 'query-users' admin role
 Alice->rqpClient:Initiate request
-rqpClient->rsServer:1. Request bar.com 'Incoming' resource
+rqpClient->rsServer:1. Request Bob's 'Incoming' resource
 rqpClient<-rsServer:2. 401 with permission ticket
 alt RqP Client uses Authorization Code Grant - Alice is involved
 authServer<-rqpClient:3. a) Get access_token\n(grant_type=authorization_code, scope=claims-provider)
@@ -43,12 +43,12 @@ authServer<-claimsProvider:8. Query Alice's user_claims\n(access_token, Alice's 
 authServer->claimsProvider:9. Return Alice's user_claims
 
 claimsProvider->rqpClient:10. Return claims_token\n(Alice's user_claims, ticket_digest)
-rqpClient->asServer:11. Call token endpoint\n(client_id, ticket, pushed_claims=claims_token + metadata)
+rqpClient->asServer:11. Call token endpoint\n(ticket, pushed_claims=claims_token + metadata)
 group Authorization process
 note over asServer:In addition to claims_token, pushed claims may also contain metadata such as:\n1. recipient_info (email address, fullname)\n2. file_info (filename, file size, file digest, mime type)
 note over asServer:AuthZ Server uses domain part of Alice's email_address extracted from claims_token\nto load Claims Provider configuration from URL:\n'https://' + domain_part_of_email_address + '/.well-known/claims-provider-configuration'
 note over asServer:AuthZ Server evaluates:\n1. domain part of email_address vs. claims issuer\n2. ticket\n3. ticket_digest vs. ticket\n4. claims_token signature\n5. user_claims\n6. other_claims (recipient_info, file_info)
 end
 rqpClient<-asServer:12. Return RPT
-rqpClient->rsServer:13. Post data into bar.com 'Incoming' resource\n(RPT)
+rqpClient->rsServer:13. Post data into Bob's 'Incoming' resource\n(RPT)
 rqpClient<-rsServer:14. 201 Created
