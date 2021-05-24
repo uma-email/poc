@@ -36,9 +36,9 @@ claimsProvider->authServer:6. Get access_token\n(grant_type=client_credentials, 
 claimsProvider<-authServer:7. Return access_token
 
 alt Prepare email_address - Bob was involved at step  3. a)
-note right of claimsProvider:Use Bob's email_address extracted from access_token from a request at step 5. a)
+note over claimsProvider:Use Bob's email_address extracted from access_token from a request at step 5. a)
 else Prepare email_address - Bob was not involved at step  3. b)
-note right of claimsProvider:Use Bob's email_address extracted from a request body at step 5. b)
+note over claimsProvider:Use Bob's email_address extracted from a request body at step 5. b)
 end
 authServer<-claimsProvider:8. Query Bob's user_claims\n(access_token, Bob's email_address)
 authServer->claimsProvider:9. Return Bob's user_claims
