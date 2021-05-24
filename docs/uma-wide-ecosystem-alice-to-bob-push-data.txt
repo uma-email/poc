@@ -10,7 +10,8 @@ actor "Bob (RO)\nbob@bar.com" as Bob #lightsteelblue
 
 bottomparticipants
 
-note over rqpClient:RqP Client is registered at Alice's AuthN server
+note over rqpClient:RqP Client is registered at Alice's AuthN server and pre-registered as a universal AEMS public client at Bob's AuthZ server
+note right of rsServer:Resource Server registers it's resource set 'Incoming' and 'Outgoing'\nwith the Bob's AuthZ server with the associated scopes:\n'Outgoing': query\n'Incoming': write
 note over claimsProvider:Claims Provider publishes its metadata on a URL https://foo.com/.well-known/claims-provider-configuration
 note left of claimsProvider:Claims Provider is registered at Alice's AuthN server and is assigned 'query-users' admin role
 Alice->rqpClient:Initiate request
