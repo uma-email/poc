@@ -23,13 +23,13 @@ else RqP Client uses Client Credential Grant - Alice is not involved
 authServer<-rqpClient:3. b) Get access_token\n(grant_type=client_credentials, scope=claims-provider)
 end
 authServer->rqpClient:4. Return access_token
-note left of rqpClient:Create ticket_digest
+note left of rqpClient:ticket_challenge = Base64URL-Encode(SHA256(ticket))
 alt Get Claims  - Alice was involved at step  3. a)
 note left of rqpClient:Alice's email_address is in access_token returned at step 3. a)
-claimsProvider<-rqpClient:5. a) Get claims_token\n(access_token, ticket_digest)
+claimsProvider<-rqpClient:5. a) Get claims_token\n(access_token, ticket_challenge)
 else Get Claims - Alice was not involved at step  3. b)
 note left of rqpClient: The email_address is determined by RqP Client
-claimsProvider<-rqpClient:5. b) Get claims_token\n(access_token, Alice's email_address, ticket_digest)
+claimsProvider<-rqpClient:5. b) Get claims_token\n(access_token, Alice's email_address, ticket_challenge)
 end
 note left of claimsProvider:Claims Provider is assigned the 'query-users' admin role, thus can query any user to get their claims
 authServer<-claimsProvider:6. Get access_token\n(grant_type=client_credentials, role=query-users)
@@ -43,12 +43,12 @@ end
 authServer<-claimsProvider:8. Query Alice's user_claims\n(access_token, Alice's email_address)
 authServer->claimsProvider:9. Return Alice's user_claims
 
-claimsProvider->rqpClient:10. Return claims_token\n(Alice's user_claims, ticket_digest)
+claimsProvider->rqpClient:10. Return claims_token\n(Alice's user_claims, ticket_challenge)
 rqpClient->asServer:11. Call token endpoint\n(ticket, pushed_claims=claims_token + metadata)
 group Authorization process
 note over asServer:In addition to claims_token, pushed claims may also contain metadata such as:\n1. recipient_info (email address, fullname)\n2. file_info (filename, file size, file digest, mime type)
 note over asServer:AuthZ Server uses domain part of Alice's email_address extracted from claims_token\nto load Claims Provider configuration from URL:\n'https://' + domain_part_of_email_address + '/.well-known/claims-provider-configuration'
-note over asServer:AuthZ Server evaluates:\n1. domain part of email_address vs. claims issuer\n2. ticket\n3. ticket_digest vs. ticket\n4. claims_token signature\n5. user_claims\n6. other_claims (recipient_info, file_info)
+note over asServer:AuthZ Server evaluates:\n1. domain part of email_address vs. claims issuer\n2. ticket\n3. ticket_challenge vs. ticket\n4. claims_token signature\n5. user_claims\n6. other_claims (recipient_info, file_info)
 end
 rqpClient<-asServer:12. Return RPT
 rqpClient->rsServer:13. Post data into Bob's 'Incoming' resource\n(RPT)
