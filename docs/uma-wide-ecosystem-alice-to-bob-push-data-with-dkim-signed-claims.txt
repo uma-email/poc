@@ -1,3 +1,4 @@
+
 Title UMA wide ecosystem - Alice to Bob (push data) with DKIM signed claims
 
 actor "Alice (RqP)\nalice@gmail.com" as Alice #lightpink
@@ -12,6 +13,8 @@ actor "Bob (RO)\nbob@outlook.com" as Bob #lightsteelblue
 
 bottomparticipants
 
+note right of Alice:Alice has set up her mailbox to auto-forward emails sent from\nchallenge@foo.com to response@foo.com
+box over claimsProvider:Claims Provider can send email messages from addresses challenge@foo.com and retrieve from response@foo.com
 note over rqpClient:RqP Client is registered at Alice's AuthN server and pre-registered as a universal AEMS public client at Bob's AuthZ server
 note right of rsServer:Resource Server registers it's resource set 'Incoming' and 'Outgoing'\nwith the Bob's AuthZ server with the associated scopes:\n'Outgoing': query\n'Incoming': write
 note over claimsProvider:Claims Provider publishes its metadata on a URL https://foo.com/.well-known/claims-provider-configuration
@@ -45,8 +48,8 @@ end
 authServer<-claimsProvider:8. Query Alice's user_claims\n(access_token, Alice's email_address)
 authServer->claimsProvider:9. Return Alice's user_claims
 
-smtpServer<-claimsProvider:Send plain_message to alice@gmail.com\n(user_claims, ticket_challenge)
-imapServer->claimsProvider:Retrieve dkim_signed_message from alice@gmail.com\n(user_claims, ticket_challenge)
+smtpServer<-claimsProvider:Send plain_message from challenge@foo.com to alice@gmail.com\n(user_claims, ticket_challenge)
+imapServer->claimsProvider:Retrieve dkim_signed_message sent from alice@gmail.com to response@foo.com\n(user_claims, ticket_challenge)
 claimsProvider->rqpClient:10. Return claims_token\n(Alice's dkim_signed_message)
 rqpClient->asServer:11. Call token endpoint\n(ticket, pushed_claims=claims_token + metadata)
 group Authorization process
