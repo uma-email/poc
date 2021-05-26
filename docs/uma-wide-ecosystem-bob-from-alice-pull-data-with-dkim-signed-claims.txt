@@ -1,0 +1,60 @@
+Title UMA wide ecosystem - Bob from Alice (pull data) with DKIM signed claims
+
+actor "Alice (RO)\nalice@gmail.com" as Alice #lightpink
+participant "AuthZ Server\nfoo.com" as asServer #lightpink
+participant "Resource Server (RS)\nfoo.com" as rsServer #lightpink
+participant "RqP Client\nbar.com" as rqpClient #lightsteelblue
+participant "Claims Provider (CP)\nbar.com" as claimsProvider #lightsteelblue
+participant "SMTP Server\noutlook.com" as smtpServer #00a2ed
+participant "IMAP Server\noutlook.com" as imapServer #00a2ed
+participant "AuthN Server\nbar.com" as authServer #lightsteelblue
+actor "Bob (RqP)\nbob@outlook.com" as Bob #lightsteelblue
+
+bottomparticipants
+
+note over rqpClient:RqP Client is registered at Bob's AuthN server and pre-registered as a universal AEMS public client at Alice's AuthZ server
+note left of rsServer:Resource Server registers it's resource set 'Incoming' and 'Outgoing'\nwith the Alice's AuthZ server with the associated scopes:\n'Outgoing': query\n'Incoming': write
+note over claimsProvider:Claims Provider publishes its metadata on a URL https://bar.com/.well-known/claims-provider-configuration
+note right of claimsProvider:Claims Provider is registered at Bob's AuthN server and is assigned 'query-users' admin role
+rqpClient<-Bob:Initiate request
+rsServer<-rqpClient:1. Request Alice's 'Outgoing' resource
+rsServer->rqpClient:2. 401 with permission ticket
+alt RqP Client uses Authorization Code Grant - Bob is involved
+rqpClient->authServer:3. a) Get access_token\n(grant_type=authorization_code, scope=claims-provider)
+else RqP Client uses Client Credential Grant - Bob is not involved
+rqpClient->authServer:3. b) Get access_token\n(grant_type=client_credentials, scope=claims-provider)
+end
+rqpClient<-authServer:4. Return access_token
+note right of rqpClient:ticket_challenge = Base64URL-Encode(SHA256(ticket))
+alt Get Claims  - Bob was involved at step  3. a)
+note right of rqpClient:Bob's email_address is in access_token returned at step 3. a)
+claimsProvider<-rqpClient:5. a) Get claims_token\n(access_token, ticket_challenge)
+else Get Claims - Bob was not involved at step  3. b)
+note right of rqpClient: The email_address is determined by RqP Client
+claimsProvider<-rqpClient:5. b) Get claims_token\n(access_token, Bob's email_address, ticket_challenge)
+end
+note right of claimsProvider:Claims Provider is assigned the 'query-users' admin role, thus can query any user to get their claims
+claimsProvider->authServer:6. Get access_token\n(grant_type=client_credentials, role=query-users)
+claimsProvider<-authServer:7. Return access_token
+
+alt Prepare email_address - Bob was involved at step  3. a)
+note over claimsProvider:Use Bob's email_address extracted from access_token from a request at step 5. a)
+else Prepare email_address - Bob was not involved at step  3. b)
+note over claimsProvider:Use Bob's email_address extracted from a request body at step 5. b)
+end
+authServer<-claimsProvider:8. Query Bob's user_claims\n(access_token, Bob's email_address)
+authServer->claimsProvider:9. Return Bob's user_claims
+
+smtpServer<-claimsProvider:Send plain_message to bob@outlook.com\n(user_claims, ticket_challenge)
+imapServer->claimsProvider:Retrieve dkim_signed_message from bob@outlook.com\n(user_claims, ticket_challenge)
+rqpClient<-claimsProvider:10. Return claims_token\n(Bob's dkim_signed_message)
+rqpClient->asServer:11. Call token endpoint\n(ticket, pushed_claims=claims_token + metadata)
+group Authorization process
+note over asServer:In addition to claims_token, pushed claims may also contain metadata such as:\n1. recipient_info (email address, fullname)\n2. file_info (filename, file size, file digest, mime type)
+note over asServer:AuthZ Server uses domain part of Bob's email_address extracted from claims_token\nto load Claims Provider configuration from URL:\n'https://' + domain_part_of_email_address + '/.well-known/claims-provider-configuration'
+note over asServer:Extract user_claims and ticket_challenge from dkim_signed_message
+note over asServer:AuthZ Server evaluates and verifies:\n1. domain part of email_address vs. claims issuer\n2. ticket\n3. ticket_challenge vs. ticket\n4. claims_token signature\n5. user_claims\n6. other_claims (recipient_info, file_info)\n7. signature of dkim_signed_message
+end
+rqpClient<-asServer:12. Return RPT
+rsServer<-rqpClient:13. Get data from Alice's 'Outgoing' resource\n(RPT)
+rsServer->rqpClient:14. 200 OK
