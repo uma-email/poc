@@ -17,7 +17,7 @@ note right of Alice:Alice has set up her mailbox to auto-forward emails sent fro
 box over claimsProvider:Claims Provider can send email messages from addresses challenge@foo.com and retrieve from response@foo.com
 note over rqpClient:RqP Client is registered at Alice's AuthN server and pre-registered as a universal AEMS public client at Bob's AuthZ server
 note right of rsServer:Resource Server registers it's resource set 'Incoming' and 'Outgoing'\nwith the Bob's AuthZ server with the associated scopes:\n'Outgoing': query\n'Incoming': write
-note over claimsProvider:Claims Provider publishes its metadata on a URL https://foo.com/.well-known/claims-provider-configuration
+note over claimsProvider:Claims Provider publishes its metadata on a URL https://foo.com/optional_path/.well-known/claims-provider-configuration
 note left of claimsProvider:Claims Provider is registered at Alice's AuthN server and is assigned 'query-users' admin role
 Alice->rqpClient:Initiate request
 rqpClient->rsServer:1. Request Bob's 'Incoming' resource
@@ -48,16 +48,14 @@ end
 authServer<-claimsProvider:8. Query Alice's user_claims\n(access_token, Alice's email_address)
 authServer->claimsProvider:9. Return Alice's user_claims
 
-smtpServer<-claimsProvider:Send plain_message from challenge@foo.com to alice@gmail.com\n(user_claims, ticket_challenge)
-imapServer->claimsProvider:Retrieve dkim_signed_message sent from alice@gmail.com to response@foo.com\n(user_claims, ticket_challenge)
-claimsProvider->rqpClient:10. Return claims_token\n(Alice's dkim_signed_message)
-rqpClient->asServer:11. Call token endpoint\n(ticket, pushed_claims=claims_token + metadata)
-group Authorization process
+smtpServer<-claimsProvider:10. Send plain_message from challenge@foo.com to alice@gmail.com\n(claims_provider_configuration_url, user_claims, ticket_challenge)
+imapServer->claimsProvider:11. Retrieve dkim_signed_message sent from alice@gmail.com to response@foo.com\n(claims_provider_configuration_url, user_claims, ticket_challenge)
+claimsProvider->rqpClient:12. Return claims_token\n(Alice's dkim_signed_message)
+rqpClient->asServer:13. Call token endpoint\n(ticket, pushed_claims=claims_token + metadata)
 note over asServer:In addition to claims_token, pushed claims may also contain metadata such as:\n1. recipient_info (email address, fullname)\n2. file_info (filename, file size, file digest, mime type)
-note over asServer:AuthZ Server uses domain part of Alice's email_address extracted from claims_token\nto load Claims Provider configuration from URL:\n'https://' + domain_part_of_email_address + '/.well-known/claims-provider-configuration'
-note over asServer:Extract user_claims and ticket_challenge from dkim_signed_message
-note over asServer:AuthZ Server evaluates and verifies:\n1. domain part of email_address vs. claims issuer\n2. ticket\n3. ticket_challenge vs. ticket\n4. claims_token signature\n5. user_claims\n6. other_claims (recipient_info, file_info)\n7. signature of dkim_signed_message
+group Authorization process
+note over asServer:1. extract dkim_signed _message from claims_token\n2. verify DKIM signature of dkim_signed _message\n3. extract 'From:' part of dkim_signed_message e.g. Alice Henderson <alice@gmail.com>\n4. extract claims_provider_configuration_url, user_claims and ticket_challenge from dkim_signed_message\n5. verify claims_token signature\n6. compare ticket_challenge vs. Base64URL-Encode(SHA256(ticket))\n7. evaluate user_claims\n8. evaluate other optional claims e.g. recipient_info, file_info
 end
-rqpClient<-asServer:12. Return RPT
-rqpClient->rsServer:13. Post data into Bob's 'Incoming' resource\n(RPT)
-rqpClient<-rsServer:14. 201 Created
+rqpClient<-asServer:14. Return RPT
+rqpClient->rsServer:15. Post data into Bob's 'Incoming' resource\n(RPT)
+rqpClient<-rsServer:16. 201 Created
