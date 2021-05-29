@@ -1,6 +1,6 @@
 Title UMA wide ecosystem - Bob from Alice (pull data) with DKIM signed claims
 
-actor "Alice (RO)\nalice@gmail.com\nor\nalice@foo.com" as Alice #lightpink
+actor "Alice (RO)\nalice@gmail.com, alice@foo.com" as Alice #lightpink
 participant "AuthZ Server\nfoo.com" as asServer #lightpink
 participant "Resource Server (RS)\nfoo.com" as rsServer #lightpink
 participant "RqP Client\nbar.com" as rqpClient #lightsteelblue
@@ -8,12 +8,12 @@ participant "Claims Provider (CP)\nbar.com" as claimsProvider #lightsteelblue
 participant "SMTP Server\noutlook.com" as smtpServer #00a2ed
 participant "IMAP Server\noutlook.com" as imapServer #00a2ed
 participant "AuthN Server\nbar.com" as authServer #lightsteelblue
-actor "Bob (RqP)\nbob@outlook.com\nor\nbob@bar.com" as Bob #lightsteelblue
+actor "Bob (RqP)\nbob@outlook.com, bob@bar.com" as Bob #lightsteelblue
 
 bottomparticipants
 
 opt Bob has to demonstrate control of his mailbox
-note left of Bob:Bob has set up his mailbox to auto-forward emails sent from\nchallenge@bar.com to response@bar.com
+note left of Bob:If Bob uses an email provider (outlook) that does not support webfinger,\nhe must set up his mailbox to automatically forward emails sent\nfrom challenge@foo.com to response@foo.com
 end
 opt Bob has to demonstrate control of his mailbox
 box over claimsProvider:Claims Provider can send email messages from addresses challenge@bar.com and retrieve from response@bar.com
