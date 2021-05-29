@@ -13,7 +13,7 @@ actor "Bob (RqP)\nbob@outlook.com, bob@bar.com" as Bob #lightsteelblue
 bottomparticipants
 
 opt Bob has to demonstrate control of his mailbox
-note left of Bob:If Bob uses an email provider (outlook) that does not support webfinger,\nhe must set up his mailbox to automatically forward emails sent\nfrom challenge@foo.com to response@foo.com
+note left of Bob:If Bob uses an email provider (outlook) that does not support webfinger,\nhe must set up his mailbox to automatically forward emails sent\nfrom challenge@bar.com to response@bar.com
 end
 opt Bob has to demonstrate control of his mailbox
 box over claimsProvider:Claims Provider can send email messages from addresses challenge@bar.com and retrieve from response@bar.com
