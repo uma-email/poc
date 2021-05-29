@@ -39,5 +39,10 @@ In addition to claims_token, pushed claims may also contain metadata such as: re
 
 WIP, early stage [umabox.org][2].
 
+# Acknowledgment
+
+Credits go to [WG - User Managed Access][3].
+
 [1]: https://github.com/uma-email/proposal
 [2]: https://www.umabox.org
+[3]: https://kantarainitiative.org/confluence/display/uma/Home
