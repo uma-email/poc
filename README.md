@@ -23,9 +23,13 @@ A prototype implementation of the [authorization-enhanced-mail-system][1] draft 
 To transfer data from sender to recipient, AEMS uses a push/pull mechanism and the UMA wide ecosystem topology (AEMS ⊃ UMA wide ecosystem).
 
 This concept works without shared OIDC provider and without federated OIDC providers.
-There is no need to have a relationship between security domains foo.com and bar.com. The RqP Client is pre-registered as a universal AEMS public client. This concept uses an UMA-based challenge–response mechanism with a permission ticket.
+There is no need to have a relationship between security domains foo.com and bar.com. The RqP Client is pre-registered as a universal AEMS public client. This concept uses an UMA-compliant challenge–response mechanism with a permission ticket.
 
 In addition to claims_token, pushed claims may also contain metadata such as: recipient_info (email address, fullname), file_info (filename, file size, file digest, mime type).
+
+The diagrams are not vendor neutral; several Keycloak IAM features are used here (realm-management client, query-users and view-users roles) to get claims of any user.
+
+Last but not least, this concept is usable even if your email provider does not support the webfinger protocol.
 
 ### Push data
 

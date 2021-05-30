@@ -1,5 +1,4 @@
-
-Title UMA wide ecosystem - Alice to Bob (push data) with DKIM signed claims
+Title UMA wide ecosystem - Alice to Bob (push data)
 
 actor "Alice (RqP)\nalice@gmail.com, alice@foo.com" as Alice #lightpink
 participant "AuthN Server\nfoo.com" as authServer #lightpink
@@ -22,7 +21,7 @@ end
 note over rqpClient:RqP Client is registered at foo.com AuthN server and pre-registered as a universal AEMS public client at bar.com AuthZ server
 note right of rsServer:bar.com Admin has set up the Resource Server and registers it's resource set\n'Incoming' and 'Outgoing' with the bar.com AuthZ server with the associated scopes:\n'Outgoing': query, view\n'Incoming': create
 note over claimsProvider:Claims Provider publishes its metadata on a URL https://foo.com/.well-known/claims-provider-configuration
-note left of claimsProvider:Claims Provider is registered at Alice's AuthN server and is assigned 'query-users', 'view-user' admin role
+note left of claimsProvider:Claims Provider is registered at Alice's AuthN server and is assigned 'query-users', 'view-users' admin roles
 Alice->rqpClient:Initiate request
 rqpClient->rsServer:1. Request Bob's 'Incoming' resource\n(scope=create)
 rqpClient<-rsServer:2. 401 with permission ticket
@@ -31,25 +30,25 @@ authServer<-rqpClient:3. a) Get access_token\n(grant_type=authorization_code, sc
 else RqP Client uses Client Credential Grant - Alice is not involved
 authServer<-rqpClient:3. b) Get access_token\n(grant_type=client_credentials, scope=claims-provider)
 end
-authServer->rqpClient:4. Return access_token
+authServer->rqpClient:4. Return access_token "audience":["claims-provider"]
 note left of rqpClient:ticket_challenge = Base64URL-Encode(SHA256(ticket))
 alt Get Claims  - Alice was involved at step  3. a)
-note left of rqpClient:Alice's email_address is in access_token returned at step 3. a)
-claimsProvider<-rqpClient:5. a) Get claims_token\n(access_token, ticket_challenge)
+note left of rqpClient:Alice's email_address is in access_token "audience":["claims-provider"] returned in request 3. a) / 4.
+claimsProvider<-rqpClient:5. a) Get claims_token\n(access_token "audience":["claims-provider"], ticket_challenge)
 else Get Claims - Alice was not involved at step  3. b)
 note left of rqpClient: The email_address is determined by RqP Client
-claimsProvider<-rqpClient:5. b) Get claims_token\n(access_token, Alice's email_address, ticket_challenge)
+claimsProvider<-rqpClient:5. b) Get claims_token\n(access_token "audience":["claims-provider"], Alice's email_address, ticket_challenge)
 end
-note left of claimsProvider:Claims Provider is assigned the 'query-users, view-users' admin role, thus can query and view any user to get their claims
+note left of claimsProvider:Claims Provider is assigned the 'query-users, view-users' admin roles, thus can query and view any user to get their claims
 authServer<-claimsProvider:6. Get access_token\n(grant_type=client_credentials, role=query-users, view-users)
-authServer->claimsProvider:7. Return access_token
+authServer->claimsProvider:7. Return access_token "audience":["realm-management"]
 
 alt Prepare email_address - Alice was involved at step  3. a)
-note over claimsProvider:Use Alices's email_address extracted from access_token from a request at step 5. a)
+note over claimsProvider:Use Alices's email_address extracted from access_token "audience":["claims-provider"] from a request at step 5. a)
 else Prepare email_address - Alice was not involved at step  3. b)
 note over claimsProvider:Use Alice's email_address extracted from a request body at step 5. b)
 end
-authServer<-claimsProvider:8. Query/View Alice's user_claims\n(access_token, Alice's email_address)
+authServer<-claimsProvider:8. Query/View Alice's user_claims\n(access_token "audience":["realm-management"], Alice's email_address)
 authServer->claimsProvider:9. Return Alice's user_claims
 
 opt Alice has to demonstrate control of her mailbox
