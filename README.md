@@ -16,7 +16,7 @@ A prototype implementation of the [authorization-enhanced-mail-system][1] draft 
 
 ![Schematic Flow - pull data](./images/schematic-flow-pull.png)
 
-# UMA wide ecosystem
+# UMA communication platform
 
 ## Sequence diagrams
 
@@ -34,11 +34,11 @@ Last but not least, this concept is usable even if your email provider does not 
 
 ### Push data
 
-![Sequence Diagram - push data](./images/uma-wide-ecosystem-alice-to-bob-push-data.png)
+![Sequence Diagram - push data](./images/uma-communication-platform-alice-to-bob-push-data.png)
 
 ### Pull data
 
-![Sequence Diagram - pull data](./images/uma-wide-ecosystem-bob-from-alice-pull-data.png)
+![Sequence Diagram - pull data](./images/uma-communication-platform-bob-from-alice-pull-data.png)
 
 ## Demo and Documentation
 
