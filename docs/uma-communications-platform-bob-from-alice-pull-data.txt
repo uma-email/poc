@@ -1,4 +1,4 @@
-Title UMA communication platform - Bob from Alice (pull data)
+Title UMA communications platform - Bob from Alice (pull data)
 
 actor "Alice (RO)\nalice@gmail.com, alice@foo.com" as Alice #lightpink
 participant "AuthZ Server\nfoo.com" as asServer #lightpink

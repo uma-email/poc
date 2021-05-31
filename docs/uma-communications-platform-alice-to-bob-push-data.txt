@@ -1,4 +1,4 @@
-Title UMA communication platform - Alice to Bob (push data)
+Title UMA communications platform - Alice to Bob (push data)
 
 actor "Alice (RqP)\nalice@gmail.com, alice@foo.com" as Alice #lightpink
 participant "AuthN Server\nfoo.com" as authServer #lightpink

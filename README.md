@@ -16,11 +16,11 @@ A prototype implementation of the [authorization-enhanced-mail-system][1] draft 
 
 ![Schematic Flow - pull data](./images/schematic-flow-pull.png)
 
-# UMA communication platform
+# UMA communications platform
 
 ## Sequence diagrams
 
-To transfer data from sender to recipient, AEMS uses a push/pull mechanism and the UMA wide ecosystem topology (AEMS ⊃ UMA communication platform ⊃ UMA wide ecosystem).
+To transfer data from sender to recipient, AEMS uses a push/pull mechanism and the UMA wide ecosystem topology (AEMS ⊃ UMA communications platform ⊃ UMA wide ecosystem).
 
 This concept works without shared OIDC provider and without federated OIDC providers. There is no need to have a trust relationship (a contract) between security domains foo.com and bar.com. This concept uses an UMA-compliant challenge–response mechanism with the permission ticket.
 
@@ -34,11 +34,11 @@ Last but not least, this concept is usable even if your email provider does not 
 
 ### Push data
 
-![Sequence Diagram - push data](./images/uma-communication-platform-alice-to-bob-push-data.png)
+![Sequence Diagram - push data](./images/uma-communications-platform-alice-to-bob-push-data.png)
 
 ### Pull data
 
-![Sequence Diagram - pull data](./images/uma-communication-platform-bob-from-alice-pull-data.png)
+![Sequence Diagram - pull data](./images/uma-communications-platform-bob-from-alice-pull-data.png)
 
 ## Demo and Documentation
 
