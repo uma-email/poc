@@ -22,7 +22,7 @@ A prototype implementation of the [authorization-enhanced-mail-system][1] draft 
 
 To transfer data from sender to recipient, AEMS uses a push/pull mechanism and the UMA wide ecosystem topology (AEMS ⊃ UMA communications platform ⊃ UMA wide ecosystem).
 
-This concept works without shared OIDC provider and without federated OIDC providers. There is no need to have a trust relationship (a contract) between security domains foo.com and bar.com. This concept uses an UMA-compliant challenge–response mechanism with the permission ticket.
+This concept works without shared OIDC provider and without federated OIDC providers. There is no need to have a trust relationship (contract) between security domains foo.com and bar.com. This concept uses an UMA-compliant challenge–response mechanism with the permission ticket.
 
 The RqP Client is pre-registered as a universal AEMS public client.
 
