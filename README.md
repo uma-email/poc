@@ -26,8 +26,6 @@ This concept works without shared OIDC provider and without federated OIDC provi
 
 The RqP Client is pre-registered as a universal AEMS public client.
 
-In addition to claims_token, pushed claims may also contain metadata such as: recipient_info (email address, fullname), file_info (filename, file size, file digest, mime type).
-
 The diagrams are not vendor neutral; several Keycloak IAM features are used here (realm-management client, query-users and view-users roles) to get claims of any user.
 
 Last but not least, this concept is usable even if your email provider does not support the WebFinger protocol.
