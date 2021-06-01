@@ -1,6 +1,6 @@
 Title UMA communications platform - Bob from Alice (pull data)
 
-actor "Alice (RO)\nalice@gmail.com, alice@foo.com" as Alice #lightpink
+actor "Alice (RO)\nalice@gmail.com or alice@foo.com" as Alice #lightpink
 participant "UMA Server\nfoo.com" as asServer #lightpink
 participant "Resource Server (RS)\nfoo.com" as rsServer #lightpink
 participant "RqP Client\nbar.com" as rqpClient #lightsteelblue
@@ -8,7 +8,7 @@ participant "Claims Provider (CP)\nbar.com" as claimsProvider #lightsteelblue
 participant "SMTP Server\noutlook.com" as smtpServer #00a2ed
 participant "IMAP Server\noutlook.com" as imapServer #00a2ed
 participant "IAM Server\nbar.com" as authServer #lightsteelblue
-actor "Bob (RqP)\nbob@outlook.com, bob@bar.com" as Bob #lightsteelblue
+actor "Bob (RqP)\nbob@outlook.com or bob@bar.com" as Bob #lightsteelblue
 
 bottomparticipants
 

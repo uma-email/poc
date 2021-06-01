@@ -1,6 +1,6 @@
 Title UMA communications platform - Alice to Bob (push data)
 
-actor "Alice (RqP)\nalice@gmail.com, alice@foo.com" as Alice #lightpink
+actor "Alice (RqP)\nalice@gmail.com or alice@foo.com" as Alice #lightpink
 participant "IAM Server\nfoo.com" as authServer #lightpink
 participant "IMAP Server\ngmail.com" as imapServer #de5246
 participant "SMTP Server\ngmail.com" as smtpServer #de5246
@@ -8,7 +8,7 @@ participant "Claims Provider (CP)\nfoo.com" as claimsProvider #lightpink
 participant "RqP Client\nfoo.com" as rqpClient #lightpink
 participant "Resource Server (RS)\nbar.com" as rsServer #lightsteelblue
 participant "UMA Server\nbar.com" as asServer #lightsteelblue
-actor "Bob (RO)\nbob@outlook.com, bob@bar.com" as Bob #lightsteelblue
+actor "Bob (RO)\nbob@outlook.com or bob@bar.com" as Bob #lightsteelblue
 
 bottomparticipants
 
