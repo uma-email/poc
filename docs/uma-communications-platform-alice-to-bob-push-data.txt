@@ -17,7 +17,7 @@ note over Alice:If Alice uses an email provider (gmail) that does not support\nt
 end
 note over claimsProvider:Claims Provider:\n• publishes its metadata on a URL https://foo.com/.well-known/claims-provider-configuration\n• is registered at Alice's IAM Server and is assigned 'query-users', 'view-users' admin roles, thus can query and view any user to get their claims\n• can send email messages from address challenge@foo.com and retrieve from response@foo.com
 note over rqpClient:RqP Client:\n• is registered at foo.com IAM Server and pre-registered as a universal AEMS public client at bar.com UMA Server\n• is an agent that can act on behalf of any user registered at foo.com IAM Server
-note over rsServer:bar.com Admin has set up the Resource Server and registers it's resource set\n'Incoming' and 'Outgoing' with the bar.com UMA Server with the associated scopes\n'Outgoing': query, view; 'Incoming': create
+note over rsServer:bar.com admin has set up the Resource Server and registers it's resource\n'Incoming' at the bar.com UMA Server with the associated scope 'create'
 Alice->rqpClient:Initiate request
 rqpClient->rsServer:1. Request Bob's 'Incoming' resource\n(scope=create)
 rqpClient<-rsServer:2. 401 with permission ticket
