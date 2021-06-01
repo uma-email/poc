@@ -30,7 +30,7 @@ In addition to claims_token, pushed claims may also contain metadata such as: re
 
 The diagrams are not vendor neutral; several Keycloak IAM features are used here (realm-management client, query-users and view-users roles) to get claims of any user.
 
-Last but not least, this concept is usable even if your email provider does not support the webfinger protocol.
+Last but not least, this concept is usable even if your email provider does not support the WebFinger protocol.
 
 ### Push data
 
