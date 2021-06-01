@@ -12,8 +12,8 @@ actor "Bob (RO)\nbob@outlook.com, bob@bar.com" as Bob #lightsteelblue
 
 bottomparticipants
 
-opt Alice has to demonstrate control of her mailbox
-note over Alice:If Alice uses an email provider (gmail) that does not support\nthe WebFinger protocol, she must set up her mailbox to automatically\nforward emails sent from challenge@foo.com to response@foo.com
+opt Alice has to demonstrate control of her email address
+note over Alice:If Alice uses an email provider (gmail) that does not support\nthe WebFinger protocol, she must set up her email address to automatically\nforward emails sent from challenge@foo.com to response@foo.com
 end
 note over claimsProvider:Claims Provider:\n• publishes its metadata on a URL https://foo.com/.well-known/claims-provider-configuration\n• is registered at Alice's IAM Server and is assigned 'query-users', 'view-users' admin roles, thus can query and view any user to get their claims\n• can send email messages from address challenge@foo.com and retrieve from response@foo.com
 note over rqpClient:RqP Client:\n• is registered at foo.com IAM Server and pre-registered as a universal AEMS public client at bar.com UMA Server\n• is an agent that can act on behalf of any user registered at foo.com IAM Server
@@ -31,7 +31,7 @@ authServer->claimsProvider:7. Return access_token "audience":["realm-management"
 authServer<-claimsProvider:8. Query/View Alice's user_claims\n(access_token "audience":["realm-management"], Alice's email_address)
 authServer->claimsProvider:9. Return Alice's user_claims
 
-opt Alice has to demonstrate control of her mailbox
+opt Alice has to demonstrate control of her email address
 smtpServer<-claimsProvider:10. Send plain_message from challenge@foo.com to alice@gmail.com\n(claims_provider_configuration_url, ticket_challenge)
 imapServer->claimsProvider:11. Retrieve dkim_signed_message sent from alice@gmail.com to response@foo.com\n(claims_provider_configuration_url, ticket_challenge)
 end
@@ -41,7 +41,7 @@ note over asServer:In addition to claims_token, pushed claims may also contain m
 group Authorization process
 alt Domain part of email_address or WebFinger is used to locate Claims Provider configuration url
 note over asServer:1. extract user_claims from claims_token\n2. select email_address claim\n3. bootstrap discovery of Claims Provider config url from email address via WebFinger;\nif this doesn't work, build well-known url using domain part of email_address\n4. verify claims_token signature \n5. extract ticket_challenge claim from claims_token\n6. compare ticket_challenge vs. Base64URL-Encode(SHA256(ticket))\n7. evaluate user_claims\n8. evaluate other optional claims e.g. recipient_info, file_info
-else Alice has to demonstrate control of her mailbox
+else Alice has to demonstrate control of her email address
 note over asServer:1. extract dkim_signed _message from claims_token\n2. verify DKIM signature of dkim_signed _message\n3. extract 'From:' part of dkim_signed_message e.g. Alice Henderson <alice@gmail.com>\n4. extract claims_provider_configuration_url and ticket_challenge from dkim_signed_message\n5. verify claims_token signature\n6. compare ticket_challenge vs. Base64URL-Encode(SHA256(ticket))\n7. extract user_claims from claims_token\n8. evaluate user_claims\n9. evaluate other optional claims e.g. recipient_info, file_info
 end
 end
