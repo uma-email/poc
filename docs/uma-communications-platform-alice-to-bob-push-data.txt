@@ -25,7 +25,7 @@ authServer<-rqpClient:3. Get access_token\n(grant_type=client_credentials, scope
 authServer->rqpClient:4. Return access_token "audience":["claims-provider"]
 note over rqpClient:• ticket_challenge = Base64URL-Encode(SHA256(ticket))\n• the email_address is specified by RqP Client
 claimsProvider<-rqpClient:5. Get claims_token\n(access_token "audience":["claims-provider"], Alice's email_address, ticket_challenge)
-authServer<-claimsProvider:6. Get access_token\n(grant_type=client_credentials, role=query-users, view-users)
+authServer<-claimsProvider:6. Get access_token\n(grant_type=client_credentials, scope=realm-management, role=query-users, view-users)
 authServer->claimsProvider:7. Return access_token "audience":["realm-management"]
 
 authServer<-claimsProvider:8. Query/View Alice's user_claims\n(access_token "audience":["realm-management"], Alice's email_address)
