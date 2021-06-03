@@ -24,7 +24,7 @@ To transfer data from sender to recipient, AEMS uses a push/pull mechanism and t
 
 This concept works without shared OIDC provider and without federated OIDC providers. There is no need to have a trust relationship (contract) between security domains foo.com and bar.com. This concept uses an UMA-compliant challenge–response mechanism with the permission ticket.
 
-The RqP Client is pre-registered as a universal AEMS public client.
+The RqP Client is pre-registered as a universal AEMS public client at the UMA server for open communications systems or is registered as a confidential client for closed communications systems.
 
 The diagrams are not vendor neutral; several Keycloak IAM features are used here (realm-management client, query-users and view-users roles) to get claims of any user.
 
