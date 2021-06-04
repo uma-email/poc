@@ -20,11 +20,11 @@ The diagrams are not vendor neutral; several Keycloak IAM features are used here
 
 ### Push data
 
-![Sequence Diagram - push data](./images/uma-compliant-communications-platform-alice-to-bob-push-data.png)
+![Sequence Diagram - push data](./images/uma-compliant-communications-platform-alice-to-bob-push-data-alice-not-involved.png)
 
 ### Pull data
 
-![Sequence Diagram - pull data](./images/uma-compliant-communications-platform-bob-from-alice-pull-data.png)
+![Sequence Diagram - pull data](./images/uma-compliant-communications-platform-bob-from-alice-pull-data-bob-not-involved.png)
 
 ## Demo and Documentation
 

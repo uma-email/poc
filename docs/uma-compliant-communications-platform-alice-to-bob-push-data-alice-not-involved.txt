@@ -1,4 +1,4 @@
-Title UMA-compliant communications platform - Alice to Bob (push data)
+Title UMA-compliant communications platform - Alice to Bob (push data) - Alice not involved
 
 actor "Alice (RqP)\nalice@foo.com" as Alice #lightpink
 participant "IAM Server\nfoo.com" as authServer #lightpink
@@ -13,7 +13,7 @@ bottomparticipants
 note over claimsProvider:Claims Provider:\n• publishes its metadata on a URL https://foo.com/.well-known/claims-provider-configuration\n• is registered at Alice's IAM Server and is assigned 'query-users', 'view-users' admin roles, thus can query and view any user to get their claims
 note over rqpClient:RqP Client:\n• is registered at foo.com IAM Server and pre-registered as a universal AEMS public client at bar.com UMA Server\n• is an agent that can act on behalf of any user registered at foo.com IAM Server
 note over rsServer:bar.com admin has set up the Resource Server and registers it's resource\n'Incoming' at the bar.com UMA Server with the associated scope 'create'
-Alice->rqpClient:Initiate request
+Alice-->rqpClient:Initiate the request asynchronously via the message queue
 rqpClient->rsServer:1. Request Bob's 'Incoming' resource\n(scope=create)
 rqpClient<-rsServer:2. 401 with permission ticket
 authServer<-rqpClient:3. Get access_token\n(grant_type=client_credentials, scope=claims-provider)
