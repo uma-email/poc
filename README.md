@@ -6,21 +6,11 @@ A prototype implementation of the [authorization-enhanced-mail-system][1] draft 
 
 ![GUI](./images/gui.png)
 
-## Schematic Flows
-
-### Push email links
-
-![Schematic Flow - push data](./images/schematic-flow-push.png)
-
-### Pull email data
-
-![Schematic Flow - pull data](./images/schematic-flow-pull.png)
-
-# UMA communications platform
+# UMA-compliant communications platform
 
 ## Sequence diagrams
 
-To transfer data from sender to recipient, AEMS uses a push/pull mechanism and the UMA wide ecosystem (AEMS ⊃ UMA communications platform ⊃ UMA wide ecosystem).
+To transfer data from sender to recipient, AEMS uses a push/pull mechanism and the UMA wide ecosystem (AEMS ⊃ UMA-compliant communications platform ⊃ UMA wide ecosystem).
 
 This concept works without shared OIDC provider and without federated OIDC providers. There is no need to have a trust relationship (contract) between security domains foo.com and bar.com. This concept uses an UMA-compliant challenge–response mechanism with the permission ticket.
 
@@ -28,15 +18,13 @@ The RqP Client is pre-registered as a universal AEMS public client at the UMA se
 
 The diagrams are not vendor neutral; several Keycloak IAM features are used here (realm-management client, query-users and view-users roles) to get claims of any user.
 
-Last but not least, this concept is usable even if your email provider does not support the WebFinger protocol.
-
 ### Push data
 
-![Sequence Diagram - push data](./images/uma-communications-platform-alice-to-bob-push-data.png)
+![Sequence Diagram - push data](./images/uma-compliant-communications-platform-alice-to-bob-push-data.png)
 
 ### Pull data
 
-![Sequence Diagram - pull data](./images/uma-communications-platform-bob-from-alice-pull-data.png)
+![Sequence Diagram - pull data](./images/uma-compliant-communications-platform-bob-from-alice-pull-data.png)
 
 ## Demo and Documentation
 

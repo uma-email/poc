@@ -1,0 +1,37 @@
+Title UMA-compliant communications platform - Bob from Alice (pull data)
+
+actor "Alice (RO)\nalice@foo.com" as Alice #lightpink
+participant "UMA Server\nfoo.com" as asServer #lightpink
+participant "Resource Server (RS)\nfoo.com" as rsServer #lightpink
+participant "RqP Client\nbar.com" as rqpClient #lightsteelblue
+participant "Claims Provider (CP)\nbar.com" as claimsProvider #lightsteelblue
+participant "IAM Server\nbar.com" as authServer #lightsteelblue
+actor "Bob (RqP)\nbob@bar.com" as Bob #lightsteelblue
+
+bottomparticipants
+
+note over claimsProvider:Claims Provider:\n• publishes its metadata on a URL https://bar.com/.well-known/claims-provider-configuration\n• is registered at Bob's IAM Server and is assigned 'query-users', 'view-users' admin roles, thus can query and view any user to get their claims
+note over rqpClient:RqP Client:\n• is registered at bar.com IAM Server and pre-registered as a universal AEMS public client at foo.com UMA Server\n• is an agent that can act on behalf of any user registered at bar.com IAM Server
+note over rsServer:foo.com admin has set up the Resource Server and registers it's resource\n'Outgoing' at the foo.com UMA Server with the associated scopes 'query', 'view'
+rqpClient<-Bob:Initiate request
+rsServer<-rqpClient:1. Request Alice's 'Outgoing' resource\n(scope=query, view)
+rsServer->rqpClient:2. 401 with permission ticket
+rqpClient->authServer:3. b) Get access_token\n(grant_type=client_credentials, scope=claims-provider)
+rqpClient<-authServer:4. Return access_token "audience":["claims-provider"]
+note over rqpClient:• ticket_challenge = Base64URL-Encode(SHA256(ticket))\n• the email_address is specified by RqP Client
+claimsProvider<-rqpClient:5. Get claims_token\n(access_token "audience":["claims-provider"], Bob's email_address, ticket_challenge)
+claimsProvider->authServer:6. Get access_token\n(grant_type=client_credentials, scope=realm-management, role=query-users, view-users)
+claimsProvider<-authServer:7. Return access_token "audience":["realm-management"]
+
+authServer<-claimsProvider:8. Query/View Bob's user_claims\n(access_token "audience":["realm-management"], Bob's email_address)
+authServer->claimsProvider:9. Return Bob's user_claims
+
+rqpClient<-claimsProvider:12. Return claims_token\n(Bob's user_claims)\nif the payload is large, consider using PCT (see UMA specs. for details)
+rqpClient->asServer:13. Call token endpoint\n(ticket, pushed_claims=claims_token)
+note over asServer:In addition to claims_token, pushed claims may also contain metadata such as:\n• recipient_info (email address, fullname)\n• file_info (filename, file size, file digest, mime type)
+group Authorization process
+note over asServer:1. extract user_claims from claims_token\n2. select email_address claim\n3. bootstrap discovery of Claims Provider config url from email address via WebFinger;\nif this doesn't work, build well-known url using domain part of email_address\n4. verify claims_token signature \n5. extract ticket_challenge claim from claims_token\n6. compare ticket_challenge vs. Base64URL-Encode(SHA256(ticket))\n7. evaluate user_claims\n8. evaluate other optional claims e.g. recipient_info, file_info
+end
+rqpClient<-asServer:14. Return RPT
+rsServer<-rqpClient:15. Get data from Alice's 'Outgoing' resource\n(RPT)
+rsServer->rqpClient:16. 200 OK
