@@ -1,12 +1,12 @@
 Title UMA-compliant communications platform - Alice to Bob (push data) - Alice not involved
 
-actor "Alice (RqP)\nalice@foo.com" as Alice #lightpink
+actor "Alice (RqP)\nsender\nalice@foo.com" as Alice #lightpink
 participant "IAM Server\nfoo.com" as authServer #lightpink
 participant "Claims Provider (CP)\nfoo.com" as claimsProvider #lightpink
 participant "RqP Client\nfoo.com" as rqpClient #lightpink
 participant "Resource Server (RS)\nbar.com" as rsServer #lightsteelblue
 participant "UMA Server\nbar.com" as asServer #lightsteelblue
-actor "Bob (RO)\nbob@bar.com" as Bob #lightsteelblue
+actor "Bob (RO)\nrecipient\nbob@bar.com" as Bob #lightsteelblue
 
 bottomparticipants
 

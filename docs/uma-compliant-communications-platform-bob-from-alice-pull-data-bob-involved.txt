@@ -1,12 +1,12 @@
 Title UMA-compliant communications platform - Bob from Alice (pull data) - Bob involved
 
-actor "Alice (RO)\nalice@foo.com" as Alice #lightpink
+actor "Alice (RO)\nsender\nalice@foo.com" as Alice #lightpink
 participant "UMA Server\nfoo.com" as asServer #lightpink
 participant "Resource Server (RS)\nfoo.com" as rsServer #lightpink
 participant "RqP Client\nbar.com" as rqpClient #lightsteelblue
 participant "Claims Provider (CP)\nbar.com" as claimsProvider #lightsteelblue
 participant "IAM Server\nbar.com" as authServer #lightsteelblue
-actor "Bob (RqP)\nbob@bar.com" as Bob #lightsteelblue
+actor "Bob (RqP)\nrecipient\nbob@bar.com" as Bob #lightsteelblue
 
 bottomparticipants
 
