@@ -6,13 +6,13 @@ A prototype implementation of the [authorization-enhanced-mail-system][1] draft 
 
 ![GUI](./images/gui.png)
 
-# Decentralized Authorization Network
+# Decentralized Identity-Based Access Control
 
 ## Sequence diagrams
 
-To transfer data from sender to recipient, AEMS uses the Decentralized Authorization Network (DAN) technology that is built around the UMA 2.0 protocol standard (AEMS ⊃ DAN ⊃ UMA 2.0).
+To transfer data from sender to recipient, AEMS uses the Decentralized Identity-Based Access Control (DIBAC) technology that is built around the UMA 2.0 protocol standard (AEMS ⊃ DIBAC ⊃ UMA 2.0).
 
-DAN works without shared OIDC provider and without federated OIDC providers. There is no need to have a trust relationship (contract) between security domains foo.com and bar.com. This concept uses the UMA-compliant challenge–response mechanism with the permission ticket.
+DIBAC works without central OIDC provider as well as without federated OIDC providers. There is no need to have a trust relationship (contract) between security domains foo.com and bar.com. This concept uses the UMA-compliant challenge–response mechanism with the permission ticket.
 
 The RqP Client is pre-registered as a universal AEMS public client at the UMA server (an open network) or is registered as a confidential client (a closed network).
 
