@@ -1,6 +1,6 @@
 # Authorization-Enhanced Mail System
 
-A prototype implementation of the [Authorization-Enhanced Mail System][1] (AEMS) draft proposal, working as a proof of concept.
+A prototype implementation of the [Authorization-Enhanced Mail System (AEMS)][1] draft proposal, working as a proof of concept.
 
 ## Screenshot
 
@@ -8,7 +8,7 @@ A prototype implementation of the [Authorization-Enhanced Mail System][1] (AEMS)
 
 # Decentralized Identity-Based Access Control
 
-To transfer data from sender to recipient, AEMS uses the [Decentralized Identity-Based Access Control][2] (DIBAC) technology that is built around the UMA 2.0 protocol standard (AEMS ⊃ DIBAC ⊃ UMA 2.0).
+To transfer data from sender to recipient, AEMS uses the [Decentralized Identity-Based Access Control (DIBAC)][2] technology that is built around the UMA 2.0 protocol standard (AEMS ⊃ DIBAC ⊃ UMA 2.0).
 
 DIBAC works without central shared OIDC provider as well as without federated OIDC providers. There is no need to build a trust relationship between security domains. This concept uses the UMA-compliant challenge–response mechanism with the permission ticket.
 
