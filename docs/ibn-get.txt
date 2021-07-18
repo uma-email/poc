@@ -8,13 +8,13 @@ bottomparticipants
 note over authServer:OIDC Provider:\n• publishes its metadata on a URL https://bar.com/.well-known/oidc-configuration
 note over rqpClient:RqP Client:\n• is pre-registered at bar.com OIDC Server and foo.com UMA Server as a universal public client
 note over rsServer:foo.com admin has set up the RS and registers it's 'RS API' resource\nat the foo.com UMA Server with the associated scope 'get'
-rsServer<-rqpClient:1. Request to 'RS API' resource\n(scope=get)
+rsServer<-rqpClient:1. Request to 'RS API' resource\n    (scope=get)
 rsServer->rqpClient:2. 401 with permission ticket
 rqpClient->rqpClient:3. ticket_challenge = Base64URL-Encode(SHA256(ticket))
-authServer<-rqpClient:4. Authorization code request
+authServer<-rqpClient:4. Authorization code request\n    (response_type=code, scope=openid, client_id=universal-app)
 authServer->authServer:5. Authenticate
-authServer->rqpClient:6. Return authorization_code
-rqpClient->authServer:7. Get id_token\n(authorization_code, ticket_challenge, client_id=universal-app)
+authServer->rqpClient:6. Return authorization code\n    (code)
+rqpClient->authServer:7. Get id_token\n    (grant_type=authorization_code, code, ticket_challenge, client_id=universal-app)
 rqpClient<-authServer:8. Return id_token (user_claims + ticket_challenge, "audience":["universal-app"])\n    if the payload is large, consider using PCT (see UMA specs. for details)
 
 rqpClient->asServer:9. Call token endpoint\n(ticket, pushed_claims=id_token "audience":["universal-app"])
