@@ -1,0 +1,26 @@
+participant "OIDC Server\nbar.com" as authServer
+participant "RqP Client\nfoo.com or bar.com" as rqpClient
+participant "Resource Server (RS)\nfoo.com" as rsServer
+participant "OAuth2 Server\nfoo.com" as asServer
+
+bottomparticipants
+
+note over authServer:OIDC Provider:\n• publishes its metadata on a URL https://bar.com/.well-known/oidc-configuration
+note over rqpClient:RqP Client:\n• is pre-registered at bar.com OIDC Server and foo.com OAuth2 Server as a universal public client
+note over rsServer:foo.com admin has set up the RS and registers it's 'RS API' resource\nat the foo.com OAuth2 Server with the associated scope 'get'
+rqpClient->rqpClient:1. Generate ticket\n    ( ticket)
+rqpClient->rqpClient:2. Create ticket challenge\n    ticket_challenge = Base64URL-Encode(SHA256(ticket))
+authServer<-rqpClient:3. Authorization code request\n    (response_type=code, scope=openid, client_id=universal-app)
+authServer->authServer:4. Authenticate
+authServer->rqpClient:5. Return authorization code\n    (code)
+rqpClient->authServer:6. Get id_token\n    (grant_type=authorization_code, code, ticket_challenge, client_id=universal-app)
+rqpClient<-authServer:7. Return id_token (user_claims + ticket_challenge, "audience":["universal-app"])
+
+rqpClient->asServer:8. Call token endpoint\n(ticket, pushed_claims=id_token "audience":["universal-app"], client_id=universal-app)
+note over asServer:In addition to id_token, pushed claims may also contain metadata such as:\n• requester_info (email address, fullname)\n• file_info (filename, file size, file digest, mime type)
+group Authorization process
+note over asServer:1. extract user_claims from id_token\n2. select email_address claim\n3. bootstrap discovery of OIDC Provider config url from email address via WebFinger;\n    if this doesn't work, build well-known url using domain part of email_address\n4. verify id_token signature\n5. check audience=universal-app\n6. extract ticket_challenge claim from id_token\n7. compare ticket_challenge vs. Base64URL-Encode(SHA256(ticket))\n8. evaluate user_claims\n9. evaluate other optional claims e.g. recipient_info, file_info
+end
+rqpClient<-asServer:9. Return access token\n    (AT, "audience":["universal-app"])
+rsServer<-rqpClient:10. Get data from foo.com 'RS API' resource\n      (AT, "audience":["universal-app"])
+rsServer->rqpClient:11. 200 OK
