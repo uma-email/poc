@@ -6,18 +6,18 @@ participant "OAuth2 Server\nfoo.com" as asServer
 bottomparticipants
 
 note over stsServer:STS is part of bar.com OIDC provider:\n• publishes its metadata on a URL https://bar.com/.well-known/openid-configuration
-note over rqpClient:RqP Client:\n• a user is authenticated at bar.com IAM, RqP Client has an access token\n• is pre-registered at foo.com OAuth2 Server as a universal public client
+note over rqpClient:RqP Client:\n• a user is authenticated at bar.com IAM, RqP Client has an access token\n• is registered at foo.com UMA Server as a public or confidential client
 note over rsServer:foo.com admin has set up the RS and registers it's 'RS API' resource\nat the foo.com OAuth2 Server with the associated scope 'get'
 rqpClient->rqpClient:1. Generate ticket\n    ( ticket = GenerateRandomString())
 rqpClient->rqpClient:2. Create ticket challenge\n    ticket_challenge = Base64URL-Encode(SHA256(ticket))
 stsServer<-rqpClient:3. Token exchange request\n    (grant_type=token-exchange, resource="RS API", ticket_challenge,\n      subject_token=access_token, subject_token_type=jwt)
 rqpClient<-stsServer:4. Return claims_token (user_claims + ticket_challenge, "aud":["RS API"])
 
-rqpClient->asServer:5. Call token endpoint\n    (ticket, pushed_claims=claims_token "aud":["RS API"], client_id=universal-app)
+rqpClient->asServer:5. Call token endpoint\n    (ticket, pushed_claims=claims_token "aud":["RS API"])
 note over asServer:In addition to claims_token, pushed claims may also contain metadata such as:\n• requester_info (email address, fullname)\n• file_info (filename, file size, file digest, mime type)
 group Authorization process
 note over asServer:1. extract user_claims from claims_token\n2. select email_address claim\n3. bootstrap discovery of OIDC provider config url from email address via WebFinger;\n    if this doesn't work, build well-known url using domain part of email_address\n4. verify claims_token signature\n5. check audience="RS API"\n6. extract ticket_challenge claim from claims_token\n7. compare ticket_challenge vs. Base64URL-Encode(SHA256(ticket))\n8. evaluate user_claims\n9. evaluate other optional claims e.g. recipient_info, file_info
 end
-rqpClient<-asServer:6. Return access token\n    (AT, "aud":["universal-app"])
-rsServer<-rqpClient:7. Get data from foo.com 'RS API' resource\n    (AT, "aud":["universal-app"])
+rqpClient<-asServer:6. Return access token\n    (AT)
+rsServer<-rqpClient:7. Get data from foo.com 'RS API' resource\n    (AT)
 rsServer->rqpClient:8. 200 OK
