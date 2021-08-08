@@ -1,25 +1,26 @@
-participant "Security Token Service (STS)" as stsServerA
+participant "Security Token Service 1 (STS1)" as stsServer1
 participant "RqP Client" as rqpClient
 participant "Resource Server (RS)" as rsServer
-participant "Security Token Service (STS)" as stsServerB
+participant "Security Token Service 2 (STS2)" as stsServer2
 
 bottomparticipants
 
-note over stsServerA:STS is part of OIDC provider:\n• publishes its metadata on a URL .well-known/openid-configuration
-note over rqpClient:RqP Client:\n• a user is authenticated at OIDC provider, RqP Client has an access token\n• is registered at UMA Server as a public or confidential client
+note over stsServer1:STS1 is part of OIDC Server:\n• publishes its metadata on a URL .well-known/openid-configuration
+note over stsServer2:STS2 is part of OAuth2 Server
+note over rqpClient:RqP Client:\n• a user is authenticated at OIDC Server, RqP Client has an access token\n• is registered at OAuth2 Server as a public or confidential client
 note over rsServer:admin has set up the RS and registers it's 'RS API' resource\nat the OAuth2 Server with the associated scope 'get'
 rqpClient->rqpClient:1. Generate ticket\n    ( ticket = GenerateRandomString())
 rqpClient->rqpClient:2. Create ticket challenge\n    ticket_challenge = Base64URL-Encode(SHA256(ticket))
-stsServerA<-rqpClient:3. Token exchange request\n    (grant_type=token-exchange, resource="RS API", ticket_challenge,\n      subject_token=access_token,\n      subject_token_type=urn:ietf:params:oauth:token-type:access_token\n      requested_token_type=urn:ietf:params:oauth:token-type:jwt)
+stsServer1<-rqpClient:3. Token exchange request\n    (grant_type=token-exchange, resource="RS API", ticket_challenge,\n      subject_token=access_token,\n      subject_token_type=urn:ietf:params:oauth:token-type:access_token\n      requested_token_type=urn:ietf:params:oauth:token-type:jwt)
 group Authorization process
-note over stsServerA:1. evaluate the user_claims from access_token\n2. evaluate the resource
+note over stsServer1:1. evaluate the user_claims from access_token\n2. evaluate the resource
 end
-rqpClient<-stsServerA:4. Return claims_token (user_claims + ticket_challenge, "aud":["RS API"])
+rqpClient<-stsServer1:4. Return claims_token (user_claims + ticket_challenge, "aud":["RS API"])
 
-rqpClient->stsServerB:5. Token exchange request\n    (grant_type=token-exchange, resource="RS API", ticket,\n      subject_token=claims_token,\n      subject_token_type=urn:ietf:params:oauth:token-type:jwt\n      requested_token_type=urn:ietf:params:oauth:token-type:access_token)
+rqpClient->stsServer2:5. Token exchange request\n    (grant_type=token-exchange, resource="RS API", ticket,\n      subject_token=claims_token,\n      subject_token_type=urn:ietf:params:oauth:token-type:jwt\n      requested_token_type=urn:ietf:params:oauth:token-type:access_token)
 group Authorization process
-note over stsServerB:1. extract user_claims from claims_token\n2. select email_address claim\n3. bootstrap discovery of OIDC provider config url from email address via WebFinger;\n    if this doesn't work, build well-known url using domain part of email_address\n4. verify claims_token signature\n5. check audience="RS API"\n6. extract ticket_challenge claim from claims_token\n7. compare ticket_challenge vs. Base64URL-Encode(SHA256(ticket))\n8. evaluate user_claims
+note over stsServer2:1. extract user_claims from claims_token\n2. select email_address claim\n3. bootstrap discovery of OIDC Server config url from email address via WebFinger;\n    if this doesn't work, build well-known url using domain part of email_address\n4. verify claims_token signature\n5. check audience="RS API"\n6. extract ticket_challenge claim from claims_token\n7. compare ticket_challenge vs. Base64URL-Encode(SHA256(ticket))\n8. evaluate user_claims
 end
-rqpClient<-stsServerB:6. Return access token\n    (AT)
+rqpClient<-stsServer2:6. Return access token\n    (AT)
 rsServer<-rqpClient:7. Get data from 'RS API' resource\n    (AT)
 rsServer->rqpClient:8. 200 OK
