@@ -8,7 +8,7 @@ bottomparticipants
 note over stsServer:STS is part of OIDC provider:\n• publishes its metadata on a URL .well-known/openid-configuration
 note over rqpClient:RqP Client:\n• a user is authenticated at OIDC provider, RqP Client has an access token\n• is registered at UMA Server as a public or confidential client
 note over rsServer:admin has set up the RS and registers it's 'RS API' resource\nat the UMA Server
-rsServer<-rqpClient:1. Request to 'RS API' resource\n    (scope=get)
+rsServer<-rqpClient:1. Request to 'RS API' resource
 rsServer->rqpClient:2. 401 with permission ticket
 rqpClient->rqpClient:3. Create ticket challenge\n    ticket_challenge = Base64URL-Encode(SHA256(ticket))
 stsServer<-rqpClient:4. Token exchange request\n    (grant_type=token-exchange, resource="RS API", ticket_challenge,\n      subject_token=access_token,\n      subject_token_type=urn:ietf:params:oauth:token-type:access_token\n      requested_token_type=urn:ietf:params:oauth:token-type:jwt)
