@@ -8,7 +8,7 @@ bottomparticipants
 note over stsServer1:STS1 is part of OIDC Server:\n• publishes its metadata on a URL .well-known/openid-configuration
 note over stsServer2:STS2 is part of OAuth2 Server
 note over rqpClient:RqP Client:\n• a user is authenticated at OIDC Server, RqP Client has an access token\n• is registered at OAuth2 Server as a public or confidential client
-note over rsServer:admin has set up the RS and registers it's 'RS API' resource\nat the OAuth2 Server with the associated scope 'get'
+note over rsServer:admin has set up the RS and registers it's 'RS API' resource\nat the OAuth2 Server
 rqpClient->rqpClient:1. Generate ticket\n    ( ticket = GenerateRandomString())
 rqpClient->rqpClient:2. Create ticket challenge\n    ticket_challenge = Base64URL-Encode(SHA256(ticket))
 stsServer1<-rqpClient:3. Token exchange request\n    (grant_type=token-exchange, resource="RS API", ticket_challenge,\n      subject_token=access_token,\n      subject_token_type=urn:ietf:params:oauth:token-type:access_token\n      requested_token_type=urn:ietf:params:oauth:token-type:jwt)
