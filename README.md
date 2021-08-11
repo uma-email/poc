@@ -6,35 +6,31 @@ A prototype implementation of the [Authorization-Enhanced Mail System (AEMS)][1]
 
 ![GUI](./images/gui.png)
 
-# Decentralized Identity-Based Access Control
+# Correlated Authorization
 
-To transfer data from sender to recipient, AEMS uses the [Decentralized Identity-Based Access Control (DIBAC)][2] technology that is built around the UMA 2.0 protocol standard (AEMS ⊃ DIBAC ⊃ UMA 2.0).
+To transfer data from sender to recipient, AEMS uses the [Correlated Authorization][2] technology that was designed with the [User-Managed Access (UMA)][3] vision in mind.
 
-DIBAC works without central shared OIDC provider as well as without federated OIDC providers. There is no need to build a trust relationship between security domains. This concept uses the UMA-compliant challenge–response mechanism with the permission ticket.
-
-The RqP Client is pre-registered as a universal AEMS public client at the UMA server (an open network) or is registered as a confidential client (a closed network).
-
-The diagrams are not vendor neutral; several Keycloak IAM features are used here (realm-management client, query-users and view-users roles) to get claims of any user.
+Correlated Authorization is a Double Cross-Domain Authorization mechanism that works without shared central OIDC provider as well as without federated OIDC providers. This concept uses the permission ticket as a correlation handler between two authorization processes.
 
 ## Sequence diagrams
 
-### Push data
+### UMA-compliant
 
-![Sequence Diagram - push data](./images/uma-compliant-communications-platform-alice-to-bob-push-data-alice-not-involved.png)
+![Sequence Diagram - uma-compliant](./images/correlated-authz-uma.png)
 
-### Pull data
+### Generic
 
-![Sequence Diagram - pull data](./images/uma-compliant-communications-platform-bob-from-alice-pull-data-bob-not-involved.png)
+![Sequence Diagram - generic](./images/correlated-authz-generic.png)
 
 ## Demo and Documentation
 
-WIP, early stage [umabox.org][3].
+WIP, early stage [umabox.org][4].
 
 ## Acknowledgment
 
-Credits go to [WG - User Managed Access][4].
+Credits go to [WG - User Managed Access][3].
 
 [1]: https://github.com/uma-email/proposal
-[2]: https://github.com/dibac/proposal
-[3]: https://www.umabox.org
-[4]: https://kantarainitiative.org/confluence/display/uma/Home
+[2]: https://github.com/uma-email/proposal
+[3]: https://kantarainitiative.org/confluence/display/uma/Home
+[4]: https://www.umabox.org
