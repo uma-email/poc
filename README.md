@@ -41,6 +41,6 @@ WIP, early stage [umabox.org][4].
 Credits go to [WG - User Managed Access][3].
 
 [1]: https://github.com/uma-email/proposal/blob/master/authorization-enhanced-mail-system-draft-02.pdf
-[2]: https://github.com/uma-email/proposal/raw/master/correlated-authorization-draft-00.pdf
+[2]: https://github.com/uma-email/proposal/blob/master/correlated-authorization-draft-00.pdf
 [3]: https://kantarainitiative.org/confluence/display/uma/Home
 [4]: https://www.umabox.org
