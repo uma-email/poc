@@ -8,16 +8,16 @@ bottomparticipants
 note over AS-RqP:AS-RqP:\n• publishes its metadata on a URL /.well-known/oauth-authorization-server
 note over client:Client:\n• is registered at AS-RqP as a public or confidential client\n• is authorized at AS-RqP by a user and has an access_token_with_user_claims\n• is registered at AS-RqP as a public or confidential client
 note over RS:RO registers RS at AS-RO to protect its 'RS API'
-client->AS-RO:1. Get permission ticket /permission ticket = access token/\n    (grant_type = client_credentials,\n     audience = 'RS API',\n     scope='ticket')
-client<-AS-RO:2. Return permission ticket /permission ticket = access token/\n    (ticket)
-client->client:3. Create ticket challenge\n    (ticket_challenge = Base64URL-Encode(SHA256(ticket)))
-AS-RqP<-client:4. Token exchange request\n    (grant_type = token-exchange,\n     resource = "RS API",\n     ticket_challenge = ticket_challenge,\n     subject_token = access_token_with_user_claims,\n     subject_token_type = urn:ietf:params:oauth:token-type:access_token,\n     requested_token_type = urn:ietf:params:oauth:token-type:jwt)
-client<-AS-RqP:5. Return claims token /user claims and ticket challenge/\n    (claims_token)
+client->AS-RO:1. Get permission ticket (permission ticket = access token)\n    {grant_type = client_credentials,\n     audience = 'RS API',\n     scope='ticket'}
+client<-AS-RO:2. Return permission ticket (permission ticket = access token)\n    {ticket}
+client->client:3. Create ticket challenge\n    {ticket_challenge = Base64URL-Encode(SHA256(ticket))}
+AS-RqP<-client:4. Token exchange request\n    {grant_type = token-exchange,\n     resource = "RS API",\n     ticket_challenge = ticket_challenge,\n     subject_token = access_token_with_user_claims,\n     subject_token_type = urn:ietf:params:oauth:token-type:access_token,\n     requested_token_type = urn:ietf:params:oauth:token-type:jwt}
+client<-AS-RqP:5. Return claims token (user claims and ticket challenge)\n    {claims_token}
 
-client->AS-RO:6. Token exchange request\n    (grant_type = token-exchange,\n     resource = "RS API",\n     ticket = ticket,\n     subject_token = claims_token,\n     subject_token_type = urn:ietf:params:oauth:token-type:jwt,\n     requested_token_type = urn:ietf:params:oauth:token-type:access_token)
+client->AS-RO:6. Token exchange request\n    {grant_type = token-exchange,\n     resource = "RS API",\n     ticket = ticket,\n     subject_token = claims_token,\n     subject_token_type = urn:ietf:params:oauth:token-type:jwt,\n     requested_token_type = urn:ietf:params:oauth:token-type:access_token}
 group Authorization assessment
 note over AS-RO:1. verify ticket\n2. extract user_claims from claims_token\n3. select email_address claim\n4. bootstrap discovery of AS-RqP config url from email address via WebFinger;\n    if this doesn't work, build well-known url using domain part of email_address\n5. verify claims_token signature\n6. evaluate resource = "RS API"\n7. extract ticket_challenge claim from claims_token\n8. compare ticket_challenge vs. Base64URL-Encode(SHA256(ticket))\n9. evaluate user_claims
 end
-client<-AS-RO:7. Return access token\n    (access_token)
-RS<-client:8. Get data from 'RS API'\n    (access_token)
+client<-AS-RO:7. Return access token\n    {access_token}
+RS<-client:8. Get data from 'RS API'\n    {access_token}
 RS->client:9. Return protected resource
