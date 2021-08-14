@@ -5,8 +5,9 @@ participant "AuthZ Server – Resource Owner (AS-RO)" as AS-RO
 
 bottomparticipants
 
-note over AS-RqP:AS-RqP:\n• publishes its metadata on a URL /.well-known/oauth-authorization-server
-note over client:Client:\n• is registered at AS-RqP as a public or confidential client\n• is authorized at AS-RqP by a user and has an access_token_with_user_claims\n• is registered at AS-RqP as a public or confidential client
+note over AS-RqP:AS-RqP:\n• supports the token exchange extension of OAuth2\n• publishes its metadata on a URL /.well-known/oauth-authorization-server
+note over AS-RO:AS-RO:\n• supports the token exchange extension of OAuth2
+note over client:Client:\n• is registered at AS-RqP as a public or confidential client\n• is authorized at AS-RqP by a Requesting Party (RP) and has an access_token_with_user_claims\n• is registered at AS-RqP as a public or confidential client
 note over RS:RO registers RS at AS-RO to protect its 'RS API'
 client->AS-RO:1. Get permission ticket (permission ticket = access token)\n    {grant_type = client_credentials,\n     audience = 'RS API',\n     scope='ticket'}
 client<-AS-RO:2. Return permission ticket (permission ticket = access token)\n    {ticket}

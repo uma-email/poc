@@ -5,8 +5,9 @@ participant "AuthZ Server – Resource Owner (AS-RO)" as AS-RO
 
 bottomparticipants
 
-note over AS-RqP:AS-RqP:\n• publishes its metadata on a URL /.well-known/oauth-authorization-server
-note over Client:RqP Client:\n• is registered at AS-RqP as a public or confidential client\n• is authorized at AS-RqP by a user and has an access_token_with_user_claims\n• is registered at AS-RO as a public or confidential client
+note over AS-RqP:AS-RqP:\n• supports the token exchange extension of OAuth2\n• publishes its metadata on a URL /.well-known/oauth-authorization-server
+note over AS-RO:AS-RO:\n• supports the token exchange extension of OAuth2
+note over Client:RqP Client:\n• is registered at AS-RqP as a public or confidential client\n• is authorized at AS-RqP by a Requesting Party (RP) and has an access_token_with_user_claims\n• is registered at AS-RO as a public or confidential client
 note over RS:RO has set up RS and registers its 'RS API' resource at AS-RO
 RS<-Client:1. Request 'RS API' resource with no access token
 RS->Client:2. Return 401 with permission ticket\n    {ticket}
