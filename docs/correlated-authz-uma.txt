@@ -12,13 +12,13 @@ note over RS:RO has set up RS and registers its 'RS API' resource at AS-RO
 RS<-Client:1. Request 'RS API' resource with no access token
 RS->Client:2. Return 401 with permission ticket\n    {ticket}
 Client->Client:3. Create ticket challenge\n    {ticket_challenge = Base64URL-Encode(SHA256(ticket))}
-AS-RqP<-Client:4. Token exchange request\n    {grant_type = token-exchange,\n     resource = "RS API",\n     ticket_challenge = ticket_challenge,\n     subject_token = access_token_with_user_claims,\n     subject_token_type = urn:ietf:params:oauth:token-type:access_token,\n     requested_token_type = urn:ietf:params:oauth:token-type:jwt}
+AS-RqP<-Client:4. Request a claims token (token exchange request)\n    {grant_type = token-exchange,\n     resource = "RS API",\n     ticket_challenge = ticket_challenge,\n     subject_token = access_token_with_user_claims,\n     subject_token_type = urn:ietf:params:oauth:token-type:access_token,\n     requested_token_type = urn:ietf:params:oauth:token-type:jwt}
 Client<-AS-RqP:5. Return claims token (user claims and ticket challenge)\n    {claims_token}
 
-Client->AS-RO:6. Call token endpoint\n    {grant_type = uma-ticket,\n     ticket = ticket,\n     pushed_claims = claims_token}
+Client->AS-RO:6. Request a Requesting Party Token (RPT)\n    {grant_type = uma-ticket,\n     ticket = ticket,\n     pushed_claims = claims_token}
 group Authorization assessment
 note over AS-RO:1. verify ticket\n2. extract user_claims from claims_token\n3. select email_address claim\n4. bootstrap discovery of AS-RqP config url from email address via WebFinger;\n    if this doesn't work, build well-known url using domain part of email_address\n5. verify claims_token signature\n6. evaluate resource = "RS API"\n7. extract ticket_challenge claim from claims_token\n8. compare ticket_challenge vs. Base64URL-Encode(SHA256(ticket))\n9. evaluate user_claims
 end
-Client<-AS-RO:7. Return Requesting Party Token (RPT)\n    {RPT}
+Client<-AS-RO:7. Return (RPT)\n    {RPT}
 RS<-Client:8. Get data from 'RS API' resource\n    {RPT}
 RS->Client:9. Return protected resource

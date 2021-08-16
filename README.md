@@ -12,7 +12,7 @@ To transfer data from sender to recipient, AEMS uses [Correlated Authorization][
 
 Correlated Authorization is a Double Cross-Domain Authorization mechanism that works without shared central OIDC provider as well as without federated OIDC providers.
 
-Both the requesting party and the resource owner use mutually independent authorization servers. This concept uses the permission ticket as a correlation handler between two authorization processes.
+Both the requesting party and the resource owner may use separate instances of the authorization server running on different security domains. This concept uses the permission ticket as a correlation handler between two authorization processes.
 
 ## Sequence diagrams
 
@@ -23,15 +23,22 @@ Both the requesting party and the resource owner use mutually independent author
 Prerequisites:
 
 * Both authorization servers support the token exchange extension of OAuth2 ([RFC 8693][3]).
-* AS-RqP publishes its metadata on a URL /.well-known/oauth-authorization-server.
-* RqP Client is registered at AS-RqP as a public or confidential client and is authorized at AS-RqP by RP and has an access token with user claims.
-* RqP Client is registered at AS-RO as a public or confidential client.
-* RO has set up RS and registers its 'RS API' resource at AS-RO according to the [UMA Federated Authorization][4] specification.
+* The AS-RqP publishes its metadata on a URL /.well-known/oauth-authorization-server.
+* The RqP Client is registered at the AS-RqP as a public or confidential client and is authorized at the AS-RqP by a RP and has an access token with user claims.
+* The RqP Client is registered at the AS-RO as a public or confidential client.
+* The RO has set up the RS and registers its 'RS API' resource at the AS-RO according to the [UMA Federated Authorization][4] specification.
 
 Steps:
 
-1. ...
-2. ...
+1. The RqP directs the RqP Client to access the 'RS API' resource with no access token.
+2. Without an access token, the RS will return HTTP code 401 (Unauthorized) with a permission ticket.
+3. The RqP Client creates a ticket challenge derived from the permission ticket using the following transformation ticket_challenge = Base64URL-Encode(SHA256(ticket)).
+4. At the AS-RqP the RqP Client requests a claims token by presenting the access token with user claims and the created ticket challenge.
+5. The AS-RqP returns the claims token.
+6. At the AS-RO the RqP Client requests an RPT by presenting the claims token and the permission ticket.
+7. After an authorization assessment, it is positive, the AS-RO returns RPT.
+8. With the valid RPT the RqP Client tries to access the 'RS API'.
+9. The RS validates the RPT, it is valid, the RS allow access the protected 'RS API' resource. 
 
 ### Generic
 
@@ -40,15 +47,22 @@ Steps:
 Prerequisites:
 
 * Both authorization servers support the token exchange extension of OAuth2 ([RFC 8693][3]).
-* AS-RqP publishes its metadata on a URL /.well-known/oauth-authorization-server.
-* RqP Client is registered at AS-RqP as a public or confidential client and is authorized at AS-RqP by RP and has an access token with user claims.
-* RqP Client is registered at AS-RO as a public or confidential client.
-* RO registers RS at AS-RO to protect its RS API.
+* The AS-RqP publishes its metadata on a URL /.well-known/oauth-authorization-server.
+* The RqP Client is registered at the AS-RqP as a public or confidential client and is authorized at the AS-RqP by a RP and has an access token with user claims.
+* The RqP Client is registered at the AS-RO as a public or confidential client..
+* The RO registers the RS at the AS-RO to protect its RS API.
 
 Steps:
 
-1. ...
-2. ...
+1. The RqP Client requests the AS-RO to get a permission ticket to access the 'RS API' resource. The created permission ticket is an access token with a scope 'ticket'.
+2. The AS-RO returns the permission ticket.
+3. The RqP Client creates a ticket challenge derived from the permission ticket using the following transformation ticket_challenge = Base64URL-Encode(SHA256(ticket)).
+4. At the AS-RqP the RqP Client requests a claims token by presenting the access token with user claims and the created ticket challenge.
+5. The AS-RqP returns the claims token.
+6. At the AS-RO the RqP Client requests an access token by presenting the claims token and the permission ticket.
+7. After an authorization assessment, it is positive, the AS-RO returns the access token.
+8. With the valid access token the RqP Client tries to access the 'RS API'.
+9. The RS validates the access token, it is valid, the RS allow access the protected 'RS API' resource. 
 
 ## Demo and Documentation
 
