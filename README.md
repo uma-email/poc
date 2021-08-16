@@ -12,7 +12,7 @@ To transfer data from sender to recipient, AEMS uses [Correlated Authorization][
 
 Correlated Authorization is a Double Cross-Domain Authorization mechanism that works without shared central OIDC provider as well as without federated OIDC providers.
 
-Both the requesting party and the resource owner may use separate instances of the authorization server running on different security domains. This concept uses the permission ticket as a correlation handler between two authorization processes.
+Both the requesting party and the resource owner may use separate instances of the authorization server running on different security domains. This concept uses the permission ticket as a correlation handler between two authorization processes and the e-mail address as the RqP identifier.
 
 ## Sequence diagrams
 
