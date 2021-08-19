@@ -4,7 +4,9 @@
 
 ## Sequence diagrams
 
-### UMA extension
+### UMA profile
+
+This diagram is in full compliance with the UMA specification.
 
 ![Sequence Diagram - uma-compliant](./images/correlated-authz-uma.png)
 
@@ -29,6 +31,8 @@ Steps:
 9. The RS validates the RPT, it is valid, the RS allow access the protected 'RS API' resource. 
 
 ### Generic
+
+This is a generic diagram missing some UMA features.
 
 ![Sequence Diagram - generic](./images/correlated-authz-generic.png)
 
