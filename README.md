@@ -62,7 +62,7 @@ Healthcare and enterprise cross-domain services e.g. email, file sharing, instan
 
 # Authorization-Enhanced Mail System
 
-A prototype implementation of the [Authorization-Enhanced Mail System (AEMS)][3] draft proposal, working as a proof of the concept of Correlated Authorization.
+A prototype implementation of the [Authorization-Enhanced Mail System][3] (AEMS) draft proposal, working as a proof of the concept of Correlated Authorization.
 
 ## Screenshot
 
