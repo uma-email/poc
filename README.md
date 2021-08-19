@@ -1,14 +1,6 @@
-# Authorization-Enhanced Mail System
-
-A prototype implementation of the [Authorization-Enhanced Mail System (AEMS)][1] draft proposal, working as a proof of concept.
-
-## Screenshot
-
-![GUI](./images/gui.png)
-
 # Correlated Authorization
 
-To transfer data from sender to recipient, AEMS uses [Correlated Authorization][2] technology, which has been designed with the "cross-domain access control" in mind.
+To transfer data from sender to recipient, AEMS uses [Correlated Authorization][1] technology, which has been designed with the "cross-domain access control" in mind.
 
 Correlated Authorization is a Double Cross-Domain Authorization mechanism that works without shared central OIDC provider as well as without federated OIDC providers.
 
@@ -62,19 +54,30 @@ Steps:
 6. At the AS-RO the RqP Client requests an access token by presenting the claims token and the permission ticket.
 7. After an authorization assessment, it is positive, the AS-RO returns the access token.
 8. With the valid access token the RqP Client tries to access the 'RS API'.
-9. The RS validates the access token, it is valid, the RS allow access the protected 'RS API' resource. 
+9. The RS validates the access token, it is valid, the RS allow access the protected 'RS API' resource.
 
+## Use cases
+
+Healthcare and enterprise cross-domain services e.g. email, file sharing, instant messaging, tele-conferencing.
+
+# Authorization-Enhanced Mail System
+
+A prototype implementation of the [Authorization-Enhanced Mail System (AEMS)][2] draft proposal, working as a proof of the concept of Correlated Authorization.
+
+## Screenshot
+
+![GUI](./images/gui.png)
 ## Demo and Documentation
 
-WIP, early stage [umabox.org][6].
+WIP, early stage [umabox.org][5].
 
 ## Acknowledgment
 
-Credits go to [WG - User Managed Access][5].
+Credits go to [WG - User Managed Access][6].
 
-[1]: https://github.com/uma-email/proposal/blob/master/authorization-enhanced-mail-system-draft-02.pdf
-[2]: https://github.com/uma-email/proposal/blob/master/correlated-authorization-draft-00.pdf
+[1]: https://github.com/uma-email/proposal/blob/master/correlated-authorization-draft-00.pdf
+[2]: https://github.com/uma-email/proposal/blob/master/authorization-enhanced-mail-system-draft-02.pdf
 [3]: https://www.rfc-editor.org/rfc/rfc8693.html
 [4]: https://docs.kantarainitiative.org/uma/wg/rec-oauth-uma-federated-authz-2.0.html
-[5]: https://kantarainitiative.org/confluence/display/uma/Home
-[6]: https://www.umabox.org
+[5]: https://www.umabox.org
+[6]: https://kantarainitiative.org/confluence/display/uma/Home
