@@ -1,10 +1,6 @@
 # Correlated Authorization
 
-To transfer data from sender to recipient, AEMS uses [Correlated Authorization][1] technology, which has been designed with the "cross-domain access control" in mind.
-
-Correlated Authorization is a Double Cross-Domain Authorization mechanism that works without shared central OIDC provider as well as without federated OIDC providers.
-
-The requesting party and the resource owner may belong to different security domains (realms) or may use mutually isolated instances of the authorization server residing on different network domains. This concept uses a permission ticket as a correlation handler between two authorization processes and an e-mail address as a unique requesting party identifier for identity-based access control.
+[Correlated Authorization][1] is a double cross-domain authorization mechanism originated from the [User Managed Access][6] (UMA) protocol that allows users (resource owners) to delegate access to other users (requesting parties). The resource owner and the requesting party may belong to different security domains (realms) or may use mutually isolated instances of the authorization server residing on different network domains. They may also use independent identity providers, there is no need to share an OIDC provider or use federated OIDC providers. This concept uses a permission ticket as a correlation handler between two authorization processes and an e-mail address as a unique requesting party identifier for cross-domain access control.
 
 ## Sequence diagrams
 
