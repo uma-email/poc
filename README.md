@@ -4,7 +4,7 @@
 
 ## Sequence diagrams
 
-### UMA-compliant
+### UMA extension
 
 ![Sequence Diagram - uma-compliant](./images/correlated-authz-uma.png)
 
