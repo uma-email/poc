@@ -1,6 +1,6 @@
 # Correlated Authorization
 
-[Correlated Authorization][1] is a double cross-domain authorization mechanism originated from the [User Managed Access][6] (UMA) protocol that allows users (resource owners) to delegate access to other users (requesting parties). The resource owner and the requesting party may belong to different security domains (realms) or may use mutually isolated instances of the authorization server residing on different network domains. They may also use independent identity providers, there is no need to share an OIDC provider or use federated OIDC providers. This concept uses a permission ticket as a correlation handler between two authorization processes and an e-mail address as a unique requesting party identifier for cross-domain access control.
+[Correlated Authorization][2] is a double cross-domain authorization mechanism originated from the [User Managed Access][1] (UMA) protocol that allows users (resource owners) to delegate access to other users (requesting parties). The resource owner and the requesting party may belong to different security domains (realms) or may use mutually isolated instances of the authorization server residing on different network domains. They may also use independent identity providers, there is no need to share an OIDC provider or use federated OIDC providers. This concept uses a permission ticket as a correlation handler between two authorization processes and an e-mail address as a unique requesting party identifier for cross-domain access control.
 
 ## Sequence diagrams
 
@@ -10,11 +10,11 @@
 
 Prerequisites:
 
-* Both authorization servers support the token exchange extension of OAuth2 ([RFC 8693][3]).
+* Both authorization servers support the token exchange extension of OAuth2 ([RFC 8693][4]).
 * The AS-RqP publishes its metadata on a URL /.well-known/oauth-authorization-server.
 * The RqP Client is registered at the AS-RqP as a public or confidential client and is authorized at the AS-RqP by a RP and has an access token with user claims.
 * The RqP Client is registered at the AS-RO as a public or confidential client.
-* The RO has set up the RS and registers its 'RS API' resource at the AS-RO according to the [UMA Federated Authorization][4] specification.
+* The RO has set up the RS and registers its 'RS API' resource at the AS-RO according to the [UMA Federated Authorization][5] specification.
 
 Steps:
 
@@ -34,7 +34,7 @@ Steps:
 
 Prerequisites:
 
-* Both authorization servers support the token exchange extension of OAuth2 ([RFC 8693][3]).
+* Both authorization servers support the token exchange extension of OAuth2 ([RFC 8693][4]).
 * The AS-RqP publishes its metadata on a URL /.well-known/oauth-authorization-server.
 * The RqP Client is registered at the AS-RqP as a public or confidential client and is authorized at the AS-RqP by a RP and has an access token with user claims.
 * The RqP Client is registered at the AS-RO as a public or confidential client..
@@ -58,22 +58,23 @@ Healthcare and enterprise cross-domain services e.g. email, file sharing, instan
 
 # Authorization-Enhanced Mail System
 
-A prototype implementation of the [Authorization-Enhanced Mail System (AEMS)][2] draft proposal, working as a proof of the concept of Correlated Authorization.
+A prototype implementation of the [Authorization-Enhanced Mail System (AEMS)][3] draft proposal, working as a proof of the concept of Correlated Authorization.
 
 ## Screenshot
 
 ![GUI](./images/gui.png)
 ## Demo and Documentation
 
-WIP, early stage [umabox.org][5].
+WIP, early stage [umabox.org][6].
 
 ## Acknowledgment
 
-Credits go to [WG - User Managed Access][6].
+Credits go to [WG - User Managed Access][7].
 
-[1]: https://github.com/uma-email/proposal/blob/master/correlated-authorization-draft-00.pdf
-[2]: https://github.com/uma-email/proposal/blob/master/authorization-enhanced-mail-system-draft-02.pdf
-[3]: https://www.rfc-editor.org/rfc/rfc8693.html
-[4]: https://docs.kantarainitiative.org/uma/wg/rec-oauth-uma-federated-authz-2.0.html
-[5]: https://www.umabox.org
-[6]: https://kantarainitiative.org/confluence/display/uma/Home
+[1]: https://en.wikipedia.org/wiki/User-Managed_Access
+[2]: https://github.com/uma-email/proposal/blob/master/correlated-authorization-draft-00.pdf
+[3]: https://github.com/uma-email/proposal/blob/master/authorization-enhanced-mail-system-draft-02.pdf
+[4]: https://www.rfc-editor.org/rfc/rfc8693.html
+[5]: https://docs.kantarainitiative.org/uma/wg/rec-oauth-uma-federated-authz-2.0.html
+[6]: https://www.umabox.org
+[7]: https://kantarainitiative.org/confluence/display/uma/Home
