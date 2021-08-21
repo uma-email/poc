@@ -64,6 +64,8 @@ Healthcare and enterprise cross-domain services e.g. email, file sharing, instan
 
 A prototype implementation of the [Authorization-Enhanced Mail System][3] (AEMS) draft proposal, working as a proof of the concept of Correlated Authorization.
 
+AEMS provides a mechanism to store, share and transfer information accross network and security domains. From the user's point of view, AEMS looks like a standard mail system.
+
 ## Screenshot
 
 ![GUI](./images/gui.png)
