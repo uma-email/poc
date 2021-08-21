@@ -4,11 +4,13 @@
 
 ## Sequence diagrams
 
+There are two versions of the sequence diagram that describe the Correlated Authorization mechanism. The first version represents the Correlated Authorization profile of the UMA protocol. The second version profiles the OAuth2 protocol. Both profiles rely on the token exchange extension of OAuth2, where an access token is used to obtain a claims token from the authorization server.
+
 ### UMA profile
 
 This diagram is in full compliance with the UMA specification.
 
-![Sequence Diagram - uma-compliant](./images/correlated-authz-uma.png)
+![Sequence Diagram - UMA-compliant](./images/correlated-authz-uma.png)
 
 Prerequisites:
 
@@ -30,11 +32,11 @@ Steps:
 8. With the valid RPT the RqP Client tries to access the 'RS API'.
 9. The RS validates the RPT, it is valid, the RS allow access the protected 'RS API' resource. 
 
-### Generic
+### OAuth2 profile
 
-This is a generic diagram missing some UMA features.
+This diagram represents a profile of the OAuth2 protocol and lacks some UMA features.
 
-![Sequence Diagram - generic](./images/correlated-authz-generic.png)
+![Sequence Diagram - OAuth2](./images/correlated-authz-oauth2.png)
 
 Prerequisites:
 
