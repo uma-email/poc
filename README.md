@@ -1,6 +1,6 @@
 # Correlated Authorization
 
-[Correlated Authorization][3] is a cross-domain authorization protocol built on top of [OAuth2][1] and [User-Managed Access (UMA)][2] protocols that allows users (resource owners) to delegate access to other users (requesting parties). The requesting party is responsible for creating the request, while the resource owner approves the transaction asynchronously. The resource owner and the requesting party may belong to different security domains (realms) or may use mutually isolated instances of the authorization server residing on different network domains. They may also use independent identity providers, there is no need to share an OIDC provider or use federated OIDC providers. This concept uses a permission ticket as a correlation handler between two authorization processes and an e-mail address as a unique requesting party identifier for cross-domain access control.
+[Correlated Authorization][3] is a cross-domain authorization protocol built on top of [OAuth2][1] and [User-Managed Access (UMA)][2] protocols that allows users (resource owners) to delegate access to other users (requesting parties) across security and network domains. The requesting party is responsible for creating the request, while the resource owner approves the transaction asynchronously. The resource owner and the requesting party may belong to different security domains (realms) or may use mutually isolated instances of the authorization server residing on different network domains. They may also use independent identity providers, there is no need to share an OIDC provider or use federated OIDC providers. This concept uses a permission ticket as a correlation handler between two authorization processes and an e-mail address as a unique requesting party identifier for cross-domain access control.
 
 ## Sequence diagrams
 
@@ -66,7 +66,7 @@ Healthcare and enterprise cross-domain services e.g. email, file sharing, instan
 
 A prototype implementation of the [Authorization-Enhanced Mail System (AEMS)][4] draft proposal, working as a proof of the concept of Correlated Authorization.
 
-AEMS provides a mechanism to store, share and transfer information across network and security domains. From the user's point of view, AEMS looks like a standard email system.
+AEMS provides a mechanism to store, share and transfer information across security and network domains. From the user's point of view, AEMS looks like a standard email system.
 
 ## Screenshot
 
