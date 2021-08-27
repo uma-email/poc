@@ -1,10 +1,10 @@
 # Correlated Authorization
 
-[Correlated Authorization][3] is a cross-domain authorization protocol built on top of [OAuth2][1] and [User-Managed Access (UMA)][2] protocols that allows users (resource owners) to delegate access to other users (requesting parties) across security domains. The requesting party is responsible for creating the request, while the resource owner approves the transaction asynchronously in advance. The resource owner and the requesting party may belong to different security domains or may use mutually isolated instances of the authorization server residing on different network domains. They may also use independent identity providers. This concept uses a permission ticket issued by the resource owner's authorization server as a correlation handle that binds the requesting party's claims to the authorization process. An email address is used as the unique requesting party identifier for cross-domain access control.
+[Correlated Authorization (CorrA)][3] is a dual-authority, cross-domain authorization protocol built on top of [OAuth2][1] and [User-Managed Access (UMA)][2] protocols that allows users (resource owners) to delegate access to other users (requesting parties) across security domains. The requesting party is responsible for creating the request, while the resource owner approves the transaction asynchronously in advance. The resource owner and the requesting party may belong to different security domains or may use mutually isolated instances of the authorization server residing on different network domains. They may also use independent identity providers. This concept uses a permission ticket issued by the resource owner's authorization server as a correlation handle that binds the requesting party's claims to the authorization process. An email address is used as the unique requesting party identifier for cross-domain access control.
 
 ## Sequence diagrams
 
-There are two versions of the sequence diagram that describe the Correlated Authorization mechanism. The first version represents the Correlated Authorization profile of the UMA protocol. The second version profiles the OAuth2 protocol. Both profiles rely on the token exchange extension of OAuth2, where an access token is used to obtain a claims token from the authorization server.
+There are two versions of the sequence diagram that describe the mechanism of the CorrA protocol. The first version represents the CorrA profile of the UMA protocol. The second version profiles the OAuth2 protocol. Both profiles rely on the token exchange extension of OAuth2, where an access token is used to obtain a claims token from the authorization server.
 
 ### UMA profile
 
@@ -64,7 +64,7 @@ Healthcare and enterprise cross-domain services e.g. email, file sharing, instan
 
 # Authorization-Enhanced Mail System
 
-A prototype implementation of the [Authorization-Enhanced Mail System (AEMS)][4] draft proposal, working as a proof of the concept of Correlated Authorization.
+A prototype implementation of the [Authorization-Enhanced Mail System (AEMS)][4] draft proposal, working as a proof of the concept of CorrA.
 
 AEMS provides a mechanism to store, share and transfer information across security domains. From the user's point of view, AEMS looks like a standard email system.
 
