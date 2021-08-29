@@ -68,6 +68,10 @@ Steps:
 
 Healthcare and enterprise cross-domain services e.g. email, file sharing, instant messaging, tele-conferencing.
 
+## Future Work
+
+Consider a Correlated Authentication (CAN) protocol, where RS/AS acts as a cross-domain attribute provider.
+
 # Authorization-Enhanced Mail System
 
 A prototype implementation of the [Authorization-Enhanced Mail System (AEMS)][4] draft proposal, working as a proof of the concept of CAZ.
