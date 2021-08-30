@@ -70,7 +70,7 @@ Healthcare and enterprise cross-domain services e.g. email, file sharing, instan
 
 ## Future Work
 
-Consider a Correlated Authentication (CAN) protocol, where RS/AS acts as a cross-domain attribute provider.
+Consider a Correlated Authentication (CAN) protocol, where RS/AS acts as an external attribute provider.
 
 # Authorization-Enhanced Mail System
 
