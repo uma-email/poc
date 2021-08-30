@@ -70,7 +70,8 @@ Healthcare and enterprise cross-domain services e.g. email, file sharing, instan
 
 ## Future Work
 
-Consider a Correlated Authentication (CAN) protocol, where RS/AS acts as an external attribute provider.
+1. Consider a Correlated Authentication (CAN) protocol, where RS/AS acts as an external attribute provider.
+2. Employ the DPoP mechanism and create the permission ticket directly on the client to avoid the initial round trip to RS/AS.
 
 # Authorization-Enhanced Mail System
 
