@@ -64,11 +64,11 @@ Steps:
 
 ### Scenario 1.
 
-![Scenario-1](./images/authority-boundaries-scenario-1.png)
+![Scenario-1](./images/authority-boundaries-scenario-1.svg)
 
 ### Scenario 2.
 
-![Scenario-2](./images/authority-boundaries-scenario-2.png)
+![Scenario-2](./images/authority-boundaries-scenario-2.svg)
 
 ## Use cases
 
