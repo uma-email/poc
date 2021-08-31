@@ -70,6 +70,10 @@ Steps:
 
 ![Scenario-2](./images/authority-boundaries-scenario-2.svg)
 
+### Scenario 3.
+
+![Scenario-3](./images/authority-boundaries-scenario-3.svg)
+
 ## Use cases
 
 Healthcare and enterprise cross-domain services e.g. email, file sharing, instant messaging, tele-conferencing.
