@@ -60,9 +60,15 @@ Steps:
 8. With the valid access token the RqP Client tries to access the 'RS API'.
 9. The RS validates the access token, it is valid, the RS allow access the protected 'RS API' resource.
 
-## Scenarios
+## Authority boundaries and interactions
 
-...
+### Scenario 1.
+
+![Scenario-1](./images/authority-boundaries-scenario-1.png)
+
+### Scenario 2.
+
+![Scenario-2](./images/authority-boundaries-scenario-2.png)
 
 ## Use cases
 
