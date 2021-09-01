@@ -84,6 +84,9 @@
    <g id="container-id1">
     <g id="id1" class="Slide" clip-path="url(#presentation_clip_path)">
      <g class="Page">
+      <g id="bg-id1" class="Background">
+       <path fill="rgb(255,255,255)" stroke="none" d="M 9385,10591 L 0,10591 0,0 18770,0 18770,10591 9385,10591 Z"/>
+      </g>
       <g class="com.sun.star.drawing.CustomShape">
        <g id="id3">
         <rect class="BoundingBox" stroke="none" fill="none" x="1307" y="2950" width="2061" height="2061"/>
