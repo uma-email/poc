@@ -17,20 +17,20 @@ Prerequisites:
 * Both authorization servers support the [OAuth 2.0 Token Exchange][5] extension of OAuth2.
 * The AS-RqP also acts as RqP's Identity Provider.
 * The AS-RqP publishes its metadata on a URL /.well-known/oauth-authorization-server (alternatively on /.well-known/openid-configuration).
-* The RqP Client is registered at the AS-RqP as a public or confidential client and acts as a Relying Party in a RqP's Identity Provider to obtain an access token with user claims.
-* The RqP Client is registered at the AS-RO as a public or confidential client.
+* The client is registered at the AS-RqP as a public or confidential client and acts as a Relying Party in a RqP's Identity Provider to obtain an access token with user claims.
+* The client is registered at the AS-RO as a public or confidential client.
 * The RO has set up the RS and registers its 'RS API' resource at the AS-RO according to the [UMA Federated Authorization][6] specification.
 
 Steps:
 
-1. The RqP directs the RqP Client to access the 'RS API' resource with no access token.
+1. The RqP directs the client to access the 'RS API' resource with no access token.
 2. Without an access token, the RS will return HTTP code 401 (Unauthorized) with a permission ticket.
-3. The RqP Client creates a ticket challenge derived from the permission ticket using the following transformation ticket_challenge = Base64URL-Encode(SHA256(ticket)).
-4. At the AS-RqP the RqP Client requests a claims token by presenting the access token with user claims and the created ticket challenge.
+3. The client creates a ticket challenge derived from the permission ticket using the following transformation ticket_challenge = Base64URL-Encode(SHA256(ticket)).
+4. At the AS-RqP the client requests a claims token by presenting the access token with user claims and the created ticket challenge.
 5. The AS-RqP returns the claims token.
-6. At the AS-RO the RqP Client requests an RPT by presenting the claims token and the permission ticket.
+6. At the AS-RO the client requests an RPT by presenting the claims token and the permission ticket.
 7. After an authorization assessment, it is positive, the AS-RO returns RPT.
-8. With the valid RPT the RqP Client tries to access the 'RS API'.
+8. With the valid RPT the client tries to access the 'RS API'.
 9. The RS validates the RPT, it is valid, the RS allow access the protected 'RS API' resource. 
 
 ### OAuth2 profile
@@ -44,20 +44,20 @@ Prerequisites:
 * Both authorization servers support the [OAuth 2.0 Token Exchange][5] extension of OAuth2.
 * The AS-RqP also acts as RqP's Identity Provider.
 * The AS-RqP publishes its metadata on a URL /.well-known/oauth-authorization-server (alternatively on /.well-known/openid-configuration).
-* The RqP Client is registered at the AS-RqP as a public or confidential client and acts as a Relying Party in a RqP's Identity Provider to obtain an access token with user claims.
-* The RqP Client is registered at the AS-RO as a public or confidential client.
+* The client is registered at the AS-RqP as a public or confidential client and acts as a Relying Party in a RqP's Identity Provider to obtain an access token with user claims.
+* The client is registered at the AS-RO as a public or confidential client.
 * The RO registers the RS at the AS-RO to protect its RS API.
 
 Steps:
 
-1. The RqP Client requests the AS-RO to get a permission ticket to access the 'RS API' resource. The created permission ticket is an access token with a scope 'ticket'.
+1. The RqP directs the client to get a permission ticket from the AS-RO to access the 'RS API' resource. The created permission ticket is an access token with a scope 'ticket'.
 2. The AS-RO returns the permission ticket.
-3. The RqP Client creates a ticket challenge derived from the permission ticket using the following transformation ticket_challenge = Base64URL-Encode(SHA256(ticket)).
-4. At the AS-RqP the RqP Client requests a claims token by presenting the access token with user claims and the created ticket challenge.
+3. The client creates a ticket challenge derived from the permission ticket using the following transformation ticket_challenge = Base64URL-Encode(SHA256(ticket)).
+4. At the AS-RqP the client requests a claims token by presenting the access token with user claims and the created ticket challenge.
 5. The AS-RqP returns the claims (JWT) token.
-6. At the AS-RO the RqP Client requests an access token via a JWT grant type by presenting the claims (JWT) token and the permission ticket.
+6. At the AS-RO the client requests an access token via a JWT grant type by presenting the claims (JWT) token and the permission ticket.
 7. After an authorization assessment, it is positive, the AS-RO returns the access token.
-8. With the valid access token the RqP Client tries to access the 'RS API'.
+8. With the valid access token the client tries to access the 'RS API'.
 9. The RS validates the access token, it is valid, the RS allow access the protected 'RS API' resource.
 
 ## Authority boundaries and interactions
