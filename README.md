@@ -62,15 +62,21 @@ Steps:
 
 ## Authority boundaries and interactions
 
-### Scenario 1.
+### Identity federation scenario
+
+Allows to use multiple external identity providers and a single authorization server.
 
 ![Scenario-1](./images/authority-boundaries-scenario-1.svg)
 
-### Scenario 2.
+### Federated authorization scenario
+
+Allows to use a single identity provider and multiple external authorization servers.
 
 ![Scenario-2](./images/authority-boundaries-scenario-2.svg)
 
-### Scenario 3.
+### Enhanced federation scenario
+
+Allows to use multiple external identity providers and multiple external authorization servers.
 
 ![Scenario-3](./images/authority-boundaries-scenario-3.svg)
 
