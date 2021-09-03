@@ -64,19 +64,19 @@ Steps:
 
 ### Identity federation scenario
 
-Allows to use multi-authority identity providers and a single-authority authorization server.
+Allows to use multiple authoritative identity providers and a single authoritative authorization server.
 
 ![Scenario-1](./images/authority-boundaries-scenario-1.svg)
 
 ### Federated authorization scenario
 
-Allows to use a single-authority identity provider and multi-authority authorization servers.
+Allows to use a single authoritative identity provider and multiple authoritative authorization servers.
 
 ![Scenario-2](./images/authority-boundaries-scenario-2.svg)
 
 ### Enhanced federation scenario
 
-Allows to use multi-authority identity providers and multi-authority authorization servers.
+Allows to use multiple authoritative identity providers and multiple authoritative authorization servers.
 
 ![Scenario-3](./images/authority-boundaries-scenario-3.svg)
 
