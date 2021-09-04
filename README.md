@@ -60,23 +60,25 @@ Steps:
 8. With the valid access token the client tries to access the 'RS API'.
 9. The RS validates the access token, it is valid, the RS allow access the protected 'RS API' resource.
 
-## Authority boundaries and interactions
+## Authority boundaries, interactions and scenarios
+
+The CAZ protocol allows us to link identity providers with authorization services governed by different authorities that are not required to share information or collaborate.
 
 ### Identity federation scenario
 
-Allows to use multiple authoritative identity providers and a single authoritative authorization server.
+Allows to use multiple authoritative identity providers and a single authoritative authorization service.
 
 ![Scenario-1](./images/authority-boundaries-scenario-1.svg)
 
 ### Federated authorization scenario
 
-Allows to use a single authoritative identity provider and multiple authoritative authorization servers.
+Allows to use a single authoritative identity provider and multiple authoritative authorization services.
 
 ![Scenario-2](./images/authority-boundaries-scenario-2.svg)
 
 ### Enhanced federation scenario
 
-Allows to use multiple authoritative identity providers and multiple authoritative authorization servers.
+Allows to use multiple authoritative identity providers and multiple authoritative authorization services.
 
 ![Scenario-3](./images/authority-boundaries-scenario-3.svg)
 
