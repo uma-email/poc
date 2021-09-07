@@ -62,7 +62,9 @@ Steps:
 
 ## Authority boundaries, interactions and scenarios
 
-The CAZ protocol allows us to link identity providers with authorization services governed by different authorities that are not required to share information or collaborate.
+The CAZ protocol allows us to indirectly (through the client) link identity providers with authorization services governed by different authorities that are not required to share information or collaborate.
+
+The following scenarios demonstrate the conveyance of identity information from identity providers to authorization services across security domains.
 
 ### Identity federation scenario
 
@@ -76,7 +78,7 @@ Allows to use a single authoritative identity provider and multiple authoritativ
 
 ![Scenario-2](./images/authority-boundaries-scenario-2.svg)
 
-### Enhanced federation scenario
+### Combined federation scenario
 
 Allows to use multiple authoritative identity providers and multiple authoritative authorization services.
 
@@ -88,7 +90,7 @@ Healthcare and enterprise cross-domain services e.g. email, file sharing, instan
 
 ## Future Work
 
-1. Consider a Correlated Authentication (CAN) protocol, where RS/AS acts as an external attribute provider.
+1. Consider a Correlated Authentication (CAN) protocol, where RS/AS acts as an external authoritative attribute/claims provider.
 2. Employ the DPoP mechanism and create the permission ticket directly on the client to avoid the initial round trip to RS/AS.
 
 # Authorization-Enhanced Mail System
