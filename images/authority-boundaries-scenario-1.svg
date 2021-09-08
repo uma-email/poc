@@ -258,15 +258,15 @@
       </g>
       <g class="com.sun.star.drawing.LineShape">
        <g id="id20">
-        <rect class="BoundingBox" stroke="none" fill="none" x="3423" y="1402" width="7160" height="301"/>
-        <path fill="none" stroke="rgb(0,0,0)" d="M 10581,1552 L 3703,1552"/>
-        <path fill="rgb(0,0,0)" stroke="none" d="M 3723,1702 L 3423,1552 3723,1402 3723,1702 Z"/>
+        <rect class="BoundingBox" stroke="none" fill="none" x="4937" y="1474" width="4193" height="301"/>
+        <path fill="none" stroke="rgb(0,0,0)" d="M 9128,1624 L 5217,1624"/>
+        <path fill="rgb(0,0,0)" stroke="none" d="M 5237,1774 L 4937,1624 5237,1474 5237,1774 Z"/>
        </g>
       </g>
       <g class="TextShape">
        <g id="id21">
-        <rect class="BoundingBox" stroke="none" fill="none" x="6396" y="834" width="1519" height="726"/>
-        <text class="SVGTextShape"><tspan class="TextParagraph" font-family="Liberation Sans, sans-serif" font-size="423px" font-weight="400"><tspan class="TextPosition" x="6646" y="1344"><tspan fill="rgb(0,0,0)" stroke="none">Trust</tspan></tspan></tspan></text>
+        <rect class="BoundingBox" stroke="none" fill="none" x="6296" y="906" width="1519" height="726"/>
+        <text class="SVGTextShape"><tspan class="TextParagraph" font-family="Liberation Sans, sans-serif" font-size="423px" font-weight="400"><tspan class="TextPosition" x="6546" y="1416"><tspan fill="rgb(0,0,0)" stroke="none">Trust</tspan></tspan></tspan></text>
        </g>
       </g>
      </g>
