@@ -68,19 +68,19 @@ The following scenarios demonstrate a system of trust between two authorities th
 
 ### Identity federation scenario
 
-This scenario allows to use multiple authoritative identity providers with a single authoritative authorization service.
+This scenario allows to use multiple authoritative identity providers with a single authorization service.
 
 ![Scenario-1](./images/authority-boundaries-scenario-1.svg)
 
 ### Federated authorization scenario
 
-The federated authorization scenario shows the use of a single authoritative identity provider with multiple authoritative authorization services.
+The federated authorization scenario shows the use of a single authoritative identity provider with multiple authorization services.
 
 ![Scenario-2](./images/authority-boundaries-scenario-2.svg)
 
 ### Combined federation scenario
 
-As the name suggests, this scenario allows to use multiple authoritative identity providers with multiple authoritative authorization services.
+As the name suggests, this scenario allows to use multiple authoritative identity providers with multiple authorization services.
 
 ![Scenario-3](./images/authority-boundaries-scenario-3.svg)
 
