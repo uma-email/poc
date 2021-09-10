@@ -1,6 +1,6 @@
 # Correlated Authorization
 
-Correlated Authorization (CAZ) is a dual-authority, cross-domain authorization protocol built on top of [User-Managed Access (UMA)][1] and [OAuth2][2] protocols that allows users (resource owners) to delegate access to other users (requesting parties) across security domains. The requesting party is responsible for creating the request, while the resource owner approves this request either when it is online or by creating a policy. The resource owner and the requesting party belong to different security domains administered by mutually isolated authorities, each with its own identity provider and authorization server. This concept uses a permission ticket issued by the resource owner's authorization server as a correlation handle that binds the requesting party's claims to the authorization process. An email address is used as the unique requesting party identifier for cross-domain access control.
+Correlated Authorization (CAZ) is a dual-authority, cross-domain authorization protocol built on top of [User-Managed Access (UMA)][1] and [OAuth2][2] protocols that allows users (resource owners) to delegate access to other users (requesting parties) across security domains. The requesting party is responsible for creating the request, while the resource owner approves this request either when it is online or by creating a policy. The resource owner and the requesting party belong to different security domains administered by the respective authorities. This concept uses a permission ticket issued by the resource owner's authorization server as a correlation handle that binds the requesting party's claims to the authorization process. An email address is used as the unique requesting party identifier for cross-domain access control.
 
 ## Sequence diagrams
 
@@ -68,19 +68,19 @@ The following scenarios demonstrate a system of trust between two authorities th
 
 ### Identity federation scenario
 
-This scenario allows to use multiple authoritative identity providers with a single authorization service.
+This scenario allows to use multiple authoritative identity providers with a single authorization service. The client is governed by the resource owner's respective authority.
 
 ![Scenario-1](./images/authority-boundaries-scenario-1.svg)
 
 ### Federated authorization scenario
 
-The federated authorization scenario shows the use of a single authoritative identity provider with multiple authorization services.
+The federated authorization scenario shows the use of a single authoritative identity provider with multiple authorization services. The client is governed by the requesting party's respective authority.
 
 ![Scenario-2](./images/authority-boundaries-scenario-2.svg)
 
 ### Combined federation scenario
 
-As the name suggests, this scenario allows to use multiple authoritative identity providers with multiple authorization services.
+As the name suggests, this scenario allows to use multiple authoritative identity providers with multiple authorization services. The client is governed by a third-party authority.
 
 ![Scenario-3](./images/authority-boundaries-scenario-3.svg)
 
