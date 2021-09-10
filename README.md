@@ -68,19 +68,19 @@ The following scenarios demonstrate a system of trust between two authorities th
 
 ### Identity federation scenario
 
-This scenario allows to use multiple authoritative identity providers with a single authorization service. The client is governed by the resource owner's respective authority.
+This scenario allows to use multiple authoritative identity providers with a single authorization service. The client falls under the governance of the resource owner's respective authority.
 
 ![Scenario-1](./images/authority-boundaries-scenario-1.svg)
 
 ### Federated authorization scenario
 
-The federated authorization scenario shows the use of a single authoritative identity provider with multiple authorization services. The client is governed by the requesting party's respective authority.
+The federated authorization scenario shows the use of a single authoritative identity provider with multiple authorization services. The client falls under the governance of the requesting party's respective authority.
 
 ![Scenario-2](./images/authority-boundaries-scenario-2.svg)
 
 ### Combined federation scenario
 
-As the name suggests, this scenario allows to use multiple authoritative identity providers with multiple authorization services. The client is governed by a third-party authority.
+As the name suggests, this scenario allows to use multiple authoritative identity providers with multiple authorization services. The client falls under the governance of a third-party authority.
 
 ![Scenario-3](./images/authority-boundaries-scenario-3.svg)
 
@@ -92,6 +92,7 @@ Healthcare and enterprise cross-domain services e.g. email, file sharing, instan
 
 1. Consider a Correlated Authentication (CAN) protocol, where RS/AS acts as an external authoritative attribute/claims provider.
 2. Employ the DPoP mechanism and create the permission ticket directly on the client to avoid the initial round trip to RS/AS.
+3. Xyz
 
 # Authorization-Enhanced Mail System
 
