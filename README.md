@@ -86,7 +86,7 @@ As the name suggests, this scenario allows to use multiple authoritative identit
 
 ## Use cases
 
-Healthcare and enterprise cross-domain services e.g. email, file sharing, instant messaging, tele-conferencing. Fintech and Telco services.
+Healthcare and enterprise cross-domain services e.g. email, file sharing, instant messaging, tele-conferencing. Also, Fintech and Telco services.
 
 ## Future Work
 
