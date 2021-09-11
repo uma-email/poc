@@ -97,7 +97,7 @@ Healthcare and enterprise cross-domain services e.g. email, file sharing, instan
 1. Consider a Correlated Authentication (CAN) protocol, where RS/AS acts as an external authoritative attribute/claims provider.
 2. Employ the DPoP mechanism and create the permission ticket directly on the client to avoid the initial round trip to RS/AS.
 3. Describe how the resource owner can use the CAZ protocol.
-4. Consider using the CAZ mechanism to transfer digital/virtual assets in transactions with/without blockchain technology.
+4. Consider using the CAZ mechanism to transfer digital/virtual assets in the form of transactions with/without blockchain technology.
 
 # Authorization-Enhanced Mail System
 
