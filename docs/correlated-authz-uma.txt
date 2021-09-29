@@ -11,7 +11,7 @@ note over Client:RqP Client:\n• is registered at AS-RqP as a public or confide
 note over RS:RO has set up RS and registers its 'RS API' resource at AS-RO
 RS<-Client:1. Request 'RS API' resource with no access token
 RS->Client:2. Return 401 with permission ticket\n    {ticket}
-Client->Client:3. Create ticket hash\n    {ticket_hash = Base64URL-Encode(SHA256(ticket))}
+Client->Client:3. Generate ticket hash\n    {ticket_hash = Base64URL-Encode(SHA256(ticket))}
 AS-RqP<-Client:4. Request a claims token (token exchange request)\n    {grant_type = token-exchange,\n     resource = "RS API",\n     scope = ticket_hash,\n     subject_token = access_token_with_user_claims,\n     subject_token_type = urn:ietf:params:oauth:token-type:access_token,\n     requested_token_type = urn:ietf:params:oauth:token-type:jwt}
 Client<-AS-RqP:5. Return claims token (user claims and ticket hash)\n    {claims_token}
 

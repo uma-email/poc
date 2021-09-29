@@ -11,7 +11,7 @@ note over client:Client:\n• is registered at AS-RqP as a public or confidentia
 note over RS:RO registers RS at AS-RO to protect its 'RS API'
 client->AS-RO:1. Get permission ticket (permission ticket = access token)\n    {grant_type = client_credentials,\n     audience = 'RS API',\n     scope='ticket'}
 client<-AS-RO:2. Return permission ticket (permission ticket = access token)\n    {ticket}
-client->client:3. Create ticket hash\n    {ticket_hash = Base64URL-Encode(SHA256(ticket))}
+client->client:3. Generate ticket hash\n    {ticket_hash = Base64URL-Encode(SHA256(ticket))}
 AS-RqP<-client:4. Request a claims token (token exchange request)\n    {grant_type = token-exchange,\n     resource = "RS API",\n     scope = ticket_hash,\n     subject_token = access_token_with_user_claims,\n     subject_token_type = urn:ietf:params:oauth:token-type:access_token,\n     requested_token_type = urn:ietf:params:oauth:token-type:jwt}
 client<-AS-RqP:5. Return claims (JWT) token (user claims and ticket hash)\n    {claims_token}
 
