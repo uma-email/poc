@@ -1,6 +1,8 @@
 # Correlated Authorization
 
-Correlated Authorization (CAZ) is a dual-authority authorization protocol built on top of [User-Managed Access (UMA)][1] and [OAuth2][2] protocols that allows users (resource owners) to delegate access to other users (requesting parties) across security domain boundaries. The requesting party is responsible for creating the request, while the resource owner approves this request either when it is online or by creating a policy. The resource owner and the requesting party belong to different security domains administered by the respective authorities. This concept uses a permission ticket issued by the resource owner's authorization server as a correlation handle that binds the requesting party's claims to the authorization process. An email address is used as the unique requesting party identifier for cross-domain access control.
+## Abstract
+
+Correlated Authorization (CAZ) is a dual-authority authorization protocol built on top of [User-Managed Access (UMA)][1] and [OAuth2][2] protocols that allows users (resource owners) to delegate access to other users (requesting parties) across security domain boundaries. The requesting party is responsible for creating the request, while the resource owner approves this request either when it is online or by creating a policy. The resource owner and the requesting party belong to different security domains administered by the respective authorities. This concept uses a permission ticket issued by the resource owner's authorization server as a correlation handle that binds the requesting party's claims to the authorization process. An email address is used as the unique requesting party identifier for cross-domain access control. The intrinsic challenge-response authentication protocol elevates trust between the resource owner's authorization server and requesting party's identity provider.
 
 ## Introduction
 
@@ -10,11 +12,11 @@ With the growing popularity of protocols based on the OAuth2 specification, ther
 
 CAZ is an attempt to revive UMA WG's original idea – [UMA wide ecosystem][9], when the resource owner and requesting party might "know each other" in the real world, but the resource owner's authorization server has no pre-established trust with the requesting party or any of their identity/claims providers – in other words, when the resource owner's authorization server and requesting party's identity provider don't know each other.
 
-## Sequence diagrams
+## Sequence Diagrams
 
 There are two versions of the sequence diagram that describe the mechanism of the CAZ protocol. The first version represents the CAZ profile of the UMA protocol. The second version profiles the OAuth2 protocol. Both profiles rely on the token exchange extension of OAuth2, where an access token is used to obtain a claims token from the Security Token Service (STS) endpoint.
 
-### UMA profile
+### UMA Profile
 
 This diagram is in full compliance with the UMA specification.
 
@@ -41,7 +43,7 @@ Steps:
 8. With the valid RPT the client tries to access the 'RS API'.
 9. The RS validates the RPT, it is valid, the RS allow access the protected 'RS API' resource. 
 
-### OAuth2 profile
+### OAuth2 Profile
 
 This diagram represents a profile of the OAuth2 protocol and lacks some UMA features.
 
@@ -68,31 +70,31 @@ Steps:
 8. With the valid access token the client tries to access the 'RS API'.
 9. The RS validates the access token, it is valid, the RS allow access the protected 'RS API' resource.
 
-## Authority boundaries, interactions and scenarios
+## Authority Boundaries, Interactions and Scenarios
 
 The CAZ protocol allows us to indirectly (through the client) link identity providers with authorization services governed by different authorities that are not required to share information or collaborate.
 
 The following scenarios demonstrate a system of trust between two authorities that allows the conveyance of identity information from identity providers to authorization services across security domain boundaries.
 
-### Identity federation scenario
+### Identity Federation Scenario
 
 This scenario allows to use multiple authoritative identity providers with a single authorization service. The client falls under the governance of the resource owner's respective authority.
 
 ![Scenario-1](./images/authority-boundaries-scenario-1.svg)
 
-### Federated authorization scenario
+### Federated Authorization Scenario
 
 The federated authorization scenario shows the use of a single authoritative identity provider with multiple authorization services. The client falls under the governance of the requesting party's respective authority.
 
 ![Scenario-2](./images/authority-boundaries-scenario-2.svg)
 
-### Combined federation scenario
+### Combined Federation Scenario
 
 As the name suggests, this scenario allows to use multiple authoritative identity providers with multiple authorization services. The client falls under the governance of a third-party authority.
 
 ![Scenario-3](./images/authority-boundaries-scenario-3.svg)
 
-## Use cases
+## Use Cases
 
 Healthcare and enterprise cross-domain services e.g. email, file sharing, instant messaging, tele-conferencing. Also, Fintech and Telco services.
 
