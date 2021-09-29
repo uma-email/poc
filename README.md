@@ -35,8 +35,8 @@ Steps:
 
 1. The RqP directs the client to access the 'RS API' resource with no access token.
 2. Without an access token, the RS will return HTTP code 401 (Unauthorized) with a permission ticket.
-3. The client creates a ticket challenge derived from the permission ticket using the following transformation ticket_challenge = Base64URL-Encode(SHA256(ticket)).
-4. At the AS-RqP the client requests a claims token by presenting the access token with user claims and the created ticket challenge.
+3. The client generates a ticket hash derived from the permission ticket using the following transformation ticket_hash = Base64URL-Encode(SHA256(ticket)).
+4. At the AS-RqP the client requests a claims token by presenting the access token with user claims and the generated ticket hash.
 5. The AS-RqP returns the claims token.
 6. At the AS-RO the client requests an RPT by presenting the claims token and the permission ticket.
 7. After an authorization assessment, it is positive, the AS-RO returns RPT.
@@ -62,8 +62,8 @@ Steps:
 
 1. The RqP directs the client to get a permission ticket from the AS-RO to access the 'RS API' resource. The created permission ticket is an access token with a scope 'ticket'.
 2. The AS-RO returns the permission ticket.
-3. The client creates a ticket challenge derived from the permission ticket using the following transformation ticket_challenge = Base64URL-Encode(SHA256(ticket)).
-4. At the AS-RqP the client requests a claims token by presenting the access token with user claims and the created ticket challenge.
+3. The client generates a ticket hash derived from the permission ticket using the following transformation ticket_hash = Base64URL-Encode(SHA256(ticket)).
+4. At the AS-RqP the client requests a claims token by presenting the access token with user claims and the generated ticket hash.
 5. The AS-RqP returns the claims (JWT) token.
 6. At the AS-RO the client requests an access token via a JWT grant type by presenting the claims (JWT) token and the permission ticket.
 7. After an authorization assessment, it is positive, the AS-RO returns the access token.
