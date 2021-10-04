@@ -24,7 +24,7 @@ The following sequence diagram describes the mechanism of the CAZ protocol, whic
 
 This diagram represents a profile of the experimental UMA protocol.
 
-![Sequence Diagram - UMA experimental](./images/correlated-authz-uma-exper.png)
+![Sequence Diagram – UMA experimental](./images/correlated-authz-uma-exper.png)
 
 Prerequisites:
 
@@ -46,6 +46,10 @@ Steps:
 7. After an authorization assessment, it is positive, the AS-RO returns the access token.
 8. With the valid access token the client tries to access the 'RS API'.
 9. The RS validates the access token, it is valid, the RS allow access the protected 'RS API' resource.
+
+### Dynamic Client Registration
+
+
 
 ## Authority Boundaries, Interactions and Scenarios
 

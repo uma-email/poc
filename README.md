@@ -12,23 +12,19 @@ With the growing popularity of protocols based on the OAuth2 specification, ther
 
 CAZ is an attempt to revive UMA WG's original idea – [UMA wide ecosystem][9], when the resource owner and requesting party might "know each other" in the real world, but the resource owner's authorization server has no pre-established trust with the requesting party or any of their identity/claims providers – in other words, when the resource owner's authorization server and requesting party's identity provider don't know each other.
 
-## UMA Wide Ecosystem Concept
+## Sequence Diagrams
 
-## Challenge-Response Authentication Concept
-
-## Sequence Diagram
-
-The following sequence diagram describes the mechanism of the CAZ protocol, which relies on the token exchange extension of OAuth2, where an access token is used to obtain a claims token from the Security Token Service (STS) endpoint.
+The following sequence diagrams describe the mechanism of the CAZ protocol, which relies on the token exchange extension of OAuth2, where an access token is used to obtain a claims token from the Security Token Service (STS) endpoint.
 
 ### UMA Profile
 
 This diagram represents a profile of the UMA protocol and is in full compliance with the UMA 2.0 specification.
 
-![Sequence Diagram - UMA](./images/correlated-authz-uma.png)
+![Sequence Diagram – UMA](./images/correlated-authz-uma.png)
 
 Prerequisites:
 
-* Both authorization servers support the [OAuth 2.0 Token Exchange][5] extension of OAuth2.
+* The AS-RqP supports the [OAuth 2.0 Token Exchange][5] extension of OAuth2.
 * The AS-RqP also acts as RqP's Identity Provider.
 * The AS-RqP publishes its metadata on a URL /.well-known/oauth-authorization-server (alternatively on /.well-known/openid-configuration).
 * The client is registered at the AS-RqP as a public or confidential client and acts as a Relying Party in a RqP's Identity Provider to obtain an access token with user claims.
@@ -46,6 +42,32 @@ Steps:
 7. After an authorization assessment, it is positive, the AS-RO returns RPT.
 8. With the valid RPT the client tries to access the 'RS API'.
 9. The RS validates the RPT, it is valid, the RS allow access the protected 'RS API' resource. 
+
+### Dynamic Client Registration
+
+This diagram shows how the resource owner's authorization server can protect its own client registration endpoint API by using the CAZ protocol.
+
+![Sequence Diagram – Dynamic Client Registration](./images/correlated-authz-dynamic-client-registration.png)
+
+Prerequisites:
+
+* The AS-RqP supports the [OAuth 2.0 Token Exchange][5] extension of OAuth2.
+* The AS-RqP also acts as RqP's Identity Provider.
+* The AS-RqP publishes its metadata on a URL /.well-known/oauth-authorization-server (alternatively on /.well-known/openid-configuration).
+* The client is registered at the AS-RqP as a public or confidential client and acts as a Relying Party in a RqP's Identity Provider to obtain an access token with user claims.
+* The RO has set up the CRE API and registers its 'CRE API' resource at the AS-RO according to the [UMA Federated Authorization][6] specification.
+
+Steps:
+
+1. The RqP directs the client to access the 'CRE API' resource with no access token.
+2. Without an access token, the CRE will return HTTP code 401 (Unauthorized) with a permission ticket.
+3. The client generates a ticket hash derived from the permission ticket using the following transformation ticket_hash = Base64URL-Encode(SHA256(ticket)).
+4. At the AS-RqP the client requests a claims token by presenting the access token with user claims and the generated ticket hash.
+5. The AS-RqP returns the claims token.
+6. At the AS-RO the client requests an RPT by presenting the claims token and the permission ticket.
+7. After an authorization assessment, it is positive, the AS-RO returns RPT.
+8. With the valid RPT the client sends the registration request to the 'CRE API'.
+9. The CRE validates the RPT, it is valid, the CRE returns the client information response.
 
 ## Authority Boundaries, Interactions and Scenarios
 
