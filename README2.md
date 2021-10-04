@@ -1,4 +1,4 @@
-# Correlated Authorization
+# Correlated Authorization (experimental)
 
 ## Abstract
 
@@ -12,42 +12,19 @@ With the growing popularity of protocols based on the OAuth2 specification, ther
 
 CAZ is an attempt to revive UMA WG's original idea – [UMA wide ecosystem][9], when the resource owner and requesting party might "know each other" in the real world, but the resource owner's authorization server has no pre-established trust with the requesting party or any of their identity/claims providers – in other words, when the resource owner's authorization server and requesting party's identity provider don't know each other.
 
-## Sequence Diagrams
+## UMA Wide Ecosystem Concept
 
-There are two versions of the sequence diagram that describe the mechanism of the CAZ protocol. The first version represents the CAZ profile of the UMA protocol. The second version profiles the OAuth2 protocol. Both profiles rely on the token exchange extension of OAuth2, where an access token is used to obtain a claims token from the Security Token Service (STS) endpoint.
+## Challenge-Response Authentication Concept
+
+## Sequence Diagram
+
+The following sequence diagram describes the mechanism of the CAZ protocol, which relies on the token exchange extension of OAuth2, where an access token is used to obtain a claims token from the Security Token Service (STS) endpoint.
 
 ### UMA Profile
 
-This diagram is in full compliance with the UMA specification.
+This diagram represents a profile of the experimental UMA protocol.
 
-![Sequence Diagram - UMA](./images/correlated-authz-uma.png)
-
-Prerequisites:
-
-* Both authorization servers support the [OAuth 2.0 Token Exchange][5] extension of OAuth2.
-* The AS-RqP also acts as RqP's Identity Provider.
-* The AS-RqP publishes its metadata on a URL /.well-known/oauth-authorization-server (alternatively on /.well-known/openid-configuration).
-* The client is registered at the AS-RqP as a public or confidential client and acts as a Relying Party in a RqP's Identity Provider to obtain an access token with user claims.
-* The client is registered at the AS-RO as a public or confidential client.
-* The RO has set up the RS and registers its 'RS API' resource at the AS-RO according to the [UMA Federated Authorization][6] specification.
-
-Steps:
-
-1. The RqP directs the client to access the 'RS API' resource with no access token.
-2. Without an access token, the RS will return HTTP code 401 (Unauthorized) with a permission ticket.
-3. The client generates a ticket hash derived from the permission ticket using the following transformation ticket_hash = Base64URL-Encode(SHA256(ticket)).
-4. At the AS-RqP the client requests a claims token by presenting the access token with user claims and the generated ticket hash.
-5. The AS-RqP returns the claims token.
-6. At the AS-RO the client requests an RPT by presenting the claims token and the permission ticket.
-7. After an authorization assessment, it is positive, the AS-RO returns RPT.
-8. With the valid RPT the client tries to access the 'RS API'.
-9. The RS validates the RPT, it is valid, the RS allow access the protected 'RS API' resource. 
-
-### OAuth2 Profile
-
-This diagram represents a profile of the OAuth2 protocol and lacks some UMA features.
-
-![Sequence Diagram - OAuth2](./images/correlated-authz-oauth2.png)
+![Sequence Diagram - UMA experimental](./images/correlated-authz-uma-exper.png)
 
 Prerequisites:
 
