@@ -43,9 +43,9 @@ Steps:
 8. With the valid RPT the client tries to access the 'RS API'.
 9. The RS validates the RPT, it is valid, the RS allow access the protected 'RS API' resource. 
 
-### Dynamic Client Registration
+### Protected Dynamic Client Registration
 
-This diagram shows how the resource owner's authorization server can protect its own client registration endpoint API by using the CAZ protocol.
+This diagram shows how the resource owner's authorization server can protect its own client registration endpoint API by using the CAZ protocol. An initial RPT is required when making registration requests.
 
 ![Sequence Diagram – Dynamic Client Registration](./images/correlated-authz-dynamic-client-registration.png)
 
@@ -55,7 +55,7 @@ Prerequisites:
 * The AS-RqP also acts as RqP's Identity Provider.
 * The AS-RqP publishes its metadata on a URL /.well-known/oauth-authorization-server (alternatively on /.well-known/openid-configuration).
 * The client is registered at the AS-RqP as a public or confidential client and acts as a Relying Party in a RqP's Identity Provider to obtain an access token with user claims.
-* The CRE API is an UMA-protected resource which accepts an initial RPT to limit registration to only authorized RqPs.
+* The CRE API is an UMA-protected resource that accepts an initial RPT to limit registration to only authorized RqPs.
 
 Steps:
 
