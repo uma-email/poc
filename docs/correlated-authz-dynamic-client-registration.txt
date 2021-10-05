@@ -6,7 +6,7 @@ participant "AuthZ Server – Resource Owner (AS-RO)" as AS-RO
 bottomparticipants
 
 note over AS-RqP:AS-RqP:\n• supports the token exchange extension of OAuth2\n• publishes its metadata on a URL /.well-known/oauth-authorization-server\n• acts as RqP's Identity Provider
-note over Client:RqP Client:\n• is registered at AS-RqP as a public or confidential client\n• acts as a Relying Party in a RqP's Identity Provider to obtain an an access_token_with_user_claims
+note over Client:Client:\n• is registered at AS-RqP as a public or confidential client\n• acts as a Relying Party in a RqP's Identity Provider to obtain an an access_token_with_user_claims
 note over CRE:CRE is an UMA-protected resource that accepts an initial\nRequesting Party Token (RPT) to limit registration to only authorized RqPs
 CRE<-Client:1. Request CRE resource with no access token
 CRE->Client:2. Return 401 with permission ticket\n    {ticket}
