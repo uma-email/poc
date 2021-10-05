@@ -45,7 +45,7 @@ Steps:
 
 ### Protected Dynamic Client Registration
 
-This diagram shows how the resource owner's authorization server can protect its own client registration endpoint API by using the CAZ protocol. An initial RPT is required when making registration requests.
+This diagram shows how the resource owner's authorization server can protect its own client registration endpoint by using the CAZ protocol. An initial RPT is required when making registration requests.
 
 ![Sequence Diagram – Dynamic Client Registration](./images/correlated-authz-dynamic-client-registration.png)
 
@@ -55,18 +55,18 @@ Prerequisites:
 * The AS-RqP also acts as RqP's Identity Provider.
 * The AS-RqP publishes its metadata on a URL /.well-known/oauth-authorization-server (alternatively on /.well-known/openid-configuration).
 * The client is registered at the AS-RqP as a public or confidential client and acts as a Relying Party in a RqP's Identity Provider to obtain an access token with user claims.
-* The CRE API is an UMA-protected resource that accepts an initial RPT to limit registration to only authorized RqPs.
+* The CRE is an UMA-protected resource that accepts an initial RPT to limit registration to only authorized RqPs.
 
 Steps:
 
-1. The RqP directs the client to access the 'CRE API' resource with no access token.
+1. The RqP directs the client to access the CRE resource with no access token.
 2. Without an access token, the CRE will return HTTP code 401 (Unauthorized) with a permission ticket.
 3. The client generates a ticket hash derived from the permission ticket using the following transformation ticket_hash = Base64URL-Encode(SHA256(ticket)).
 4. At the AS-RqP the client requests a claims token by presenting the access token with user claims and the generated ticket hash.
 5. The AS-RqP returns the claims token.
 6. At the AS-RO the client requests an RPT by presenting the claims token and the permission ticket.
 7. After an authorization assessment, it is positive, the AS-RO returns RPT.
-8. With the valid RPT the client sends the registration request to the 'CRE API'.
+8. With the valid RPT the client sends the registration request to the CRE.
 9. The CRE validates the RPT, it is valid, the CRE returns the client information response.
 
 ## Authority Boundaries, Interactions and Scenarios
