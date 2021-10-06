@@ -18,6 +18,14 @@ This high-level view gives you an idea of relationships between UMA wide ecosyst
 
 ![UMA Wide Ecosystem](./images/uma-wide-ecosystem.png)
 
+## Challenge-Response Authentication Concept
+
+This unilateral entity authentication protocol elevates trust between the resource owner's authorization server and requesting party's identity provider.
+
+![Challenge-Response Authentication](./images/challenge-response-authentication.png)
+
+The ticket represents a random challenge and the signed ticket hash represents the response. The hash of the ticket has to be there in order not to reveal the UMA permission ticket to the authenticator.
+
 ## Sequence Diagrams
 
 The following sequence diagrams describe the mechanism of the CAZ protocol, which relies on the token exchange extension of OAuth2, where an access token is used to obtain a claims token from the Security Token Service (STS) endpoint.
