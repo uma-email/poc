@@ -14,13 +14,13 @@ CAZ is an attempt to revive UMA WG's original idea – [UMA wide ecosystem][9], 
 
 ## UMA Wide Ecosystem Concept
 
-This high-level view gives you an idea of relationships between UMA wide ecosystem entities. The authority foo and bar may or may not be the same authority.
+This high-level view gives you an idea of relationships between UMA wide ecosystem entities. The authority Foo and Bar may or may not be the same authority.
 
 ![UMA Wide Ecosystem](./images/uma-wide-ecosystem.png)
 
 ## Challenge-Response Authentication Concept
 
-This unilateral entity authentication protocol elevates trust between the resource owner's authorization server and requesting party's identity provider. The authority foo and bar may or may not be the same authority.
+This unilateral entity authentication protocol elevates trust between the resource owner's authorization server and requesting party's identity provider. The authority Foo and Bar may or may not be the same authority.
 
 ![Challenge-Response Authentication](./images/challenge-response-authentication.png)
 
