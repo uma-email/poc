@@ -59,7 +59,7 @@ Steps:
 
 ### Protected Dynamic Client Registration
 
-This diagram shows how the resource owner's authorization server can protect its own client registration endpoint by using the CAZ protocol. An initial RPT is required when making registration requests.
+This diagram shows how the resource owner's authorization server can protect its own client registration endpoint by using the CAZ protocol. An initial RPT is required when making registration requests. This allows the resource owner to manage each RqP's client separately.
 
 ![Sequence Diagram – Dynamic Client Registration](./images/correlated-authz-dynamic-client-registration.png)
 
