@@ -12,6 +12,12 @@ With the growing popularity of protocols based on the OAuth2 specification, ther
 
 CAZ is an attempt to revive UMA WG's original idea – [UMA wide ecosystem][9], when the resource owner and requesting party might "know each other" in the real world, but the resource owner's authorization server has no pre-established trust with the requesting party or any of their identity/claims providers – in other words, when the resource owner's authorization server and requesting party's identity provider don't know each other.
 
+## UMA Wide Ecosystem Concept
+
+This high-level view gives you an idea of relationships between UMA wide ecosystem entities.
+
+![UMA Wide Ecosystem](./images/uma-wide-ecosystem.png)
+
 ## Sequence Diagrams
 
 The following sequence diagrams describe the mechanism of the CAZ protocol, which relies on the token exchange extension of OAuth2, where an access token is used to obtain a claims token from the Security Token Service (STS) endpoint.
@@ -79,19 +85,19 @@ The following scenarios demonstrate a system of trust between two authorities th
 
 This scenario allows to use multiple authoritative identity providers with a single authorization service. The client falls under the governance of the resource owner's respective authority.
 
-![Scenario-1](./images/authority-boundaries-scenario-1.svg)
+![Scenario-1](./images/authority-boundaries-scenario-1.png)
 
 ### Federated Authorization Scenario
 
 The federated authorization scenario shows the use of a single authoritative identity provider with multiple authorization services. The client falls under the governance of the requesting party's respective authority.
 
-![Scenario-2](./images/authority-boundaries-scenario-2.svg)
+![Scenario-2](./images/authority-boundaries-scenario-2.png)
 
 ### Combined Federation Scenario
 
 As the name suggests, this scenario allows to use multiple authoritative identity providers with multiple authorization services. The client falls under the governance of a third-party authority.
 
-![Scenario-3](./images/authority-boundaries-scenario-3.svg)
+![Scenario-3](./images/authority-boundaries-scenario-3.png)
 
 ## Use Cases
 
