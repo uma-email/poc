@@ -1,12 +1,12 @@
-### UMA Profile (experimental)
+### UMA Experimental
 
-This diagram represents a profile of the experimental UMA protocol that does not need a protection API access token. The permission ticket is obtained directly by the client from the permission endpoint.
+This diagram represents a [Correlated Authorization (CAZ)][1] protocol based on the experimental UMA protocol, which does not require a protection API access token. The permission ticket is obtained directly by the client from the permission endpoint.
 
-![Sequence Diagram – UMA experimental](./images/correlated-authz-uma-exper.png)
+![Sequence Diagram – UMA Experimental](./images/correlated-authz-uma-exper.png)
 
 Prerequisites:
 
-* The AS-RqP supports the [OAuth 2.0 Token Exchange][1] extension of OAuth2.
+* The AS-RqP supports the [OAuth 2.0 Token Exchange][2] extension of OAuth2.
 * The AS-RqP also acts as RqP's Identity Provider.
 * The AS-RqP publishes its metadata on a URL /.well-known/oauth-authorization-server (alternatively on /.well-known/openid-configuration).
 * The client is registered at the AS-RqP as a public or confidential client and acts as a Relying Party in a RqP's Identity Provider to obtain an access token with user claims.
@@ -25,4 +25,9 @@ Steps:
 8. With the valid access token the client tries to access the 'RS API'.
 9. The RS validates the access token, it is valid, the RS allow access the protected 'RS API' resource.
 
-[1]: https://www.rfc-editor.org/rfc/rfc8693.html
+### Use Cases
+
+Rapid CAZ/UMA RPT-based protocol prototyping and testbeds.
+
+[1]: https://github.com/uma-email/poc
+[2]: https://www.rfc-editor.org/rfc/rfc8693.html
