@@ -69,6 +69,7 @@ Prerequisites:
 * The AS-RqP also acts as RqP's Identity Provider.
 * The AS-RqP publishes its metadata on a URL /.well-known/oauth-authorization-server (alternatively on /.well-known/openid-configuration).
 * The client is registered at the AS-RqP as a public or confidential client and acts as a Relying Party in a RqP's Identity Provider to obtain an access token with user claims.
+* OPTIONAL: The client is registered at the AS-RO as a public client.
 * The CRE is an UMA-protected resource that accepts an initial RPT to limit registration to only authorized RqPs.
 
 Steps:
