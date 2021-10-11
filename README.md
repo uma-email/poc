@@ -69,7 +69,7 @@ Prerequisites:
 * The AS-RqP also acts as RqP's Identity Provider.
 * The AS-RqP publishes its metadata on a URL /.well-known/oauth-authorization-server (alternatively on /.well-known/openid-configuration).
 * The client is registered at the AS-RqP as a public or confidential client and acts as a Relying Party in a RqP's Identity Provider to obtain an access token with user claims.
-* OPTIONAL: The client is registered at the AS-RO as a public client.
+* OPTIONAL. The client is registered at the AS-RO as a public client.
 * The CRE is an UMA-protected resource that accepts an initial RPT to limit registration to only authorized RqPs.
 
 Steps:
@@ -83,6 +83,8 @@ Steps:
 7. After an authorization assessment, it is positive, the AS-RO returns RPT.
 8. With the valid RPT the client sends the registration request to the CRE.
 9. The CRE validates the RPT, it is valid, the CRE returns the client information response.
+
+If the client has been pre-registered at the RO's AS as a public client, then after the protected dynamic registration, the client is registered twice, both as a public and at the same time as a confidential client. When communicating with the AS, the client uses the registration that is more secure. If the client is a Single Page Application, the client credentials has to be returned from the registration endpoint in the form of the HMAC-protected cookies with the HttpOnly and secure flags set. If the RqP deletes the cookies, the client re-registers with the RO's AS.
 
 ## Authority Boundaries, Interactions and Scenarios
 
