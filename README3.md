@@ -13,7 +13,7 @@ The channel is defined by the client CRI (start) and RS CRI (end).
 * The client is registered at the AS as a Confidential Client.
 * The RS is registered at the AS as a Confidential RS.
 
-### Steps (alternative 1)
+### Steps (token-binding variant)
 
 1. Client requests an RPT by presenting the claims token and the permission ticket using a shared secret to authenticate itself with the AS.
 2. After an authorization assessment, it is positive, the AS generates the RPT.
@@ -26,11 +26,11 @@ The channel is defined by the client CRI (start) and RS CRI (end).
 9. The RS extracts abc from the RPT PoP attribute and compares it with the rs_abc, it equals, the 'RS API' call is from the proper client.
 10. The RS validates the RPT, it is valid, the RS allow access the protected 'RS API' resource.
 
-### Notes 1
+### Notes
 
 * Instead of using the permission ticket, the abc can be generated using some nonce token attribute.
 
-### Steps (alternative 2)
+### Steps (token signature variant)
 
 1. Client requests an RPT by presenting the claims token and the permission ticket using a shared secret to authenticate itself with the AS.
 2. After an authorization assessment, it is positive, the AS generates the RPT.
@@ -41,6 +41,7 @@ The channel is defined by the client CRI (start) and RS CRI (end).
 7. The RS generates the rs_abc from the xyz and RS CRI using HMAC(K, m) function; rs_abc=HMAC-SHA256(rs_cri, xyz)
 8. The RS compares the RPT signature with the rs_abc, it equals, the 'RS API' call is from the proper client, the RTP is valid (signed by the AS), the RS allow access the protected 'RS API' resource.
 
-### Notes 2
+### Notes
 
+* Consider the client cookie variant.
 * Employ the AES-GCM chain instead of HMAC chain to support encrypted tokens.
