@@ -1,3 +1,5 @@
+# Channel-Bound Tokens
+
 ### Terminology
 
 * Confidential Registration Identifier (CRI): A nonce that is generated at the AS and returned to the registering party during the registration process. The CRI is not publicly available, it is only known to the AS and the relevant registering party.
@@ -6,42 +8,29 @@
 
 ### Concept
 
-The channel is defined by the client CRI (start) and RS CRI (end).
+The channel is defined by the client CRI (start) and RS CRI (target).
 
 ### Prerequisites
 
 * The client is registered at the AS as a Confidential Client.
 * The RS is registered at the AS as a Confidential RS.
 
-### Steps (token-binding variant)
+### Steps (basic variant)
 
-1. Client requests an RPT by presenting the claims token and the permission ticket using a shared secret to authenticate itself with the AS.
-2. After an authorization assessment, it is positive, the AS generates the RPT.
-3. The AS generates the abc from the permission ticket, client CRI, RS CRI using HMAC(K, HMAC(K, m)) chain function; abc=HMAC-SHA256(rs_cri, HMAC-SHA256(client_cri, ticket))
-4. The AS inserts the abc into the RPT as a PoP attribute.
-5. The AS returns the RPT to the client.
-6. The client generates the xyz from the permission ticket and client CRI using HMAC(K, m) function; xyz=HMAC-SHA256(client_cri, ticket)
-7. The client makes an 'RS API' call that includes the RPT and the generated xyz.
-8. The RS generates the rs_abc from the xyz and RS CRI using HMAC(K, m) function; rs_abc=HMAC-SHA256(rs_cri, xyz)
-9. The RS extracts abc from the RPT PoP attribute and compares it with the rs_abc, it equals, the 'RS API' call is from the proper client.
-10. The RS validates the RPT, it is valid, the RS allow access the protected 'RS API' resource.
-
-### Notes
-
-* Instead of using the permission ticket, the abc can be generated using some nonce token attribute.
-
-### Steps (token signature variant)
-
-1. Client requests an RPT by presenting the claims token and the permission ticket using a shared secret to authenticate itself with the AS.
-2. After an authorization assessment, it is positive, the AS generates the RPT.
-3. The AS generates the RPT signature from the encoded token header and payload, client CRI, RS CRI using HMAC(K, HMAC(K, m)) chain function; abc=HMAC-SHA256(rs_cri, HMAC-SHA256(client_cri, encoded token header and payload))
-4. The AS returns the RPT to the client.
-5. The client generates the xyz from the encoded token header and payload and client CRI using HMAC(K, m) function; xyz=HMAC-SHA256(client_cri, encoded token header and payload)
-6. The client makes an 'RS API' call that includes the RPT and the generated xyz.
-7. The RS generates the rs_abc from the xyz and RS CRI using HMAC(K, m) function; rs_abc=HMAC-SHA256(rs_cri, xyz)
-8. The RS compares the RPT signature with the rs_abc, it equals, the 'RS API' call is from the proper client, the RTP is valid (signed by the AS), the RS allow access the protected 'RS API' resource.
+1. The client requests an RPT by presenting the claims token and the permission ticket using a shared secret to authenticate itself with the AS.
+2. After an authorization assessment, it is positive, the AS generates the RPT with a nonce claim.
+3. The AS generates the Target Signature from the nonce claim, client CRI, RS CRI using HMAC(K, HMAC(K, m)) chain function; Target Signature = HMAC-SHA256(RS CRI, HMAC-SHA256(client CRI, nonce claim))
+4. The AS inserts the Target Signature into the RPT as a target_signature claim.
+5. The AS signs the RPT.
+6. The AS returns the RPT to the client.
+7. The client generates the Signature from the nonce claim and client CRI using HMAC(K, m) function; Start Signature = HMAC-SHA256(client CRI, nonce claim)
+8. The client makes an 'RS API' call that includes the RPT and the generated Signature.
+9. The RS generates the Target Signature from the Signature and RS CRI using HMAC(K, m) function; Target Signature = HMAC-SHA256(RS CRI, Signature)
+10. The RS compares the generated Target Signature with the the RPT target_signature claim, it equals, the 'RS API' start-target channel is verified.
+11. The RS validates the RPT signature, it is valid, the RS allow access the protected 'RS API' resource.
 
 ### Notes
 
+* An endpoint (e.g. UserInfo) may be registered at the AS as a Confidential Endpoint.
 * Consider the client cookie variant.
-* Employ the AES-GCM chain instead of HMAC chain to support encrypted tokens.
+* ~~Employ the AES-GCM chain instead of HMAC chain to support encrypted tokens~~.
