@@ -31,7 +31,7 @@ The channel is defined by the client CRI (start) and RS CRI (target).
 12. The client generates the Signature from the nonce claim and client CRI using HMAC(K, m) function; Start Signature = HMAC-SHA256(client CRI, nonce claim)
 13. The client makes an 'RS API' call that includes the RPT and the generated Signature.
 14. The RS generates the Target Signature from the Signature and RS CRI using HMAC(K, m) function; Target Signature = HMAC-SHA256(RS CRI, Signature)
-15. The RS compares the generated Target Signature with the the RPT target_signature claim, it equals, the 'RS API' start-target channel is verified.
+15. The RS compares the generated Target Signature with the the RPT target_signature claim, it equals, the 'RS API' client-RS channel is verified.
 16. The RS validates the RPT signature, it is valid, the RS allow access the protected 'RS API' resource.
 
 ### Notes
