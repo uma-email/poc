@@ -10,6 +10,10 @@
 
 The channel is defined by the client CRI (start) and RS CRI (target).
 
+### Use Cases
+
+A proof of possession tokens and a verifiable target audience.
+
 ### Prerequisites
 
 * The client is registered at the AS-RO as a Confidential Client.
