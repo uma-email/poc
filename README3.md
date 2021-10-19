@@ -41,5 +41,6 @@ A proof of possession tokens and a verifiable target audience.
 ### Notes
 
 * Consider the client cookie variant.
+* OAuth2 related: when the token endpoint is registered at the AS as a Confidential Endpoint, Channel-Bound Refresh Tokens are generated.
 * OIDC related: an endpoint (e.g. UserInfo) may be registered at the AS-RqP as a Confidential Endpoint.
 * ~~Employ the AES-GCM chain instead of HMAC chain to support encrypted tokens~~.
