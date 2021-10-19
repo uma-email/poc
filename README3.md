@@ -22,12 +22,12 @@ A proof of possession tokens and a verifiable target audience.
 ### Steps (basic variant)
 
 1. The RqP directs the client to access the 'RS API' resource with no access token.
-2. Without an access token, the RS will return HTTP code 401 (Unauthorized) with a permission ticket.
+2. Without an access token, the RS will return HTTP code 401 (Unauthorized) with a permission ticket which has to be a nonce.
 3. The client generates a ticket hash derived from the permission ticket using the following transformation ticket_hash = Base64URL-Encode(SHA256(ticket)).
 4. At the AS-RqP the client requests a claims token by presenting the access token with user claims and the generated ticket hash.
 5. The AS-RqP returns the claims token.
 6. The client requests an RPT by presenting the claims token and the permission ticket using a shared secret to authenticate itself with the AS-RO.
-7. After an authorization assessment, it is positive, the AS-RO generates the RPT with a nonce claim.
+7. After an authorization assessment, it is positive, the AS-RO creates the RPT with a nonce claim. The nonce is generated on the AS or was sent as the permission ticket in the RPT request.
 8. The AS-RO generates the Target Signature from the nonce claim, client CRI, RS CRI using HMAC(K, HMAC(K, m)) chain function; Target Signature = HMAC-SHA256(RS CRI, HMAC-SHA256(client CRI, nonce claim))
 9. The AS-RO inserts the Target Signature into the RPT as a target_signature claim.
 10. The AS-RO signs the RPT.
