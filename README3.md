@@ -29,13 +29,13 @@ A proof of possession tokens and a verifiable target audience.
 6. The client requests an RPT by presenting the claims token and the permission ticket using a shared secret to authenticate itself with the AS-RO.
 7. After an authorization assessment, it is positive, the AS-RO creates the RPT with a nonce claim. The nonce is generated on the AS or was sent as the permission ticket in the RPT request.
 8. The AS-RO generates the Target Signature from the nonce claim, client CRI, RS CRI using HMAC(K, HMAC(K, m)) chain function; Target Signature = HMAC-SHA256(RS CRI, HMAC-SHA256(client CRI, nonce claim))
-9. The AS-RO inserts the Target Signature into the RPT as a target_signature claim.
+9. The AS-RO inserts the Target Signature into the RPT as an audience claim.
 10. The AS-RO signs the RPT.
 11. The AS-RO returns the RPT to the client.
 12. The client generates the Signature from the nonce claim and client CRI using HMAC(K, m) function; Start Signature = HMAC-SHA256(client CRI, nonce claim)
 13. The client makes an 'RS API' call that includes the RPT and the generated Signature.
 14. The RS generates the Target Signature from the Signature and RS CRI using HMAC(K, m) function; Target Signature = HMAC-SHA256(RS CRI, Signature)
-15. The RS compares the generated Target Signature with the the RPT target_signature claim, it equals, the 'RS API' client-RS channel is verified.
+15. The RS compares the generated Target Signature with the RPT audience claim, it equals, the 'RS API' client-RS channel is verified.
 16. The RS validates the RPT signature, it is valid, the RS allow access the protected 'RS API' resource.
 
 ### Notes
