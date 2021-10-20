@@ -84,7 +84,7 @@ Steps:
 8. With the valid RPT the client sends the registration request to the CRE.
 9. The CRE validates the RPT, it is valid, the CRE returns the client information response.
 
-If the client has been pre-registered at the RO's AS as a public client, then after the protected dynamic registration, the client is registered twice, both as a public and at the same time as a confidential client. When communicating with the AS, the client uses the registration that is more secure. If the client is a Single Page Application, the confidential registration identifier (nonce) that refers to the client credentials has to be returned from the registration endpoint in the form of a cookie with the HttpOnly and Secure attributes set. If the RqP deletes the cookies or the confidential client registration has been removed from the server, the client may re-register with the RO's AS.
+If the client has been pre-registered at the RO's AS as a public client, then after the protected dynamic registration, the client is registered twice, both as a public and at the same time as a confidential client. When communicating with the AS, the client uses the registration that is more secure. If the client is a Single Page Application, the confidential registration identifier (nonce), which is mapped to the client credentials, has to be returned from the registration endpoint in the form of a cookie with the HttpOnly and Secure attributes set. If the RqP deletes the cookies or the confidential client registration has been removed from the server, the client may re-register with the RO's AS.
 
 ## Authority Boundaries, Interactions and Scenarios
 
