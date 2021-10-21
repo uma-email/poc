@@ -28,7 +28,7 @@ A proof of possession tokens and a verifiable target audience.
 5. The AS-RqP returns the claims token.
 6. The client requests an RPT by presenting the claims token and the permission ticket using a shared secret to authenticate itself with the AS-RO.
 7. After an authorization assessment, it is positive, the AS-RO creates the RPT with a nonce claim. The nonce is generated on the AS or was sent as the permission ticket in the RPT request.
-8. The AS-RO generates the Target MAC from the nonce claim, client CRI, RS CRI using HMAC(K, HMAC(K, m)) chain function; Target MAC = HMAC-SHA256(RS CRI, HMAC-SHA256(client CRI, nonce claim))
+8. The AS-RO generates the Target MAC from the nonce claim, client CRI, RS CRI using HMAC(K1, HMAC(K2, m)) chain function with multiple shared secret keys; Target MAC = HMAC-SHA256(RS CRI, HMAC-SHA256(client CRI, nonce claim))
 9. The AS-RO inserts the Target MAC into the RPT as an audience claim.
 10. The AS-RO signs the RPT.
 11. The AS-RO returns the RPT to the client.
