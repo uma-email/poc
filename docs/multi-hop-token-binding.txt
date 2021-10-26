@@ -12,8 +12,8 @@ note right of AS:The multi-hop Destination MAC value is computed as:\nDestinatio
 client<-AS:3. Access Token
 client->client:4. Client:\n• extracts the nonce claim value from the Access Token\n• computes the MAC value
 note right of client:The MAC value is computed as:\nMAC = HMAC-SHA256(client shared secret, nonce)\nwhere\nclient shared secret = SHA256(client's client secret)\nnonce = Base64URL-Decode(nonce claim value)
-client->RS:5. Access Token, "MAC"
-note right of client:Client sends the base64url encoded MAC value in the "MAC" request header field
+client->RS:5. Access Token
+note right of client:Client sends the base64url encoded MAC value in the "Authorization" request header field
 RS->RS:6. RS:\n• computes the Destination MAC value\n• compares the base64url encoded Destination MAC value with the audience claim value,\n   values are equal, both proof of possession of the token and the target audience has been verified\n• verifies the token (RSA) signature, it is valid, the RS may return the protected resource
-note right of RS:The Destination MAC value is computed as:\nDestination MAC = HMAC-SHA256(RS shared secret, MAC)\nwhere\nRS shared secret = SHA256(RS's client secret)\nMAC = Base64URL-Decode("MAC" request header field value)
+note right of RS:The Destination MAC value is computed as:\nDestination MAC = HMAC-SHA256(RS shared secret, MAC)\nwhere\nRS shared secret = SHA256(RS's client secret)\nMAC = Base64URL-Decode("Authorization" request header field value)
 client<-RS:7. Protected Resource
