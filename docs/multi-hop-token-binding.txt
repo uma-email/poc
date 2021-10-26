@@ -1,0 +1,19 @@
+participant "Client" as client
+participant "Resource Server (RS)" as RS
+participant "Authorization Server (AS)" as AS
+
+bottomparticipants
+
+note right of client:Client:\n• is registered at the AS as a confidential client and has a client secret
+note right of RS:RS:\n• is registered at the AS as a confidential client and has a client secret
+client->AS:1. Authorization Grant
+AS->AS:2. AS:\n• generates nonce value\n• creates a nonce claim using the base64url encoded nonce value\n• creates an audience claim using the base64url encoded multi-hop Destination MAC value\n• generates the Access Token where the payload contains the nonce and audience claims
+note right of AS:The multi-hop Destination MAC value is computed as:\nDestination MAC = HMAC-SHA256(RS shared secret, HMAC-SHA256(client shared secret, nonce value))\nwhere\nclient shared secret = SHA256(client's client secret)\nRS shared secret = SHA256(RS's client secret)
+client<-AS:3. Access Token
+client->client:4. Client:\n• extracts the nonce claim value from Access Token\n• computes the MAC value
+note right of client:The MAC value is computed as:\nMAC = HMAC-SHA256(client shared secret, nonce value)\nwhere\nclient shared secret = SHA256(client's client secret)\nnonce value = Base64URL-Decode(nonce claim value)
+client->RS:5. Access Token, MAC
+note right of client: Client sends the base64url encoded MAC value as a header in the HTTP request
+RS->RS:6. RS:\n• computes Destination MAC value\n• compares the base64url encoded Destination MAC value with audience claim value,\n  values are equal, both proof of possession of the token and the target audience has been verified\n• verifies the token (RSA) signature, it is valid, the RS may return the protected resource
+note right of RS:The Destination MAC value is computed as:\nDestination MAC = HMAC-SHA256(RS shared secret, MAC value)\nwhere\nRS shared secret = SHA256(RS's client secret)\nMAC value = Base64URL-Decode(HTTP header MAC value)
+client<-RS:7. Protected Resource
