@@ -7,13 +7,13 @@ bottomparticipants
 note right of client:Client:\n• is registered at the AS as a confidential client and has a client secret
 note right of RS:RS:\n• is registered at the AS as a confidential client and has a client secret
 client->AS:1. Authorization Grant
-AS->AS:2. AS:\n• generates a nonce value\n• creates a nonce claim using the base64url encoded nonce value\n• creates an audience claim using the base64url encoded multi-hop Destination MAC value\n• generates the Access Token where the payload contains the nonce and audience claims
-note right of AS:The multi-hop Destination MAC value is computed as:\nDestination MAC = HMAC-SHA256(RS shared secret, HMAC-SHA256(client shared secret, nonce value))\nwhere\nclient shared secret = SHA256(client's client secret)\nRS shared secret = SHA256(RS's client secret)
+AS->AS:2. AS:\n• creates a nonce claim using the nonce data string\n• creates an audience claim using the base64url encoded Destination MAC\n• generates the Access Token where the payload contains the nonce and audience claims
+note right of AS:The Destination MAC is computed as:\nDestination MAC = HMAC-SHA256(Key2, HMAC-SHA256(Key1, message))\nwhere\nKey1 = SHA256(client's client secret)\nKey2 = SHA256(RS's client secret)\nmessage = nonce claim value
 client<-AS:3. Access Token
-client->client:4. Client:\n• extracts the nonce claim value from the Access Token\n• computes the MAC value
-note right of client:The MAC value is computed as:\nMAC = HMAC-SHA256(client shared secret, nonce)\nwhere\nclient shared secret = SHA256(client's client secret)\nnonce = Base64URL-Decode(nonce claim value)
+client->client:4. Client:\n• computes the MAC
+note right of client:The MAC is computed as:\nMAC = HMAC-SHA256(Key, message)\nwhere\nKey = SHA256(client's client secret)\nmessage = nonce claim value
 client->RS:5. Access Token, "MAC"
-note right of client:Client sends the base64url encoded MAC value in the "MAC" request header field
-RS->RS:6. RS:\n• computes the Destination MAC value\n• compares the base64url encoded Destination MAC value with the audience claim value,\n   values are equal, both proof of possession of the token and the target audience has been verified\n• verifies the token (RSA) signature, it is valid, the RS may return the protected resource
-note right of RS:The Destination MAC value is computed as:\nDestination MAC = HMAC-SHA256(RS shared secret, MAC)\nwhere\nRS shared secret = SHA256(RS's client secret)\nMAC = Base64URL-Decode("MAC" request header field value)
+note right of client:Client sends the base64url encoded MAC in the "MAC" request header field
+RS->RS:6. RS:\n• computes the Destination MAC\n• compares the base64url encoded Destination MAC with the audience claim value,\n   they are equal, both proof of possession of the token and the target audience has been verified\n• verifies the token (RSA) signature, it is valid, the RS may return the protected resource
+note right of RS:The Destination MAC is computed as:\nDestination MAC = HMAC-SHA256(Key, message)\nwhere\nKey = SHA256(RS's client secret)\nmessage = Base64URL-Decode("MAC" request header field value)
 client<-RS:7. Protected Resource
