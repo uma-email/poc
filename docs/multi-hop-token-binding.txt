@@ -14,6 +14,6 @@ client->client:4. Client:\n• computes the MAC
 note right of client:The MAC is computed as:\nMAC = HMAC-SHA256(Key, message)\nwhere\nKey = SHA256(client's client secret)\nmessage = nonce claim value
 client->RS:5. Access Token, "MAC"
 note right of client:Client sends the base64url encoded MAC in the "MAC" request header field
-RS->RS:6. RS:\n• computes the Destination MAC\n• compares the base64url encoded Destination MAC with the audience claim value,\n   they are equal, both proof of possession of the token and the target audience has been verified\n• verifies the token (RSA) signature, it is valid, the RS may return the protected resource
+RS->RS:6. RS:\n• validates the token (RSA) signature, it is valid, go to the next step\n• computes the Destination MAC\n• compares the base64url encoded Destination MAC with the audience claim value,\n   they are equal, both proof of possession of the token and the audience has been verified,\n   the RS may return the protected resource
 note right of RS:The Destination MAC is computed as:\nDestination MAC = HMAC-SHA256(Key, message)\nwhere\nKey = SHA256(RS's client secret)\nmessage = Base64URL-Decode("MAC" request header field value)
 client<-RS:7. Protected Resource
