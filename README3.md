@@ -12,7 +12,14 @@ The route is defined by the AS (start), client CRI (stop) and RS CRI (destinatio
 
 ### Use Cases
 
-A proof of possession tokens and a verifiable audience. This should work for both access and refresh tokens, provided that the proper RS APIs or OIDC/AS endpoints are registered. The chained RSs are supported.
+A proof of possession tokens and a verifiable audience. This should work for both access and refresh tokens, provided that the proper RS APIs or OIDC/AS endpoints are registered. 
+
+Examples of token routes:
+
+1. OAuth2: AS->client->RS (access token)
+2. OAuth2: AS->client->AS (refresh token)
+3. OAuth2 chained RS: AS->client->RS1->RS2
+4. UMA wide ecosystem: AS1->client->AS2, AS2->client->RS
 
 ### Prerequisites
 
