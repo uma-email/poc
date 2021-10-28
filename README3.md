@@ -8,11 +8,11 @@
 
 ### Concept
 
-The route is defined by the AS (start), client CRI (stop) and RS CRI (destination).
+This concept uses chained HMAC functions with multiple shared secret keys. The route is defined by the AS (start), client CRI (stop) and RS CRI (destination).
 
 ### Use Cases
 
-A proof of possession tokens and a verifiable audience. This should work for both access and refresh tokens, provided that the proper RS APIs or OIDC/AS endpoints are registered. 
+A verifiable token route. This should work for both access and refresh tokens, provided that the proper route stops and endpoints are registered. 
 
 Examples of token routes:
 
@@ -20,6 +20,8 @@ Examples of token routes:
 2. OAuth2: AS->client->AS (refresh token)
 3. OAuth2 chained RS: AS->client->RS1->RS2
 4. UMA wide ecosystem: AS1->client->AS2, AS2->client->RS
+
+This mechanism can be used to verify the authorization code and UMA permission ticket route.
 
 ### Prerequisites
 
