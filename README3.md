@@ -1,4 +1,4 @@
-# Multi-Hop Token Binding
+# Itinerary-Bound Tokens
 
 ### Terminology
 
