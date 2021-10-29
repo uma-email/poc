@@ -7,13 +7,13 @@ bottomparticipants
 note right of client:Client:\n• is registered at the AS as a confidential client and has a client secret
 note right of RS:RS:\n• is registered at the AS as a confidential client and has a client secret
 client->AS:1. Authorization Grant
-AS->AS:2. AS:\n• creates a nonce claim using the nonce data string\n• creates a token_itinerary claim using the base64url encoded token itinerary MAC\n• generates the access token where the payload contains the nonce and token_itinerary claims
-note right of AS:The token itinerary MAC is computed as:\nMAC = HMAC-SHA256(Key2, HMAC-SHA256(Key1, message))\nwhere\nKey1 = SHA256(client's client secret)\nKey2 = SHA256(RS's client secret)\nmessage = nonce claim value
+AS->AS:2. AS:\n• creates a nonce claim using the nonce data string\n• creates an itinerary_mac claim using the base64url encoded itinerary MAC\n• generates the access token where the payload contains the nonce and itinerary_mac claims
+note right of AS:The itinerary MAC is computed as:\nMAC = HMAC-SHA256(Key2, HMAC-SHA256(Key1, message))\nwhere\nKey1 = SHA256(client's client secret)\nKey2 = SHA256(RS's client secret)\nmessage = nonce claim value
 client<-AS:3. Access Token
 client->client:4. Client:\n• computes the intermediary MAC
 note right of client:The intermediary MAC is computed as:\nMAC = HMAC-SHA256(Key, message)\nwhere\nKey = SHA256(client's client secret)\nmessage = nonce claim value
 client->RS:5. Access Token, "MAC"
 note right of client:Client sends the base64url encoded MAC in the "MAC" request header field
-RS->RS:6. RS:\n• verifies the token (RSA) signature, if true, the RS computes the destination endpoint MAC\n• compares the base64url encoded destination endpoint MAC with the token_itinerary claim value,\n   they are equal, the token route has been verified, the RS may return the protected resource
+RS->RS:6. RS:\n• verifies the token (RSA) signature, if true, the RS computes the destination endpoint MAC\n• compares the base64url encoded destination endpoint MAC with the itinerary_mac claim value,\n   they are equal, the token route has been verified, the RS may return the protected resource
 note right of RS:The destination endpoint MAC is computed as:\nMAC = HMAC-SHA256(Key, message)\nwhere\nKey = SHA256(RS's client secret)\nmessage = Base64URL-Decode("MAC" request header field value)
 client<-RS:7. Protected Resource
