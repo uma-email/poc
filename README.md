@@ -121,6 +121,10 @@ Healthcare and enterprise cross-domain services e.g. email, file sharing, instan
 3. Describe how the resource owner can use the CAZ protocol.
 4. Consider using the CAZ mechanism to transfer digital/virtual assets in the form of transactions.
 
+# Itinerary-Bound Tokens
+
+![itinerary-bound-tokens](./images/itinerary-bound-tokens.png)
+
 # Authorization-Enhanced Mail System
 
 A prototype implementation of the Authorization-Enhanced Mail System (AEMS) draft proposal, working as a proof of the concept of CAZ.
