@@ -123,7 +123,23 @@ Healthcare and enterprise cross-domain services e.g. email, file sharing, instan
 
 # Itinerary-Bound Tokens
 
+## Introduction
+
+## Concept
+
+## Sequence Diagram
+
 ![itinerary-bound-tokens](./images/itinerary-bound-tokens.png)
+
+### Prerequisites
+
+### Steps
+
+## Use Patterns
+
+## Conclusion
+
+## Future Work
 
 # Authorization-Enhanced Mail System
 
