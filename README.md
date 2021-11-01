@@ -127,15 +127,15 @@ Healthcare and enterprise cross-domain services e.g. email, file sharing, instan
 
 ## Concept
 
-## Sequence Diagram
+## Use Patterns
+
+### OAuth2 Sequence Diagram
 
 ![itinerary-bound-tokens](./images/itinerary-bound-tokens.png)
 
-### Prerequisites
+**Prerequisites**
 
-### Steps
-
-## Use Patterns
+**Steps**
 
 ## Conclusion
 
