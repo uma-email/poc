@@ -1,0 +1,23 @@
+participant "Client" as client
+participant "Resource Server (RS)" as RS
+participant "Authorization Server (AS)" as AS
+
+bottomparticipants
+
+note right of client:Client:\n• is registered at the AS as a confidential client and has a client secret
+note right of RS:RS:\n• is registered at the AS as a confidential client and has a client secret
+client->AS:1. Authorization Grant
+AS->AS:2. AS:\n• creates a nonce claim using the nonce data string\n• computes an Itinerary-MAC and an Itinerary-Cipher-MAC\n• creates an itinerary_cipher_mac claim using the base64url encoded Itinerary-Cipher-Mac\n• generates an access token where the payload contains the nonce and itinerary_cipher_mac claims
+note right of AS:The Itinerary-MAC is computed as:\nItinerary-MAC = HMAC-SHA256(Key2, HMAC-SHA256(Key1, message + "auth"))\nwhere\nmessage = nonce claim value\nKey1 = SHA256(client's client secret)\nKey2 = SHA256(RS's client secret)
+note right of AS:The Itinerary-Cipher-MAC is computed as:\nItinerary-Cipher-Mac = Encrypt(Key2, message2)\nwhere\nmessage2 = Itinerary-MAC\nKey2 = HMAC-SHA256(Key1, message1 + "enc")\nwhere\nmessage1 = nonce claim value\nKey1 = SHA256(client's client secret)
+client<-AS:3. Access Token
+client->client:4. Client:\n• computes an intermediary Route-MAC\n• generates an Itinerary-MAC-JWT with a payload including a timestamp
+note right of client:The intermediary Route-MAC is computed as:\nRoute-MAC = HMAC-SHA256(Key, message + "auth")\nwhere\nKey = SHA256(client's client secret)\nmessage = nonce claim value
+note right of client:The Itinerary-MAC-JWT is generated as:\nItinerary-MAC-JWT = header || "." || payload || "." || signature\nwhere\nheader = base64url({"typ":"JWT","alg":"HS256"})\npayload = base64url({"ts":timestamp})\nsignature = base64url(HMAC-SHA256(Key3, message3))\nwhere\nmessage3 = header || "." || payload\nKey3 = Itinerary-MAC\nwhere\nItnerary-MAC = Decrypt(Key2, message2)\nmessage2 = itinerary_cipher_mac claim value\nKey2 = HMAC-SHA256(Key1, message1 + "enc")\nwhere\nmessage1 = nonce claim value\nKey1 = SHA256(client's client secret)
+client->RS:5. Access Token, "Route-MAC", "Itinerary-MAC-JWT"
+note right of client:Client sends the base64url encoded Route-MAC in the "Route-MAC" request header field
+note right of client:Client sends the Itinerary-MAC-JWT in the "Itinerary-MAC-JWT" request header field
+RS->RS:6. RS:\n• verifies the token (RSA) signature, if true, the RS computes the destination Route-MAC\n• generates the Route-MAC-JWT using the "Itinerary-MAC-JWT" request field header value\n• compares the Itinerary-MAC-JWT signature with the Route-MAC-JWT signature, they are equal,\n   the token route and the Itinerary-MAC-JWT have been verified,\n   the RS has to check the timestamp from Itinerary-MAC-JWT, if valid,\n   the RS may return the protected resource
+note right of RS:The Route-MAC is computed as:\nRoute-MAC = HMAC-SHA256(Key, message)\nwhere\nKey = SHA256(RS's client secret)\nmessage = Base64URL-Decode("Route-MAC" request header field value)
+note right of RS:The Route-MAC-JWT is generated as:\nRoute-MAC-JWT = header || "." || payload || "." || signature\nwhere\nheader = Itinerary-MAC-JWT header\npayload = Itinerary-MAC-JWT payload\nsignature = base64url(HMAC-SHA256(Key, message))\nwhere\nmessage = header || "." || payload\nKey = Route-MAC
+client<-RS:7. Protected Resource
