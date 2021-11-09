@@ -9,7 +9,7 @@ note right of RS:RS:\n• is registered at the AS as a confidential client and h
 client->AS:1. Authorization Grant
 AS->AS:2. AS:\n• creates an opaque Access Token using high entropy nonce data string
 client<-AS:3. Access Token
-client->client:4. Client:\n a) computes the intermediary Route-MAC\n b) generates the intermadiary Route-JWT with a payload including a timestamp 
+client->client:4. Client:\n a) computes the intermediary Route-MAC\n b) generates the intermadiary Route-JWT with a payload including\n     the Access Token and a timestamp 
 note right of client:The Route-MAC is computed as:\nRoute-MAC = HMAC-SHA256(Key, message)\nwhere\nKey = SHA256(client's client secret)\nmessage = Access Token
 note right of client:The Route-JWT is generated as:\nRoute-JWT = header || "." || payload || "." || signature\nwhere\nheader = base64url({"typ":"JWT","alg":"HS256"})\npayload = base64url({"token":Access Token,"ts":timestamp})\nsignature = base64url(HMAC-SHA256(Key, message))\nwhere\nmessage = header || "." || payload\nKey = Route-MAC
 client->RS:5. Route-JWT

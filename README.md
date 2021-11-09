@@ -139,6 +139,8 @@ Healthcare and enterprise cross-domain services e.g. email, file sharing, instan
 
 ### Itinerary-Bound Refresh Tokens
 
+![itinerary-bound-refresh-tokens](./images/itinerary-bound-refresh-tokens.png)
+
 **Prerequisites**
 
 **Steps**
