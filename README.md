@@ -129,9 +129,15 @@ Healthcare and enterprise cross-domain services e.g. email, file sharing, instan
 
 ## Use Patterns
 
-### OAuth2 Sequence Diagram
+### Itinerary-Bound Access Tokens
 
-![itinerary-bound-tokens-access-token](./images/itinerary-bound-tokens-access-token.png)
+![itinerary-bound-access-tokens](./images/itinerary-bound-access-tokens.png)
+
+**Prerequisites**
+
+**Steps**
+
+### Itinerary-Bound Refresh Tokens
 
 **Prerequisites**
 
