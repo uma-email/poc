@@ -131,7 +131,7 @@ Healthcare and enterprise cross-domain services e.g. email, file sharing, instan
 
 ### OAuth2 Sequence Diagram
 
-![itinerary-bound-tokens-introspection](./images/itinerary-bound-tokens-introspection.png)
+![itinerary-bound-tokens-access-token](./images/itinerary-bound-tokens-access-token.png)
 
 **Prerequisites**
 
