@@ -3,7 +3,7 @@ participant "Authorization Server (AS)" as AS
 
 bottomparticipants
 
-note right of client:Client:\n• is registered at the AS as a confidential client and has a client secret\n• client has a Refresh Token issued by the AS
+note right of client:Client:\n• is registered at the AS as a confidential client and has a client secret\n• client has a valid Refresh Token issued by the AS
 note right of AS:AS:\n• issues opaque Refresh Tokens and Access Tokens using high entropy nonce data strings
 client->client:1. Client:\n a) computes the destination Route-MAC\n b) generates the destination Route-JWT with a payload including\n     the Refresh Token and a timestamp 
 note right of client:The Route-MAC is computed as:\nRoute-MAC = HMAC-SHA256(Key, message)\nwhere\nKey = SHA256(client's client secret)\nmessage = Refresh Token
