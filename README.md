@@ -127,6 +127,8 @@ Healthcare and enterprise cross-domain services e.g. email, file sharing, instan
 
 ## Concept
 
+HMAC(HMAC(K4, HMAC(HMAC(K3, HMAC(HMAC(K2, HMAC(K1, m1)), m2)), m3)), m4)
+
 ## Use Patterns
 
 ### Itinerary-Bound OAuth2 Access Tokens
