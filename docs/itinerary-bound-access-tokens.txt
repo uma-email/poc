@@ -13,7 +13,7 @@ client<-AS:3. Access Token
 client->client:4. Client:\n• generates the Route-JWT with a payload including the Access Token and a timestamp 
 note right of client:The Route-JWT is generated as:\nRoute-JWT = header || "." || payload || "." || signature\nwhere\nheader = base64url({"typ":"JWT","alg":"HS256"})\npayload = base64url({"token":Access Token,"ts":timestamp})\nsignature = base64url(HMAC-SHA256(K1, m1))\nwhere\nm1 = header || "." || payload\nK1 = SHA256(client's client secret)
 client->RS:5. Route-JWT
-RS->RS:6. RS:\n• generates the next Route-JWT (additional claims can be added to the JWT payload)
+RS->RS:6. RS:\n• generates the next Route-JWT, additional claims can be added to the JWT payload e.g.,\n   {"resource_id":"a4b80-893f2-ed9b3","resource_scopes":["https://as.example/view"]})
 note right of RS:The Route-JWT is generated as:\nRoute-JWT = header || "." || payload || "." || signature\nwhere\nheader = previous Route-JWT header\npayload = previous Route-JWT payload\nsignature = base64url(HMAC-SHA256(Key, m2))\nwhere\nm2 = header || "." || payload\nKey = HMAC-SHA256(K2, message)\nwhere\nK2 = SHA256(RS's client secret)\nmessage = base64url decoded previous Route-JWT signature
 RS->AS:7. Route-JWT
 note right of RS:RS sends the Route-JWT in the Authorization header\nto authenticate itself to the AS introspection endpoint
