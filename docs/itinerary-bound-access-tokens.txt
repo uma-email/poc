@@ -8,17 +8,17 @@ note over client,AS:HMAC(HMAC(K2, HMAC(K1, m1)), m2)
 note right of client:Client:\n• is registered at the AS as a confidential client and has a client secret
 note right of RS:RS:\n• is registered at the AS as a confidential client and has a client secret
 client->AS:1. Authorization Grant
-AS->AS:2. AS:\n• creates an opaque Access Token using high entropy nonce data string
+AS->AS:2. AS:\n a) issues an opaque Access Token using a high entropy nonce data string\n b) maps the corresponding client secrets to the issued token and stores the token data in a database
 client<-AS:3. Access Token
-client->client:4. Client:\n• generates the Route-JWT with a payload including the Access Token and a timestamp 
-note right of client:The Route-JWT is generated as:\nRoute-JWT = header || "." || payload || "." || signature\nwhere\nheader = base64url({"typ":"JWT","alg":"HS256"})\npayload = base64url({"token":Access Token,"ts":timestamp})\nsignature = base64url(HMAC-SHA256(K1, m1))\nwhere\nm1 = header || "." || payload\nK1 = SHA256(client's client secret)
+client->client:4. Client:\n• generates the Route-JWT with a payload including the Access Token, issuer and a timestamp 
+note right of client:The Route-JWT is generated as:\nRoute-JWT = header || "." || payload || "." || signature\nwhere\nheader = base64url({"typ":"JWT","alg":"HS256"})\npayload = base64url({"token":Access Token,"iss":client name,"ts":timestamp})\nsignature = base64url(HMAC-SHA256(K1, m1))\nwhere\nm1 = header || "." || payload\nK1 = SHA256(client secret)
 client->RS:5. Route-JWT
-RS->RS:6. RS:\n• generates the next Route-JWT
-note right of RS:Additional claims e.g.,\n{"resource_id":"a4b80-893f2-ed9b3","resource_scopes":["https://as.example/view"]}),\ncan be added to the previous Route-JWT payload as a nested object to form a new compound payload
-note right of RS:The Route-JWT is generated as:\nRoute-JWT = header || "." || payload || "." || signature\nwhere\nheader = previous Route-JWT header\npayload = previous Route-JWT payload\nsignature = base64url(HMAC-SHA256(Key, m2))\nwhere\nm2 = header || "." || payload\nKey = HMAC-SHA256(K2, message)\nwhere\nK2 = SHA256(RS's client secret)\nmessage = base64url decoded previous Route-JWT signature
+RS->RS:6. RS:\n• generates the next Route-JWT with a compound payload
+note right of RS:• a new required claim {"iss":client name} must be added to the previous Route-JWT payload as a nested object\n   to form a new compound payload\n• the nested object may contain additional optional claims e.g., "resource_id", "resource_scopes"
+note right of RS:The Route-JWT is generated as:\nRoute-JWT = header || "." || payload || "." || signature\nwhere\nheader = previous Route-JWT header\npayload = base64url encoded [previous Route-JWT payload(Route-JWT payload)]\nsignature = base64url(HMAC-SHA256(Key, m2))\nwhere\nRoute-JWT payload = {"iss":client name}\nm2 = header || "." || payload\nKey = HMAC-SHA256(K2, message)\nwhere\nK2 = SHA256(client secret)\nmessage = base64url decoded previous Route-JWT signature
 RS->AS:7. Route-JWT
 note right of RS:RS sends the Route-JWT in the Authorization header\nto authenticate itself to the AS introspection endpoint
-AS->AS:8. AS:\n a) looks up the Access Token data using the token claim value from the Route-JWT, and checks the token state\n b) generates the Itinerary-JWT in an analogous manner as the Route-JWT using the payload from the Route-JWT\n c) compares the Itinerary-JWT signature with the Route-JWT signature, they are equal,\n     the Access Token route and the Route-JWT have been verified,\n     the AS validates the ts (timestamp) claim value from the Route-JWT, if valid,\n     the AS may return the Access Token introspection response
+AS->AS:8. AS:\n a) looks up the Access Token data using the token claim value from the Route-JWT, and checks the token state\n b) reconstructs an Itinerary-JWT using the Route-JWT payload data, token data and corresponding client secrets\n c) compares the Itinerary-JWT signature with the Route-JWT signature, they are equal,\n     the Access Token route and the Route-JWT have been verified,\n     the AS validates the ts (timestamp) claim value from the Route-JWT, if valid,\n     the AS may return the Access Token introspection response
 RS<-AS:9. Access Token introspection response
 RS->RS:10. RS:\n• verifies the Access Token introspection response, if true,\n   the RS may return the protected resource
 client<-RS:11. Protected Resource

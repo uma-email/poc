@@ -5,10 +5,10 @@ bottomparticipants
 
 note over client,AS:HMAC(K1, m1)
 note right of client:Client:\n• is registered at the AS as a confidential client and has a client secret\n• client has a valid Refresh Token issued by the AS
-note right of AS:AS:\n• issues opaque Refresh Tokens and Access Tokens using high entropy nonce data strings
-client->client:1. Client:\n• generates the Route-JWT with a payload including the Refresh Token and a timestamp 
-note right of client:The Route-JWT is generated as:\nRoute-JWT = header || "." || payload || "." || signature\nwhere\nheader = base64url({"typ":"JWT","alg":"HS256"})\npayload = base64url({"token":Refresh Token,"ts":timestamp})\nsignature = base64url(HMAC-SHA256(K1, m1))\nwhere\nm1 = header || "." || payload\nK1 = SHA256(client's client secret)
+note right of AS:AS:\n a) issues opaque Refresh Token and Access Token using high entropy nonce data strings\n b) maps the corresponding client secret to the issued tokens and stores the token data in a database
+client->client:1. Client:\n• generates the Route-JWT with a payload including the Refresh Token, issuer and a timestamp 
+note right of client:The Route-JWT is generated as:\nRoute-JWT = header || "." || payload || "." || signature\nwhere\nheader = base64url({"typ":"JWT","alg":"HS256"})\npayload = base64url({"token":Refresh Token,"iss":client name,"ts":timestamp})\nsignature = base64url(HMAC-SHA256(K1, m1))\nwhere\nm1 = header || "." || payload\nK1 = SHA256(client's client secret)
 client->AS:2. Route JWT
 note right of client:Client sends the destination Route-JWT in the Authorization header\nto authenticate itself to the AS token endpoint
-AS->AS:3. AS:\n a) looks up the Refresh Token data using the token claim value from the Route-JWT, and checks the token state\n b) generates the Itinerary-JWT in an analogous manner as the Route-JWT using the payload from the Route-JWT\n c) compares the Itinerary-JWT signature with the Route-JWT signature, they are equal,\n     the Refresh Token route and the Route-JWT have been verified,\n     the AS validates the ts (timestamp) claim value from the Route-JWT, if valid,\n     the AS may generate and return a new Refresh Token and a new Access Token
+AS->AS:3. AS:\n a) looks up the Refresh Token data using the token claim value from the Route-JWT, and checks the token state\n b) reconstructs an Itinerary-JWT using the Route-JWT payload data, token data and the corresponding client secret\n c) compares the Itinerary-JWT signature with the Route-JWT signature, they are equal,\n     the Refresh Token route and the Route-JWT have been verified,\n     the AS validates the ts (timestamp) claim value from the Route-JWT, if valid,\n     the AS may generate and return a new Refresh Token and a new Access Token
 client<-AS:4. Refresh Token and Access Token
