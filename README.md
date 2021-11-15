@@ -127,7 +127,17 @@ Healthcare and enterprise cross-domain services e.g. email, file sharing, instan
 
 ## Concept
 
-HMAC(HMAC(K4, HMAC(HMAC(K3, HMAC(HMAC(K2, HMAC(K1, m1)), m2)), m3)), m4)
+**chained-proof-of-possession (authenticity protection)**
+
+HMAC(K3, HMAC(K2, HMAC(K1, m1)))
+
+**chained-message-checksum (integrity protection)**
+
+HMAC(HMAC(HMAC(K1, m1), m2, m3))
+
+**chained authenticity and integrity protection**
+
+HMAC(HMAC(K3, HMAC(HMAC(K2, HMAC(K1, m1)), m2)), m3)
 
 ## Use Patterns
 
