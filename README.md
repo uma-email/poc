@@ -127,17 +127,21 @@ Healthcare and enterprise cross-domain services e.g. email, file sharing, instan
 
 ## Concept
 
-chained-proof-of-possession (authenticity)
-
+**Chained proof-of-possession (authenticity)**
+```
 HMAC(K3, HMAC(K2, HMAC(K1, m1)))
-
-chained-message-checksum (integrity protection)
-
+```
+**Chained message checksum (integrity protection)**
+```
 HMAC(HMAC(HMAC(K1, m1), m2, m3))
+```
+**Chained authenticity and integrity protection**
 
-chained authenticity and integrity protection
-
+The combination of the two HMAC constructions mentioned above resulted in a hybrid chained authenticity and integrity protection scheme.
+```
 HMAC(HMAC(K3, HMAC(HMAC(K2, HMAC(K1, m1)), m2)), m3)
+```
+This nested, chained HMACs construction may be used to enhance authorization protocols.
 
 ## Use Patterns
 
