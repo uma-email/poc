@@ -123,6 +123,10 @@ Healthcare and enterprise cross-domain services e.g. email, file sharing, instan
 
 # Itinerary-Bound Tokens
 
+## Abstract
+
+This document introduces a proof-of-chain-of-custody mechanism for securing access to protected resources using a nested, chained HMAC-based construction in a manner compatible with the bearer authentication scheme.
+
 ## Introduction
 
 ## Concept
@@ -141,7 +145,7 @@ The combination of the two HMAC constructions mentioned above resulted in a hybr
 ```
 HMAC(HMAC(K3, HMAC(HMAC(K2, HMAC(K1, m1)), m2)), m3)
 ```
-This nested, chained HMACs construction may be used to enhance authorization protocols.
+This nested, chained HMACs construction may be used to implement both new authorization protocols and to enhance existing ones.
 
 ## Use Patterns
 
