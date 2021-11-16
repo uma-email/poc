@@ -125,7 +125,7 @@ Healthcare and enterprise cross-domain services e.g. email, file sharing, instan
 
 ## Abstract
 
-This document introduces a proof-of-chain-of-custody mechanism for securing access to protected resources using a nested, chained HMAC-based construction in a manner compatible with the bearer authentication scheme.
+This document introduces a proof-of-chain-of-custody mechanism for securing tokens using a nested, chained HMAC-based construction in a manner compatible with the bearer authentication scheme.
 
 ## Introduction
 
