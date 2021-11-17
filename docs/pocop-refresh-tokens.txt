@@ -1,0 +1,14 @@
+participant "Client" as client
+participant "Authorization Server (AS)" as AS
+
+bottomparticipants
+
+note over client,AS:HMAC(K1, m1)
+note right of client:Client:\n• is registered at the AS as a confidential client and has a client secret\n• client has a valid refresh token issued by the AS
+note right of AS:AS:\n a) issues opaque refresh token and access token using high entropy nonce data strings\n b) maps the corresponding client secret to the issued tokens and stores the token data in a database
+client->client:1. Client:\n• generates the pocop-jwt with a payload including the refresh token, issuer and a timestamp 
+note right of client:The pocop-jwt is generated as:\npocop-jwt = header || "." || payload || "." || signature\nwhere\nheader = base64url({"typ":"JWT","alg":"HS256"})\npayload = base64url({"token":refresh token,"iss":client name,"ts":timestamp})\nsignature = base64url(HMAC-SHA256(K1, m1))\nwhere\nm1 = header || "." || payload\nK1 = SHA256(client secret)
+client->AS:2. pocop-jwt
+note right of client:Client sends the destination pocop-jwt in the Authorization header\nto authenticate itself to the AS token endpoint
+AS->AS:3. AS:\n a) looks up the refresh token data using the token claim value from the pocop-jwt, and checks the token state\n b) generates a pocop-jwt replica using the pocop-jwt payload data, token data and the corresponding client secret\n c) compares the pocop-jwt replica signature with the pocop-jwt signature, they are equal,\n     the chronological record of all the possessors of the POCOP token and the changes have been verified,\n     the AS validates the ts (timestamp) claim value from the pocop-jwt, if valid,\n     the AS may generate and return a new refresh token and a new access token
+client<-AS:4. refresh token and access token

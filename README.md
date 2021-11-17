@@ -121,13 +121,15 @@ Healthcare and enterprise cross-domain services e.g. email, file sharing, instan
 3. Describe how the resource owner can use the CAZ protocol.
 4. Consider using the CAZ mechanism to transfer digital/virtual assets in the form of transactions.
 
-# Itinerary-Bound Tokens
+# Proof of Chain of Possession (POCOP) Tokens
 
 ## Abstract
 
-This document introduces a proof-of-chain-of-custody mechanism for securing tokens using a nested, chained HMAC-based construction in a manner compatible with the bearer authentication scheme.
+This document introduces POCOP tokens based on a nested, chained HMACs construction to provide chained authenticity and integrity protection.
 
 ## Introduction
+
+Bearer tokens are vulnerable at rest and in transit when an attacker is able to intercept a token to illegally access private information. In order to mitigate some of the risk associated with bearer tokens, proof-of-chain-of-possession may be used to authenticate the token. Chain-of-possession is a chronological tamper-resistant record of all the possessors of the token and the changes that have been made.
 
 ## Concept
 
@@ -145,21 +147,23 @@ The combination of the two HMAC constructions mentioned above resulted in a hybr
 ```
 HMAC(HMAC(K3, HMAC(HMAC(K2, HMAC(K1, m1)), m2)), m3)
 ```
-This nested, chained HMACs construction may be used to implement both new authorization protocols and to enhance existing ones.
+This nested, chained HMACs construction applied on tokens or cookies may be used to implement both new authorization protocols and to enhance existing.
 
 ## Use Patterns
 
-### Itinerary-Bound OAuth2 Access Tokens
+OAuth2 and POCOP tokens.
 
-![itinerary-bound-access-tokens](./images/itinerary-bound-access-tokens.png)
+### OAuth2 POCOP Access Tokens
+
+![pocop-access-tokens](./images/pocop-access-tokens.png)
 
 **Prerequisites**
 
 **Steps**
 
-### Itinerary-Bound OAuth2 Refresh Tokens
+### OAuth2 POCOP Refresh Tokens
 
-![itinerary-bound-refresh-tokens](./images/itinerary-bound-refresh-tokens.png)
+![pocop-refresh-tokens](./images/pocop-refresh-tokens.png)
 
 **Prerequisites**
 

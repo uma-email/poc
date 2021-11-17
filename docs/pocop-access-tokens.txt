@@ -1,0 +1,24 @@
+participant "Client" as client
+participant "Resource Server (RS)" as RS
+participant "Authorization Server (AS)" as AS
+
+bottomparticipants
+
+note over client,AS:HMAC(HMAC(K2, HMAC(K1, m1)), m2)
+note right of client:Client:\n• is registered at the AS as a confidential client and has a client secret
+note right of RS:RS:\n• is registered at the AS as a confidential client and has a client secret
+client->AS:1. authorization grant
+AS->AS:2. AS:\n a) issues an opaque access token using a high entropy nonce data string\n b) maps the corresponding client secrets to the issued token and stores the token data in a database
+client<-AS:3. access token
+client->client:4. Client:\n• generates the pocop-jwt with a payload including the access token, issuer and a timestamp 
+note right of client:The pocop-jwt is generated as:\npocop-jwt = header || "." || payload || "." || signature\nwhere\nheader = base64url({"typ":"JWT","alg":"HS256"})\npayload = base64url({"token":access token,"iss":client name,"ts":timestamp})\nsignature = base64url(HMAC-SHA256(K1, m1))\nwhere\nm1 = header || "." || payload\nK1 = SHA256(client secret)
+client->RS:5. pocop-jwt
+RS->RS:6. RS:\n• generates the next pocop-jwt with a compound payload
+note right of RS:• a new required claim {"iss":client name} must be added to the previous pocop-jwt payload as a nested object\n   to form a new compound payload\n• the nested object may contain additional optional claims e.g., "resource_id", "resource_scopes"
+note right of RS:The pocop-jwt is generated as:\npocop-jwt = header || "." || payload || "." || signature\nwhere\nheader = previous pocop-jwt header\npayload = base64url encoded [previous pocop-jwt payload(pocop-jwt payload)]\nsignature = base64url(HMAC-SHA256(Key, m2))\nwhere\npocop-jwt payload = {"iss":client name}\nm2 = header || "." || payload\nKey = HMAC-SHA256(K2, message)\nwhere\nK2 = SHA256(client secret)\nmessage = base64url decoded previous pocop-jwt signature
+RS->AS:7. pocop-jwt
+note right of RS:RS sends the pocop-jwt in the Authorization header\nto authenticate itself to the AS introspection endpoint
+AS->AS:8. AS:\n a) looks up the access token data using the token claim value from the pocop-jwt, and checks the token state\n b) generates a pocop-jwt replica using the pocop-jwt payload data, token data and corresponding client secrets\n c) compares the pocop-jwt replica signature with the pocop-jwt signature, they are equal,\n     the chronological record of all the possessors of the POCOP token and the changes have been verified,\n     the AS validates the ts (timestamp) claim value from the pocop-jwt, if valid,\n     the AS may return the access token introspection response
+RS<-AS:9. access token introspection response
+RS->RS:10. RS:\n• verifies the access token introspection response, if true,\n   the RS may return the protected resource
+client<-RS:11. protected resource
