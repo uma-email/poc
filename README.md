@@ -143,7 +143,7 @@ HMAC(HMAC(HMAC(K1, m1), m2, m3))
 ```
 **Chained authenticity and integrity protection**
 
-The combination of the two HMAC constructions mentioned above resulted in a hybrid chained authenticity and integrity protection schemes.
+The combination of the two HMAC constructions mentioned above resulted in hybrid chained authenticity and integrity protection schemes.
 ```
 HMAC(HMAC(K3, HMAC(HMAC(K2, HMAC(K1, m1)), m2)), m3)
 ```
