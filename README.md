@@ -143,11 +143,14 @@ HMAC(HMAC(HMAC(K1, m1), m2, m3))
 ```
 **Chained authenticity and integrity protection**
 
-The combination of the two HMAC constructions mentioned above resulted in a hybrid chained authenticity and integrity protection scheme.
+The combination of the two HMAC constructions mentioned above resulted in a hybrid chained authenticity and integrity protection schemes.
 ```
 HMAC(HMAC(K3, HMAC(HMAC(K2, HMAC(K1, m1)), m2)), m3)
 ```
-This nested, chained HMACs construction applied on tokens or cookies may be used to implement both new authorization protocols and to enhance existing.
+```
+HMAC(K3, HMAC(HMAC(K2, HMAC(HMAC(K1, m1), m2)), m3))
+```
+These nested, chained HMACs constructions applied on tokens or cookies may be used to implement both new authorization protocols and to enhance existing.
 
 ## Use Patterns
 
