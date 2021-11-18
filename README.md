@@ -150,7 +150,7 @@ HMAC(HMAC(K3, HMAC(HMAC(K2, HMAC(K1, m1)), m2)), m3)
 ```
 HMAC(K3, HMAC(HMAC(K2, HMAC(HMAC(K1, m1), m2)), m3))
 ```
-These nested, chained HMACs constructions applied on tokens or cookies may be used to implement both new authorization protocols and to enhance existing.
+These nested, chained HMACs constructions applied on tokens or cookies may be used to implement both new authorization protocols and to enhance existing ones.
 
 ## Use Patterns
 
