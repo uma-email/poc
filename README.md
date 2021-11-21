@@ -152,6 +152,24 @@ HMAC(K3, HMAC(HMAC(K2, HMAC(HMAC(K1, m1), m2)), m3))
 ```
 These nested, chained HMACs constructions applied on tokens or cookies may be used to implement both new authorization protocols and to enhance existing ones.
 
+**HMACs chaining example for AS, client, RS1 and RS2**
+
+Chained authenticity:
+MAC$_{RS2}$ = HMAC(K$_{RS2}$, HMAC(K$_{RS1}$, HMAC(K$_{client}$, NONCE)))
+
+Chained integrity protection:
+MAC =  HMAC(HMAC(HMAC(MAC$_{RS2}$, NONCE), MAC$_{client}$ \|\| data$_{client}$), MAC$_{RS1}$ \|\| data$_{RS1}$)
+
+Chained authenticity and integrity protection table:
+| Possessor | Data | MAC route | MAC data
+| --- | --- | --- | --- |
+| AS| NONCE | | MAC = HMAC(MAC$_{RS2}$, NONCE)
+| client | MAC$_{client}$ | MAC$_{client}$ = HMAC(K$_{client}$, NONCE)
+| client | data$_{client}$ | | MAC = HMAC(MAC, MAC$_{client}$ \|\| data$_{client}$)
+| RS1 | MAC$_{RS1}$ | MAC$_{RS1}$ = HMAC(K$_{RS1}$, MAC$_{client}$)
+| RS1 | data$_{RS1}$ | | MAC = HMAC(MAC, MAC$_{RS1}$ \|\| data$_{RS1}$)
+| RS2 | | MAC$_{RS2}$ = HMAC(K$_{RS2}$, MAC$_{RS1}$)
+
 ## Use Patterns
 
 OAuth2 and POCOP tokens.
