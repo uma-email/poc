@@ -135,11 +135,11 @@ Bearer tokens are vulnerable at rest and in transit when an attacker is able to 
 
 **Chained proof-of-possession (authenticity)**
 
-HMAC(K<sub>3</sub>, HMAC(K<sub>2</sub>, HMAC(K<sub>1</sub>, m<sub>1</sub>)))
+HMAC(K<sub><i>3</i></sub>, HMAC(K<sub><i>2</i></sub>, HMAC(K<sub><i>1</i></sub>, m<sub><i>1</i></sub>)))
 
 **Chained message checksum (integrity protection)**
 
-HMAC(HMAC(HMAC(K<sub>1</sub>, m<sub>1</sub>), m<sub>2</sub>, m<sub>3</sub>))
+HMAC(HMAC(HMAC(K<sub><i>1</i></sub>, m<sub><i>1</i></sub>), m<sub><i>2</i></sub>, m<sub><i>3</i></sub>))
 
 **Chained authenticity and integrity protection**
 
@@ -149,28 +149,28 @@ These nested, chained HMACs constructions applied on tokens or cookies may be us
 
 * chained authenticity
 
-MAC<sub>RS2</sub> = HMAC(K<sub>RS2</sub>, HMAC(K<sub>RS1</sub>, HMAC(K<sub>client</sub>, NONCE<sub>AS</sub>)))
+MAC<sub><i>RS2</i></sub> = HMAC(K<sub><i>RS2</i></sub>, HMAC(K<sub><i>RS1</i></sub>, HMAC(K<sub><i>client</i></sub>, NONCE<sub><i>AS</i></sub>)))
 
 * chained integrity protection
 
-MAC =  HMAC(HMAC(HMAC(MAC<sub>RS2</sub>, NONCE<sub>AS</sub>), MAC<sub>client</sub> \|\| data<sub>client</sub>), MAC<sub>RS1</sub> \|\| data<sub>RS1</sub>)
+MAC =  HMAC(HMAC(HMAC(MAC<sub><i>RS2</i></sub>, NONCE<sub><i>AS</i></sub>), MAC<sub><i>client</i></sub> \|\| data<sub><i>client</i></sub>), MAC<sub><i>RS1</i></sub> \|\| data<sub><i>RS1</i></sub>)
 
 * chained authenticity and integrity protection table
 
 | Possessor | Data | MAC route | MAC data
 | --- | --- | --- | --- |
-| AS| NONCE<sub>AS</sub> | | MAC = HMAC(MAC<sub>RS2</sub>, NONCE<sub>AS</sub>)
-| client | MAC<sub>client</sub> | MAC<sub>client</sub> = HMAC(K<sub>client</sub>, NONCE<sub>AS</sub>)
-| client | data<sub>client</sub> | | MAC = HMAC(MAC, MAC<sub>client</sub> \|\| data<sub>client</sub>)
-| RS1 | MAC<sub>RS1</sub> | MAC<sub>RS1</sub> = HMAC(K<sub>RS1</sub>, MAC<sub>client</sub>)
-| RS1 | data<sub>RS1</sub> | | MAC = HMAC(MAC, MAC<sub>RS1</sub> \|\| data<sub>RS1</sub>)
-| RS2 | | MAC<sub>RS2</sub> = HMAC(K<sub>RS2</sub>, MAC<sub>RS1</sub>)
+| AS| NONCE<sub><i>AS</i></sub> | | MAC = HMAC(MAC<sub><i>RS2</i></sub>, NONCE<sub><i>AS</i></sub>)
+| client | MAC<sub><i>client</i></sub> | MAC<sub><i>client</i></sub> = HMAC(K<sub><i>client</i></sub>, NONCE<sub><i>AS</i></sub>)
+| client | data<sub><i>client</i></sub> | | MAC = HMAC(MAC, MAC<sub><i>client</i></sub> \|\| data<sub><i>client</i></sub>)
+| RS1 | MAC<sub><i>RS1</i></sub> | MAC<sub><i>RS1</i></sub> = HMAC(K<sub><i>RS1</i></sub>, MAC<sub><i>client</i></sub>)
+| RS1 | data<sub><i>RS1</i></sub> | | MAC = HMAC(MAC, MAC<sub><i>RS1</i></sub> \|\| data<sub><i>RS1</i></sub>)
+| RS2 | | MAC<sub><i>RS2</i></sub> = HMAC(K<sub><i>RS2</i></sub>, MAC<sub><i>RS1</i></sub>)
 
 **Other hybrid chain HMACs constructions to protect authenticity and integrity**
 
-HMAC(HMAC(K<sub>3</sub>, HMAC(HMAC(K<sub>2</sub>, HMAC(K<sub>1</sub>, m<sub>1</sub>)), m<sub>2</sub>)), m<sub>3</sub>)
+HMAC(HMAC(K<sub><i>3</i></sub>, HMAC(HMAC(K<sub><i>2</i></sub>, HMAC(K<sub><i>1</i></sub>, m<sub><i>1</i></sub>)), m<sub><i>2</i></sub>)), m<sub><i>3</i></sub>)
 
-HMAC(K<sub>3</sub>, HMAC(HMAC(K<sub>2</sub>, HMAC(HMAC(K<sub>1</sub>, m<sub>1</sub>), m<sub>2</sub>)), m<sub>3</sub>))
+HMAC(K<sub><i>3</i></sub>, HMAC(HMAC(K<sub><i>2</i></sub>, HMAC(HMAC(K<sub><i>1</i></sub>, m<sub><i>1</i></sub>), m<sub><i>2</i></sub>)), m<sub><i>3</i></sub>))
 
 ## Use Patterns
 
