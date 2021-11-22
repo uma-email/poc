@@ -134,25 +134,18 @@ Bearer tokens are vulnerable at rest and in transit when an attacker is able to 
 ## Concept
 
 **Chained proof-of-possession (authenticity)**
-```
-HMAC(K3, HMAC(K2, HMAC(K1, m1)))
-```
+
+HMAC(K<sub>3</sub>, HMAC(K<sub>2</sub>, HMAC(K<sub>1</sub>, m<sub>1</sub>)))
+
 **Chained message checksum (integrity protection)**
-```
-HMAC(HMAC(HMAC(K1, m1), m2, m3))
-```
+
+HMAC(HMAC(HMAC(K<sub>1</sub>, m<sub>1</sub>), m<sub>2</sub>, m<sub>3</sub>))
+
 **Chained authenticity and integrity protection**
 
-The combination of the two HMAC constructions mentioned above resulted in hybrid chained authenticity and integrity protection schemes.
-```
-HMAC(HMAC(K3, HMAC(HMAC(K2, HMAC(K1, m1)), m2)), m3)
-```
-```
-HMAC(K3, HMAC(HMAC(K2, HMAC(HMAC(K1, m1), m2)), m3))
-```
 These nested, chained HMACs constructions applied on tokens or cookies may be used to implement both new authorization protocols and to enhance existing ones.
 
-**HMACs example of AS, client, RS1 and RS2 chaining**
+**HMACs example of AS, client, RS1 and RS2 authenticity and integrity protection chaining**
 
 * chained authenticity
 
@@ -172,6 +165,12 @@ MAC =  HMAC(HMAC(HMAC(MAC<sub>RS2</sub>, NONCE<sub>AS</sub>), MAC<sub>client</su
 | RS1 | MAC<sub>RS1</sub> | MAC<sub>RS1</sub> = HMAC(K<sub>RS1</sub>, MAC<sub>client</sub>)
 | RS1 | data<sub>RS1</sub> | | MAC = HMAC(MAC, MAC<sub>RS1</sub> \|\| data<sub>RS1</sub>)
 | RS2 | | MAC<sub>RS2</sub> = HMAC(K<sub>RS2</sub>, MAC<sub>RS1</sub>)
+
+**Other hybrid chain HMACs constructions to protect authenticity and integrity**
+
+HMAC(HMAC(K<sub>3</sub>, HMAC(HMAC(K<sub>2</sub>, HMAC(K<sub>1</sub>, m<sub>1</sub>)), m<sub>2</sub>)), m<sub>3</sub>)
+
+HMAC(K<sub>3</sub>, HMAC(HMAC(K<sub>2</sub>, HMAC(HMAC(K<sub>1</sub>, m<sub>1</sub>), m<sub>2</sub>)), m<sub>3</sub>))
 
 ## Use Patterns
 
