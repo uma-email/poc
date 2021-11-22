@@ -152,23 +152,23 @@ HMAC(K3, HMAC(HMAC(K2, HMAC(HMAC(K1, m1), m2)), m3))
 ```
 These nested, chained HMACs constructions applied on tokens or cookies may be used to implement both new authorization protocols and to enhance existing ones.
 
-**HMACs chaining example for AS, client, RS1 and RS2**
+**HMACs example of AS, client, RS1 and RS2 chaining**
 
 Chained authenticity:
-MAC$_{RS2}$ = HMAC(K$_{RS2}$, HMAC(K$_{RS1}$, HMAC(K$_{client}$, NONCE)))
+MAC<sub>RS2</sub> = HMAC(K<sub>RS2</sub>, HMAC(K<sub>RS1</sub>, HMAC(K<sub>client</sub>, NONCE)))
 
 Chained integrity protection:
-MAC =  HMAC(HMAC(HMAC(MAC$_{RS2}$, NONCE), MAC$_{client}$ \|\| data$_{client}$), MAC$_{RS1}$ \|\| data$_{RS1}$)
+MAC =  HMAC(HMAC(HMAC(MAC<sub>RS2</sub>, NONCE), MAC<sub>client</sub> \|\| data<sub>client</sub>), MAC<sub>RS1</sub> \|\| data<sub>RS1</sub>)
 
 Chained authenticity and integrity protection table:
 | Possessor | Data | MAC route | MAC data
 | --- | --- | --- | --- |
-| AS| NONCE | | MAC = HMAC(MAC$_{RS2}$, NONCE)
-| client | MAC$_{client}$ | MAC$_{client}$ = HMAC(K$_{client}$, NONCE)
-| client | data$_{client}$ | | MAC = HMAC(MAC, MAC$_{client}$ \|\| data$_{client}$)
-| RS1 | MAC$_{RS1}$ | MAC$_{RS1}$ = HMAC(K$_{RS1}$, MAC$_{client}$)
-| RS1 | data$_{RS1}$ | | MAC = HMAC(MAC, MAC$_{RS1}$ \|\| data$_{RS1}$)
-| RS2 | | MAC$_{RS2}$ = HMAC(K$_{RS2}$, MAC$_{RS1}$)
+| AS| NONCE | | MAC = HMAC(MAC<sub>RS2</sub>, NONCE)
+| client | MAC<sub>client</sub> | MAC<sub>client</sub> = HMAC(K<sub>client</sub>, NONCE)
+| client | data<sub>client</sub> | | MAC = HMAC(MAC, MAC<sub>client</sub> \|\| data<sub>client</sub>)
+| RS1 | MAC<sub>RS1</sub> | MAC<sub>RS1</sub> = HMAC(K<sub>RS1</sub>, MAC<sub>client</sub>)
+| RS1 | data<sub>RS1</sub> | | MAC = HMAC(MAC, MAC<sub>RS1</sub> \|\| data<sub>RS1</sub>)
+| RS2 | | MAC<sub>RS2</sub> = HMAC(K<sub>RS2</sub>, MAC<sub>RS1</sub>)
 
 ## Use Patterns
 
