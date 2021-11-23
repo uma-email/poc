@@ -166,6 +166,8 @@ MAC =  HMAC(HMAC(HMAC(MAC<sub><i>RS2</i></sub>, NONCE<sub><i>AS</i></sub>), MAC<
 | RS1 | data<sub><i>RS1</i></sub> | | MAC = HMAC(MAC, MAC<sub><i>RS1</i></sub> \|\| data<sub><i>RS1</i></sub>)
 | RS2 | | MAC<sub><i>RS2</i></sub> = HMAC(K<sub><i>RS2</i></sub>, MAC<sub><i>RS1</i></sub>)
 
+WARNING: The authenticity of public data is lost!
+
 **Other hybrid chain HMACs constructions to protect authenticity and integrity**
 
 HMAC(HMAC(K<sub><i>3</i></sub>, HMAC(HMAC(K<sub><i>2</i></sub>, HMAC(K<sub><i>1</i></sub>, m<sub><i>1</i></sub>)), m<sub><i>2</i></sub>)), m<sub><i>3</i></sub>)
