@@ -151,13 +151,13 @@ These nested, chained HMACs constructions applied on tokens or cookies may be us
 
 MAC<sub><i>RS2</i></sub> = HMAC(K<sub><i>RS2</i></sub>, HMAC(K<sub><i>RS1</i></sub>, HMAC(K<sub><i>client</i></sub>, NONCE<sub><i>AS</i></sub>)))
 
-* chained integrity protection
+* chained integrity protection compatible with Macaroons
 
 MAC =  HMAC(HMAC(HMAC(MAC<sub><i>RS2</i></sub>, NONCE<sub><i>AS</i></sub>), MAC<sub><i>client</i></sub> \|\| data<sub><i>client</i></sub>), MAC<sub><i>RS1</i></sub> \|\| data<sub><i>RS1</i></sub>)
 
 * chained authenticity and integrity protection table
 
-| Possessor | Data | MAC route | MAC data
+| Possessor | Public data | MAC route | MAC data
 | --- | --- | --- | --- |
 | AS| NONCE<sub><i>AS</i></sub> | | MAC = HMAC(MAC<sub><i>RS2</i></sub>, NONCE<sub><i>AS</i></sub>)
 | client | MAC<sub><i>client</i></sub> | MAC<sub><i>client</i></sub> = HMAC(K<sub><i>client</i></sub>, NONCE<sub><i>AS</i></sub>)
