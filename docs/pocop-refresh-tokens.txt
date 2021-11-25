@@ -3,7 +3,7 @@ participant "Authorization Server (AS)" as AS
 
 bottomparticipants
 
-note over client,AS:HMAC(K1, m1)
+note over client,AS:MAC = HMAC(K1, m1)
 note right of client:Client:\n• is registered at the AS as a confidential client and has a client secret\n• client has a valid refresh token issued by the AS
 note right of AS:AS:\n a) issues opaque refresh token and access token using high entropy nonce data strings\n b) maps the corresponding client secret to the issued tokens and stores the token data in a database
 client->client:1. Client:\n• generates the pocop-jwt with a payload including the refresh token, issuer and a timestamp 

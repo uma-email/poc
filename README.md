@@ -125,7 +125,7 @@ Healthcare and enterprise cross-domain services e.g. email, file sharing, instan
 
 ## Abstract
 
-This document introduces POCOP tokens based on a nested, chained HMACs construction to provide chained authenticity and integrity protection.
+This document introduces a POCOP mechanism based on a nested, chained HMACs construction to provide chained authenticity and integrity protection.
 
 ## Introduction
 
@@ -135,68 +135,65 @@ Bearer tokens are vulnerable at rest and in transit when an attacker is able to 
 
 **Chained proof-of-possession (authenticity)**
 
-HMAC(K<sub><i>3</i></sub>, HMAC(K<sub><i>2</i></sub>, HMAC(K<sub><i>1</i></sub>, m<sub><i>1</i></sub>)))
+MAC = HMAC(K<sub><i>3</i></sub>, HMAC(K<sub><i>2</i></sub>, HMAC(K<sub><i>1</i></sub>, m<sub><i>1</i></sub>)))
 
 **Chained message checksum (integrity protection)**
 
-HMAC(HMAC(HMAC(K<sub><i>1</i></sub>, m<sub><i>1</i></sub>), m<sub><i>2</i></sub>, m<sub><i>3</i></sub>))
+MAC = HMAC(HMAC(HMAC(K<sub><i>1</i></sub>, m<sub><i>1</i></sub>), m<sub><i>2</i></sub>, m<sub><i>3</i></sub>))
 
 **Chained authenticity and integrity protection**
 
-These nested, chained HMACs constructions applied on tokens or cookies may be used to implement both new authorization protocols and to enhance existing ones.
+MAC = HMAC(K<sub><i>RS2</i></sub>, HMAC(HMAC(K<sub><i>RS1</i></sub>, HMAC(HMAC(K<sub><i>client</i></sub>, m<sub><i>client</i></sub>), m<sub><i>RS1</i></sub>)), m<sub><i>RS2</i></sub>))
 
-**HMACs example of AS, client, RS1 and RS2 authenticity and integrity protection chaining**
+broken down into individual MACs
 
-* chained authenticity
+MAC = HMAC(K<sub><i>client</i></sub>, m<sub><i>client</i></sub>)
+MAC = HMAC(K<sub><i>RS1</i></sub>, HMAC(MAC, m<sub><i>RS1</i></sub>))
+MAC = HMAC(K<sub><i>RS2</i></sub>, HMAC(MAC, m<sub><i>RS2</i></sub>))
 
-MAC<sub><i>RS2</i></sub> = HMAC(K<sub><i>RS2</i></sub>, HMAC(K<sub><i>RS1</i></sub>, HMAC(K<sub><i>client</i></sub>, NONCE<sub><i>AS</i></sub>)))
-
-* chained integrity protection compatible with Macaroons
-
-MAC =  HMAC(HMAC(HMAC(MAC<sub><i>RS2</i></sub>, NONCE<sub><i>AS</i></sub>), MAC<sub><i>client</i></sub> \|\| data<sub><i>client</i></sub>), MAC<sub><i>RS1</i></sub> \|\| data<sub><i>RS1</i></sub>)
-
-* chained authenticity and integrity protection table
-
-| Possessor | Public data | MAC route | MAC data
-| --- | --- | --- | --- |
-| AS| NONCE<sub><i>AS</i></sub> | | MAC = HMAC(MAC<sub><i>RS2</i></sub>, NONCE<sub><i>AS</i></sub>)
-| client | MAC<sub><i>client</i></sub> | MAC<sub><i>client</i></sub> = HMAC(K<sub><i>client</i></sub>, NONCE<sub><i>AS</i></sub>)
-| client | data<sub><i>client</i></sub> | | MAC = HMAC(MAC, MAC<sub><i>client</i></sub> \|\| data<sub><i>client</i></sub>)
-| RS1 | MAC<sub><i>RS1</i></sub> | MAC<sub><i>RS1</i></sub> = HMAC(K<sub><i>RS1</i></sub>, MAC<sub><i>client</i></sub>)
-| RS1 | data<sub><i>RS1</i></sub> | | MAC = HMAC(MAC, MAC<sub><i>RS1</i></sub> \|\| data<sub><i>RS1</i></sub>)
-| RS2 | | MAC<sub><i>RS2</i></sub> = HMAC(K<sub><i>RS2</i></sub>, MAC<sub><i>RS1</i></sub>)
-
-WARNING: The authenticity of public data is lost!
-
-**Other hybrid chain HMACs constructions to protect authenticity and integrity**
-
-HMAC(HMAC(K<sub><i>3</i></sub>, HMAC(HMAC(K<sub><i>2</i></sub>, HMAC(K<sub><i>1</i></sub>, m<sub><i>1</i></sub>)), m<sub><i>2</i></sub>)), m<sub><i>3</i></sub>)
-
-HMAC(K<sub><i>3</i></sub>, HMAC(HMAC(K<sub><i>2</i></sub>, HMAC(HMAC(K<sub><i>1</i></sub>, m<sub><i>1</i></sub>), m<sub><i>2</i></sub>)), m<sub><i>3</i></sub>))
+These nested, chained HMACs constructions applied on tokens, claims, tickets or cookies may be used to implement both new authorization protocols and to enhance existing ones.
 
 ## Use Patterns
 
-OAuth2 and POCOP tokens.
+### OAuth2 POCOP Tokens
 
-### OAuth2 POCOP Access Tokens
+**OAuth2 POCOP Access Tokens**
 
 ![pocop-access-tokens](./images/pocop-access-tokens.png)
 
-**Prerequisites**
-
-**Steps**
-
-### OAuth2 POCOP Refresh Tokens
+**OAuth2 POCOP Refresh Tokens**
 
 ![pocop-refresh-tokens](./images/pocop-refresh-tokens.png)
 
-**Prerequisites**
+### UMA POCOP Tickets
 
-**Steps**
+Chained Resource Servers (TBD)
+
+### Macaroons POCOP Claims
+
+The individual messages (m<sub><i>client</i></sub>, m<sub><i>RS1</i></sub>, m<sub><i>RS2</i></sub>) consist of Macaroons-first-party-caveats-like chained claims, using respective K<sub><i>client</i></sub>, K<sub><i>RS1</i></sub>, K<sub><i>RS2</i></sub> root keys.
+
+MAC<sub><i>m_client</i></sub> = HMAC(K<sub><i>client</i></sub>, claim1<sub><i>client</i></sub>)
+MAC<sub><i>m_client</i></sub> = HMAC(MAC<sub><i>m_client</i></sub>, claim2<sub><i>client</i></sub>)
+MAC<sub><i>m_client</i></sub> = HMAC(MAC<sub><i>m_client</i></sub>, claim3<sub><i>client</i></sub>)
+MAC<sub><i>m_client</i></sub> = HMAC(MAC<sub><i>m_client</i></sub>, claim4<sub><i>client</i></sub>)
+
+MAC<sub><i>m_RS1</i></sub> = HMAC(K<sub><i>RS1</i></sub>, claim1<sub><i>RS1</i></sub>)
+MAC<sub><i>m_RS1</i></sub> = HMAC(MAC<sub><i>m_RS1</i></sub>, claim2<sub><i>RS1</i></sub>)
+
+MAC<sub><i>m_RS2</i></sub> = HMAC(K<sub><i>RS2</i></sub>, claim1<sub><i>RS2</i></sub>)
+MAC<sub><i>m_RS2</i></sub> = HMAC(MAC<sub><i>m_RS2</i></sub>, claim2<sub><i>RS2</i></sub>)
+MAC<sub><i>m_RS2</i></sub> = HMAC(MAC<sub><i>m_RS2</i></sub>, claim3<sub><i>RS2</i></sub>)
+
+The MAC<sub><i>m_client</i></sub>, MAC<sub><i>m_RS1</i></sub> and MAC<sub><i>m_RS2</i></sub> are chained using the POCOP mechanism.
+
+MAC = HMAC(K<sub><i>client</i></sub>, MAC<sub><i>m_client</i></sub>)
+MAC = HMAC(K<sub><i>RS1</i></sub>, HMAC(MAC, MAC<sub><i>m_RS1</i></sub>))
+MAC = HMAC(K<sub><i>RS2</i></sub>, HMAC(MAC, MAC<sub><i>m_RS2</i></sub>))
 
 ## Conclusion
 
-## Future Work
+(TBD)
 
 # Authorization-Enhanced Mail System
 
