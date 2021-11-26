@@ -148,7 +148,9 @@ MAC = HMAC(K<sub><i>RS2</i></sub>, HMAC(HMAC(K<sub><i>RS1</i></sub>, HMAC(HMAC(K
 broken down into individual MACs
 
 MAC = HMAC(K<sub><i>client</i></sub>, m<sub><i>client</i></sub>)
+
 MAC = HMAC(K<sub><i>RS1</i></sub>, HMAC(MAC, m<sub><i>RS1</i></sub>))
+
 MAC = HMAC(K<sub><i>RS2</i></sub>, HMAC(MAC, m<sub><i>RS2</i></sub>))
 
 These nested, chained HMACs constructions applied on tokens, claims, tickets or cookies may be used to implement both new authorization protocols and to enhance existing ones.
@@ -171,25 +173,40 @@ Chained Resource Servers (TBD)
 
 ### Macaroons POCOP Claims
 
-The individual messages (m<sub><i>client</i></sub>, m<sub><i>RS1</i></sub>, m<sub><i>RS2</i></sub>) consist of Macaroons-first-party-caveats-like chained claims, using respective K<sub><i>client</i></sub>, K<sub><i>RS1</i></sub>, K<sub><i>RS2</i></sub> root keys.
+-
 
-MAC<sub><i>m_client</i></sub> = HMAC(K<sub><i>client</i></sub>, claim1<sub><i>client</i></sub>)
-MAC<sub><i>m_client</i></sub> = HMAC(MAC<sub><i>m_client</i></sub>, claim2<sub><i>client</i></sub>)
-MAC<sub><i>m_client</i></sub> = HMAC(MAC<sub><i>m_client</i></sub>, claim3<sub><i>client</i></sub>)
-MAC<sub><i>m_client</i></sub> = HMAC(MAC<sub><i>m_client</i></sub>, claim4<sub><i>client</i></sub>)
+MAC<sub><i>AS</i></sub> = HMAC(K<sub><i>AS</i></sub>, NONCE<sub><i>AS</i></sub>)
 
-MAC<sub><i>m_RS1</i></sub> = HMAC(K<sub><i>RS1</i></sub>, claim1<sub><i>RS1</i></sub>)
-MAC<sub><i>m_RS1</i></sub> = HMAC(MAC<sub><i>m_RS1</i></sub>, claim2<sub><i>RS1</i></sub>)
+-
+MAC<sub><i>client</i></sub> = HMAC(K<sub><i>client</i></sub>, NONCE<sub><i>client</i></sub>)
 
-MAC<sub><i>m_RS2</i></sub> = HMAC(K<sub><i>RS2</i></sub>, claim1<sub><i>RS2</i></sub>)
-MAC<sub><i>m_RS2</i></sub> = HMAC(MAC<sub><i>m_RS2</i></sub>, claim2<sub><i>RS2</i></sub>)
-MAC<sub><i>m_RS2</i></sub> = HMAC(MAC<sub><i>m_RS2</i></sub>, claim3<sub><i>RS2</i></sub>)
+MAC<sub><i>client</i></sub> = HMAC(MAC<sub><i>client</i></sub>, claim1<sub><i>client</i></sub>)
 
-The MAC<sub><i>m_client</i></sub>, MAC<sub><i>m_RS1</i></sub> and MAC<sub><i>m_RS2</i></sub> are chained using the POCOP mechanism.
+MAC<sub><i>client</i></sub> = HMAC(MAC<sub><i>client</i></sub>, claim2<sub><i>client</i></sub>)
 
-MAC = HMAC(K<sub><i>client</i></sub>, MAC<sub><i>m_client</i></sub>)
-MAC = HMAC(K<sub><i>RS1</i></sub>, HMAC(MAC, MAC<sub><i>m_RS1</i></sub>))
-MAC = HMAC(K<sub><i>RS2</i></sub>, HMAC(MAC, MAC<sub><i>m_RS2</i></sub>))
+MAC<sub><i>client</i></sub> = HMAC(MAC<sub><i>client</i></sub>, claim3<sub><i>client</i></sub>)
+
+MAC<sub><i>client</i></sub> = HMAC(K<sub><i>client</i></sub>, HMAC(MAC<sub><i>client</i></sub>, MAC<sub><i>AS</i></sub>))
+
+-
+
+MAC<sub><i>RS1</i></sub> = HMAC(K<sub><i>RS1</i></sub>, NONCE<sub><i>RS1</i></sub>)
+
+MAC<sub><i>RS1</i></sub> = HMAC(MAC<sub><i>RS1</i></sub>, claim1<sub><i>RS1</i></sub>)
+
+MAC<sub><i>RS1</i></sub> = HMAC(K<sub><i>RS1</i></sub>, HMAC(MAC<sub><i>RS1</i></sub>, MAC<sub><i>client</i></sub>))
+
+-
+
+MAC<sub><i>RS2</i></sub> = HMAC(K<sub><i>RS2</i></sub>, NONCE<sub><i>RS2</i></sub>)
+
+MAC<sub><i>RS2</i></sub> = HMAC(MAC<sub><i>RS2</i></sub>, claim1<sub><i>RS2</i></sub>)
+
+MAC<sub><i>RS2</i></sub> = HMAC(MAC<sub><i>RS2</i></sub>, claim2<sub><i>RS2</i></sub>)
+
+MAC<sub><i>RS2</i></sub> = HMAC(K<sub><i>RS2</i></sub>, HMAC(MAC<sub><i>RS2</i></sub>, MAC<sub><i>RS1</i></sub>))
+
+-
 
 ## Conclusion
 
