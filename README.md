@@ -171,7 +171,9 @@ These nested, chained HMACs constructions applied on tokens, claims, tickets or 
 
 Chained Resource Servers (TBD)
 
-### Macaroons POCOP Claims
+### POCOP Tokens à la Macaroons
+
+**Chained tokens**
 
 -
 
@@ -207,6 +209,10 @@ MAC<sub><i>RS2</i></sub> = HMAC(MAC<sub><i>RS2</i></sub>, claim2<sub><i>RS2</i><
 MAC<sub><i>RS2</i></sub> = HMAC(K<sub><i>RS2</i></sub>, HMAC(MAC<sub><i>RS2</i></sub>, MAC<sub><i>RS1</i></sub>))
 
 -
+
+**Nested tokens**
+
+Via permission ticket (TBD)
 
 ## Conclusion
 
