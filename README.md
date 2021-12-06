@@ -222,7 +222,7 @@ MAC<sub><i>RS2</i></sub> = HMAC(K<sub><i>RS2</i></sub>, HMAC(MAC<sub><i>RS2</i><
 
 **Nested tokens**
 
-Via permission ticket (TBD)
+Encrypted and/or via permission ticket (TBD)
 
 ## Conclusion
 
