@@ -175,11 +175,21 @@ Chained Resource Servers (TBD)
 
 **Chained tokens**
 
+
+The HMAC chain may started with an AS, a client or any other registered client.
+
+Claim1 is a mandatory "iss" claim that identifies who created the token.
+
 -
 
 MAC<sub><i>AS</i></sub> = HMAC(K<sub><i>AS</i></sub>, NONCE<sub><i>AS</i></sub>)
 
+MAC<sub><i>AS</i></sub> = HMAC(MAC<sub><i>AS</i></sub>, claim1<sub><i>AS</i></sub>)
+
+MAC<sub><i>AS</i></sub> = HMAC(K<sub><i>AS</i></sub>, MAC<sub><i>AS</i></sub>)
+
 -
+
 MAC<sub><i>client</i></sub> = HMAC(K<sub><i>client</i></sub>, NONCE<sub><i>client</i></sub>)
 
 MAC<sub><i>client</i></sub> = HMAC(MAC<sub><i>client</i></sub>, claim1<sub><i>client</i></sub>)
