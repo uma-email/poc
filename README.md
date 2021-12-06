@@ -180,6 +180,8 @@ The HMAC chain may started with an AS, a client or any other registered client.
 
 Claim1 is a mandatory "iss" claim that identifies who created the token.
 
+Claims are public.
+
 -
 
 MAC<sub><i>AS</i></sub> = HMAC(K<sub><i>AS</i></sub>, NONCE<sub><i>AS</i></sub>)
@@ -222,7 +224,7 @@ MAC<sub><i>RS2</i></sub> = HMAC(K<sub><i>RS2</i></sub>, HMAC(MAC<sub><i>RS2</i><
 
 **Nested tokens**
 
-Encrypted and/or via permission ticket (TBD)
+Claims are confidential (encrypted). (TBD)
 
 ## Conclusion
 
