@@ -183,7 +183,7 @@ Chained proof-of-possession is used to ensure the authenticity of macaroons.
 
 MAC<sub><i>macaroon1</i></sub> = HMAC(K<sub><i>possessor2</i></sub>, HMAC(K<sub><i>possessor1</i></sub>, MAC<sub><i>macaroon1</i></sub>))
 
-Each Macaroons possessor must be registered (public clients can use dynamic registration to become confidential clients). Macaroons are verified via introspection endpoints on the authorization servers.
+Each Macaroons possessor must be registered on an authorization server (public clients can use dynamic registration to become confidential clients). Macaroons are verified via introspection endpoints on the authorization servers.
 
 **Example**
 
