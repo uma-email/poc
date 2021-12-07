@@ -171,16 +171,27 @@ These nested, chained HMACs constructions applied on tokens, claims, tickets or 
 
 Chained Resource Servers (TBD)
 
-### POCOP Tokens à la Macaroons
+### Macaroons à la POCOP Tokens; Macaroons – made from scratch!
 
-**Chained tokens**
+Claims are used instead of caveats.
+
+To ensure integrity protection of macaroon claims, Macaroons use a chained message checksum.
+
+MAC<sub><i>macaroon1</i></sub> = HMAC(HMAC(HMAC(K<sub><i>1</i></sub>, claim<sub><i>1</i></sub>), claim<sub><i>2</i></sub>, claim<sub><i>3</i></sub>))
+
+Chained proof-of-possession is used to ensure the authenticity of macaroons.
+
+MAC<sub><i>macaroon1</i></sub> = HMAC(K<sub><i>2</i></sub>, HMAC(K<sub><i>1</i></sub>, MAC<sub><i>macaroon1</i></sub>))
+
+
+**Example**
 
 
 The HMAC chain may started with an AS, a client or any other registered client.
 
-Claim1 is a mandatory "iss" claim that identifies who created the token.
+Claim1 is a mandatory "iss" claim that identifies who created the macaroon.
 
-Claim2 should be an issued-at "iat" timestamp of the token.
+Claim2 should be an issued-at "iat" timestamp of the macaroon.
 
 Claims are public.
 
@@ -238,9 +249,13 @@ MAC<sub><i>RS2</i></sub> = HMAC(K<sub><i>RS2</i></sub>, MAC<sub><i>RS2</i></sub>
 
 -
 
-**Nested tokens**
+**Nested/third-party claims**
 
-Claims are confidential (encrypted). (TBD)
+(TBD)
+
+**Confidential claims**
+
+Encrypted claims. (TBD)
 
 ## Conclusion
 
