@@ -180,6 +180,8 @@ The HMAC chain may started with an AS, a client or any other registered client.
 
 Claim1 is a mandatory "iss" claim that identifies who created the token.
 
+Claim2 should be an issued-at "iat" timestamp of the token.
+
 Claims are public.
 
 -
@@ -188,9 +190,13 @@ MAC<sub><i>AS</i></sub> = HMAC(K<sub><i>AS</i></sub>, NONCE<sub><i>AS</i></sub>)
 
 MAC<sub><i>AS</i></sub> = HMAC(MAC<sub><i>AS</i></sub>, claim1<sub><i>AS</i></sub>)
 
+MAC<sub><i>AS</i></sub> = HMAC(MAC<sub><i>AS</i></sub>, claim2<sub><i>AS</i></sub>)
+
 MAC<sub><i>AS</i></sub> = HMAC(K<sub><i>AS</i></sub>, MAC<sub><i>AS</i></sub>)
 
 -
+
+MAC<sub><i>AS</i></sub> = SHA(MAC<sub><i>AS</i></sub>)
 
 MAC<sub><i>client</i></sub> = HMAC(K<sub><i>client</i></sub>, NONCE<sub><i>client</i></sub>)
 
@@ -200,11 +206,11 @@ MAC<sub><i>client</i></sub> = HMAC(MAC<sub><i>client</i></sub>, claim1<sub><i>cl
 
 MAC<sub><i>client</i></sub> = HMAC(MAC<sub><i>client</i></sub>, claim2<sub><i>client</i></sub>)
 
-MAC<sub><i>client</i></sub> = HMAC(MAC<sub><i>client</i></sub>, claim3<sub><i>client</i></sub>)
-
 MAC<sub><i>client</i></sub> = HMAC(K<sub><i>client</i></sub>, MAC<sub><i>client</i></sub>)
 
 -
+
+MAC<sub><i>client</i></sub> = SHA(MAC<sub><i>client</i></sub>)
 
 MAC<sub><i>RS1</i></sub> = HMAC(K<sub><i>RS1</i></sub>, NONCE<sub><i>RS1</i></sub>)
 
@@ -212,9 +218,13 @@ MAC<sub><i>RS1</i></sub> = HMAC(MAC<sub><i>RS1</i></sub>, MAC<sub><i>client</i><
 
 MAC<sub><i>RS1</i></sub> = HMAC(MAC<sub><i>RS1</i></sub>, claim1<sub><i>RS1</i></sub>)
 
+MAC<sub><i>RS1</i></sub> = HMAC(MAC<sub><i>RS1</i></sub>, claim2<sub><i>RS1</i></sub>)
+
 MAC<sub><i>RS1</i></sub> = HMAC(K<sub><i>RS1</i></sub>, MAC<sub><i>RS1</i></sub>)
 
 -
+
+MAC<sub><i>RS1</i></sub> = SHA(MAC<sub><i>RS1</i></sub>)
 
 MAC<sub><i>RS2</i></sub> = HMAC(K<sub><i>RS2</i></sub>, NONCE<sub><i>RS2</i></sub>)
 
