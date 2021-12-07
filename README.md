@@ -177,11 +177,11 @@ Claims are used instead of caveats.
 
 To ensure integrity protection of macaroon claims, Macaroons use a chained message checksum.
 
-MAC<sub><i>macaroon1</i></sub> = HMAC(HMAC(HMAC(K<sub><i>1</i></sub>, claim<sub><i>1</i></sub>), claim<sub><i>2</i></sub>, claim<sub><i>3</i></sub>))
+MAC<sub><i>macaroon1</i></sub> = HMAC(HMAC(HMAC(K<sub><i>possessor1</i></sub>, claim<sub><i>1</i></sub>), claim<sub><i>2</i></sub>, claim<sub><i>3</i></sub>))
 
 Chained proof-of-possession is used to ensure the authenticity of macaroons.
 
-MAC<sub><i>macaroon1</i></sub> = HMAC(K<sub><i>2</i></sub>, HMAC(K<sub><i>1</i></sub>, MAC<sub><i>macaroon1</i></sub>))
+MAC<sub><i>macaroon1</i></sub> = HMAC(K<sub><i>possessor2</i></sub>, HMAC(K<sub><i>possessor1</i></sub>, MAC<sub><i>macaroon1</i></sub>))
 
 Each Macaroons possessor must be registered (public clients can use dynamic registration to become confidential clients). Macaroons are verified via introspection endpoints on the authorization servers.
 
