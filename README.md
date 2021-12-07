@@ -196,7 +196,7 @@ MAC<sub><i>AS</i></sub> = HMAC(K<sub><i>AS</i></sub>, MAC<sub><i>AS</i></sub>)
 
 -
 
-MAC<sub><i>AS</i></sub> = SHA(MAC<sub><i>AS</i></sub>)
+MAC<sub><i>AS</i></sub> = HMAC(K<sub><i>client</i></sub>, MAC<sub><i>AS</i></sub>)
 
 MAC<sub><i>client</i></sub> = HMAC(K<sub><i>client</i></sub>, NONCE<sub><i>client</i></sub>)
 
@@ -210,7 +210,7 @@ MAC<sub><i>client</i></sub> = HMAC(K<sub><i>client</i></sub>, MAC<sub><i>client<
 
 -
 
-MAC<sub><i>client</i></sub> = SHA(MAC<sub><i>client</i></sub>)
+MAC<sub><i>client</i></sub> = HMAC(K<sub><i>RS1</i></sub>, MAC<sub><i>client</i></sub>)
 
 MAC<sub><i>RS1</i></sub> = HMAC(K<sub><i>RS1</i></sub>, NONCE<sub><i>RS1</i></sub>)
 
@@ -224,7 +224,7 @@ MAC<sub><i>RS1</i></sub> = HMAC(K<sub><i>RS1</i></sub>, MAC<sub><i>RS1</i></sub>
 
 -
 
-MAC<sub><i>RS1</i></sub> = SHA(MAC<sub><i>RS1</i></sub>)
+MAC<sub><i>RS1</i></sub> = HMAC(K<sub><i>RS2</i></sub>, MAC<sub><i>RS1</i></sub>)
 
 MAC<sub><i>RS2</i></sub> = HMAC(K<sub><i>RS2</i></sub>, NONCE<sub><i>RS2</i></sub>)
 
