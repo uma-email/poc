@@ -173,17 +173,27 @@ Chained Resource Servers (TBD)
 
 ### Macaroons à la POCOP Tokens; Macaroons – made from scratch!
 
+**Concept**
+
 Claims are used instead of caveats.
 
-To ensure integrity protection of macaroon claims, Macaroons use a chained message checksum.
+1. To ensure integrity protection of macaroon claims, Macaroons use a chained message checksum.
 
-MAC<sub><i>macaroon1</i></sub> = HMAC(HMAC(HMAC(K<sub><i>possessor1</i></sub>, claim<sub><i>1</i></sub>), claim<sub><i>2</i></sub>, claim<sub><i>3</i></sub>))
+MAC<sub><i>macaroon1</i></sub> = HMAC(HMAC(HMAC(K<sub><i>possessor1</i></sub>, claim1<sub><i>possessor1</i></sub>), claim2<sub><i>possessor1</i></sub>, claim3<sub><i>possessor1</i></sub>))
 
-Chained proof-of-possession is used to ensure the authenticity of macaroons.
+2. Chained proof-of-possession is used to ensure the authenticity of macaroons.
 
-MAC<sub><i>macaroon1</i></sub> = HMAC(K<sub><i>possessor2</i></sub>, HMAC(K<sub><i>possessor1</i></sub>, MAC<sub><i>macaroon1</i></sub>))
+MAC<sub><i>macaroon1</i></sub> = HMAC(K<sub><i>possessor1</i></sub>, MAC<sub><i>macaroon1</i></sub>)
 
-Each Macaroons possessor must be registered on an authorization server (public clients can use dynamic registration to become confidential clients). Macaroons are verified via introspection endpoints on the authorization servers.
+- hop to the possessor2 (after the hop, the MAC<sub><i>macaroon1</i></sub> should be discarded at the possessor1)
+
+MAC<sub><i>macaroon1</i></sub> = HMAC(K<sub><i>possessor2</i></sub>, MAC<sub><i>macaroon1</i></sub>)
+
+3. The MAC<sub><i>macaroon1</i></sub> is chained with the possessor2 claims.
+
+MAC<sub><i>macaroon2</i></sub> = HMAC(HMAC(HMAC(HMAC(K<sub><i>possessor2</i></sub>, MAC<sub><i>macaroon1</i></sub>), claim1<sub><i>possessor2</i></sub>, claim2<sub><i>possessor2</i></sub>, claim3<sub><i>possessor2</i></sub>)))
+
+Each macaroons possessor must be registered at an authorization server (public clients can use dynamic registration to become confidential clients). Macaroons are verified via introspection endpoints at the authorization servers.
 
 **Example**
 
@@ -196,7 +206,6 @@ Claim2 should be an issued-at "iat" timestamp of the macaroon.
 
 Claims are public.
 
--
 
 MAC<sub><i>AS</i></sub> = HMAC(K<sub><i>AS</i></sub>, NONCE<sub><i>AS</i></sub>)
 
@@ -248,7 +257,6 @@ MAC<sub><i>RS2</i></sub> = HMAC(MAC<sub><i>RS2</i></sub>, claim2<sub><i>RS2</i><
 
 MAC<sub><i>RS2</i></sub> = HMAC(K<sub><i>RS2</i></sub>, MAC<sub><i>RS2</i></sub>)
 
--
 
 **Nested/third-party claims**
 
