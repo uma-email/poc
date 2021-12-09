@@ -171,7 +171,9 @@ These nested, chained HMACs constructions applied on tokens, claims, tickets or 
 
 Chained Resource Servers (TBD)
 
-### Macaroons – made from scratch!
+### UMA Macaroons
+
+**Tagline**
 
 Macaroons, made from scratch using an UMA recipe with the fresh HMAC ingredients.
 
