@@ -220,7 +220,7 @@ Chained Resource Servers.
 
 The HMAC chain may started with an AS or any other registered client.
 
-Each macaroon started with a random NONCE to prevent replay attack.
+Each macaroon starts with a random NONCE to prevent replay attack.
 
 Claim_1 is a mandatory "iss" claim that identifies who created the macaroon.
 
