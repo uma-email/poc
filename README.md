@@ -203,7 +203,7 @@ MAC<sub><i>macaroon_1</i></sub> = HMAC(K<sub><i>possessor_1</i></sub>, MAC<sub><
 
 MAC<sub><i>macaroon_1</i></sub> = HMAC(K<sub><i>possessor_2</i></sub>, MAC<sub><i>macaroon_1</i></sub>)
 
-3. The MAC<sub><i>macaroon_1</i></sub> is added to the possessor_2 claims chain at the first position.
+3. The MAC<sub><i>macaroon_1</i></sub> is added to the possessor_2 as the first claim.
 
 MAC<sub><i>macaroon_2</i></sub> = HMAC(...HMAC(HMAC(K<sub><i>possessor_2</i></sub>, MAC<sub><i>macaroon_1</i></sub>), claim_2<sub><i>possessor_2</i></sub>, ...claim_n<sub><i>possessor_2</i></sub>))
 
@@ -211,7 +211,7 @@ Each MAC value is discarded immediately after chaining except for the value afte
 
 Macaroons possessors must be registered at the authorization server (public clients can use dynamic registration to become confidential clients). Macaroons are verified via introspection endpoints at the authorization server.
 
-** Use Case**
+**Use Case**
 
 Chained Resource Servers.
 
@@ -219,6 +219,8 @@ Chained Resource Servers.
 
 
 The HMAC chain may started with an AS or any other registered client.
+
+Each macaroon started with a random NONCE to prevent replay attack.
 
 Claim_1 is a mandatory "iss" claim that identifies who created the macaroon.
 
