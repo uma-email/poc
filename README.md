@@ -203,7 +203,7 @@ MAC<sub><i>macaroon_1</i></sub> = HMAC(K<sub><i>possessor_1</i></sub>, MAC<sub><
 
 MAC<sub><i>macaroon_1</i></sub> = HMAC(K<sub><i>possessor_2</i></sub>, MAC<sub><i>macaroon_1</i></sub>)
 
-3. The MAC<sub><i>macaroon_1</i></sub> is added to the possessor_2 as the first claim.
+3. The MAC<sub><i>macaroon_1</i></sub> is added to the possessor_2 macaroon as the first claim.
 
 MAC<sub><i>macaroon_2</i></sub> = HMAC(...HMAC(HMAC(K<sub><i>possessor_2</i></sub>, MAC<sub><i>macaroon_1</i></sub>), claim_2<sub><i>possessor_2</i></sub>, ...claim_n<sub><i>possessor_2</i></sub>))
 
