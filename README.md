@@ -207,7 +207,7 @@ MAC<sub><i>macaroon_1</i></sub> = HMAC(K<sub><i>possessor_2</i></sub>, MAC<sub><
 
 MAC<sub><i>macaroon_2</i></sub> = HMAC(...HMAC(HMAC(K<sub><i>possessor_2</i></sub>, MAC<sub><i>macaroon_1</i></sub>), claim_2<sub><i>possessor_2</i></sub>, ...claim_n<sub><i>possessor_2</i></sub>))
 
-Each MAC value is discarded immediately after chaining except for the value after hop HMAC chaining, which is added as a claim to the new possessor's macaroon. 
+Each MAC value is discarded immediately after chaining except for the macaroon terminal value and the value after hop HMAC chaining, which is added as a claim to the new possessor's macaroon. 
 
 Macaroons possessors must be registered at the authorization server (public clients can use dynamic registration to become confidential clients). Macaroons are verified via introspection endpoints at the authorization server.
 
@@ -224,9 +224,9 @@ Each macaroon starts with a random NONCE to prevent replay attack.
 
 Claim_1 is a mandatory "iss" claim that identifies who created the macaroon.
 
-Claim_2 should be an issued-at "iat" timestamp of the macaroon.
+Claim_2 is an issued-at "iat" timestamp of the macaroon.
 
-Claims are public.
+All claims are public.
 
 
 MAC<sub><i>AS</i></sub> = HMAC(K<sub><i>AS</i></sub>, NONCE<sub><i>AS</i></sub>)
@@ -282,7 +282,7 @@ MAC<sub><i>RS_2</i></sub> = HMAC(K<sub><i>RS_2</i></sub>, MAC<sub><i>RS_2</i></s
 
 **Nested/third-party claims**
 
-(TBD)
+A claim can contain another macaroon.
 
 **Confidential claims**
 
