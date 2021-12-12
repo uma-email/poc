@@ -139,7 +139,7 @@ MAC = HMAC(K<sub><i>3</i></sub>, HMAC(K<sub><i>2</i></sub>, HMAC(K<sub><i>1</i><
 
 **Chained message checksum (integrity protection)**
 
-MAC = HMAC(HMAC(HMAC(K<sub><i>1</i></sub>, m<sub><i>1</i></sub>), m<sub><i>2</i></sub>, m<sub><i>3</i></sub>))
+MAC = HMAC(HMAC(HMAC(K<sub><i>1</i></sub>, m<sub><i>1</i></sub>), m<sub><i>2</i></sub>), m<sub><i>3</i></sub>)
 
 **Chained authenticity and integrity protection**
 
