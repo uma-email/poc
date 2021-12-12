@@ -205,7 +205,7 @@ MAC<sub><i>macaroon_1</i></sub> = HMAC(K<sub><i>possessor_2</i></sub>, MAC<sub><
 
 3. The MAC<sub><i>macaroon_1</i></sub> is added to the possessor_2 macaroon as the first claim.
 
-MAC<sub><i>macaroon_2</i></sub> = HMAC(...HMAC(HMAC(K<sub><i>possessor_2</i></sub>, MAC<sub><i>macaroon_1</i></sub>), claim_2<sub><i>possessor_2</i></sub>, ...claim_n<sub><i>possessor_2</i></sub>))
+MAC<sub><i>macaroon_2</i></sub> = HMAC(...HMAC(HMAC(K<sub><i>possessor_2</i></sub>, MAC<sub><i>macaroon_1</i></sub>), claim_2<sub><i>possessor_2</i></sub>), ...claim_n<sub><i>possessor_2</i></sub>)
 
 Each MAC value is discarded immediately after chaining except for the macaroon terminal value and the value after hop HMAC chaining, which is added as a claim to the new possessor's macaroon. 
 
