@@ -193,7 +193,7 @@ Bearer tokens are vulnerable at rest and in transit when an attacker is able to 
 
 1. To ensure integrity protection of macaroon claims, Macaroons use a chained message checksum.
 
-MAC<sub><i>macaroon_1</i></sub> = HMAC(...HMAC(HMAC(K<sub><i>possessor_1</i></sub>, claim_1<sub><i>possessor_1</i></sub>), claim_2<sub><i>possessor_1</i></sub>, ...claim_n<sub><i>possessor_1</i></sub>))
+MAC<sub><i>macaroon_1</i></sub> = HMAC(...HMAC(HMAC(K<sub><i>possessor_1</i></sub>, claim_1<sub><i>possessor_1</i></sub>), claim_2<sub><i>possessor_1</i></sub>), ...claim_n<sub><i>possessor_1</i></sub>)
 
 2. Chained proof-of-possession is used to ensure the authenticity of macaroons.
 
